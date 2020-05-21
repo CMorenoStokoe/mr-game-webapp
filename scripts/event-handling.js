@@ -8,10 +8,10 @@ Intended purpose of this script:
 
 Contents of this script:
 - Timing and delay
-    Functions designed to delay or time functions
-    
+    Any functions designed to delay or time functions
+
 - Event control
-    Functions designed to trigger other functions on an event (e.g., click)
+    Any functions designed to trigger other functions on an event (e.g., click)
 
 Encapsulation:
 - This is a collection of methods designed to be called from a master
@@ -21,14 +21,8 @@ functions are designed to have no dependencies other than vanilla JS.
 */
 
 
-// Trigger function on window on-load
-window.onload=function(){
-    null
-}
-
-
 // Trigger function on element click
-function addEventListener(id, event){
+function addEvntListener(id, event){
 
     document.getElementById(id).addEventListener("click", event);
 }

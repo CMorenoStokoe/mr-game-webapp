@@ -59,7 +59,6 @@ function faIcon(iconName, className = null){
     template = '<i class="fas fa-' + iconName + ' ' + className + '"></i>'
     
     // Return constructed icon element
-    console.log(template)
     return(template)
 }
 
