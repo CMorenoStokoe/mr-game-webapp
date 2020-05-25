@@ -22,10 +22,11 @@ functions are designed to have no dependencies other than vanilla JS.
 */
 
 // Update the fill and text of a node g svg element
-function updateNode(id, color, text){ 
+function updateNode(id, color, radius, text){ 
   
     // Change circle color
     document.getElementById(id + '-circle').style.fill = color;
+    document.getElementById(id + '-circle').setAttribute("r", radius);
     document.getElementById(id + '-text').innerHTML = text;
   
   }
@@ -33,13 +34,13 @@ function updateNode(id, color, text){
 // Change the outline style of a node g svg element
 function outlineNode(id, color){
 
-node=document.getElementById(id + '-circle')
+  node=document.getElementById(id + '-circle')
 
-// Change outline color
-node.style.stroke = color;
+  // Change outline color
+  node.style.stroke = color;
 
-currentStrokeWidth = node.getAttribute('stroke-width')
-node.style.strokeWidth = currentStrokeWidth*2;
+  currentStrokeWidth = node.getAttribute('stroke-width')
+  node.style.strokeWidth = currentStrokeWidth*2;
 }
   
 

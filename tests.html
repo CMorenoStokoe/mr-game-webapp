@@ -183,6 +183,20 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-3">
+            <div class="card" style="margin: 5px; height: 95%; width: 95%;">
+                <div class=card-header>
+                    <h4>Disable button</h4>
+                </div>
+                <div class=card-body style="ghostwhite">
+                    <em style="color: rgb(2, 117, 216)" >Disabling button: </em>
+                    <button class="btn btn-primary" id="test_disabled">Button</button>
+                    <div id="test_data"></div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 </body>
@@ -270,8 +284,11 @@
         // Create and edit FDG graph
         drawGraph("#test_svg", data); // (id of SVG, data for graph)
         outlineNode('l2', 'rgb(2, 117, 216)'); // (id of graph SVG g node element, new outline color)
-        updateNode('l1', 'rgb(2, 117, 216)', 'new label'); // (id of graph SVG g node element, new fill color, new label text)
+        updateNode('l1', 'rgb(2, 117, 216)', '10', 'new label'); // (id of graph SVG g node element, new fill color, new label text)
         
+        // Disable button
+        setDisabled('test_disabled');
+
 
         // Test functions
         tests = validate([
@@ -331,8 +348,11 @@
             {name : '[graph.] outlineNode (set stroke width)', expected : 4, actual : get('l2-circle', prop=['style', 'strokeWidth'])},
             {name : '[graph.] outlineNode (set stroke color)', expected : 'rgb(2, 117, 216)', actual : get('l2-circle', prop=['style', 'stroke'])},
             {name : '[graph.] updateNode (set fill color)', expected : 'rgb(2, 117, 216)', actual : get('l1-circle', prop=['style', 'fill'])},
-            {name : '[graph.] updateNode (set text)', expected : 'new label', actual : get('l1-text', prop="innerHTML")},
-        
+            {name : '[graph.] updateNode (set text)', expected : 'new label', actual : get('l1-text', prop='innerHTML')},
+            {name : '[graph.] updateNode (set r)', expected : 10, actual : get('l1-circle', prop=['getAttr', 'r'])},
+
+            // Check that disabled works correctly
+            {name : '[edit-element.] setDisabled (set disabled)', expected : true, actual : get('test_disabled', prop='disabled')},
         ])
 
         if (tests['failed'].length > 0) {

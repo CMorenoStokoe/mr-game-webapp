@@ -75,6 +75,11 @@ function color(id, color){
     document.getElementById(id).style.color = color;
 }
 
+// Disable element
+function setDisabled(id){
+    document.getElementById(id).disabled = true;
+}
+
 // Number rounding
 function roundNum (num, percent = false){
     

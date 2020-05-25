@@ -20,23 +20,41 @@ function log(message){
 // Return the attribute of element
 function get(id, prop=null, child=null){
 
-    // Get first child if the child of an element is requested, else get the element itself
+    // Get first child if the child of an element is requested
     if (child){
         element = document.getElementById(id).children[0];
     } 
+
+    // Else get the element itself
     else {
         element = document.getElementById(id);
     } 
 
-    // Get the specified properties of the element, 
-    if (Array.isArray(prop)){
-        return(element[prop[0]][prop[1]]); // If multiple properties use them sequentially as keys (e.g., element.style.color)
-    } else if (prop){
-        return(element[prop]); // If property is not an array then use it as a key (e.g., element.id)
-    } else {
-        return(element); // If no property is given then return the element itself (e.g., [HTML DOM Object: element type])
+    // Get the specified properties of the element and use different processes to get this
+    if (Array.isArray(prop)){ 
+        
+        switch(prop[0]){
+
+            // If getAttr is first property in array, caller is asking for a getAttribute() method
+            case 'getAttr': 
+                return(element.getAttribute(prop[1]));
+
+            // Otherwise use multiple properties sequentially as keys (e.g., element.style.color)
+            default:
+                return(element[prop[0]][prop[1]]); 
+        }
+    } 
+
+    // If property is not an array then use it as a key (e.g., element.id)
+    else if (prop){
+        return(element[prop]); 
     }
-    
+
+    // If no property is given then return the element itself (e.g., [HTML DOM Object: element type])
+    else {
+        return(element); 
+    }
+
 }
 
 // Test whether expected and actual values passed into this function agree
