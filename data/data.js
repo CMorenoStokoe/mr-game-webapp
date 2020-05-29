@@ -12,63 +12,91 @@ Contents of this script:
 
 */
 
-const data = {
+
+// Pseudo data class
+class GameData {
+
+    constructor(nodes, edges) {
+        // Data variables
+        this.nodes = nodes;
+        this.edges = edges;
+        this.policies = this.initialisePolicies();
+        // Game variables
+        this.objective = this.setObjective();
+        this.activePolicies = [];
+    }
+
+
+    initialisePolicies(){
+        const policyList = []
+
+        for (const node of this.nodes){
+            policyList.push(
+                node
+            )
+        };
+
+        return policyList;
+    }
+
+
+    setObjective(){
+        
+        for (const node of this.nodes){
+
+            switch(node.id){
+
+                case 'l1': 
+                    return node;
+
+                default: 
+                    break;
+            }
+        };
+    }
+}
+
+// Data 
+var data_json = {
     nodes : [
         {
             id : 'l1',
-            short_name : 'depression',
+            label : 'depression',
             name : 'depression score',
-            acivation : 3,
+            prevalence : 3,
             units : 'score',
         },
         {
             id : 'l2',
-            short_name : 'sleep',
+            label : 'sleep',
             name : 'sleep per day',
-            acivation : 3,
+            prevalence : 3,
             units : 'hours',
         },
         {
             id : 'l3',
-            short_name : 'exercise',
+            label : 'exercise',
             name : 'days exercise moderately',
-            acivation : 3,
+            prevalence : 3,
             units : 'days',
         },
     ],
   
     links : [
         {
-          "id" : 1,
-          "source" : 'l1',
-          "target" : 'l3',
-          "source_name" : 'fdgfdg',
-          "target_name" : 'gfdgfd',
-          "method" : 'ivw',
-          "nsnp" : 299,
-          "b" : 1,
-          "se" : 0.5,
-          "pval" : 0.5,
-          "color" : 'blue',
-          "dash" : 'No',
+          id : 1,
+          source : 'l1',
+          target : 'l3',
+          b : 1,
         },
         {
-          "id" : 2,
-          "source" : 'l2',
-          "target" : 'l1',
-          "source_name" : 'fdgfdg',
-          "target_name" : 'gfdgfd',
-          "method" : 'ivw',
-          "nsnp" : 299,
-          "b" : -1,
-          "se" : 0.5,
-          "pval" : 0.5,
-          "color" : 'red',
-          "dash" : 'No',
+          id : 2,
+          source : 'l2',
+          target : 'l1',
+          b : -1,
         },
     ],
-  
-    gameVars : {
-        activePolicies : [],
-    },
   }
+
+// Make main data object used for game, as GameData pseudo data class
+var data = new GameData(data_json.nodes, data_json.links);

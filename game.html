@@ -17,6 +17,7 @@
     </head>
     <body>
         
+        <!-- Top of page tilebar -->
         <div class="row text-center" id="tilebar-top" style="height: 19vh;">
             
             <div class="col-sm">
@@ -38,13 +39,17 @@
                 <button>Enact policy</button>
             </div>
 
-        </div> <!--/top tilebar-->
+        </div>
 
+        <!-- Main content area --> 
         <div class="row text-center">
+
+            <!-- Graph area -->
             <div class="col-sm">
                 <svg width="800" height="600"></svg>
             </div>
 
+            <!-- Choose policy panel -->
             <div class="card" style="position: absolute; right: 0; height: 79vh; width: 600px;">
                 
                 <div class="card-header">
@@ -57,20 +62,60 @@
                         <div class="card-body">
                             <h5 class="card-title">Free gym memberships</h5>
                             <p class="card-text">Increases exercise.</p>
-                            <a href="#" class="btn btn-primary">Enact policy</a>
+                            <a href="#" class="btn btn-primary">View policy</a>
                         </div>
                     </div>
                     <div class="card policy">
                         <div class="card-body">
                             <h5 class="card-title">Preventative counselling services</h5>
                             <p class="card-text">Reduces depression.</p>
-                            <a href="#" class="btn btn-primary">Enact policy</a>
+                            <a href="#" class="btn btn-primary">View policy</a>
                         </div>
                     </div>
                 </div>
             </div>
                 
+            <!-- Policy info panel -->
+            <div class="card" style="position: absolute; left: 0; height: 79vh; width: 600px;">
+                
+                <div class="card-header">
+                    <h2>View policy effects</h2>
+                    <button class="btn btn-light">X</button>
+                </div>
+
+                <div class="card-body" id="policy-container">
+                    <div class="card policy">
+                        <div class="card-body">
+                            <h5 class="card-title">Free gym memberships</h5>
+                            <p class="card-text">Increases exercise.</p>
+                        </div>
+                    </div>
+                    <div class="card policy">
+                        <div class="card-body">
+                            <h5 class="card-title">Policy effects</h5>
+
+                            <table style="width:100%" id="policy-effects-table">
+                                <tr>
+                                  <th>Increases</th>
+                                  <th>Decreases</th>
+                                </tr>
+                                <tr>
+                                  <td>Depression</td>
+                                  <td>Insomnia</td>
+                                </tr>
+                                <tr>
+                                  <td>Wellbeing</td>
+                                  <td></td>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="btn btn-lg btn-primary">Enact policy</a>
+                </div>
             </div>
+            
         </div>
 
         <!--[if lt IE 7]>
@@ -82,8 +127,10 @@
         <script src="scripts/create-element.js" async defer></script>
         <script src="scripts/event-handling.js" async defer></script>
         <script src="scripts/testing/debug.js" async defer></script>
-        <script src="data/data.js" async defer></script>
-        <script src="scripts/graph.js" async defer></script>    
+        <script src="scripts/graph.js" async defer></script>
+        <script src="algorithms/propagation.js" async defer></script>
+        <script src="scripts/jsnetworkx.js"></script> 
+        <script src="data/data.js" async defer></script> 
 
         <!-- D3 -->
         <script src="https://d3js.org/d3.v5.min.js" async defer></script>

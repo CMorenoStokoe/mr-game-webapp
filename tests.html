@@ -15,8 +15,16 @@
     -->
 
 <head>
+
+    // Bootstrap css theme
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    
+    // Fonts
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+    
+    // Font awesome icons
     <script src="https://kit.fontawesome.com/ff3502b087.js" crossorigin="anonymous"></script>
+    
 </head>
 
 <body style="font-family: consolas;">
@@ -32,73 +40,80 @@
 
 
     <div class="row">
-    
-        <div class="col-3">
-            <div class="card"  style="margin: 5px; height: 95%; width: 95%;">
-                <div class=card-header>
-                    <h4>Buttons</h4>
-                </div>
-                <div class=card-body>
-                    <em style="color: rgb(2, 117, 216)" >Creating a button here: </em><div id="test_div_btns"></div>
-                    <p id="test_messages" style="background-color: lightgrey; margin-top: 0px;"></p>
-                </div>
-            </div>
-        </div>
         
-        <div class="col-3">
-            <div class="card"  style="margin: 5px; height: 95%; width: 95%;">
-                <div class=card-header>
-                    <h4>Progress bars</h4>
-                </div>
-                <div class=card-body>
-                    <div id="shadowrealm" style="display: none">
-                        <em style="color: rgb(2, 117, 216)" >HIDDEN Progress bar template (static html)</em>
-                        <div class="progress" id="progress_bar_template" style="margin: 10px;" >
-                            <div class="progress-bar" role="progressbar" aria-valuenow="70"
-                            aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                            70%
-                            </div>
-                        </div>
-                    </div>
-                    <div id="test_div_progs">
-                        <em style="color: rgb(2, 117, 216)" >Initialising a new progress bar (current value 10, bar range 0-10), and editing it (current value 10 --> 5), here: </em>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div class="col-6">
 
-        <div class="col-3">
-            <div class="card"  style="margin: 5px; height: 95%; width: 95%;">
-                <div class=card-header>
-                    <h4>Visibility</h4>
-                </div>
-                <div class=card-body>
-                    <em style="color: rgb(2, 117, 216)" >Two boxes are made visible: </em>
-                    <div id="test_hidden" style="background-color: rgb(2, 117, 216); color:white; padding: 5px; margin: 5px; border-radius: 2px; visibility: hidden;">visibility: visible</div>
-                    <div id="test_none" style="background-color: rgb(2, 117, 216); color:white; padding: 5px; margin: 5px; border-radius: 2px; display: none;">display: block</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-3">
             <div class="card"  style="margin: 5px; height: 95%; width: 95%;">
                 <div class=card-header>
                     <h4>FDG graph</h4>
                 </div>
                 <div class=card-body>
-                    <em style="color: rgb(2, 117, 216)" >Drawing and editing FDG graph on SVG: </em>
-                    <svg width="300" height="150" id="test_svg"></svg>
+                    <div><em style="color: rgb(2, 117, 216)">Drawing and editing FDG graph on SVG: </em></div>
+                    <svg width="720" height="350" id="test_svg"></svg>
                 </div>
             </div>
+            
         </div>
-        
-        <div class="col-3">
-            <div class="card"  style="margin: 5px; height: 95%; width: 95%;">
-                <div class=card-header>
-                    <h4>Text content</h4>
+
+        <div class="col-6">
+            <div class="row">
+            
+                <div class="col-6">
+                    <div class="card"  style="margin: 5px; height: 95%; width: 95%;">
+                        <div class=card-header>
+                            <h4>Buttons</h4>
+                        </div>
+                        <div class=card-body>
+                            <em style="color: rgb(2, 117, 216)" >Creating a button here: </em><div id="test_div_btns"></div>
+                            <p id="test_messages" style="background-color: lightgrey; margin-top: 0px;"></p>
+                        </div>
+                    </div>
                 </div>
-                <div class=card-body>
-                    <em style="color: rgb(2, 117, 216)" >Adding 'test text' here: </em><div id="test_div_text"></div>
+                
+                <div class="col-6">
+                    <div class="card"  style="margin: 5px; height: 95%; width: 95%;">
+                        <div class=card-header>
+                            <h4>Progress bars</h4>
+                        </div>
+                        <div class=card-body>
+                            <div id="shadowrealm" style="display: none">
+                                <em style="color: rgb(2, 117, 216)" >HIDDEN Progress bar template (static html)</em>
+                                <div class="progress" id="progress_bar_template" style="margin: 10px;" >
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="70"
+                                    aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                                    70%
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="test_div_progs">
+                                <em style="color: rgb(2, 117, 216)" >Initialising a new progress bar (current value 10, bar range 0-10), and editing it (current value 10 --> 5), here: </em>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="card"  style="margin: 5px; height: 95%; width: 95%;">
+                        <div class=card-header>
+                            <h4>Visibility</h4>
+                        </div>
+                        <div class=card-body>
+                            <em style="color: rgb(2, 117, 216)" >Two boxes are made visible: </em>
+                            <div id="test_hidden" style="background-color: rgb(2, 117, 216); color:white; padding: 5px; margin: 5px; border-radius: 2px; visibility: hidden;">visibility: visible</div>
+                            <div id="test_none" style="background-color: rgb(2, 117, 216); color:white; padding: 5px; margin: 5px; border-radius: 2px; display: none;">display: block</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-6">
+                    <div class="card"  style="margin: 5px; height: 95%; width: 95%;">
+                        <div class=card-header>
+                            <h4>Text content</h4>
+                        </div>
+                        <div class=card-body>
+                            <em style="color: rgb(2, 117, 216)" >Adding 'test text' here: </em><div id="test_div_text"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -178,7 +193,7 @@
                     <h4>Gamedata</h4>
                 </div>
                 <div class=card-body style="ghostwhite">
-                    <em style="color: rgb(2, 117, 216)" >Getting data sumnmaries: </em>
+                    <em style="color: rgb(2, 117, 216)" >Getting data summaries: </em>
                     <div id="test_data"></div>
                 </div>
             </div>
@@ -197,22 +212,60 @@
             </div>
         </div>
 
+        <div class="col-3">
+            <div class="card" style="margin: 5px; height: 95%; width: 95%;">
+                <div class=card-header>
+                    <h4>Toggle panel</h4>
+                </div>
+                <div class=card-body style="ghostwhite">
+                    <em style="color: rgb(2, 117, 216)" >Hiding white panel with blue border behind blue panel: </em>
+                    <div class="row" style="height: 100%; width: 100%;">
+                        <div id="test_panel" class="card" style="height: 100%; width: 100; border: 2px solid rgb(2, 117, 216);">
+                            <div class="card-header">Panel</div>
+                            <div class="card-body">Hide me</div>
+                        </div>
+                        <div id="test_panel" class="card" style="height: 100%; width: 100; background-color: rgb(2, 117, 216);">
+                            <div class="card-header">visible panel</div>
+                            <div class="card-body"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-3">
+            <div class="card" style="margin: 5px; height: 95%; width: 95%;">
+                <div class=card-header>
+                    <h4>Propagation</h4>
+                </div>
+                <div class=card-body style="ghostwhite">
+                    <em style="color: rgb(2, 117, 216)" >Propagation algorithm: </em>
+                    <svg width="300" height="150" id="test_svg2"></svg>
+                    <div id="test_data"></div>
+                </div>
+            </div>
+        </div>
+
+
     </div>
 
 </body>
 
 <footer>
 
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <!--<script src="scripts/jsnetworkx.js"></script>-->
+    <script src="https://d3js.org/d3-color.v1.min.js"></script>
+    <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
     <script src="scripts/edit-element.js"></script>
     <script src="scripts/create-element.js"></script>
     <script src="scripts/event-handling.js"></script>
     <script src="scripts/testing/debug.js"></script>
+    <script src="scripts/graph.js"></script>
+    <!--<script src="algorithms/propagation.js"></script>-->
     <script src="data/data.js"></script>
-    <script src="scripts/graph.js"></script>    
-    <script src="https://d3js.org/d3.v5.min.js"></script>
-    <script src="https://d3js.org/d3-color.v1.min.js"></script>
-    <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
-    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 
     <script>
 
@@ -284,11 +337,14 @@
         // Create and edit FDG graph
         drawGraph("#test_svg", data); // (id of SVG, data for graph)
         outlineNode('l2', 'rgb(2, 117, 216)'); // (id of graph SVG g node element, new outline color)
-        updateNode('l1', 'rgb(2, 117, 216)', '10', 'new label'); // (id of graph SVG g node element, new fill color, new label text)
+        updateNode('l1', 'rgb(2, 117, 216)', '0.5', 'updated txt'); // (id of graph SVG g node element, new fill color, new label text)
         
         // Disable button
         setDisabled('test_disabled');
 
+        // Toggle open and closed panels
+        const panelToHide = new Panel('test_panel', 'right');
+            panelToHide.close();
 
         // Test functions
         tests = validate([
@@ -339,20 +395,28 @@
             {name : '[create-element.] faIcon (set class)', expected : 'fas fa-adjust blue', actual : get('test_i', prop="className", child=true)},
         
             // Check that data is correct
-            {name : '[data] data.links (link list length)', expected : 2, actual : objSize(data.links)},
-            {name : '[data] data.nodes (nodes list length)', expected : 3, actual : objSize(data.nodes)},
-            {name : '[data] data.gameVars (gameVars list length)', expected : 1, actual : objSize(data.gameVars)},
+            {name : '[data] data.nodes (nodes exist)', expected : false, actual : (null == data.nodes)},
+            {name : '[data] data.edges (edges exist)', expected : false, actual : (null == data.edges)},
+
+            // Check that game variables are correct
+            {name : '[data] data.objective (set objective)', expected : false, actual : (null == data.objective)},
+            {name : '[data] data.policies (init policies)', expected : false, actual : (null == data.policies)},
 
             // Check that FDG was created and edited correctly
             {name : '[graph.] drawGraph (create graph)', expected : 2, actual : objSize(d3.select('#test_svg'))},
-            {name : '[graph.] outlineNode (set stroke width)', expected : 4, actual : get('l2-circle', prop=['style', 'strokeWidth'])},
+            {name : '[graph.] outlineNode (set stroke width)', expected : 2, actual : get('l2-circle', prop=['style', 'strokeWidth'])},
             {name : '[graph.] outlineNode (set stroke color)', expected : 'rgb(2, 117, 216)', actual : get('l2-circle', prop=['style', 'stroke'])},
             {name : '[graph.] updateNode (set fill color)', expected : 'rgb(2, 117, 216)', actual : get('l1-circle', prop=['style', 'fill'])},
-            {name : '[graph.] updateNode (set text)', expected : 'new label', actual : get('l1-text', prop='innerHTML')},
-            {name : '[graph.] updateNode (set r)', expected : 10, actual : get('l1-circle', prop=['getAttr', 'r'])},
+            {name : '[graph.] updateNode (set text)', expected : 'updated txt', actual : get('l1-text', prop='innerHTML')},
+            {name : '[graph.] updateNode (set r)', expected : 7.5, actual : get('l1-circle', prop=['getAttr', 'r'])},
+            {name : '[graph.] colorEdge (set edge color)', expected : 'cornflowerblue', actual : get('2-line', prop=['getAttr', 'stroke'])},
 
             // Check that disabled works correctly
             {name : '[edit-element.] setDisabled (set disabled)', expected : true, actual : get('test_disabled', prop='disabled')},
+        
+            // Check that hiding the panel works correctly
+            {name : '[edit-element.] class Panel (create class)', expected : 7, actual : objSize(panelToHide)},
+            {name : '[edit-element.] class Panel (hide)', expected : '-100px', actual : get('test_panel', prop=['style', 'right'])},
         ])
 
         if (tests['failed'].length > 0) {
