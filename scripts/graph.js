@@ -21,23 +21,37 @@ functions are designed to have no dependencies other than vanilla JS.
 
 */
 
+// Set primary color for graph nodes
+const colorPrimary = '#ffcd3c';
+const colorSecondary = '#ffcd3c';
+
+
 // Change the fill and text of a node g svg element
 function updateNode(id, color, radius, text){ 
 
-    // Get node circle by node ID
-    node=document.getElementById(id + '-circle');
+  // Get node circle by node ID
+  node=document.getElementById(id + '-circle');
 
-    // Change node circle radius by factor 'radius'
-    currentRadius = node.getAttribute('r');
-    node.setAttribute('r', currentRadius*radius);
-
-    // Change circle color
-    node.style.fill = color;
-
-    // Change node text
-    document.getElementById(id + '-text').innerHTML = text;
-  
+  // Change node circle radius by factor 'radius'
+  currentRadius = node.getAttribute('r');
+  node.setAttribute('r', currentRadius*radius);
+console.log(node.fill)
+console.log(node.style.fill)
+  // Get current circle color
+  if (node.style.fill){ // If node has already been recolored, get color
+    color = node.fill;
+  } else { // If node is default color then use this
+    color = colorPrimary;
   }
+
+  // Change circle color
+  color = 'f'
+  node.style.fill = color;
+
+  // Change node text
+  document.getElementById(id + '-text').innerHTML = text;
+  
+}
   
 // Change the outline style of a node g svg element
 function outlineNode(id, color){
@@ -52,6 +66,27 @@ function outlineNode(id, color){
   currentStrokeWidth = node.getAttribute('stroke-width');
   node.style.strokeWidth = currentStrokeWidth*2;
 }
+
+// Compute gradient from color1 to color2 to color3
+function colorGradient(color1, color2, color3){
+
+  //Extract values from rgb(r,g,b) string
+  console.log(color1, color2)
+  color1 = getValues(color1);
+  color2 = getValues(color2);
+  console.log(color1, color2)
+  colorDiffs = color1[0]-color2[0];
+  console.log(colorDiffs)
+
+  return(values);
+
+  function getValues(rgb){
+    color1Values = rgb.match(/-?\d+/g).map(Number);
+    return([color1Values[0], color1Values[1], color1Values[2]])
+  }
+
+}
+console.log(colorGradient('rgb(215,25,28)', 'rgb(25,108,215)'))
   
 
 // Build force directed network graph
@@ -72,11 +107,13 @@ function drawGraph (svgId, data) {
   const arrowColor = 'rgba(150, 150, 150, 0.75)';
   const iconSize = '50';
   const iconPlacement = -25;
-  const colorPositive = 'coral';
-  const colorNegative = '#e1e1e1';
+  const colorPositive = '#d92027';
+  const colorNegative = '#35d0ba';
 
   // Draw graph
   draw(data);
+
+  console.log()
   
   function draw(data){
     
@@ -132,9 +169,9 @@ function drawGraph (svgId, data) {
     const circles = node.append('circle')
         .attr('id', d => d.id + '-circle')
         .attr('r', circleRadius) //d => Math.abs(d.activation)*circleRadius
-        .attr('stroke', '#21aba5')
+        .attr('stroke', colorPrimary)
         .attr('stroke-width', 1)
-        .attr('fill', '#21aba5');
+        .attr('fill', colorPrimary);
 
     // Append text to nodes on SVG
     var nodeText = node.append('text')
