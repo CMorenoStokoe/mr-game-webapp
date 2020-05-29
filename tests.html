@@ -16,13 +16,13 @@
 
 <head>
 
-    // Bootstrap css theme
+    <!-- Bootstrap css theme --> 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     
-    // Fonts
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;800&display=swap" rel="stylesheet">
     
-    // Font awesome icons
+    <!-- Fa icons -->
     <script src="https://kit.fontawesome.com/ff3502b087.js" crossorigin="anonymous"></script>
     
 </head>
@@ -254,17 +254,14 @@
 
 <footer>
 
-    <script src="https://d3js.org/d3.v5.min.js"></script>
-    <!--<script src="scripts/jsnetworkx.js"></script>-->
-    <script src="https://d3js.org/d3-color.v1.min.js"></script>
-    <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
-    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <script src="scripts/d3/d3.min.js"></script>
+    <script src="scripts/jsnetworkx.js"></script>
     <script src="scripts/edit-element.js"></script>
     <script src="scripts/create-element.js"></script>
     <script src="scripts/event-handling.js"></script>
     <script src="scripts/testing/debug.js"></script>
     <script src="scripts/graph.js"></script>
-    <!--<script src="algorithms/propagation.js"></script>-->
+    <script src="algorithms/propagation.js"></script>
     <script src="data/data.js"></script>
 
     <script>
@@ -278,11 +275,11 @@
             this.id = 'new_button_id';
            
             // Verify that button was updated with correct event listener object
-            document.getElementById("test_messages").innerText = "Passed manual test (event-handling.addEvntListener)"
+            document.getElementById("test_messages").innerText = "Passed manual test (event-handling.addOnclickEvent)"
             document.getElementById("test_messages").style.backgroundColor = "lightgreen"
-            validate([{name : '[event-handling.] addEvntListener (add event)', expected : '[object HTMLButtonElement]', actual : get('new_button_id')},])
+            validate([{name : '[event-handling.] addOnclickEvent (add event)', expected : '[object HTMLButtonElement]', actual : get('new_button_id')},])
         }
-        addEvntListener(btn, test_function); //(id of element to add listener to, function to activate on-click)
+        addOnclickEvent(btn, test_function); //(id of element to add listener to, function to activate on-click)
 
         // Create progress bar
         progId='progress_clone'
@@ -431,7 +428,7 @@
         } else {
             document.getElementById("test_results").innerText = "Passing automatic tests (" + tests['passed'].length + "/" + tests['passed'].length + ")";
             document.getElementById("test_results").style.backgroundColor = 'lightgreen';
-            document.getElementById("test_messages").innerText = "Manual test: Click the button to test event-handling.addEvntListener."
+            document.getElementById("test_messages").innerText = "Manual test: Click the button to test event-handling.addOnclickEvent."
         }
         
     </script>

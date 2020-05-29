@@ -25,5 +25,18 @@ function initialise(){
 
     // Fill policy panel with policies from data
     
+    // Initialise graph
+    drawGraph('#svg-main', data);
+
+    /* Initialise buttons to open and close panels*/
+
+    // Create Panel class objects for each panel with ID & orientation on page
+    const leftPanel = new Panel('panel-left', 'left');
+    const rightPanel = new Panel('panel-right', 'right');
+
+    // Add event listeners to buttons which use Panel class functions to close panels at startup
+    addEventListener('#btn-x-leftPanel', function(){leftPanel.close;});
+    addEventListener('#btn-x-rightPanel', function(){rightPanel.close;});
 
 };
+

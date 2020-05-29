@@ -72,6 +72,8 @@ function drawGraph (svgId, data) {
   const arrowColor = 'rgba(150, 150, 150, 0.75)';
   const iconSize = '50';
   const iconPlacement = -25;
+  const colorPositive = 'coral';
+  const colorNegative = '#e1e1e1';
 
   // Draw graph
   draw(data);
@@ -92,15 +94,15 @@ function drawGraph (svgId, data) {
     // Add edges to SVG
     const edge = svg.append('g')
       .attr('class', 'edges')
-      .selectAll('line')
+      .selectAll('polyline')
       .data(edges, d => d.id)
       .join(
-        enter => enter.append('line')
+        enter => enter.append('polyline')
           .attr('id', d => d.id + '-line')
           .attr('stroke-width', edgeWidth)
           .attr('stroke', d => colorEdge(d.b))//edge color as function of beta weight sign//
           .attr('stroke-opacity', 0.75)//edge opacity as function of beta weight value//
-          .attr('marker-end', 'url(#end)'),
+          .attr('marker-mid', d => colorArrow(d.b)),
       );
         
     // Add text to edges
@@ -146,47 +148,46 @@ function drawGraph (svgId, data) {
         .attr('y', circleRadius * 2 + 2);
 
     // Add arrowheads to make arrows on paths on the SVG
+    // Add arrowhead for positive beta weighted edges
     svg.append('svg:defs').selectAll('marker')//edge color as function of beta weight sign//
         .data(['end'])      // Different edge/path types can be defined here
         .enter().append('svg:marker')    // This section adds in the arrows
-        .attr('id', 'end-pos')
+        .attr('id',  'end-neg')
         .attr('viewBox', '0 -5 10 10')
-        .attr('refX', arrowPlacement) // original val: 15
-        .attr('refY', 0) // original val: -1.5
-        .attr('markerWidth', arrowSize)  // original val: 5
-        .attr('markerHeight', arrowSize) // original val: 5
-        .attr('stroke',  d => colorEdge(d.b))
-        .attr('fill',  d => colorEdge(d.b)) // original val: '#999'
-        .attr('orient', 'auto')
-        .append('svg:path')
-        .attr('d', 'M0,-5L10,0L0,5')
-        .enter().append('svg:marker')    // This section adds in the arrows
-        .attr('id', 'end-neg')
-        .attr('viewBox', '0 -5 10 10')
-        .attr('refX', arrowPlacement) // original val: 15
-        .attr('refY', 0) // original val: -1.5
-        .attr('markerWidth', arrowSize)  // original val: 5
-        .attr('markerHeight', arrowSize) // original val: 5
-        .attr('stroke',  d => colorEdge(d.b))
-        .attr('fill',  d => colorEdge(d.b)) // original val: '#999'
+        .attr('refY', 0)
+        .attr('markerWidth', arrowSize)
+        .attr('markerHeight', arrowSize)
+        .attr('stroke',  colorNegative)
+        .attr('fill',  colorNegative)
         .attr('orient', 'auto')
         .append('svg:path')
         .attr('d', 'M0,-5L10,0L0,5')
     
+    // Add arrowhead for negative beta weighted edges
+    svg.append('svg:defs').selectAll('marker')//edge color as function of beta weight sign//
+      .data(['end'])      // Different edge/path types can be defined here
+      .enter().append('svg:marker')    // This section adds in the arrows
+      .attr('id', 'end-pos')
+      .attr('viewBox', '0 -5 10 10')
+      .attr('refY', 0) 
+      .attr('markerWidth', arrowSize)  
+      .attr('markerHeight', arrowSize) 
+      .attr('stroke',  colorPositive)
+      .attr('fill',  colorPositive) 
+      .attr('orient', 'auto')
+      .append('svg:path')
+      .attr('d', 'M0,-5L10,0L0,5')
+    
     // On tick, or change, recalibrate the layout using force physics
-    simulation
-        .on('tick', ticked);
-        
-    function ticked() {
-      edge
-          .attr('x1', d => d.source.x)
-          .attr('y1', d => d.source.y)
-          .attr('x2', d => d.target.x)
-          .attr('y2', d => d.target.y);
+    simulation.on("tick", function() {
+      edge.attr("points", function(d) {
+        return d.source.x + "," + d.source.y + " " + 
+               (d.source.x + d.target.x)/2 + "," + (d.source.y + d.target.y)/2 + " " +
+               d.target.x + "," + d.target.y; });
 
       node
           .attr('transform', d => `translate(${Math.max(circleRadius*2, Math.min(width - circleRadius*2, d.x))}, ${Math.max(circleRadius, Math.min(height - circleRadius, d.y))})`);
-    }
+    })
   
     // Drag a node to fix it in place
     function dragstart(d) {
@@ -229,15 +230,24 @@ function drawGraph (svgId, data) {
     }
     
   }
-
     
   function colorEdge(b){
     if(b<0){
-      return 'cornflowerblue';
+      return colorNegative;
     } else {
-      return 'coral';
+      return colorPositive;
     }
   }
 
+  function colorArrow(b){
+    console.log(b);
+    if(b<0){
+      console.log('url(#end-neg)');
+      return 'url(#end-neg)';
+    } else {
+      console.log('url(#end-pos)');
+      return 'url(#end-pos)';
+    }
+  }
 
 };
