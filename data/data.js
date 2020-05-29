@@ -65,6 +65,7 @@ var data_json = {
             name : 'depression score',
             prevalence : 3,
             units : 'score',
+            activation : 1,
         },
         {
             id : 'l2',
@@ -72,6 +73,7 @@ var data_json = {
             name : 'sleep per day',
             prevalence : 3,
             units : 'hours',
+            activation : 1,
         },
         {
             id : 'l3',
@@ -79,6 +81,7 @@ var data_json = {
             name : 'days exercise moderately',
             prevalence : 3,
             units : 'days',
+            activation : 0.25,
         },
     ],
   

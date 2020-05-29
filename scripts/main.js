@@ -23,12 +23,12 @@ window.onload = initialise();
 
 function initialise(){
 
-    // Fill policy panel with policies from data
+    /* Fill policy panel with policies from data */
     
     // Initialise graph
     drawGraph('#svg-main', data);
 
-    /* Initialise buttons to open and close panels*/
+    /* Initialise buttons to open and close panels */
 
     // Create Panel class objects for each panel with ID & orientation on page
     const leftPanel = new Panel('panel-left', 'left');

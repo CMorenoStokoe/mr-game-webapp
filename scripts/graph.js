@@ -21,36 +21,22 @@ functions are designed to have no dependencies other than vanilla JS.
 
 */
 
-// Set primary color for graph nodes
-const colorPrimary = '#ffcd3c';
-const colorSecondary = '#ffcd3c';
-
 
 // Change the fill and text of a node g svg element
-function updateNode(id, color, radius, text){ 
+function updateNode(id, activation, text){ 
 
   // Get node circle by node ID
   node=document.getElementById(id + '-circle');
 
   // Change node circle radius by factor 'radius'
   currentRadius = node.getAttribute('r');
-  node.setAttribute('r', currentRadius*radius);
-console.log(node.fill)
-console.log(node.style.fill)
+  node.setAttribute('r', currentRadius*activation);
+  
   // Get current circle color
-  if (node.style.fill){ // If node has already been recolored, get color
-    color = node.fill;
-  } else { // If node is default color then use this
-    color = colorPrimary;
-  }
-
-  // Change circle color
-  color = 'f'
-  node.style.fill = color;
+  node.style.fill = d3.interpolateRdYlGn(activation);
 
   // Change node text
   document.getElementById(id + '-text').innerHTML = text;
-  
 }
   
 // Change the outline style of a node g svg element
@@ -65,29 +51,7 @@ function outlineNode(id, color){
   // Double stroke width
   currentStrokeWidth = node.getAttribute('stroke-width');
   node.style.strokeWidth = currentStrokeWidth*2;
-}
-
-// Compute gradient from color1 to color2 to color3
-function colorGradient(color1, color2, color3){
-
-  //Extract values from rgb(r,g,b) string
-  console.log(color1, color2)
-  color1 = getValues(color1);
-  color2 = getValues(color2);
-  console.log(color1, color2)
-  colorDiffs = color1[0]-color2[0];
-  console.log(colorDiffs)
-
-  return(values);
-
-  function getValues(rgb){
-    color1Values = rgb.match(/-?\d+/g).map(Number);
-    return([color1Values[0], color1Values[1], color1Values[2]])
-  }
-
-}
-console.log(colorGradient('rgb(215,25,28)', 'rgb(25,108,215)'))
-  
+}  
 
 // Build force directed network graph
 function drawGraph (svgId, data) {
@@ -136,9 +100,9 @@ function drawGraph (svgId, data) {
       .join(
         enter => enter.append('polyline')
           .attr('id', d => d.id + '-line')
-          .attr('stroke-width', edgeWidth)
-          .attr('stroke', d => colorEdge(d.b))//edge color as function of beta weight sign//
-          .attr('stroke-opacity', 0.75)//edge opacity as function of beta weight value//
+          .attr('stroke-width', edgeWidth)// #####TO DO##### edge color as function of beta weight sign//
+          .attr('stroke', d => colorEdge(d.b))
+          .attr('stroke-opacity', 1)
           .attr('marker-mid', d => colorArrow(d.b)),
       );
         
@@ -168,10 +132,10 @@ function drawGraph (svgId, data) {
     // Append circles to nodes on SVG
     const circles = node.append('circle')
         .attr('id', d => d.id + '-circle')
-        .attr('r', circleRadius) //d => Math.abs(d.activation)*circleRadius
-        .attr('stroke', colorPrimary)
+        .attr('r', d => Math.abs(d.activation)*circleRadius) 
+        .attr('stroke', 'none')
         .attr('stroke-width', 1)
-        .attr('fill', colorPrimary);
+        .attr('fill', d => d3.interpolateRdYlGn(d.activation));
 
     // Append text to nodes on SVG
     var nodeText = node.append('text')
@@ -181,7 +145,7 @@ function drawGraph (svgId, data) {
         .style('font-family', 'Raleway, sans-serif')
         .style('font-weight', 300)
         .style("text-anchor", "middle")
-        .attr('x', 0) //circleRadius + 2
+        .attr('x', 0)
         .attr('y', circleRadius * 2 + 2);
 
     // Add arrowheads to make arrows on paths on the SVG
