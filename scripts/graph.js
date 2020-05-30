@@ -39,6 +39,7 @@ function updateNode(id, activation, text){
   document.getElementById(id + '-text').innerHTML = text;
 }
   
+
 // Change the outline style of a node g svg element
 function outlineNode(id, color){
   
@@ -53,6 +54,7 @@ function outlineNode(id, color){
   node.style.strokeWidth = currentStrokeWidth*2;
 }  
 
+
 // Build force directed network graph
 function drawGraph (svgId, data) {
   
@@ -64,7 +66,7 @@ function drawGraph (svgId, data) {
   // Display settings
   const graphCohesion = -2000;
   const textShadowClass = 'none';
-  const circleRadius = 15;
+  const circleRadius = 30;
   const edgeWidth = 2;
   const arrowPlacement = 25;
   const arrowSize = 5;
@@ -130,10 +132,10 @@ function drawGraph (svgId, data) {
     // Append circles to nodes on SVG
     const circles = node.append('circle')
         .attr('id', d => d.id + '-circle')
-        .attr('r', d => Math.abs(d.activation)*circleRadius) 
+        .attr('r', d => Math.abs(d.prevalence)*circleRadius) 
         .attr('stroke', 'none')
         .attr('stroke-width', 1)
-        .attr('fill', d => d3.interpolateRdYlGn(d.activation));
+        .attr('fill', d => d3.interpolateRdYlGn(d.prevalence/2));
 
     // Append text to nodes on SVG
     var nodeText = node.append('text')
@@ -144,7 +146,7 @@ function drawGraph (svgId, data) {
         .style('font-weight', 300)
         .style("text-anchor", "middle")
         .attr('x', 0)
-        .attr('y', circleRadius * 2 + 2);
+        .attr('y', 0);
 
     // Add arrowheads to make arrows on paths on the SVG
     // Add arrowhead for positive beta weighted edges
@@ -239,12 +241,9 @@ function drawGraph (svgId, data) {
   }
 
   function colorArrow(b){
-    console.log(b);
     if(b<0){
-      console.log('url(#end-neg)');
       return 'url(#end-neg)';
     } else {
-      console.log('url(#end-pos)');
       return 'url(#end-pos)';
     }
   }

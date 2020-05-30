@@ -4,93 +4,97 @@ Database
 ---------------
 
 Intended purpose of this script:
-- This file contains the database on which the simulation is based
+- This file contains the data model on which the simulation is based
 
 Contents of this script:
-- Data
-    An objective JS data
+- Data classes 
+    A Pseudo data class is parent to child classes and provides them with basic data structure and operations 
 
 */
 
 
-// Pseudo data class
+// Pseudo data class containing network MR data
 class DataClass {
 
     constructor(nodes, edges) {
-        // Get data variables
-        this.nodes = nodes;
-        this.edges = edges;
+
+        // Add variables for node and edge lists
+        this.nodeList = nodes;
+        this.edgeList = edges;
+
+        // Make lists easier to edit by making them searchable
+        this.nodes = this.indexItems(nodes, 'id');
+        this.edges = this.indexItems(edges, 'id');
     }
 
-    initNodes(){
-        var values = {}
+    // Index dictionary arrays (items) by key (key) to be searchable {item.id : item}
+    indexItems(items, key, desiredProperty=null){
+        var indexed = {}
 
-        for (const node of this.nodes){
-            activations[node.id] = 0;
+        for (const item of items){
+
+            /* TEMPORARY : Move to MiRANA: csv to json operation */
+            // Make sure strings are safe
+            if (typeof item[key] == 'string'){
+                item[key] = safeStr(item[key]);
+            } else {
+                item[key] = 'e' + item[key];
+                item.source = safeStr(item.source)
+                item.target = safeStr(item.target)
+            } //temp key cleaning
+
+            function safeStr(str){
+                return str.replace(/-/g, '_')
+            }
+
+            // If a desiredProperty is given then give {key : desired property}
+            // This is used if only one property is desired (e.g., an index of ids : names)
+            if(desiredProperty){indexed[item[key]] = item[desiredProperty];}
+
+            // Else give {key : item}
+            else{indexed[item[key]] = item;}
+            
         };
 
-        return activations;
+        return indexed;
     }
+}
 
+// New class for extending DataClass with additional properties for graphing network MR
+class GraphData extends DataClass {
     
+    constructor(nodes, edges) {
 
-    initNodes(){
-        var values = {}
+        // Call constructor of parent class
+        super(nodes, edges);
 
-        for (const node of this.nodes){
-            activations[node.id] = 0;
+        // Add access point for nodes and edges in d3 graph format
+        this.nodesAndEdges = {nodes : this.nodeList, edges : this.edgeList};
+
+        // Add variable containing color scheme
+        this.colors = {
+            scale :' Green-Yellow-Blue_chromaticScale',
+            edgeNeg : 'rgb(0, 0, 255)',
+            edgePos : 'rgb(255, 0, 0)',
         };
 
-        return activations;
-
+        // Node circle size on graph
+        this.circleSize = 30;
     }
-
 }
 
 class PropagationData extends DataClass {
 
     constructor(nodes, edges) {
+
         // Get nodes and edges from parent class
         super(nodes, edges);
-        // Make propagation variables
-        this.currentValues = this.initNodeActivation();
-        this.minValues = this.initNodeActivation();
-        this.maxValues = this.initNodeActivation();
+
+        // Get current and initial values
+        this.value = this.indexItems(nodes, 'id', 'prevalence');
+        this.startValue = this.indexItems(nodes, 'id', 'prevalence');
     }
 
-    getInitialValues(){
-        var activations = {}
-
-        for (const node of this.nodes){
-            activations[node.id] = 0;
-        };
-
-        return activations;
-        
-    }
-
-    initNodeActivation(){
-        var activations = {}
-
-        for (const node of this.nodes){
-            activations[node.id] = 0;
-        };
-
-        return activations;
-        
-    }
-
-    initNodeActivation(){
-        var activations = {}
-
-        for (const node of this.nodes){
-            activations[node.id] = 0;
-        };
-
-        return activations;
-        
-    }
-  
   }
 
 class GameData extends DataClass {
@@ -104,17 +108,7 @@ class GameData extends DataClass {
     }
 
     setObjective(){
-        for (const node of this.nodes){
-
-            switch(node.id){
-
-                case 'l1': 
-                    return node.id;
-
-                default: 
-                    break;
-            }
-        };
+        return (this.nodeList[0].id)
     }
 
     addLogEntry(entry){
@@ -123,58 +117,16 @@ class GameData extends DataClass {
 
 }
 
-// Data 
-var data_json = {
-    nodes : [
-        {
-            id : 'l1', // Id of node
-            label : 'depression', // Label to display on graph
-            name : 'depression score', // Full name
-            prevalence : 3, // Prevalence in real-world units
-            units : 'score', // Units of prevalence measurement
-            activation : 1, // Activation level relative to start (1 = start, 0.5 = 50% decrease from start)
-        },
-        {
-            id : 'l2',
-            label : 'sleep',
-            name : 'sleep per day',
-            prevalence : 3,
-            units : 'hours',
-            activation : 1,
-        },
-        {
-            id : 'l3',
-            label : 'exercise',
-            name : 'days exercise moderately',
-            prevalence : 3,
-            units : 'days',
-            activation : 1,
-        },
-    ],
-  
-    edges : [
-        {
-          id : 1,
-          source : 'l1',
-          target : 'l3',
-          b : 1,
-        },
-        {
-          id : 2,
-          source : 'l2',
-          target : 'l1',
-          b : -1,
-        },
-    ],
-  }
-
-// Make main data object used for game, as GameData pseudo data class
+// Data data_json is contained in data_json.js
+// Make main data objects used for game, as GameData pseudo data class from MR data
 var data = new DataClass(data_json.nodes, data_json.edges);
-var graph = new PropagationData(data_json.nodes, data_json.edges);
+var graph = new GraphData(data_json.nodes, data_json.edges);
+var prop =  new PropagationData(data_json.nodes, data_json.edges);
 var game =  new GameData(data_json.nodes, data_json.edges);
 
 game.addLogEntry('example entry');
 
 console.log(data);
 console.log(graph);
+console.log(prop);
 console.log(game);

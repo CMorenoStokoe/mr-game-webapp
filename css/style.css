@@ -1,5 +1,10 @@
 /* General styles */
 
+/* Colors */
+.root{
+    var(--col-primary : rgb(255, 0, 0));
+}
+
 /* Styles for game.html */
 .policy{
     margin-top: 10px;

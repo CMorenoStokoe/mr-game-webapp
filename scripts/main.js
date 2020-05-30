@@ -26,7 +26,7 @@ function initialise(){
     /* Fill policy panel with policies from data */
     
     // Initialise graph
-    drawGraph('#svg-main', data);
+    drawGraph('#svg-main', graph.nodesAndEdges);
 
     /* Initialise buttons to open and close panels */
 
