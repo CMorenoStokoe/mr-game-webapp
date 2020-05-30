@@ -76,8 +76,6 @@ function drawGraph (svgId, data) {
 
   // Draw graph
   draw(data);
-
-  console.log()
   
   function draw(data){
     

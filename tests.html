@@ -334,7 +334,7 @@
         // Create and edit FDG graph
         drawGraph("#test_svg", data); // (id of SVG, data for graph)
         outlineNode('l2', 'rgb(20, 20, 20)'); // (id of graph SVG g node element, new outline color)
-        updateNode('l1', '0.5', 'updated txt'); // (id of graph SVG g node element, node activation, new label text)
+        updateNode('l1', '0.25', 'updated txt'); // (id of graph SVG g node element, node activation, new label text)
         
         // Disable button
         setDisabled('test_disabled');
@@ -396,17 +396,20 @@
             {name : '[data] data.edges (edges exist)', expected : false, actual : (null == data.edges)},
 
             // Check that game variables are correct
-            {name : '[data] data.objective (set objective)', expected : false, actual : (null == data.objective)},
-            {name : '[data] data.policies (init policies)', expected : false, actual : (null == data.policies)},
+            {name : '[data] graph.activation (set objective)', expected : false, actual : (null == graph.activation)},
+
+            // Check that game variables are correct
+            {name : '[data] game.objective (set objective)', expected : false, actual : (null == game.objective)},
+            {name : '[data] game.log (init log)', expected : false, actual : (null == game.log)},
 
             // Check that FDG was created and edited correctly
             {name : '[graph.] drawGraph (create graph)', expected : 2, actual : objSize(d3.select('#test_svg'))},
             {name : '[graph.] outlineNode (set stroke width)', expected : 2, actual : get('l2-circle', prop=['style', 'strokeWidth'])},
-            {name : '[graph.] outlineNode (set stroke color)', expected : 'rgb(2, 117, 216)', actual : get('l2-circle', prop=['style', 'stroke'])},
-            {name : '[graph.] updateNode (set fill color)', expected : 'rgb(2, 117, 216)', actual : get('l1-circle', prop=['style', 'fill'])},
+            {name : '[graph.] outlineNode (set stroke color)', expected : 'rgb(20, 20, 20)', actual : get('l2-circle', prop=['style', 'stroke'])},
+            {name : '[graph.] updateNode (set fill color)', expected : 'rgb(249, 247, 174)', actual : get('l1-circle', prop=['style', 'fill'])},
             {name : '[graph.] updateNode (set text)', expected : 'updated txt', actual : get('l1-text', prop='innerHTML')},
             {name : '[graph.] updateNode (set r)', expected : 7.5, actual : get('l1-circle', prop=['getAttr', 'r'])},
-            {name : '[graph.] colorEdge (set edge color)', expected : 'cornflowerblue', actual : get('2-line', prop=['getAttr', 'stroke'])},
+            {name : '[graph.] colorEdge (set edge color)', expected : 'rgb(248, 141, 82)', actual : get('2-line', prop=['getAttr', 'stroke'])},
 
             // Check that disabled works correctly
             {name : '[edit-element.] setDisabled (set disabled)', expected : true, actual : get('test_disabled', prop='disabled')},
