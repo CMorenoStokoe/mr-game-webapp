@@ -66,7 +66,7 @@ function drawGraph (svgId, data) {
   // Display settings
   const graphCohesion = -2000;
   const textShadowClass = 'none';
-  const circleRadius = 30;
+  const circleRadius = 20;
   const edgeWidth = 2;
   const arrowPlacement = 25;
   const arrowSize = 5;

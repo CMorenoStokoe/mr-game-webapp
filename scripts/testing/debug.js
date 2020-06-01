@@ -9,13 +9,7 @@ These functions are intended for testing the main functions
 
 */
 
-const debug = true;
-
-// Quick print to console log with preface
-function log(message){
-
-    if (debug == true){console.log("[Debug] " + message )};
-}
+const debug = false; // Disable logging to clear console
 
 // Return the attribute of element
 function get(id, prop=null, child=null){
@@ -68,10 +62,10 @@ function validate(values){
         // Output a pass or fail message in console for each value pair
         if(value.actual == value.expected){
             passed.push(value.name);
-            console.log(value.name + ' : ' + '%cPass', 'color: green;');
+            //console.log(value.name + ' : ' + '%cPass', 'color: green;');
         }else{
             failed.push(value.name + ' : ' + 'Fail' + ' (expected ' + value.expected + ' got ' + value.actual + ')')
-            console.log(value.name + ' : ' + '%cFail' + ' (expected ' + value.expected + ' got ' + value.actual + ')', 'color: red;');
+            //console.log(value.name + ' : ' + '%cFail' + ' (expected ' + value.expected + ' got ' + value.actual + ')', 'color: red;');
         }
     }
     

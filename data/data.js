@@ -70,16 +70,6 @@ class GraphData extends DataClass {
 
         // Add access point for nodes and edges in d3 graph format
         this.nodesAndEdges = {nodes : this.nodeList, edges : this.edgeList};
-
-        // Add variable containing color scheme
-        this.colors = {
-            scale :' Green-Yellow-Blue_chromaticScale',
-            edgeNeg : 'rgb(0, 0, 255)',
-            edgePos : 'rgb(255, 0, 0)',
-        };
-
-        // Node circle size on graph
-        this.circleSize = 30;
     }
 }
 
@@ -117,6 +107,9 @@ class GameData extends DataClass {
 
 }
 
+/* Move to master file*/
+// Add data in master file using classes from data.js
+
 // Data data_json is contained in data_json.js
 // Make main data objects used for game, as GameData pseudo data class from MR data
 var data = new DataClass(data_json.nodes, data_json.edges);
@@ -126,7 +119,8 @@ var game =  new GameData(data_json.nodes, data_json.edges);
 
 game.addLogEntry('example entry');
 
-console.log(data);
-console.log(graph);
-console.log(prop);
-console.log(game);
+// Log data to console
+//console.log(data);
+//console.log(graph);
+//console.log(prop);
+//console.log(game);
