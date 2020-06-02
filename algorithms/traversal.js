@@ -1,24 +1,67 @@
-// Great directed network graph G object
+/* 
+Breadth-First Search Traversal 
+============================
+Description: 
+1. Start at a node (origin node)
+2. Discover outgoing (succeeding) edges from this node
+3. Discover successor nodes connected at the end of these edges
+5. Continue discovering nodes until no more remain or they loop back to the origin
+
+BFS
+----
+The implamentation of bredth-first search is differentiated from depth-first search by implamenting a queue system and adding new 
+new nodes to the back of this queue. This results in nodes being explored in the order they are discovered.
+*/
+
+// Create directed graph
 var G = new jsnx.DiGraph();
 
+// Populate graph with nodes and edges
 G.addNodesFrom([
     [0, {label : 'exercise', value: 0.25}],
     [1, {label : 'sleep', value: 0.25}],
     [2, {label : 'depression', value: 0.25}],
     [3, {label : 'wellbeing', value: 0.25}],
+    [4, {label : 'chd', value: 0.25}],
+    [5, {label : 'bp', value: 0.25}],
+    [6, {label : 'bmi', value: 0.25}],
+    [7, {label : 'schizophrenia', value: 0.25}],
+    [8, {label : 'shift work', value: 0.25}],
+    [9, {label : 'chronotype', value: 0.25}],
 ]);
-G.addEdgesFrom([[0,1], [0,2], [1,3]]);
+G.addCycle([0,1,2,3,4])
+//G.addCycle([0,2,4])
+//G.addEdgesFrom([[3,1], [3,2], [3,4]]);
+//G.addCycle([0,7,8,9,0])
+
+console.log(G);
+
+origin = 0; // Define origin node
+
+queue = [origin]; // Add origin node to search queue
+
+// Search while the queue is not empty
+while (queue[0] != undefined){ 
+
+    // Get successor nodes for first node in queue
+    successors = G.successors(queue[0]);
+
+    for (const successor of successors) {
+
+        // Skip node if it is the origin
+        if (successor==origin){continue}
+
+        // Add successors to the queue 
+        queue.push(successor);
+        console.log('successor found:', successor);
+    };
+
+    // Remove the searched node from the list
+    queue.shift();
+}
+
 //G.addEdgesFrom([[0,1, {b: 1}], [2,0, {b: 1}], [2,4, {b: 1}], [3,1, {b: 1}], [5,4, {b: 1}]]);
 
-/* 
-Breadth-First Search Traversal 
----------
-Description: 
-1. Start at one node
-2. Discover outgoing (succeeding) edges
-3. Discover successor nodes of the original node
-4. Discover the succeeding edges of the successor nodes to discover their successor nodes
-5. Continue traversal breadth-first until all nodes at end of branch have no more undiscovered successors, or a loop occurs
 
 /*
 console.log('G',G);
