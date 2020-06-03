@@ -240,9 +240,8 @@
                     <h4>Propagation</h4>
                 </div>
                 <div class=card-body style="ghostwhite">
-                    <em style="color: rgb(2, 117, 216)" >Propagation algorithm: </em>
-                    <svg width="300" height="150" id="test_svg2"></svg>
-                    <div id="test_data"></div>
+                    <em style="color: rgb(2, 117, 216)" >Propagation algorithm result: </em>
+                    <div id="test_prop"></div>
                 </div>
             </div>
         </div>
@@ -302,7 +301,6 @@
         // Color text
         color('test_div_colors', 'white'); // (id of element, color to set)
         colorBackground('test_div_colors', 'rgb(2, 117, 216)'); // (id of element, color of background to set)
-        
 
         // Set div html
         setHTML('test_div_html', '<strong>test html</strong>'); // (id of element, html to replace current html content with)
@@ -318,7 +316,23 @@
         // Return FA icon
         document.getElementById('test_i').innerHTML = faIcon('adjust', 'blue') // (name of FA icon, class (optional))
 
-        // Get gamedata
+        // Disable button
+        setDisabled('test_disabled');
+
+        // Toggle open and closed panels
+        const panelToHide = new Panel('test_panel', 'right');
+            panelToHide.close();
+
+        // Make main data objects used for game, as GameData pseudo data class from MR data
+        var data = new DataClass(data_json.nodes, data_json.edges);
+        var graph = new GraphData(data_json.nodes, data_json.edges);
+        var prop =  new PropagationData(data_json.nodes, data_json.edges);
+        var game =  new GameData(data_json.nodes, data_json.edges);
+
+        game.addLogEntry('example entry');
+
+        console.log(prop.ebunch);
+
         objSize = function(obj) {
             var size = 0, key;
             for (key in obj) {
@@ -331,18 +345,62 @@
         text += 'n nodes: ' + objSize(data.nodes) + '<br>';
         text += 'n game variables: ' + objSize(data.gameVars) + '<br>';
         document.getElementById('test_data').innerHTML = text;
-
+        
         // Create and edit FDG graph
         drawGraph('#test_svg', graph.nodesAndEdges); // (id of SVG, data for graph)
         outlineNode('ieu_a_1018', 'rgb(20, 20, 20)'); // (id of graph SVG g node element, new outline color)
         updateNode('ukb_b_3957', '0.25', 'updated txt'); // (id of graph SVG g node element, node activation, new label text)
-        
-        // Disable button
-        setDisabled('test_disabled');
+                
+        // Create directed graph
+        var G = new jsnx.DiGraph();
+        // Populate graph with nodes and edges
+        G.addNodesFrom([
+            [0, {label : 'A', value: 0.25}],
+            [1, {label : 'B', value: 0.25}],
+            [2, {label : 'C', value: 0.25}],
+            [3, {label : 'D', value: 0.25}],
+            [4, {label : 'E', value: 0.25}],
+            [5, {label : 'F', value: 0.25}],
+            [6, {label : 'G', value: 0.25}],
+            [7, {label : 'H', value: 0.25}],
+        ]);
+        // Trémaux tree with the all types of edges for testing
+        G.addEdgesFrom([[0,1], [1,2], [2,3]]); // Primary branch
+        G.addEdgesFrom([[0,4], [4,5]]); // Fork to alternative branch
+        G.addEdgesFrom([[5,6], [5,7]]); // Fork to dead ends
+        G.addEdgesFrom([[3,1]]); // Back edge
+        G.addEdgesFrom([[0,7]]); // Forward edge
+        G.addEdgesFrom([[5,2]]); // Cross edge
+        G.addEdgesFrom([[0,0]]); // Self loop
 
-        // Toggle open and closed panels
-        const panelToHide = new Panel('test_panel', 'right');
-            panelToHide.close();
+        // Remove self loops from graph
+        selfloops = G.selfloopEdges(); // Identify
+        G.removeEdgesFrom(selfloops); // Remove
+        // Test remove self loops
+        function checkSelfLoopsRemoved(){
+            for (const e of G.edges()){
+                if (e[0]+e[1] == 0){
+                    return false;
+                } else {
+                    continue;
+                }
+            }
+            return true;
+        }
+
+        // Call DFS and define root node to initiate search from
+        DFSpath = DFS(G, 0) 
+        document.getElementById('test_prop').innerHTML = DFSpath.toString();
+        // Test BFS
+        function checkPaths(){
+            correct = [[0, 1], [0, 4], [0, 7], [4, 5], [5, 2], [5, 6] ,[5, 7], [2, 3], [3, 1], [1, 2]];
+            desiredPath = correct.toString();
+            actualPath = DFSpath.toString();
+            if (desiredPath == actualPath) {return true} else {return false};
+        }
+        console.log(checkPaths())
+
+
         // Test functions
         tests = validate([
 
@@ -414,6 +472,10 @@
             // Check that hiding the panel works correctly
             {name : '[edit-element.] class Panel (create class)', expected : 7, actual : objSize(panelToHide)},
             {name : '[edit-element.] class Panel (hide)', expected : '-100px', actual : get('test_panel', prop=['style', 'right'])},
+
+            // Check graph object and traversal algorithm
+            {name : '[traversal.js] BFS path (return path)', expected : true, actual : checkPaths},
+            {name : '[jsnetworkx.js] BFS path (return path)', expected : true, actual : checkSelfLoopsRemoved},
         ])
 
         if (tests['failed'].length > 0) {

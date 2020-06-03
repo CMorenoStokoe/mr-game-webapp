@@ -42,7 +42,6 @@ class DataClass {
                 item.source = safeStr(item.source)
                 item.target = safeStr(item.target)
             } //temp key cleaning
-
             function safeStr(str){
                 return str.replace(/-/g, '_')
             }
@@ -60,7 +59,7 @@ class DataClass {
     }
 }
 
-// New class for extending DataClass with additional properties for graphing network MR
+// Class for extending DataClass for variables used only by the d3 graph visualisation
 class GraphData extends DataClass {
     
     constructor(nodes, edges) {
@@ -73,6 +72,7 @@ class GraphData extends DataClass {
     }
 }
 
+// Class for variables used only by the propagation engine
 class PropagationData extends DataClass {
 
     constructor(nodes, edges) {
@@ -83,10 +83,26 @@ class PropagationData extends DataClass {
         // Get current and initial values
         this.value = this.indexItems(nodes, 'id', 'prevalence');
         this.startValue = this.indexItems(nodes, 'id', 'prevalence');
+
+        // Export nodes and edges for path traversal
+        this.ebunch = this.makeEBunch(nodes, 'id');
+    }
+
+    // Export nodes as edge bunch for jsnx graphing ([source, target])
+    makeEBunch(){
+        const ebunch = []
+
+        // Convert edges in edgeList into jsnx ebunch format
+        for (const edge of this.edgeList){
+            ebunch.push([edge.source, edge.target]);
+        }
+
+        return(ebunch);
     }
 
   }
 
+// Class for variables used only by the game
 class GameData extends DataClass {
 
     constructor(nodes, edges) {
@@ -106,21 +122,3 @@ class GameData extends DataClass {
     }
 
 }
-
-/* Move to master file*/
-// Add data in master file using classes from data.js
-
-// Data data_json is contained in data_json.js
-// Make main data objects used for game, as GameData pseudo data class from MR data
-var data = new DataClass(data_json.nodes, data_json.edges);
-var graph = new GraphData(data_json.nodes, data_json.edges);
-var prop =  new PropagationData(data_json.nodes, data_json.edges);
-var game =  new GameData(data_json.nodes, data_json.edges);
-
-game.addLogEntry('example entry');
-
-// Log data to console
-//console.log(data);
-//console.log(graph);
-//console.log(prop);
-//console.log(game);
