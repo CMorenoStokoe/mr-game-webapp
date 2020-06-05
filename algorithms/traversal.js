@@ -29,47 +29,71 @@ route and avoid visiting nodes it has visited before.
 
 // Run depth-first search to identify loops
 function DFS(graph, root){
+    console.log('Starting DFS search, max iterations = ', Math.pow(graph.nodes().length, 2))
 
-    const queue = [root]; // Add root node to search queue
+    // Initialise queue, recursion and path lists
+    const queue = [{source: 'start', target: root},]; // Add root node to search queue
     const recursion = {}; // Memory of nodes already identified
     const path = []; // Paths taken through nodes from origin
 
-    // Failsafe maximum number of iterations (n nodes ^2) to avoid infinite recursion loops caused by error
-    for (i = 0; i < Math.pow(G.nodes().length, 2); i++){
-
-        // Search while the queue is not empty 
-        if(queue[0] == undefined){console.log('DFS queue empty, search finished.');break;}
-
-        // Process only nodes which have not already been searched (avoids recursive loops)
-        if(queue[0] in recursion){
-            queue.shift();
-            continue;
-        }
-
-        // Assign first item in queue to currentNode so queue can be edited independently
-        currentNode = queue[0];
-
-        // Remove from the queue of nodes to search
-        queue.shift();
-
-        // Get successor nodes for first node in queue
-        successors = graph.successors(currentNode);
-
-        // Add node to the recursion list searched nodes
-        recursion[currentNode]=true;
-
-        // Add each successor node to the depth-first search queue
-        for (const successor of successors) {
-            
-            // Add current node and successor to path
-            path.push([currentNode, successor]);
-
-            // Add successors to the front of the queue to explore them immediately
-            queue.unshift(successor);
-            
-        };
+    // Run depth-first search 
+    for (i = 0; i < Math.pow(graph.nodes().length, 2); i++){ // Failsafe : Maximum number of iterations (n nodes ^2) to avoid infinite recursion loops caused by error
         
+        // Failsafe : Search while the queue is not empty 
+        if(queue[0] == undefined){console.log('DFS search finished.');break;}
+        
+        // Check if edges already travelled
+        if(isRecusive(queue[0])){continue;}
+
+        // Search edge
+        search(queue[0]);
     }
+     
     // Return DFS path as array of arrays ([[a,b],[b,c]])
     return(path);
+
+
+    // Recursion control 
+    function isRecusive(edge){ // Check if edge is in recursion stack
+        
+        // Form edge unique identifier from source and target nodes
+        const edgeID = [edge.source, edge.target];
+     
+        if(edgeID in recursion){ // Edge already travelled and recorded in recursion dictionary
+            
+            // Prevent re-travelling already travelled edges
+            console.log('Skipping repeat: ', edge.source, '-->', edge.target)
+            queue.shift(); // Prevents recursion loops
+            return true; // Return true to indicate duplicate edge
+
+        } else { // Not already travelled
+
+            recursion[edgeID]=true;  // Add node to the recursion list of searched nodes for future
+            return false; // Return false to indicate new edge
+        }
+    }
+
+    // Depth-first search
+    function search(edge){ // Run search through queue and record path
+
+        // Path - Add current node and successor to path (unless this is the first edge)
+        if(edge.source != 'start'){ path.push([edge.source,edge.target]); } 
+
+        // Queue - Remove current edge from the queue of nodes to search
+        queue.shift();
+
+        // Identify successors - Get successor nodes for source node
+        successors = graph.successors(edge.target);
+
+        for (const successor of successors) { // Add each successor node to the depth-first search queue
+
+            // Add successors to the front of the queue to explore them immediately
+            queue.unshift({source: edge.target, target: successor}); 
+            
+        };
+
+        // Log of path
+        console.log('Searching edge: ', edge.source, '-->', edge.target, ' (', successors.length, ' successors)');
+
+    }
 }

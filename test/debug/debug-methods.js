@@ -71,3 +71,12 @@ function validate(values){
     
     return({'passed': passed, 'failed' : failed})
 }
+
+// Function to test the size of an object (e.g., how many items in a dictionary)
+objSize = function(obj) {
+    var size = 0, key;
+    for (key in obj) {
+        if (obj.hasOwnProperty(key)) size++;
+    }
+    return size;
+};

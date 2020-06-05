@@ -33,7 +33,7 @@ function updateNode(id, activation, text){
   node.setAttribute('r', currentRadius*activation);
   
   // Get current circle color
-  node.style.fill = d3.interpolateRdYlGn(activation);
+  node.style.fill = nodeColor(activation);
 
   // Change node text
   document.getElementById(id + '-text').innerHTML = text;
@@ -53,6 +53,13 @@ function outlineNode(id, color){
   currentStrokeWidth = node.getAttribute('stroke-width');
   node.style.strokeWidth = currentStrokeWidth*2;
 }  
+
+// Return color gradient for coloring nodes by prevalence
+function nodeColor(prevalence){
+  
+  // Pass number between 0-1 to d3 gradient function to return color in specified gradient
+  return d3.interpolateRdYlGn(prevalence)
+}
 
 
 // Build force directed network graph
@@ -135,7 +142,7 @@ function drawGraph (svgId, data) {
         .attr('r', d => Math.abs(d.prevalence)*circleRadius) 
         .attr('stroke', 'none')
         .attr('stroke-width', 1)
-        .attr('fill', d => d3.interpolateRdYlGn(d.prevalence/2));
+        .attr('fill', d => nodeColor(d.prevalence));
 
     // Append text to nodes on SVG
     var nodeText = node.append('text')

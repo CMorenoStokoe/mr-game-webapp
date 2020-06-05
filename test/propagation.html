@@ -57,18 +57,6 @@
         <div class="col-6">
             <div class="row">
 
-            <div class="col-6">
-                <div class="card"  style="margin: 5px; height: 95%; width: 95%;">
-                    <div class=card-header>
-                        <h4>Number rounding</h4></div>
-                    <div class=card-body>
-                        <em style="color: rgb(2, 117, 216)" >>10 = 3SF, &lt;10 = 2SF (4DP max)</em><br>
-                        <em style="color: " >10.136789325 --> </em><span id="test_div_round" style="background-color: lightgrey"></span><br>
-                        <em style="color: rgb(2, 117, 216)" >Numbers can be returned as %</em><br>
-                        <em style="color: " >0.0005706 --> </em><span id="test_div_roundPct" style="background-color: lightgrey"></span>
-                    </div>
-                </div>
-            </div>
 
             <div class="col-6">
                 <div class="card"  style="margin: 5px; height: 95%; width: 95%;">
@@ -117,59 +105,65 @@
 <footer>
 
     <!-- External dependencies -->
-    <script src="scripts/d3/d3.min.js"></script>
-    <script src="scripts/jsnx/jsnetworkx.js"></script>
-    <script src="scripts/big/big.min.js"></script>
+    <script src="../scripts/d3/d3.min.js"></script>
+    <script src="../scripts/jsnx/jsnetworkx.js"></script>
+    <script src="../scripts/big/big.min.js"></script>
 
     <!-- Data and data classes -->
-    <script src="data/data_json.js"></script>
-    <script src="data/data.js"></script>
+    <script src="../data/data_json.js"></script>
+    <script src="../data/data.js"></script>
 
     <!-- Methods -->
-    <script src="scripts/edit-element.js"></script>
-    <script src="scripts/create-element.js"></script>
-    <script src="scripts/event-handling.js"></script>
-    <script src="scripts/testing/debug.js"></script>
-    <script src="scripts/graph.js"></script>
-    <script src="algorithms/traversal.js"></script>
-    <script src="algorithms/mr-prop.js"></script>
+    <script src="debug/debug-methods.js"></script>
+    <script src="../scripts/graph.js"></script>
+    <script src="../algorithms/traversal.js"></script>
+    <script src="../algorithms/mr-prop.js"></script>
 
     <script>
 
-        // Round numbers
-        setText('test_div_round', roundNum(10.136789325)); //(number to round, option to return it as a percent as a string (optional))
-        setText('test_div_roundPct', roundNum(0.0005706, percent=true));
-
-        // Make main data objects used for game, as GameData pseudo data class from MR data
+        // Make main data objects used for game from starting MR data
         var data = new DataClass(data_json.nodes, data_json.edges);
+
+        // Make GameData pseudo data class from starting MR data
         var game =  new GameData(data_json.nodes, data_json.edges);
-
-
-        /*
         game.addLogEntry('example entry');
 
-        objSize = function(obj) {
-            var size = 0, key;
-            for (key in obj) {
-                if (obj.hasOwnProperty(key)) size++;
-            }
-            return size;
-        };
+        // Make another G to test propagation
+        var G2 = new jsnx.DiGraph();
+        propEbunch = data.toJsnx()
+        G2.addEdgesFrom(propEbunch);
+
+        // Test path
+        DFSpath2=[]
+        /*
+        DFSpath2 = DFS(G2, 'ukb_b_6519');
+
+        // Write path to dom for validation
+        document.getElementById('test_dfs2').innerHTML = DFSpath2.length + ' edges found in path from ukb_b_6519 (/' + propEbunch.length +' total edges)'
+
+        propagationModel = propagate(data.toPropMRData(DFSpath2));
+        console.log(propagationModel)
+
+        /* Test Data */
+
+        // Test data creation
         text = '';
         text += 'n edges: ' + objSize(data.edges) + '<br>';
         text += 'n nodes: ' + objSize(data.nodes) + '<br>';
         function minus(a,b){return a-b};
         text += 'n base data class: ' + objSize(data) + '<br>';
-        text += 'n graph variables: ' + minus(objSize(graph),objSize(data)) + '<br>';
-        text += 'n prop variables: ' + minus(objSize(prop),objSize(data)) + '<br>';
         text += 'n game variables: ' + minus(objSize(game),objSize(data)) + '<br>';
         document.getElementById('test_data').innerHTML = text;
-        
-        // Create and edit FDG graph
-        drawGraph('#test_svg', graph.nodesAndEdges); // (id of SVG, data for graph)
-        outlineNode('ieu_a_1018', 'rgb(20, 20, 20)'); // (id of graph SVG g node element, new outline color)
-        updateNode('ukb_b_3957', '0.25', 'updated txt'); // (id of graph SVG g node element, node activation, new label text)
-                
+
+        /* Test Big */
+
+        // Create big decimal object to increase floating point precision
+        // 20 DP by default
+        x = new Big(0.3)
+        console.log(x.minus(0.1).valueOf())
+
+        /* Test JSNX */
+
         // Create directed graph
         var G = new jsnx.DiGraph();
         // Populate graph with nodes and edges
@@ -209,79 +203,30 @@
 
         // Call DFS and define root node to initiate search from
         DFSpath = DFS(G, 0) 
+        console.log(DFSpath)
 
         // Test BFS
-        correct = [[0, 1], [0, 4], [0, 7], [4, 5], [5, 2], [5, 6] ,[5, 7], [2, 3], [3, 1], [1, 2]];
+        correct = [[0,7],[0,4],[4,5],[5,7],[5,6],[5,2],[2,3],[3,1],[1,2],[0,1]];
         function checkPaths(){
             desiredPath = correct.toString();
             actualPath = DFSpath.toString();
             if (desiredPath == actualPath) {return true} else {return false};
         }
         
+        // Write test results for validation
         document.getElementById('test_dfs').innerHTML = DFSpath.toString();
         document.getElementById('test_expected').innerHTML = correct.toString();
 
-        // Check propagation class
-        var G2 = new jsnx.DiGraph();
-        propEbunch = prop.ebunch
-        G2.addEdgesFrom(propEbunch);
-        DFSpath2 = DFS(G2, 'ukb_b_6519');
-
-        document.getElementById('test_dfs2').innerHTML = DFSpath2.length + ' edges found in path from ukb_b_6519 (/' + propEbunch.length +' total edges)'
-        
-
-        // Proto propagation algorithm
-        for (const node of DFSpath2){
-
-            // Change in prevalence of precursor source node
-            deltaX = 1;
-
-            // Split [source node id, target node id] arrays into source and target ids
-            target = node[1];
-
-            // Get initial prevalence of target node (y0)
-            y0 = data.nodes[target].prevalence
-
-            // Get edge by id and get edge beta
-            edgeId = prop.edgeLookup[node];
-            b = data.edges[edgeId]
-            // Calculate propagation effects and final prevalence of target node (y1)
-            result = propagationMR(deltaX, y0, b);
-            data.nodes[target].prevalence = result;
-            console.log(data.nodes[target].prevalence);
-            
-            console.log(edgeId, ' changed ', target, ' (', y0.valueOf() , '-->', data.nodes[target].prevalence, ')');
-        }
-        
-        // Create big decimal object to increase floating point precision
-        // 20 DP by default
-        x = new Big(0.3)
-        console.log(x.minus(0.1).valueOf())
 
 
         // Test functions
         tests = validate([
 
-            //Check that numbers were rounded correctly
-            {name : '[edit-element.] roundNum (rounding)', expected : '10.1', actual : get('test_div_round', prop='textContent')},
-            {name : '[edit-element.] roundNum (percent)', expected : '0.0006%', actual : get('test_div_roundPct', prop='textContent')},
-
             // Check that data classes were created successfully
             {name : '[data] data.nodes (nodes exist)', expected : false, actual : (null == data.nodes)},
             {name : '[data] data.edges (edges exist)', expected : false, actual : (null == data.edges)},
-            {name : '[data] graph.nodesAndEdges (data format for graphs exist)', expected : false, actual : (null == graph.nodesAndEdges)},
-            {name : '[data] prop (prop exists)', expected : false, actual : (null == prop)},
             {name : '[data] game.objective (set objective)', expected : false, actual : (null == game.objective)},
             {name : '[data] game.log (init log)', expected : false, actual : (null == game.log)},
-
-            // Check that FDG was created and edited correctly
-            {name : '[graph.] drawGraph (create graph)', expected : 2, actual : objSize(d3.select('#test_svg'))},
-            {name : '[graph.] colorEdge (set edge color)', expected : '#d92027', actual : get('e0-line', prop=['getAttr', 'stroke'])},
-            {name : '[graph.] outlineNode (set stroke width)', expected : 2, actual : get('ieu_a_1018-circle', prop=['style', 'strokeWidth'])},
-            {name : '[graph.] outlineNode (set stroke color)', expected : 'rgb(20, 20, 20)', actual : get('ieu_a_1018-circle', prop=['style', 'stroke'])},
-            {name : '[graph.] updateNode (set fill color)', expected : 'rgb(248, 141, 82)', actual : get('ukb_b_3957-circle', prop=['style', 'fill'])},
-            {name : '[graph.] updateNode (set text)', expected : 'updated txt', actual : get('ukb_b_3957-text', prop='innerHTML')},
-            {name : '[graph.] updateNode (set r)', expected : 5, actual : get('ukb_b_3957-circle', prop=['getAttr', 'r'])},
 
             // Check graph object and traversal algorithm
             {name : '[traversal.js] BFS path (return path)', expected : true, actual : checkPaths()},
@@ -305,8 +250,7 @@
         } else {
             document.getElementById("test_results").innerText = "Passing automatic tests (" + tests['passed'].length + "/" + tests['passed'].length + ")";
             document.getElementById("test_results").style.backgroundColor = 'lightgreen';
-          }
-        
+        }
     </script>
 
 </footer>
