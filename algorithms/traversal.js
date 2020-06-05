@@ -9,17 +9,17 @@ Description:
 
 DFS
 ----
-The implementation of depth-first search is differentiated from bredth-first search by implementing a queue system and adding new 
+The implementation of depth-first search (DFS) is differentiated from bredth-first search (BFS) by implementing a queue system and adding new 
 new nodes to the front of this queue. This results in nodes being explored 'depth-first' by following a node's path until it ends.
 Bredth-first however searches nodes in the order they are discovered.
 
 Example:
 a - b 
 a - c
-c - d
+b - d
 
-DFS order: a-b, c-d, a-c
-BFS order: a-b, a-c, c-d
+DFS will search this network in this order: a-b, b-d, a-c
+BFS will search this network in this order: a-b, a-c, b-d
 
 Critically, this algorithm is  suited to avoiding loops because it follows a path until exhaustion, so can use this to remember the 
 route and avoid visiting nodes it has visited before.
@@ -70,6 +70,6 @@ function DFS(graph, root){
         };
         
     }
-
+    // Return DFS path as array of arrays ([[a,b],[b,c]])
     return(path);
 }

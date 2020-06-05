@@ -2,15 +2,14 @@
 
     <!--
 
-    Test page
+    Data test page
     ---------------
     
     Intended purpose:
 
-    Testing DOM generating and editing functions. This DOM 
-    and functions are intended for testing that functions
+    Testing that data, graph theory and propagation functions 
     work in their intended purpose by performing content 
-    and existence checks which are printed to the console
+    and existence checks.
     
     -->
 
@@ -117,16 +116,23 @@
 
 <footer>
 
+    <!-- External dependencies -->
     <script src="scripts/d3/d3.min.js"></script>
     <script src="scripts/jsnx/jsnetworkx.js"></script>
+    <script src="scripts/big/big.min.js"></script>
+
+    <!-- Data and data classes -->
     <script src="data/data_json.js"></script>
     <script src="data/data.js"></script>
+
+    <!-- Methods -->
     <script src="scripts/edit-element.js"></script>
     <script src="scripts/create-element.js"></script>
     <script src="scripts/event-handling.js"></script>
     <script src="scripts/testing/debug.js"></script>
     <script src="scripts/graph.js"></script>
     <script src="algorithms/traversal.js"></script>
+    <script src="algorithms/mr-prop.js"></script>
 
     <script>
 
@@ -136,10 +142,10 @@
 
         // Make main data objects used for game, as GameData pseudo data class from MR data
         var data = new DataClass(data_json.nodes, data_json.edges);
-        var graph = new GraphData(data_json.nodes, data_json.edges);
-        var prop =  new PropagationData(data_json.nodes, data_json.edges);
         var game =  new GameData(data_json.nodes, data_json.edges);
 
+
+        /*
         game.addLogEntry('example entry');
 
         objSize = function(obj) {
@@ -215,7 +221,6 @@
         document.getElementById('test_dfs').innerHTML = DFSpath.toString();
         document.getElementById('test_expected').innerHTML = correct.toString();
 
-
         // Check propagation class
         var G2 = new jsnx.DiGraph();
         propEbunch = prop.ebunch
@@ -223,11 +228,41 @@
         DFSpath2 = DFS(G2, 'ukb_b_6519');
 
         document.getElementById('test_dfs2').innerHTML = DFSpath2.length + ' edges found in path from ukb_b_6519 (/' + propEbunch.length +' total edges)'
+        
+
+        // Proto propagation algorithm
+        for (const node of DFSpath2){
+
+            // Change in prevalence of precursor source node
+            deltaX = 1;
+
+            // Split [source node id, target node id] arrays into source and target ids
+            target = node[1];
+
+            // Get initial prevalence of target node (y0)
+            y0 = data.nodes[target].prevalence
+
+            // Get edge by id and get edge beta
+            edgeId = prop.edgeLookup[node];
+            b = data.edges[edgeId]
+            // Calculate propagation effects and final prevalence of target node (y1)
+            result = propagationMR(deltaX, y0, b);
+            data.nodes[target].prevalence = result;
+            console.log(data.nodes[target].prevalence);
+            
+            console.log(edgeId, ' changed ', target, ' (', y0.valueOf() , '-->', data.nodes[target].prevalence, ')');
+        }
+        
+        // Create big decimal object to increase floating point precision
+        // 20 DP by default
+        x = new Big(0.3)
+        console.log(x.minus(0.1).valueOf())
+
 
         // Test functions
         tests = validate([
 
-            //Check that number was rounded correctly
+            //Check that numbers were rounded correctly
             {name : '[edit-element.] roundNum (rounding)', expected : '10.1', actual : get('test_div_round', prop='textContent')},
             {name : '[edit-element.] roundNum (percent)', expected : '0.0006%', actual : get('test_div_roundPct', prop='textContent')},
 

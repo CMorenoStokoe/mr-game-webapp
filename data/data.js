@@ -18,13 +18,12 @@ class DataClass {
 
     constructor(nodes, edges) {
 
-        // Add variables for node and edge lists
-        this.nodeList = nodes;
-        this.edgeList = edges;
-
-        // Make lists easier to edit by making them searchable
+        // Index nodes and edges by id for searchability
         this.nodes = this.indexItems(nodes, 'id');
         this.edges = this.indexItems(edges, 'id');
+
+        // Add access point for edge lookup to identify edges from DFS output
+        this.edgeLookup = this.indexEdgesByNodePairs(edges);
     }
 
     // Index dictionary arrays (items) by key (key) to be searchable {item.id : item}
@@ -34,7 +33,7 @@ class DataClass {
         for (const item of items){
 
             /* TEMPORARY : Move to MiRANA: csv to json operation */
-            // Make sure strings are safe
+            // Make sure node and edge ID strings are safe for use as index keys (e.g., in js numbers are not safe keys since edges[0] returns the first edge whereas edges[e0] correctly returns edge e0)
             if (typeof item[key] == 'string'){
                 item[key] = safeStr(item[key]);
             } else {
@@ -57,50 +56,53 @@ class DataClass {
 
         return indexed;
     }
-}
 
-// Class for extending DataClass for variables used only by the d3 graph visualisation
-class GraphData extends DataClass {
+    // Create edge ID look up with [source, successor] node pairs as keys since this is the DFS output
+    indexEdgesByNodePairs(){
+        const lookup = {}
+
+        // Index edges in edgeList by ID
+        for (const edge of this.edges){
+            lookup[[edge.source, edge.target]] = edge.id;
+        }
+
+        return(lookup);
+    }
     
-    constructor(nodes, edges) {
-
-        // Call constructor of parent class
-        super(nodes, edges);
-
-        // Add access point for nodes and edges in d3 graph format
-        this.nodesAndEdges = {nodes : this.nodeList, edges : this.edgeList};
-    }
-}
-
-// Class for variables used only by the propagation engine
-class PropagationData extends DataClass {
-
-    constructor(nodes, edges) {
-
-        // Get nodes and edges from parent class
-        super(nodes, edges);
-
-        // Get current and initial values
-        this.value = this.indexItems(nodes, 'id', 'prevalence');
-        this.startValue = this.indexItems(nodes, 'id', 'prevalence');
-
-        // Export nodes and edges for path traversal
-        this.ebunch = this.makeEBunch(nodes, 'id');
+    // Export data as D3 node-edge dictionary
+    toD3(){
+        return {nodes : this.nodes, edges : this.edges};
     }
 
-    // Export nodes as edge bunch for jsnx graphing ([source, target])
-    makeEBunch(){
+    // Export data as jsnx ebunch format 
+    toJsnx(edges){
+        
         const ebunch = []
 
         // Convert edges in edgeList into jsnx ebunch format
-        for (const edge of this.edgeList){
+        for (const edge of this.edges){
+            
+            // Compile edge bunch for jsnx graphing ([source, target])
             ebunch.push([edge.source, edge.target]);
         }
 
         return(ebunch);
     }
 
-  }
+    // Export data as list of data required for propagation MR
+    toProp(){
+        let output = [];
+
+        for (const [ key, value ] of Object.entries(data.nodes)) {
+            output.push({
+                value,
+            }
+        }
+
+        return output;
+    }
+
+}
 
 // Class for variables used only by the game
 class GameData extends DataClass {
@@ -114,7 +116,7 @@ class GameData extends DataClass {
     }
 
     setObjective(){
-        return (this.nodeList[0].id)
+        return (this.nodes.ieu_a_1187);
     }
 
     addLogEntry(entry){
