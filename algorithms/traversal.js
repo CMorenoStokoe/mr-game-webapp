@@ -49,31 +49,46 @@ function DFS(graph, root){
             1. Maximum number of iterations (n nodes ^2) to avoid infinite loops 
             2. Search while the queue is not empty  to avoid runtime error when queue is emptied
         */
-        console.log('queue',queue)
-        console.log('exhaustednodes',exhaustedNodes)
-       
+
         // 1. Get node n from queue 
         currentNode = queue[0];
 
-        // 2. Check if all predecessor nodes of n have already been searched exhaustively
-        isExhausted = checkExhausted(currentNode);
+        console.log('searching ', currentNode, ' (exhausted ', exhaustedNodes, ' queue: ', queue, ')')
+
+        // 2. Check if node is exhaustible (if all precursors are exhausted)
+        exhaustible = exhaustedPredecessors(currentNode);
         
-        // 3. If node not exhausted, move node to back of queue 
-        if(!(isExhausted)){
+        // 3. If precursors are exhausted
+        if(exhaustible){
+            console.log('exhaustible')
+
+            // Set node exhausted
+            exhaustedNodes[currentNode] = true;
+
+            // Remove node from queue 
+            queue.shift();
+            
+            // Add exhausted node to path
+            path.push(currentNode); 
+
+            // Add successors of node n to queue
+            for (successor of unExhaustedSuccessors(currentNode)){ queue.unshift(successor); };
+        }
+
+        // 3. If node not exhausted skip for now and come back to later when predecessors are exhausted
+        if(!(exhaustible)){
+            console.log('unexhaustible')
+            
+            // Move node to back of queue 
             queue.shift();
             queue.push(currentNode);
+            
+            // Add unexhausted predecessors to front of queue
+            for (predecessor of unExhaustedPredecessors(currentNode)){ queue.unshift(predecessor); };
+
         }
 
         //     4. Break if a loop is found (i.e., a node searching its predecessors finds itself)
-
-        // 5. Once a node is exhausted then add this to the path to record search order
-        if(isExhausted){
-            path.push(currentNode); 
-            exhaustedNodes[currentNode]=true;
-        }
-
-        // 5. Add successors of node n to queue
-        for (successor of graph.successors(currentNode)){ queue.unshift(successor); };
 
         // 6. Continue until all nodes have been exhausted (predecessor nodes exhaustively searched)
         continue;
@@ -82,7 +97,7 @@ function DFS(graph, root){
     return(path); // Array of arrays containing edges to follow in order ([[a,b],[b,c]])
 
     // Exhaustion control 
-    function checkExhausted(node){ 
+    function exhaustedPredecessors(node){ 
         
         // Return false if any edge is in exhaustion exhaustedNodes stack
         for (predecessor of graph.predecessors(node)){
@@ -90,7 +105,42 @@ function DFS(graph, root){
         }; return true;
 
     }
+    
+    // Return any unexhausted predecessors
+    function unExhaustedPredecessors(node){ 
+        unexhausted = [];
 
+        // Check whether each predecessor is exhausted
+        for (predecessor of graph.predecessors(node)){
+            if (predecessor in exhaustedNodes){
+                // Skip exhausted predecessors
+                continue;
+            }else{
+                // If not exhausted then add to list to return
+                unexhausted.push(predecessor);
+            }
+        }; 
+        
+        return unexhausted;
+    }
+
+    // Return any unexhausted successors
+    function unExhaustedSuccessors(node){ 
+        unexhausted = [];
+
+        // Check whether each predecessor is exhausted
+        for (successor of graph.successors(node)){
+            if (successor in exhaustedNodes){
+                // Skip exhausted successor
+                continue;
+            }else{
+                // If not exhausted then add to list to return
+                unexhausted.push(successor);
+            }
+        }; 
+        
+        return unexhausted;
+    }
 
 }
 
