@@ -31,7 +31,7 @@ function propagate(PropMRData){
     for (const edge of PropMRData){
 
         // Change in prevalence to first node to initiate propagating effects (labelled deltaX0)
-        deltaXStart=0.00000000000000000000000000000015678
+        deltaXStart=0.00000000000000000000000000000015678 // FIX: Needs to be set dynamically
         /*
         console.log('edge.yID',edge.yID)
         console.log('edge.xID',edge.xID)

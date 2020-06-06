@@ -1,14 +1,17 @@
 /* 
-Depth-First Search Traversal 
+Depth-First Search Traversal Variant
+`One step forward two steps back`
 ============================
 Description: 
-1. Start at a node (root node)
-2. Discover outgoing (succeeding) edges from this node
-3. Discover successor nodes connected at the end of these edges
-5. Continue discovering nodes until no more remain or they loop back to the root
+1. Get node n from queue 
+2. Check if all predecessor nodes of n have already been searched exhaustively
+    3. If not, travel backwards and search all predecessor nodes (and their predecessors..)
+    4. Break if a loop is found (i.e., a node searching its predecessors finds itself)
+5. Add successors of node n to queue
+6. Continue until all nodes have been exhausted (predecessor nodes exhaustively searched)
 
-DFS
-----
+Comparison to BFS and DFS
+------------------------
 The implementation of depth-first search (DFS) is differentiated from bredth-first search (BFS) by implementing a queue system and adding new 
 new nodes to the front of this queue. This results in nodes being explored 'depth-first' by following a node's path until it ends.
 Bredth-first however searches nodes in the order they are discovered.
@@ -21,8 +24,11 @@ b - d
 DFS will search this network in this order: a-b, b-d, a-c
 BFS will search this network in this order: a-b, a-c, b-d
 
-Critically, this algorithm is  suited to avoiding loops because it follows a path until exhaustion, so can use this to remember the 
+This algorithm is  suited to avoiding loops because it follows a path until exhaustion, so can use this to remember the 
 route and avoid visiting nodes it has visited before.
+
+Critically, this variant of DFS is different however, in that it will back track when a node's predecessors haven't been fully searched yet.
+This allows a propagation network to follow its path and accurately update values of nodes by changes in their predecessors.
 
 */
 
@@ -31,69 +37,60 @@ route and avoid visiting nodes it has visited before.
 function DFS(graph, root){
     console.log('Starting DFS search, max iterations = ', Math.pow(graph.nodes().length, 2))
 
-    // Initialise queue, recursion and path lists
-    const queue = [{source: 'start', target: root},]; // Add root node to search queue
-    const recursion = {}; // Memory of nodes already identified
+    // Initialise queue, exhaustedNodes and path lists
+    const queue = [root]; // Add root node to search queue
+    const exhaustedNodes = {root : true,}; // Memory of nodes already travelled exhaustively
     const path = []; // Paths taken through nodes from origin
 
-    // Run depth-first search 
-    for (i = 0; i < Math.pow(graph.nodes().length, 2); i++){ // Failsafe : Maximum number of iterations (n nodes ^2) to avoid infinite recursion loops caused by error
-        
-        // Failsafe : Search while the queue is not empty 
+    // Run DFS variant
+    for (i = 0; i < Math.pow(graph.nodes().length, 2); i++){ 
         if(queue[0] == undefined){console.log('DFS search finished.');break;}
+        /* Failsafes (above)
+            1. Maximum number of iterations (n nodes ^2) to avoid infinite loops 
+            2. Search while the queue is not empty  to avoid runtime error when queue is emptied
+        */
+        console.log('queue',queue)
+        console.log('exhaustednodes',exhaustedNodes)
+       
+        // 1. Get node n from queue 
+        currentNode = queue[0];
+
+        // 2. Check if all predecessor nodes of n have already been searched exhaustively
+        isExhausted = checkExhausted(currentNode);
         
-        // Check if edges already travelled
-        if(isRecusive(queue[0])){continue;}
-
-        // Search edge
-        search(queue[0]);
-    }
-     
-    // Return DFS path as array of arrays ([[a,b],[b,c]])
-    return(path);
-
-
-    // Recursion control 
-    function isRecusive(edge){ // Check if edge is in recursion stack
-        
-        // Form edge unique identifier from source and target nodes
-        const edgeID = [edge.source, edge.target];
-     
-        if(edgeID in recursion){ // Edge already travelled and recorded in recursion dictionary
-            
-            // Prevent re-travelling already travelled edges
-            console.log('Skipping repeat: ', edge.source, '-->', edge.target)
-            queue.shift(); // Prevents recursion loops
-            return true; // Return true to indicate duplicate edge
-
-        } else { // Not already travelled
-
-            recursion[edgeID]=true;  // Add node to the recursion list of searched nodes for future
-            return false; // Return false to indicate new edge
+        // 3. If node not exhausted, move node to back of queue 
+        if(!(isExhausted)){
+            queue.shift();
+            queue.push(currentNode);
         }
+
+        //     4. Break if a loop is found (i.e., a node searching its predecessors finds itself)
+
+        // 5. Once a node is exhausted then add this to the path to record search order
+        if(isExhausted){
+            path.push(currentNode); 
+            exhaustedNodes[currentNode]=true;
+        }
+
+        // 5. Add successors of node n to queue
+        for (successor of graph.successors(currentNode)){ queue.unshift(successor); };
+
+        // 6. Continue until all nodes have been exhausted (predecessor nodes exhaustively searched)
+        continue;
+    }
+    // 7. Return order of nodes to explore in order to fully explore network as 
+    return(path); // Array of arrays containing edges to follow in order ([[a,b],[b,c]])
+
+    // Exhaustion control 
+    function checkExhausted(node){ 
+        
+        // Return false if any edge is in exhaustion exhaustedNodes stack
+        for (predecessor of graph.predecessors(node)){
+            if (predecessor in exhaustedNodes){continue;}else{return false;}
+        }; return true;
+
     }
 
-    // Depth-first search
-    function search(edge){ // Run search through queue and record path
 
-        // Path - Add current node and successor to path (unless this is the first edge)
-        if(edge.source != 'start'){ path.push([edge.source,edge.target]); } 
-
-        // Queue - Remove current edge from the queue of nodes to search
-        queue.shift();
-
-        // Identify successors - Get successor nodes for source node
-        successors = graph.successors(edge.target);
-
-        for (const successor of successors) { // Add each successor node to the depth-first search queue
-
-            // Add successors to the front of the queue to explore them immediately
-            queue.unshift({source: edge.target, target: successor}); 
-            
-        };
-
-        // Log of path
-        console.log('Searching edge: ', edge.source, '-->', edge.target, ' (', successors.length, ' successors)');
-
-    }
 }
+
