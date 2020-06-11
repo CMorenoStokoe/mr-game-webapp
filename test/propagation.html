@@ -201,9 +201,21 @@
             return true;
         }
 
-        // Call DFS and define root node to initiate search from
-        DFSpath = DFS(G, 0) 
-        console.log(DFSpath)
+        // Find loops : Call find loops specific search function
+        //loops = findLoops(G, 0);
+        //console.log(loops);
+        
+        var G2 = new jsnx.DiGraph();
+        G2.addCycle([0,1,2,3,4,5]);
+        G2.addCycle([0,3,5]);
+        G2.addCycle([2,5]);
+
+        loops = findLoops(G2, 0);
+        console.log('loops', loops);
+
+        // Find path for propagation : Call DFS and define root node to initiate search from
+        /*DFSpath = DFS(G, 0) 
+        console.log(DFSpath)*/
 
         // Test BFS
         correct = [[0,7],[0,4],[4,5],[5,7],[5,6],[5,2],[2,3],[3,1],[1,2],[0,1]];
