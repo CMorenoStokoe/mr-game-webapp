@@ -124,7 +124,7 @@
         /* 
         
         Data tests 
-        -----------------
+        =================
         These tests are designed to validate that the pseudo data classes import the MR data correctly, and all
         class methods for manipulating this data work as intended.
 
@@ -154,7 +154,7 @@
         /* 
         
         Big.js tests
-        -----------------
+        =================
         This test is designed to validate that the Big number class increases floating point precision as intended
 
         */
@@ -167,46 +167,183 @@
 
         /* 
         
-        Network test A - All edge types
-        -----------------
-        This is a standard Trémaux tree test that all possible edges are representable and traversible by the network algorithm.
-        These Network tests are designed to validate that the representation, traversal and propagation methods work as intended.
+        Trémaux trees
+        ===============
+        These trees are constructed to test that the traversal algorithms can accurately traverse and produce paths for
+        propagation travel from different types of networks. These trees feature different edge types and configurations
+        which add complexity to traversing different networks and may cause failure in the traversal algorithms.
+        These Network tests are designed to validate that the representation, traversal and propagation methods work as 
+        intended and generalise to many different types of real-world networks.
+        
+        This list will be iterated over in testing the traversal and propagation algorithms.
 
         */
 
+        tremauxTrees = [];
 
-        // Initialise Trémaux tree with nodes
+        /*
 
-        var G = new jsnx.DiGraph(); // Create jsnx graph object
+        Basic tree
+        ----------
+        Description: Basic linear tree with two branches tests whether algorithm is capable of basic travel and can traverse 
+        branching paths (forks).
 
-        G.addNodesFrom([ // Populate graph with nodes which have properties
-            [0, {label : 'A', value: 0.25}],
-            [1, {label : 'B', value: 0.25}],
-            [2, {label : 'C', value: 0.25}],
-            [3, {label : 'D', value: 0.25}],
-            [4, {label : 'E', value: 0.25}],
-            [5, {label : 'F', value: 0.25}],
-            [6, {label : 'G', value: 0.25}],
-            [7, {label : 'H', value: 0.25}],
-        ]);
+        Diagram:
 
-        // Add all types of edges to Trémaux tree
+                2
+        0 - 1 <
+                3 - 4
 
-        G.addEdgesFrom([[0,1], [1,2], [2,3]]); // Primary branch
-        G.addEdgesFrom([[0,4], [4,5]]); // Fork to alternative branch
-        G.addEdgesFrom([[5,6], [5,7]]); // Fork to dead ends
-        //G.addEdgesFrom([[3,1]]); // Back edge
-        //G.addEdgesFrom([[0,7]]); // Forward edge
-        G.addEdgesFrom([[5,2]]); // Cross edge
-        G.addEdgesFrom([[0,0]]); // Self loop
+        */
+       
+        // JSNX graph object for basic tree
+        var G_basic = new jsnx.DiGraph();
+        G_basic.addEdgesFrom([[0,1], [1,2]]); // Primary branch
+        G_basic.addEdgesFrom([[1,3], [3,4]]); // Fork to alternative branch
+        
+        tremauxTrees.push(G_basic);
+        
+        /*
 
-        // Remove self loops from graph
+        Cross-over tree
+        ----------
+        Description: Complex tree containing edges which cross over from one branch to another, as well as a forward edge.
+        This tests whether the algorithm is capable of traversing cross edges and forward edges.
 
-        selfloops = G.selfloopEdges(); // Identify
-        G.removeEdgesFrom(selfloops); // Remove
+        Diagram:
 
+                2 - 3
+        0 - 1 <     |
+                4 - 5 - 6
+                     \_/
+
+    
+        */
+
+        // JSNX graph object for cross-over tree
+        var G_crossover = new jsnx.DiGraph();
+        G_crossover.addEdgesFrom([[0,1], [1,2], [2,3]]); // Primary branch
+        G_crossover.addEdgesFrom([[1,4], [4,5], [5,6]]); // Alternative branch
+        G_crossover.addEdgesFrom([[3,5]]); // Cross edge
+        G_crossover.addEdgesFrom([[5,6]]); // Forward edge
+        
+        tremauxTrees.push(G_crossover);
+
+        /*
+
+        Self-loop tree
+        ----------
+        Description: This tree contains a self loop to test whether the algorithm can traverse networks where one node
+        has an edge to itself. These edges are illegal in MR and so are deleted.
+
+        Diagram:
+
+        0 - 1 - 2
+            U
+
+        */
+
+        // JSNX graph object for self-loop tree
+        var G_selfloop = new jsnx.DiGraph();
+        G_selfloop.addEdgesFrom([[0,1], [1,2]]); // Primary branch
+        G_selfloop.addEdgesFrom([[1,1]]); // Self-loop
+
+        tremauxTrees.push(G_selfloop);
+        /*
+
+        Looping tree
+        ----------
+        Description: This tree contains a back edge which forms a loop, to test whether the algorithm is capable of traversing loops.
+
+        Diagram:
+
+        0 - 1 - 2
+        ^       |
+        |_______|
+
+        */
+
+        // JSNX graph object for looping tree
+        var G_loop = new jsnx.DiGraph();
+        G_loop.addCycle([0,1,2]); // Cycle
+
+        //tremauxTrees.push(G_loop);
+        
+        /*
+
+        Full tree
+        ----------
+        Description: This tree combines all of the above tests to test whether the algorithm can traverse a complex network.
+        This tree is accurate of complex real-world MR network conditions.
+
+        Diagram:
+
+        / - - - - - - - - - 6
+        |       2 - 3 - 4 <     
+        0 - 1 <   /         5 
+        ^       7 - 8 - 9  | 
+        |       ^   U   |  |
+        |       |_______|  |
+        |                  |
+        |__________________|
+        nb: 3->7, 0->6
+                            
+        */
+
+        // JSNX graph object for full tree
+        var G_full = new jsnx.DiGraph();
+        G_full.addEdgesFrom([[0,1], [1,2], [2,3], [3,4], [4,6], [4,5]]); // Primary branch
+        G_full.addEdgesFrom([[1,7], [7,8], [8,9]]); // Alternative branch
+        G_full.addEdgesFrom([[3,7]]); // Cross edge
+        G_full.addEdgesFrom([[0,6]]); // Forward edge
+        G_full.addEdgesFrom([[9,7], [5,0]]); // Back edges forming loops
+        G_full.addEdgesFrom([[8,8]]); // Self-loop
+
+        //tremauxTrees.push(G_full); 
+
+        /* 
+
+        Test functions 
+        ==============
+        These functions are designed to automate tests to test that the expected values from functions match their
+        actual values. The tremaux trees are used as tests of different networks.
+        
+        */
+
+        
+        // Test self-loop identification and removal
+        for (const tree of tremauxTrees){
+            
+            try {
+                selfloops = G.selfloopEdges(); // Identify
+                console.log('Selfloops: ', selfloops)
+                G.removeEdgesFrom(selfloops); // Remove
+            }
+
+            catch(err) {
+                console.log('Self-loop test failed: ', tree)
+            }
+            
+        }
+
+        // Test traversal
+        for (const tree of tremauxTrees){
+            
+            try {
+                
+                const DFSpath = DFS(tree,0); // Initiate DFS search of graph G object from root node 0
+                console.log(DFSpath) // Print path for propagation 
+            }
+
+            catch(err) {
+                console.log('Traversal test failed: ', tree)
+            }
+            
+        }
+
+        // Method for testing whether self loop removal worked
         function checkSelfLoopsRemoved(){ // Test remove self loops
-            for (const e of G.edges()){
+            for (const e of G_selfloop.edges()){
                 if (e[0]+e[1] == 0){ // Test if any edges have the same source and target
                     return false;
                 } else {
@@ -216,61 +353,7 @@
             return true;
         }
 
-        // Test propagation
-
-        const DFSpath = DFS(G,0); // Initiate DFS search of graph G object from root node 0
-        console.log(DFSpath) // Print path for propagation 
-        
-
-        /* 
-        
-        Network test B - Complex loop interactions
-        -----------------
-        This is a Trémaux tree test which features many loops with complex interaction patterns which tests that the loop detection algorithms
-        are accurate still in complex real-world conditions.
-        These Network tests are designed to validate that the representation, traversal and propagation methods work as intended.
-
-        
-
-
-        // Create complex Trémaux tree
-
-        var G2 = new jsnx.DiGraph(); // Create jsnx graph object
-
-        // Add edges to graph
-        G2.addCycle([0,1,2,3,4,5]); // Long loop
-        G2.addCycle([2,5]); // Shortcut loop
-        G2.addCycle([0,3,5]); // Loop with multiple intersection points
-
-
-        // Remove self loops from graph
-
-        selfloops = G.selfloopEdges(); // Identify
-        G.removeEdgesFrom(selfloops); // Remove
-
-        // Find conventional loops in graph
-
-        loops = findLoops(G2, 0); // Find loops
-
-        // Test BFS
-
-        correct = [[0,7],[0,4],[4,5],[5,7],[5,6],[5,2],[2,3],[3,1],[1,2],[0,1]];
-        document.getElementById('test_dfs').innerHTML = DFSpath.toString(); // Write test results for validation
-        document.getElementById('test_expected').innerHTML = correct.toString();
-        function checkPaths(){ // Test DFS path is the expected path
-            if(correct.toString() == DFSpath.toString()){return true;} else {return false;}}
-
-
-        /* 
-
-        Test functions 
-        ==============
-        These functions are designed to automate tests to test that the expected values from functions match their
-        actual values.
-        
-        */
-
-
+        // Compare expected and actual values
         tests = validate([
 
             // Check that data classes were created successfully
@@ -279,13 +362,8 @@
             {name : '[data] game.objective (set objective)', expected : false, actual : (null == game.objective)},
             {name : '[data] game.log (init log)', expected : false, actual : (null == game.log)},
 
-            // Check graph object and traversal algorithm
-            {name : '[traversal.js] BFS path (return path)', expected : true, actual : checkPaths()},
-            {name : '[jsnetworkx.js] BFS path (return path)', expected : true, actual : checkSelfLoopsRemoved()},
-
             // Check that PropagationData class works
             {name : '[data.js] PropagationData (ebunch)', expected : false, actual : undefined == propEbunch},
-            {name : '[data.js] PropagationData (ebunch is jsnx valid)', expected : false, actual : undefined == DFSpath2},
 
         ])
 

@@ -165,7 +165,7 @@ function DFS(graph, root){
 
         // 3. If node not exhausted skip for now and come back to later when predecessors are exhausted
         if(!(exhaustible)){
-            console.log('unexhaustible')
+            //console.log('unexhaustible')
             
             // Move node to back of queue 
             queue.shift();
