@@ -121,53 +121,65 @@
 
     <script>
 
+        /* 
+        
+        Data tests 
+        -----------------
+        These tests are designed to validate that the pseudo data classes import the MR data correctly, and all
+        class methods for manipulating this data work as intended.
+
+        */
+
         // Make main data objects used for game from starting MR data
-        var data = new DataClass(data_json.nodes, data_json.edges);
 
-        // Make GameData pseudo data class from starting MR data
-        var game =  new GameData(data_json.nodes, data_json.edges);
-        game.addLogEntry('example entry');
+        var data = new DataClass(data_json.nodes, data_json.edges); // Make DataClass pseudo data class for manipulating MR data
+        var game =  new GameData(data_json.nodes, data_json.edges); // Make GameData pseudo data class for game variables
 
-        // Make another G to test propagation
-        var G2 = new jsnx.DiGraph();
-        propEbunch = data.toJsnx()
-        G2.addEdgesFrom(propEbunch);
+        // Test pseudo data classes
 
-        // Test path
-        DFSpath2=[]
-        /*
-        DFSpath2 = DFS(G2, 'ukb_b_6519');
-
-        // Write path to dom for validation
-        document.getElementById('test_dfs2').innerHTML = DFSpath2.length + ' edges found in path from ukb_b_6519 (/' + propEbunch.length +' total edges)'
-
-        propagationModel = propagate(data.toPropMRData(DFSpath2));
-        console.log(propagationModel)
-
-        /* Test Data */
+        propEbunch = data.toJsnx(); // Test returning data in jsnx graph format
+            var G0 = new jsnx.DiGraph();
+            G0.addEdgesFrom(propEbunch);
+        game.addLogEntry('example entry'); // Test adding entry to log
 
         // Test data creation
-        text = '';
-        text += 'n edges: ' + objSize(data.edges) + '<br>';
-        text += 'n nodes: ' + objSize(data.nodes) + '<br>';
-        function minus(a,b){return a-b};
-        text += 'n base data class: ' + objSize(data) + '<br>';
-        text += 'n game variables: ' + minus(objSize(game),objSize(data)) + '<br>';
-        document.getElementById('test_data').innerHTML = text;
 
-        /* Test Big */
+        objSize_data = objSize(data); // DataClass
+        objSize_nodes = objSize(data.nodes); // DataClass.nodes
+        objSize_edges = objSize(data.edges); // DataClass.edges
+        objSize_gameData = objSize(game) - objSize_data; // GameData
+        document.getElementById('test_data').innerHTML = 'n edges: ' + objSize_edges + '<br>' + 'n nodes: ' + objSize_nodes+ '<br>' + 'n base data class: ' + objSize_data + '<br>' + 'n game variables: ' + objSize_gameData + '<br>';
+        
 
-        // Create big decimal object to increase floating point precision
-        // 20 DP by default
+        /* 
+        
+        Big.js tests
+        -----------------
+        This test is designed to validate that the Big number class increases floating point precision as intended
+
+        */
+
+
+        // Create big decimal object to test (20 DP by default)
         x = new Big(0.3)
-        console.log(x.minus(0.1).valueOf())
+        console.log(x.minus(0.1).valueOf()) // js maths returns value of 0.19999998, big should correctly return 0.2
 
-        /* Test JSNX */
 
-        // Create directed graph
-        var G = new jsnx.DiGraph();
-        // Populate graph with nodes and edges
-        G.addNodesFrom([
+        /* 
+        
+        Network test A - All edge types
+        -----------------
+        This is a standard Trémaux tree test that all possible edges are representable and traversible by the network algorithm.
+        These Network tests are designed to validate that the representation, traversal and propagation methods work as intended.
+
+        */
+
+
+        // Initialise Trémaux tree with nodes
+
+        var G = new jsnx.DiGraph(); // Create jsnx graph object
+
+        G.addNodesFrom([ // Populate graph with nodes which have properties
             [0, {label : 'A', value: 0.25}],
             [1, {label : 'B', value: 0.25}],
             [2, {label : 'C', value: 0.25}],
@@ -177,22 +189,25 @@
             [6, {label : 'G', value: 0.25}],
             [7, {label : 'H', value: 0.25}],
         ]);
-        // Trémaux tree with the all types of edges for testing
+
+        // Add all types of edges to Trémaux tree
+
         G.addEdgesFrom([[0,1], [1,2], [2,3]]); // Primary branch
         G.addEdgesFrom([[0,4], [4,5]]); // Fork to alternative branch
         G.addEdgesFrom([[5,6], [5,7]]); // Fork to dead ends
-        G.addEdgesFrom([[3,1]]); // Back edge
-        G.addEdgesFrom([[0,7]]); // Forward edge
+        //G.addEdgesFrom([[3,1]]); // Back edge
+        //G.addEdgesFrom([[0,7]]); // Forward edge
         G.addEdgesFrom([[5,2]]); // Cross edge
         G.addEdgesFrom([[0,0]]); // Self loop
 
         // Remove self loops from graph
+
         selfloops = G.selfloopEdges(); // Identify
         G.removeEdgesFrom(selfloops); // Remove
-        // Test remove self loops
-        function checkSelfLoopsRemoved(){
+
+        function checkSelfLoopsRemoved(){ // Test remove self loops
             for (const e of G.edges()){
-                if (e[0]+e[1] == 0){
+                if (e[0]+e[1] == 0){ // Test if any edges have the same source and target
                     return false;
                 } else {
                     continue;
@@ -201,37 +216,61 @@
             return true;
         }
 
-        // Find loops : Call find loops specific search function
-        //loops = findLoops(G, 0);
-        //console.log(loops);
+        // Test propagation
+
+        const DFSpath = DFS(G,0); // Initiate DFS search of graph G object from root node 0
+        console.log(DFSpath) // Print path for propagation 
         
-        var G2 = new jsnx.DiGraph();
-        G2.addCycle([0,1,2,3,4,5]);
-        G2.addCycle([0,3,5]);
-        G2.addCycle([2,5]);
 
-        loops = findLoops(G2, 0);
-        console.log('loops', loops);
+        /* 
+        
+        Network test B - Complex loop interactions
+        -----------------
+        This is a Trémaux tree test which features many loops with complex interaction patterns which tests that the loop detection algorithms
+        are accurate still in complex real-world conditions.
+        These Network tests are designed to validate that the representation, traversal and propagation methods work as intended.
 
-        // Find path for propagation : Call DFS and define root node to initiate search from
-        /*DFSpath = DFS(G, 0) 
-        console.log(DFSpath)*/
+        
+
+
+        // Create complex Trémaux tree
+
+        var G2 = new jsnx.DiGraph(); // Create jsnx graph object
+
+        // Add edges to graph
+        G2.addCycle([0,1,2,3,4,5]); // Long loop
+        G2.addCycle([2,5]); // Shortcut loop
+        G2.addCycle([0,3,5]); // Loop with multiple intersection points
+
+
+        // Remove self loops from graph
+
+        selfloops = G.selfloopEdges(); // Identify
+        G.removeEdgesFrom(selfloops); // Remove
+
+        // Find conventional loops in graph
+
+        loops = findLoops(G2, 0); // Find loops
 
         // Test BFS
+
         correct = [[0,7],[0,4],[4,5],[5,7],[5,6],[5,2],[2,3],[3,1],[1,2],[0,1]];
-        function checkPaths(){
-            desiredPath = correct.toString();
-            actualPath = DFSpath.toString();
-            if (desiredPath == actualPath) {return true} else {return false};
-        }
-        
-        // Write test results for validation
-        document.getElementById('test_dfs').innerHTML = DFSpath.toString();
+        document.getElementById('test_dfs').innerHTML = DFSpath.toString(); // Write test results for validation
         document.getElementById('test_expected').innerHTML = correct.toString();
+        function checkPaths(){ // Test DFS path is the expected path
+            if(correct.toString() == DFSpath.toString()){return true;} else {return false;}}
 
 
+        /* 
 
-        // Test functions
+        Test functions 
+        ==============
+        These functions are designed to automate tests to test that the expected values from functions match their
+        actual values.
+        
+        */
+
+
         tests = validate([
 
             // Check that data classes were created successfully
