@@ -162,12 +162,12 @@
 
         // Create big decimal object to test (20 DP by default)
         x = new Big(0.3)
-        console.log(x.minus(0.1).valueOf()) // js maths returns value of 0.19999998, big should correctly return 0.2
+        y = x.minus(0.1).valueOf() // js maths returns value of 0.19999998, big should correctly return 0.2
 
 
         /* 
         
-        Trémaux trees
+        Directed Trémaux trees
         ===============
         These trees are constructed to test that the traversal algorithms can accurately traverse and produce paths for
         propagation travel from different types of networks. These trees feature different edge types and configurations
@@ -182,6 +182,7 @@
         tremauxTrees = [];
 
         /*
+
 
         Basic tree
         ----------
@@ -205,6 +206,7 @@
         
         /*
 
+
         Cross-over tree
         ----------
         Description: Complex tree containing edges which cross over from one branch to another, as well as a forward edge.
@@ -215,9 +217,10 @@
                 2 - 3
         0 - 1 <     |
                 4 - 5 - 6
-                     \_/
+                \______/
 
-    
+        Search:0123456
+        Exhaustion:
         */
 
         // JSNX graph object for cross-over tree
@@ -225,11 +228,12 @@
         G_crossover.addEdgesFrom([[0,1], [1,2], [2,3]]); // Primary branch
         G_crossover.addEdgesFrom([[1,4], [4,5], [5,6]]); // Alternative branch
         G_crossover.addEdgesFrom([[3,5]]); // Cross edge
-        G_crossover.addEdgesFrom([[5,6]]); // Forward edge
+        G_crossover.addEdgesFrom([[4,6]]); // Forward edge
         
         tremauxTrees.push(G_crossover);
 
         /*
+
 
         Self-loop tree
         ----------
@@ -251,6 +255,7 @@
         tremauxTrees.push(G_selfloop);
         /*
 
+
         Looping tree
         ----------
         Description: This tree contains a back edge which forms a loop, to test whether the algorithm is capable of traversing loops.
@@ -270,6 +275,7 @@
         //tremauxTrees.push(G_loop);
         
         /*
+
 
         Full tree
         ----------
@@ -301,6 +307,7 @@
 
         //tremauxTrees.push(G_full); 
 
+
         /* 
 
         Test functions 
@@ -316,12 +323,12 @@
             
             try {
                 selfloops = G.selfloopEdges(); // Identify
-                console.log('Selfloops: ', selfloops)
+                console.log('%cSelf-loop result: ', 'color: green;', selfloops)
                 G.removeEdgesFrom(selfloops); // Remove
             }
 
             catch(err) {
-                console.log('Self-loop test failed: ', tree)
+                console.log('%cSelf-loop test failed', 'color: red;')
             }
             
         }
@@ -332,11 +339,11 @@
             try {
                 
                 const DFSpath = DFS(tree,0); // Initiate DFS search of graph G object from root node 0
-                console.log(DFSpath) // Print path for propagation 
+                console.log('%cTraversal test result: ', 'color: green;', DFSpath) // Print path for propagation 
             }
 
             catch(err) {
-                console.log('Traversal test failed: ', tree)
+                console.log('%cTraversal test failed', 'color: red;')
             }
             
         }

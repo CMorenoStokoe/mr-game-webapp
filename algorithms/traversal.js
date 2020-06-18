@@ -32,102 +32,14 @@ This allows a propagation network to follow its path and accurately update value
 
 */
 
-// Discover loops
-function findLoops(graph, root, recursionLimit = 10){
-    console.log('Starting Loop search, max recursions = ', recursionLimit, Math.pow(graph.numberOfNodes(), 2))
-
-    // Initialise search queue
-    const queue = [{source: 'start', target: root}];
-    const visits = {};
-    var loopHolder = null;
-    const loops = [];
-
-    console.log(graph, root, queue)
-    console.log('gnodes',graph.numberOfNodes())
-    
-
-    for (i = 0; i < Math.pow(graph.nodes().length, 2); i++){ // failsafe
-        
-        // Search network until queue empty
-        if(queue[0] == undefined){console.log('DFS search finished.');break;} // failsafe
-        //if(queue[0] == undefined){
-
-            // Current edge to search
-            const currentEdge = queue[0]; //.target node is the node currently being searched
-            
-            console.log('#### searching node: ', currentEdge.target);
-
-            // Shift item from queue
-            queue.shift();
-
-            console.log('queue: ', queue);
-
-            // Track and mark edge visits
-            switch(visits[currentEdge]){
-
-                case recursionLimit:// If edge at recursionLimit of visits
-                    
-                    loopHolder = currentEdge; // Store edge as previous loop in edge
-                    console.log('%cVisited 10, recording edge: [' + loopHolder.source + ',' + loopHolder.target  + ']', 'color:red');
-                    continue;
-                
-                case undefined: // If edge not visited before
-                    console.log('not visited, count=1', visits[currentEdge]);
-                    visits[currentEdge]=1; // Initialise visit count for this edge with 1
-
-                    findSuccessors();
-                    break;
-
-                default: // If edge visited before but not at recursionLimit
-                    console.log('visited but <10, count++', visits[currentEdge]);
-                    visits[currentEdge]++; // Increment edge visit count
-
-                    findSuccessors();
-                    break;
-            }
-
-            // Discover if any loop edges are the terminus
-            if (loopHolder != null){ // If there is a currently held unrecorded loop edge
-                console.log('%cif (loopHolder)', 'color: purple')
-                if (loopHolder != currentEdge){ // If current edge is not the current loop edge under investigation
-                    if (currentEdge.source != loopHolder.target){ // If previous edge does not connect to current edge
-                        console.log('%cLoop terminus found: ', 'color:green', loopHolder.source);
-                        loops.push(loopHolder.source); // Add previous edge to list of edges in loops
-                        loopHolder = null; // Reset loop holder
-                    }
-                }
-            }
-
-            // Add successor nodes to search queue
-
-            function findSuccessors(){
-                for (successor of graph.successors(currentEdge.target)){ // Get all successor nodes of current node
-                    
-                    queue.unshift({ // Add dictionary entry for succeeding edge {source: current node, target: successor node}
-                        source : currentEdge.target, 
-                        target : successor
-                    }); 
-                };
-            }
-            // Add successors to front of queue
-
-
-    }
-    
-    console.log('Loop search finished.');
-    console.log('visits', visits);
-    console.log('loops', loops);
-
-}
-
 // Run 'Two steps forward one step back" depth-first search variant
 function DFS(graph, root){
-    console.log('Starting DFS search, max iterations = ', Math.pow(graph.numberOfNodes(), 2))
+    //console.log('Starting DFS search, max iterations = ', Math.pow(graph.numberOfNodes(), 2))
 
     // Initialise queue, exhaustedNodes and path lists
     const queue = [root]; // Add root node to search queue
-    const exhaustedNodes = {root : true,}; // Memory of nodes already travelled exhaustively
-    const path = []; // Paths taken through nodes from origin
+    const exhaustedNodes = {root : true}; // Memory of nodes already travelled exhaustively
+    const path = {}; // Paths taken through nodes from origin
 
     // Run DFS variant
     for (i = 0; i < Math.pow(graph.nodes().length, 2); i++){ 
@@ -136,19 +48,19 @@ function DFS(graph, root){
             1. Maximum number of iterations (n nodes ^2) to avoid infinite loops (above)
             2. Search while the queue is not empty  to avoid runtime error when queue is emptied (below)
         */
-        if(queue[0] == undefined){console.log('DFS search finished.');break;}
+        if(queue[0] == undefined){break;}//console.log('DFS search finished.');
 
         // 1. Get node n from queue 
         const currentNode = queue[0];
 
-        console.log('searching ', currentNode, ' (exhausted ', exhaustedNodes, ' queue: ', queue, ')')
+        //console.log('searching ', currentNode, ' (exhausted ', exhaustedNodes, ' queue: ', queue, ')')
 
         // 2. Check if node is exhaustible (if all precursors are exhausted)
         exhaustible = exhaustedPredecessors(currentNode);
         
         // 3. If precursors are exhausted
         if(exhaustible){
-            console.log('exhaustible')
+            //console.log('exhaustible')
 
             // Set node exhausted
             exhaustedNodes[currentNode] = true;
@@ -157,7 +69,7 @@ function DFS(graph, root){
             queue.shift();
             
             // Add exhausted node to path
-            path.push(currentNode); 
+            path[currentNode]=true; 
 
             // Add successors of node n to queue
             for (successor of unExhaustedSuccessors(currentNode)){ queue.unshift(successor); };
@@ -181,7 +93,8 @@ function DFS(graph, root){
         // 6. Continue until all nodes have been exhausted (predecessor nodes exhaustively searched)
         continue;
     }
-    // 7. Return order of nodes to explore in order to fully explore network as 
+
+    // 7. Return array of edges to traverse in an order which exhausts each node in series (i.e., propagation order)
     return(path); // Array of arrays containing edges to follow in order ([[a,b],[b,c]])
 
     // Exhaustion control 
