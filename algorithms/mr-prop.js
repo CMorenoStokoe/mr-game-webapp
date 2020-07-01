@@ -27,125 +27,46 @@ is still liable to inaccuracy.
 */
 
 // Propagation method
-function propagate(path, nodeData, edgeData){
+function propagate(path, nodeData, edgeData, origin){
     results = [];
-    changes = {};
-
-    firstCycle = true;
+    changes = origin; // Array of {node id: value change} dictionaries containing changes to nodes during propagation. Start with origin and initial change
 
     // Extract the data required for propagation MR from the propagation path and MR data (PropMRData bundle)
-    for (const edge of PropMRData){
-
-        // Change in prevalence to first node to initiate propagating effects (labelled deltaX0)
-        deltaXStart='0.00000000000000000000000000000015678' // FIX: Needs to be set dynamically
-        /*
-        console.log('edge.yID',edge.yID)
-        console.log('edge.xID',edge.xID)
-        console.log('changes[edge.xID]',changes[edge.xID])
-        if(firstCycle){deltaXValue = deltaXStart; firstCycle = false} else {deltaXValue = changes[edge.xID]};*/
-        deltaXValue = deltaXStart
+    for (const edge of path){
         
+        // Construct edge ID from source and target nodes in edge
+        key = [edge.source,edge.target]
+
         // Convert delta, starting node value and edge beta to big numbers (40 decimal place accuracy)
-        const deltaX = new Big(deltaXValue); // change in prevalence (delta) of source node (x, precursor in path)
-        const y0 = new Big(edge.y0); // initial prevalence of target node (y0, successor in path)
-        const b = new Big(edge.b); // beta weight of edge from source to target node (b)
+        const deltaX = new Big(changes[edge.source]); // change in prevalence (delta) of source node (x, precursor in path)
+        const b = new Big(edgeData[key].b); // beta weight of edge from source to target node (b)
         
         // Calculate propagation effects and final prevalence of target node (y1)
-        const y1 = propagationMR(deltaX, y0, b);
-
-        // Record result as entry in results output dictionary
-        results[edge.yID]=y1.valueOf();
-
-        // Calculate the change in y as a result of propagation
-        const deltaY = diff(y0, y1);
+        const deltaY = propagationMR(deltaX, b);
 
         // Save deltaY for use as deltaX in next propagation cycle since for A -> B -> C to calculate B -> C we need to know deltaB
-        changes[edge.yID]= deltaY.valueOf();
-        //console.log('changes[edge.yID]',changes[edge.yID])
-        //fixme, multipe deltaYs to propagate
-        
-        //console.log(edge.xID, ' changed ', edge.yID, ' (', y0 , '-->', y1, ')');
+        if(changes[edge.target] == undefined){
+            changes[edge.target] = deltaY.valueOf(); // Get total delta
+            console.log('change initialised', changes[edge.target])
+        } else {
+            const totalDeltaY = new Big(changes[edge.target]); // Get total delta Y
+            changes[edge.target] = totalDeltaY.plus(deltaY).valueOf(); // Add to delta
+            console.log('change updated', changes[edge.target])
+        }
+    
     }
 
     // Return results once propagation finished
-    return(results)
+    return(changes)
 
 
     // Method returns value of successor node Y given change to precursor node X and edge weight beta
-    function propagationMR(deltaX, y0, b){
+    function propagationMR(deltaX, b){
 
-        // Calculate propagation effects and final prevalence of target node (y1)
-        y1 = y0.plus(b.times(deltaX));
+        // Calculate propagation effect (deltaY)
+        deltaY = b.times(deltaX);
 
-        return y1;
-    }
-
-
-    // Method calculates the change between y0 and y1 (as Big number classes)
-    function diff(y0, y1){
-
-        // Discover which number y0 or y1 is larger & order in size
-        const nLarger = orderBySize(y0, y1)[0];
-        const nSmaller =  orderBySize(y0, y1)[1];
-        
-        // Discover if numbers are negative
-        const y0IsNeg = isNegative(y0);
-        const y1IsNeg = isNegative(y1);
-        
-        // Return the difference between y0 and y1
-        difference = compare();
-        return(difference);
-
-        // Returns two numbers in order of size (e.g., 1,0)
-        function orderBySize(n1, n2){
-            switch(n1.gt(n2)){
-                case true: // y0 > y1
-                    return([n1,n2])
-                case false: // y0 < y1
-                    return([n2,n1])
-            }
-        }
-
-        // Returns whether numbers are negative{
-        function isNegative(n){
-            switch(n.lt(0)){
-                case true:
-                    return true;
-                case false:
-                    return false;
-            }
-        }
-
-        // Compare two numbers and return the difference given two numbers in order of (larger number, smaller number)
-        function compare(){
-            
-            // Do arithmetic differently depending on if numbers are negative
-            switch(y0IsNeg){
-                case true:
-
-                    switch(y1IsNeg){
-
-                        // If both numbers are negative
-                        case true:
-                            
-                            // Negate both numbers and subtract
-                            return nLarger.times(-1).minus(nSmaller.times(-1));
-                        
-                        // If only one number is negative     
-                        case false:
-                            
-                            // Add together (smaller number must be the negative one)
-                            return nLarger.plus(nSmaller);
-                    }
-                
-                // If neither number is negative
-                case false:
-
-                    // If neither numbers are negative: subtract
-                    return nLarger.minus(nSmaller);
-
-            }
-        }
+        return deltaY;
     }
 
 }

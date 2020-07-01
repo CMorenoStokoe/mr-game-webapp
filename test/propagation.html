@@ -130,7 +130,7 @@
 
         */
 
-        // Make main data objects used for game from starting MR data
+        /* Make main data objects used for game from starting MR data */
 
         var data = new DataClass(data_json.nodes, data_json.edges); // Make DataClass pseudo data class for manipulating MR data
         var game =  new GameData(data_json.nodes, data_json.edges); // Make GameData pseudo data class for game variables
@@ -150,6 +150,26 @@
         objSize_gameData = objSize(game) - objSize_data; // GameData
         document.getElementById('test_data').innerHTML = 'n edges: ' + objSize_edges + '<br>' + 'n nodes: ' + objSize_nodes+ '<br>' + 'n base data class: ' + objSize_data + '<br>' + 'n game variables: ' + objSize_gameData + '<br>';
         
+
+        /* Set up test dataClass for tremaux tree tests */
+        
+        // Set up dataClass containing node and edge information
+        nodeData_test = []
+        edgeData_test = []
+        for (i = 0; i < 10; i++){ // generate node data
+                nodeData_test.push({id:i, prevalence:1})
+            for (j = 0; j < 10; j++){ // generate link data
+                edgeData_test.push({id: [i,j], source:i, target:j, b:1})
+            }
+        }
+
+        // Enter test data into DataClass
+        var testData = new DataClass(nodeData_test, edgeData_test)
+
+        // Test data creation
+        console.log('testData', testData) // DataClass
+        console.log('nodes', testData.nodes)  // DataClass.nodes
+        console.log('edges', testData.edges)  // DataClass.edges
 
         /* 
         
@@ -219,8 +239,7 @@
                 4 - 5 - 6
                 \______/
 
-        Search:0123456
-        Exhaustion:
+                
         */
 
         // JSNX graph object for cross-over tree
@@ -317,34 +336,49 @@
         
         */
 
-        
-        // Test self-loop identification and removal
+        // Iterate over different networks configurations
         for (const tree of tremauxTrees){
             
+            // Test self-loop identification and removal
             try {
-                selfloops = G.selfloopEdges(); // Identify
-                console.log('%cSelf-loop result: ', 'color: green;', selfloops)
-                G.removeEdgesFrom(selfloops); // Remove
+                selfloops = tree.selfloopEdges(); // Identify
+                console.log('%cSelf-loop success: ', 'color: green;', selfloops)
+                tree.removeEdgesFrom(selfloops); // Remove
             }
 
             catch(err) {
                 console.log('%cSelf-loop test failed', 'color: red;')
             }
             
-        }
 
-        // Test traversal
-        for (const tree of tremauxTrees){
-            
+            // Test traversal algorithm
+            var DFSpath = null
             try {
                 
-                const DFSpath = DFS(tree,0); // Initiate DFS search of graph G object from root node 0
-                console.log('%cTraversal test result: ', 'color: green;', DFSpath) // Print path for propagation 
+                DFSpath = DFS(tree,0); // Initiate DFS search of graph G object from root node 0
+                console.log('%cTraversal test success: ', 'color: green;', DFSpath) // Print path for propagation 
             }
 
             catch(err) {
                 console.log('%cTraversal test failed', 'color: red;')
             }
+
+
+            // Test propagation MR algorithm
+            try {
+                
+                // Supply path for propagation
+                console.log('path:', DFSpath)
+
+                result = propagate(DFSpath, testData.nodes, testData.edges, {0: 1}); // Run propagation MR
+                console.log('%cPropagation MR test success: ', 'color: green;', result) // Print propagation mr output
+
+            }
+
+            catch(err) {
+                console.log('%cPropagation MR test failed', 'color: red;')
+            }
+
             
         }
 
@@ -360,14 +394,13 @@
             return true;
         }
 
+
         // Compare expected and actual values
         tests = validate([
 
             // Check that data classes were created successfully
             {name : '[data] data.nodes (nodes exist)', expected : false, actual : (null == data.nodes)},
             {name : '[data] data.edges (edges exist)', expected : false, actual : (null == data.edges)},
-            {name : '[data] game.objective (set objective)', expected : false, actual : (null == game.objective)},
-            {name : '[data] game.log (init log)', expected : false, actual : (null == game.log)},
 
             // Check that PropagationData class works
             {name : '[data.js] PropagationData (ebunch)', expected : false, actual : undefined == propEbunch},

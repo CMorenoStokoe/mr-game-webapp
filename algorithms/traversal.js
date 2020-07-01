@@ -39,7 +39,7 @@ function DFS(graph, root){
     // Initialise queue, exhaustedNodes and path lists
     const queue = [root]; // Add root node to search queue
     const exhaustedNodes = {root : true}; // Memory of nodes already travelled exhaustively
-    const path = {}; // Paths taken through nodes from origin
+    const path = []; // Paths taken through nodes from origin
 
     // Run DFS variant
     for (i = 0; i < Math.pow(graph.nodes().length, 2); i++){ 
@@ -55,6 +55,15 @@ function DFS(graph, root){
 
         //console.log('searching ', currentNode, ' (exhausted ', exhaustedNodes, ' queue: ', queue, ')')
 
+        // Skip node if already exhausted
+        if(exhaustedNodes[currentNode]==true){
+
+            // Remove node from queue and continue
+            console.log('skipping already exhausted node');
+            queue.shift();
+            continue;
+        }
+
         // 2. Check if node is exhaustible (if all precursors are exhausted)
         exhaustible = exhaustedPredecessors(currentNode);
         
@@ -69,13 +78,15 @@ function DFS(graph, root){
             queue.shift();
             
             // Add exhausted node to path
-            path[currentNode]=true; 
+            for (const predecessor of graph.predecessors(currentNode)){
+                path.push({source: predecessor, target: currentNode});
+            } 
 
             // Add successors of node n to queue
             for (successor of unExhaustedSuccessors(currentNode)){ queue.unshift(successor); };
         }
 
-        // 3. If node not exhausted skip for now and come back to later when predecessors are exhausted
+        // 3. If node not exhaustible skip for now and come back to later when predecessors are exhausted
         if(!(exhaustible)){
             //console.log('unexhaustible')
             

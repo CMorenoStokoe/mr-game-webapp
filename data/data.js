@@ -30,7 +30,7 @@ class DataClass {
 
         for (const item of items){
 
-            /* TEMPORARY : Move to MiRANA: csv to json operation */
+            /* TEMPORARY : Move to MiRANA: csv to json operation 
             // Make sure node and edge ID strings are safe for use as index keys (e.g., in js numbers are not safe keys since edges[0] returns the first edge whereas edges[e0] correctly returns edge e0)
             if (typeof item[key] == 'string'){
                 item[key] = safeStr(item[key]);
@@ -40,10 +40,16 @@ class DataClass {
                 item[key] = [source,target];
                 item.source = source
                 item.target = target
-            } //temp key cleaning
+            } 
+            //temp key cleaning
             function safeStr(str){
                 return str.replace(/-/g, '_')
             }
+            */
+
+            // Assign edge id if edge
+            if(item.source){item[key] = [item.source,item.target];}
+            else {item[key] = item[key]};
 
             // If a desiredProperty is given then give {key : desired property}
             // This is used if only one property is desired (e.g., an index of ids : names)
@@ -100,33 +106,6 @@ class DataClass {
         // Since jsnx populates nodes automatically from edges, nodes do not need to be specified to make a jsnx graph G object
         // Nodes should be specified if their properties need to be modelled in the graph (e.g., node prevalences if propagation was integrated into the jsnx model)
         return(ebunch);
-    }
-
-    // Export data as list of data required for propagation MR
-    toPropMRData(path){
-        const MRData = [];
-
-        // Create list of data requires for propagation MR
-        for (const edge of path){
-
-            // Get source and target node IDs from current edge in path
-            const sourceNodeId = edge[0]; // edge originates from this node
-            const targetNodeId = edge[1]; // node to change with propagation
-            
-            // Construct edge id from edge source and target nodes
-            const edgeId = [sourceNodeId,targetNodeId]
-
-            // Create MRData bundle for propagation and updating resulting node prevalences
-            MRData.push({
-                xID : sourceNodeId, // source node id to identify where the change in this edge originated
-                yID : targetNodeId, // target node id to identify which nodes are being changed through propagation 
-                y0 : this.nodes[targetNodeId].prevalence, // initial prevalence of target of edge (successor node)
-                b : this.edges[edgeId].b, // edge beta weight
-            })
-        }
-
-        // Path of edges to propagate through with MR data
-        return MRData;
     }
 
 }
