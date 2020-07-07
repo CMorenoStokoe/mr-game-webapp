@@ -24,6 +24,10 @@
     <!-- Fa icons -->
     <script src="https://kit.fontawesome.com/ff3502b087.js" crossorigin="anonymous"></script>
     
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="../css/testpage.css">
+    
+
 </head>
 
 <body style="font-family: consolas;">
@@ -37,85 +41,30 @@
     <p id="test_results" style="margin-bottom: 0px; background-color: red;">Testing failure. Check console.</p>
     <p id="test_log" style="color: white; background-color: black;"></p>
 
-
-    <div class="row">
-        
-        <div class="col-6">
-
-            <div class="card"  style="margin: 5px; height: 95%; width: 95%;">
-                <div class=card-header>
-                    <h4>FDG graph</h4>
-                </div>
-                <div class=card-body>
-                    <div><em style="color: rgb(2, 117, 216)">Drawing and editing FDG graph on SVG: </em></div>
-                    <svg width="720" height="350" id="test_svg"></svg>
-                </div>
-            </div>
-            
-        </div>
-
-        <div class="col-6">
-            <div class="row">
-
-
-            <div class="col-6">
-                <div class="card"  style="margin: 5px; height: 95%; width: 95%;">
-                    <div class=card-header>
-                        <h4>Gamedata</h4>
-                    </div>
-                    <div class=card-body style="ghostwhite">
-                        <em style="color: rgb(2, 117, 216)" >Getting data summaries: </em>
-                        <div id="test_data"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-6">
-                <div class="card" style="margin: 5px; height: 95%; width: 95%;">
-                    <div class=card-header>
-                        <h4>Traversal</h4>
-                    </div>
-                    <div class=card-body style="ghostwhite">
-                        <em style="color: rgb(2, 117, 216)" >Expected sequence: </em>
-                        <div id="test_expected"></div>
-                        <em style="color: rgb(2, 117, 216)" >Depth-first traversal algorithm result: </em>
-                        <div id="test_dfs"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-6">
-                <div class="card" style="margin: 5px; height: 95%; width: 95%;">
-                    <div class=card-header>
-                        <h4>Propagation</h4>
-                    </div>
-                    <div class=card-body style="ghostwhite">
-                        <em style="color: rgb(2, 117, 216)" >Propagation algorithm result: </em>
-                        <div id="test_dfs2"></div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
+    <div class="row" id="test_graphs"></div>
 
 </body>
 
 <footer>
 
-    <!-- External dependencies -->
-    <script src="../scripts/d3/d3.min.js"></script>
+    <!-- d3 graph visualisation library, jsnetworkx only supports v3 -->
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+
+    <!-- jsnetworkx graph theory library -->
     <script src="../scripts/jsnx/jsnetworkx.js"></script>
+
+    <!-- big.js accurate number system library -->
     <script src="../scripts/big/big.min.js"></script>
 
-    <!-- Data and data classes -->
+    <!-- Custom data and data classes -->
     <script src="../data/data_json.js"></script>
     <script src="../data/data.js"></script>
 
-    <!-- Methods -->
+    <!-- Custom methods -->
     <script src="debug/debug-methods.js"></script>
     <script src="../scripts/graph.js"></script>
+    <script src="../scripts/create-element.js"></script>
+    <script src="../scripts/edit-element.js"></script>
     <script src="../algorithms/traversal.js"></script>
     <script src="../algorithms/mr-prop.js"></script>
 
@@ -130,7 +79,10 @@
 
         */
 
-        /* Make main data objects used for game from starting MR data */
+        
+        /* 
+        Move to seperate doc, for game
+        // Make main data objects used for game from starting MR data
 
         var data = new DataClass(data_json.nodes, data_json.edges); // Make DataClass pseudo data class for manipulating MR data
         var game =  new GameData(data_json.nodes, data_json.edges); // Make GameData pseudo data class for game variables
@@ -149,7 +101,7 @@
         objSize_edges = objSize(data.edges); // DataClass.edges
         objSize_gameData = objSize(game) - objSize_data; // GameData
         document.getElementById('test_data').innerHTML = 'n edges: ' + objSize_edges + '<br>' + 'n nodes: ' + objSize_nodes+ '<br>' + 'n base data class: ' + objSize_data + '<br>' + 'n game variables: ' + objSize_gameData + '<br>';
-        
+        */
 
         /* Set up test dataClass for tremaux tree tests */
         
@@ -329,6 +281,14 @@
 
         /* 
 
+        Visualisation
+        ==============
+        Functions to visualise the trees and tests so they are more clear and the model more easily interpretable.
+
+        */
+        
+        /* 
+
         Test functions 
         ==============
         These functions are designed to automate tests to test that the expected values from functions match their
@@ -336,50 +296,138 @@
         
         */
 
+        i=0;
         // Iterate over different networks configurations
         for (const tree of tremauxTrees){
+
+            var testLog=[]
+
+            // Create test output environment
+            const divId = `div-${i}`; // Set IDs for elements by count
+            const svgId = `svg-${i}`;
+            const pId = `p-${i}`;
+
+            createDiv(divId, 'test_graphs', 'card col-6 graph-div'); // Create div
             
+            const svg = `<svg width=\"250\" height=\"250\" id=\"${svgId}\"></svg><svg width=\"250\" height=\"250\" id=\"${svgId}2\"></svg>`; // SVG html code
+            const p = `<p id=\"${pId}\"></p>`; // Results p html code
+            
+            document.getElementById(divId).innerHTML = svg+p; // Create svg and p
+            jsnx.draw(tree, { // Draw tree on SVG
+                element: `#${svgId}`, 
+                withLabels: true, 
+                labelStyle: {fill: 'white'},
+                stickyDrag: true
+            }); i++;// Increment count
+            
+
             // Test self-loop identification and removal
             try {
-                selfloops = tree.selfloopEdges(); // Identify
-                console.log('%cSelf-loop success: ', 'color: green;', selfloops)
-                tree.removeEdgesFrom(selfloops); // Remove
+                var selfloops = tree.selfloopEdges(); // Identify
+                if(selfloops.length == 0){selfloops = 'None'} // If no self loops found, state this for visibility
+                else {
+                    tree.removeEdgesFrom(selfloops); // Remove selfloops if any are found
+                }
+
+                testLog.push({test: 'selfloop', status : 'Success', info: `Self loops: ${selfloops}`}); // Record in results
+
             }
 
             catch(err) {
-                console.log('%cSelf-loop test failed', 'color: red;')
+                testLog.push({test: 'selfloop', status : 'Fail', info: 'caught err'}); // Record in results
             }
             
 
-            // Test traversal algorithm
-            var DFSpath = null
-            try {
+            /* 
+            
+
+            TO DO:
                 
-                DFSpath = DFS(tree,0); // Initiate DFS search of graph G object from root node 0
-                console.log('%cTraversal test success: ', 'color: green;', DFSpath) // Print path for propagation 
+                1) Accordian of browsable tremaux trees -->
+                2) Illustration of order of node traversal (e.g., animation)
+                3) Illustration of propagation values 
+
+                Note: Could show 4 different graphs: Network structure, traversal order, prevalence values, propagataion values 
+
+                [  () -]>   Accordian
+                [()()()]    3 extra views on tree select
+
+            /*
+
+
+            // Test traversal algorithm
+            var path = null
+            try {
+                path = findPropagationPath(tree,0); // Initiate DFS search of graph G object from root node 0
+                console.log(path)
+
+                var G = new jsnx.DiGraph();
+                
+                console.log(G)
+                jsnx.draw(G, { // Draw tree on SVG
+                    element: `#${svgId}2`,
+                    withLabels: true, 
+                    labelStyle: {fill: 'white'},
+                    stickyDrag: true
+                }, true);
+                
+                edges=[]
+                for (const step of path){
+                    edges.push([step.source, step.target])
+                }
+
+                var i=0;
+                (function myLoop(i) {
+                    setTimeout(function() {
+                        console.log(edges.length-i); 
+                        console.log(edges); 
+                        console.log(edges[i]); 
+                        G.addEdge(edges[i][0], edges[i][1]);              
+                        if (--i) myLoop(i); //  decrement i and call myLoop again if i > 0
+                    }, 3000)
+                })(edges.length); //  pass the number of iterations as an argument
+
+                testLog.push({test: 'traversal', status : 'Success', info: `${objSize(path)} steps in path`}); // Record in results
             }
 
             catch(err) {
-                console.log('%cTraversal test failed', 'color: red;')
+                testLog.push({test: 'traversal', status : 'Fail', info: 'caught err'}); // Record in results
             }
 
 
             // Test propagation MR algorithm
             try {
-                
                 // Supply path for propagation
-                console.log('path:', DFSpath)
-
-                result = propagate(DFSpath, testData.nodes, testData.edges, {0: 1}); // Run propagation MR
-                console.log('%cPropagation MR test success: ', 'color: green;', result) // Print propagation mr output
-
+                result = propagate(path, testData.nodes, testData.edges, {0: 1}); // Run propagation MR
+                
+                testLog.push({test: 'propagation', status : 'Success', info: result}); // Record in results
             }
 
             catch(err) {
-                console.log('%cPropagation MR test failed', 'color: red;')
+                testLog.push({test: 'propagation', status : 'Fail', info: 'caught err'}); // Record in results
             }
 
+            writeResults(testLog, pId); // Write to DOM
             
+        }
+
+        // Method for writing results to DOM
+        function writeResults(results, id){
+            html='';
+
+            // Read in results and form text
+            for (const result of results){
+                test = result.test;
+                status = result.status;
+                info = JSON.stringify(result.info);
+                var txtColor = 'red'
+                
+                if (status=='Success'){txtColor = 'green';}
+
+                html += `<pre>${test}: <strong><span style=\"color: ${txtColor};\">${status} </strong><br>    ${info}</span><br></pre>`
+            }
+            
+            setHTML(id, html); // Write to DOM
         }
 
         // Method for testing whether self loop removal worked
@@ -397,13 +445,6 @@
 
         // Compare expected and actual values
         tests = validate([
-
-            // Check that data classes were created successfully
-            {name : '[data] data.nodes (nodes exist)', expected : false, actual : (null == data.nodes)},
-            {name : '[data] data.edges (edges exist)', expected : false, actual : (null == data.edges)},
-
-            // Check that PropagationData class works
-            {name : '[data.js] PropagationData (ebunch)', expected : false, actual : undefined == propEbunch},
 
         ])
 

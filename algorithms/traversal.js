@@ -3,11 +3,11 @@ Depth-First Search Traversal Variant
 `One step forward two steps back`
 ============================
 Description: 
+nb.exhausted=resolved
 1. Get node n from queue 
 2. Check if all predecessor nodes of n have already been searched exhaustively
-    3. If not, travel backwards and search all predecessor nodes (and their predecessors..)
-    4. Break if a loop is found (i.e., a node searching its predecessors finds itself)
-5. Add successors of node n to queue
+    3. Resolve node if all predecessor nodes are resolved, add successors of node n to queue
+    4. If not: add to end of queue, add unresolved predecessors to front if queue
 6. Continue until all nodes have been exhausted (predecessor nodes exhaustively searched)
 
 Comparison to BFS and DFS
@@ -33,13 +33,14 @@ This allows a propagation network to follow its path and accurately update value
 */
 
 // Run 'Two steps forward one step back" depth-first search variant
-function DFS(graph, root){
+function findPropagationPath (graph, root){
     //console.log('Starting DFS search, max iterations = ', Math.pow(graph.numberOfNodes(), 2))
 
     // Initialise queue, exhaustedNodes and path lists
     const queue = [root]; // Add root node to search queue
     const exhaustedNodes = {root : true}; // Memory of nodes already travelled exhaustively
     const path = []; // Paths taken through nodes from origin
+    const history = {traversal: [], resolutions: []}; // Dictionary containing all actions, for debug and model inspection
 
     // Run DFS variant
     for (i = 0; i < Math.pow(graph.nodes().length, 2); i++){ 
@@ -86,7 +87,7 @@ function DFS(graph, root){
             for (successor of unExhaustedSuccessors(currentNode)){ queue.unshift(successor); };
         }
 
-        // 3. If node not exhaustible skip for now and come back to later when predecessors are exhausted
+        // 4. If node not exhaustible skip for now and come back to later when predecessors are exhausted
         if(!(exhaustible)){
             //console.log('unexhaustible')
             
@@ -99,9 +100,7 @@ function DFS(graph, root){
 
         }
 
-        //     4. Break if a loop is found (i.e., a node searching its predecessors finds itself)
-
-        // 6. Continue until all nodes have been exhausted (predecessor nodes exhaustively searched)
+        // 5. Continue until all nodes have been exhausted (predecessor nodes exhaustively searched)
         continue;
     }
 
