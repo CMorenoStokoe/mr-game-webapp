@@ -32,485 +32,151 @@
 
 <body style="font-family: consolas;">
 
-    <style>
-        .created_class{border: 0.1pt solid rgb(150, 150, 150); padding: 20px;}
-        .blue{font-size: 1.1em;}
-    </style>
-
-    <div class="container-fluid"> <!-- Header -->
-        <h1>Test page</h1>
-        <p id="test_results" style="margin-bottom: 0px; background-color: red;">Testing failure. Check console.</p>
+    <!-- Nav -->
+    <ul class="nav justify-content-end align-items-center" style="padding: 5px;">
+        <li class="nav-item" style="position: absolute; left: 0;">
+          <h2 class="nav-link active">Propagation tests <span id="badge-results" class="badge badge-danger">Testing failure. Check console.</span></h2>
+        </li>      
+        <li class="nav-item">
+            <a class="nav-link" href="https://github.com/CMorenoStokoe/mr-game-webapp"><i class="fab fa-github"></i> Code</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://1drv.ms/w/s!AqqTU3Ybj0EPheNo_Dp5tpYLdG_W0A?e=T3ij0a"><i class="fas fa-file-code"></i> Info</a>
+          </li>
+      </ul>
+    
+    <!-- Test log -->
+    <div class="container-fluid"> 
         <p id="test_log" style="color: white; background-color: black;"></p>
     </div>
-
-    <div class="row container-fluid"> <!-- Carousel -->
+    
+    <!-- Graph display -->
+    <div class="row container-fluid"> 
         
-        <div class="col-2"></div>
+        <div class="col-md-2"></div>
         
-        <div class="col-8">
+        <div class="col-md-8 d-flex justify-content-center text-center align-items-center">
 
-            <svg width="500" height="500" id="tree-svg" class="d-block mx-auto"></svg>
-            <h5 id="tree-title">Basic Trémaux tree</h5>
-            <p id="tree-subtitle">Standard branching network.</p>
+            <div class="row">
+
+                <div class="col-md-2 d-flex align-items-center">
+                    <button class="btn btn-primary" onclick="cycleGDisplayBack(tremauxTrees)"><i class="fas fa-chevron-left"></i></button>
+                </div>
+
+                <div class="col-md-8">
+                    <svg width="500" height="250" id="GDisplay-svg" class="d-block mx-auto"></svg>
+                    <h5 id="GDisplay-title">Basic Trémaux tree</h5>
+                    <p id="GDisplay-subtitle">Standard branching network.</p>
+                </div>
+
+                <div class="col-md-2 d-flex align-items-center">
+                    <button class="btn btn-primary" onclick="cycleGDisplayFwd(tremauxTrees)"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
 
         </div>
 
-        <div class="col-2"></div>
+        <div class="col-md-2"></div>
 
     </div>
 
-    <div class="row" id="test_graphs"></div>
+    <div class="row container-fluid d.flex justify-content-center text-center" style="padding-top: 50px;"><h3>- Tests -</h3></div> <!-- Test title -->
+
+    <div class="row container-fluid"> <!-- Graph display -->
+        
+        <div class="col-md-2"></div>
+        
+        <div class="col-md-8 d-flex justify-content-center text-center align-items-center">
+
+            <div class="row">
+
+                <div class="col-md-4">
+                    <svg width="250" height="250" id="GDisplay-test1" class="d-block mx-auto"></svg>
+                    <h5 id="GDisplay-test1-subtitle">1: Self loops</h5><hr>
+                    <p>Status: <strong id="GDisplay-test1-status"></strong><br></p>
+                    <p>Result: <div id="GDisplay-test1-result" style="overflow:auto;"></div><br></p>
+                    <h5 style="padding-top: 20px;">About</h5><hr>
+                    <p>
+                        This tests whether nodes with relationships (edges) to themselves
+                        are correctly identified and removed.<strong> Any identified self-loops will 
+                        appear as a graph above</strong>.
+                    </p>
+                </div>
+
+                <div class="col-md-4">
+                    <svg width="250" height="250" id="GDisplay-test2" class="d-block mx-auto"></svg>
+                    <h5 id="GDisplay-test2-subtitle">2: Traversal</h5><hr>
+                    <p>
+                        Status: <strong id="GDisplay-test2-status"></strong><br>
+                        Result*: <div id="GDisplay-test2-result" style="overflow:auto;"></div><br>
+                        <small>*Order of network traversal</small>
+                    </p>
+                    <h5 style="padding-top: 20px;">About</h5><hr>
+                    <p>
+                        This tests whether the order in which nodes are traversed is correct.
+                        The traversal system is designed to search each node in the order in 
+                        which they can be resolved efficiently in propagation (i.e., once all 
+                        precursor nodes have been resolved.)
+                    </p>
+                </div>
+
+                <div class="col-md-4">
+                    <svg width="250" height="250" id="GDisplay-test3" class="d-block mx-auto"></svg>
+                    <h5 id="GDisplay-test3-subtitle">3: Propagation</h5><hr>
+                    <p>
+                        Status: <strong id="GDisplay-test3-status"></strong><br>
+                        Result*: <div id="GDisplay-test3-result" style="overflow:auto;"></div><br>
+                        <small>*Propagated changes in value</small>
+                    </p>
+                    <h5 style="padding-top: 20px;">About</h5><hr>
+                    <p>This tests whether a change of <strong>1</strong> unit is 
+                    correctly propagated through a network assuming <strong>beta = 0.5</strong>.
+                    The change in node activation is given as a % change relative to its 
+                    starting value. In a straight line each jump in the path would half the
+                    value propagated forwards.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-2"></div>
+
+    </div>
 
 </body>
 
 <footer>
 
-    <!-- d3 graph visualisation library, jsnetworkx only supports v3 -->
-    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <!-- External dependencies -->
+    <script src="http://d3js.org/d3.v3.min.js"></script> <!-- d3 for graph visualisation library (note: jsnetworkx only supports v3) -->
+    <script src="../scripts/jsnx/jsnetworkx.js"></script> <!-- jsnetworkx for network model and graphs -->
+    <script src="../scripts/big/big.min.js"></script> <!-- big.js for accurate number system -->
 
-    <!-- jsnetworkx graph theory library -->
-    <script src="../scripts/jsnx/jsnetworkx.js"></script>
-
-    <!-- big.js accurate number system library -->
-    <script src="../scripts/big/big.min.js"></script>
-
-    <!-- Custom data and data classes -->
-    <script src="../data/data_json.js"></script>
-    <script src="../data/data.js"></script>
-
-    <!-- Custom methods -->
-    <script src="debug/debug-methods.js"></script>
+    <!-- GUI utilities -->
     <script src="../scripts/graph.js"></script>
     <script src="../scripts/create-element.js"></script>
     <script src="../scripts/edit-element.js"></script>
+
+    <!-- Algorithms -->
     <script src="../algorithms/traversal.js"></script>
     <script src="../algorithms/mr-prop.js"></script>
+    
+    <!-- Debug and testing utilities -->
+    <script src="debug/debug-methods.js"></script>
 
-    <script>
+    <!-- Data utilities -->
+    <script src="../data/data.js"></script>
 
-        /* 
-        
-        Data tests 
-        =================
-        These tests are designed to validate that the pseudo data classes import the MR data correctly, and all
-        class methods for manipulating this data work as intended.
+    <!-- Data for tests -->
+    <script src="test-data.js"></script>
+    <script src="test-trees.js"></script>
 
-        */
+    <!-- Tests -->
+    <script src="allTests.js"></script>
 
-        
-        /* 
-        Move to seperate doc, for game
-        // Make main data objects used for game from starting MR data
+    <!-- Run tests and display results -->
+    <script src="test-vis.js"></script>
 
-        var data = new DataClass(data_json.nodes, data_json.edges); // Make DataClass pseudo data class for manipulating MR data
-        var game =  new GameData(data_json.nodes, data_json.edges); // Make GameData pseudo data class for game variables
-
-        // Test pseudo data classes
-
-        propEbunch = data.toJsnx(); // Test returning data in jsnx graph format
-            var G0 = new jsnx.DiGraph();
-            G0.addEdgesFrom(propEbunch);
-        game.addLogEntry('example entry'); // Test adding entry to log
-
-        // Test data creation
-
-        objSize_data = objSize(data); // DataClass
-        objSize_nodes = objSize(data.nodes); // DataClass.nodes
-        objSize_edges = objSize(data.edges); // DataClass.edges
-        objSize_gameData = objSize(game) - objSize_data; // GameData
-        document.getElementById('test_data').innerHTML = 'n edges: ' + objSize_edges + '<br>' + 'n nodes: ' + objSize_nodes+ '<br>' + 'n base data class: ' + objSize_data + '<br>' + 'n game variables: ' + objSize_gameData + '<br>';
-        */
-
-        /* Set up test dataClass for tremaux tree tests */
-        
-        // Set up dataClass containing node and edge information
-        nodeData_test = []
-        edgeData_test = []
-        for (i = 0; i < 10; i++){ // generate node data
-                nodeData_test.push({id:i, prevalence:1})
-            for (j = 0; j < 10; j++){ // generate link data
-                edgeData_test.push({id: [i,j], source:i, target:j, b:1})
-            }
-        }
-
-        // Enter test data into DataClass
-        var testData = new DataClass(nodeData_test, edgeData_test)
-
-        // Test data creation
-        console.log('testData', testData) // DataClass
-        console.log('nodes', testData.nodes)  // DataClass.nodes
-        console.log('edges', testData.edges)  // DataClass.edges
-
-        /* 
-        
-        Big.js tests
-        =================
-        This test is designed to validate that the Big number class increases floating point precision as intended
-
-        */
-
-
-        // Create big decimal object to test (20 DP by default)
-        x = new Big(0.3)
-        y = x.minus(0.1).valueOf() // js maths returns value of 0.19999998, big should correctly return 0.2
-
-
-        /* 
-        
-        Directed Trémaux trees
-        ===============
-        These trees are constructed to test that the traversal algorithms can accurately traverse and produce paths for
-        propagation travel from different types of networks. These trees feature different edge types and configurations
-        which add complexity to traversing different networks and may cause failure in the traversal algorithms.
-        These Network tests are designed to validate that the representation, traversal and propagation methods work as 
-        intended and generalise to many different types of real-world networks.
-        
-        This list will be iterated over in testing the traversal and propagation algorithms.
-
-        */
-
-        tremauxTrees = [];
-
-        /*
-
-
-        Basic tree
-        ----------
-        Description: Basic linear tree with two branches tests whether algorithm is capable of basic travel and can traverse 
-        branching paths (forks).
-
-        Diagram:
-
-                2
-        0 - 1 <
-                3 - 4
-
-        */
-       
-        // JSNX graph object for basic tree
-        var G_basic = new jsnx.DiGraph();
-        G_basic.addEdgesFrom([[0,1], [1,2]]); // Primary branch
-        G_basic.addEdgesFrom([[1,3], [3,4]]); // Fork to alternative branch
-        
-        tremauxTrees.push({id: 1, label: 'Basic forked Trémaux tree', g: G_basic});
-        
-        /*
-
-
-        Cross-over tree
-        ----------
-        Description: Complex tree containing edges which cross over from one branch to another, as well as a forward edge.
-        This tests whether the algorithm is capable of traversing cross edges and forward edges.
-
-        Diagram:
-
-                2 - 3
-        0 - 1 <     |
-                4 - 5 - 6
-                \______/
-
-                
-        */
-
-        // JSNX graph object for cross-over tree
-        var G_crossover = new jsnx.DiGraph();
-        G_crossover.addEdgesFrom([[0,1], [1,2], [2,3]]); // Primary branch
-        G_crossover.addEdgesFrom([[1,4], [4,5], [5,6]]); // Alternative branch
-        G_crossover.addEdgesFrom([[3,5]]); // Cross edge
-        G_crossover.addEdgesFrom([[4,6]]); // Forward edge
-        
-        tremauxTrees.push({id: 2, label: 'Tree with cross-over', g: G_crossover});
-
-        /*
-
-
-        Self-loop tree
-        ----------
-        Description: This tree contains a self loop to test whether the algorithm can traverse networks where one node
-        has an edge to itself. These edges are illegal in MR and so are deleted.
-
-        Diagram:
-
-        0 - 1 - 2
-            U
-
-        */
-
-        // JSNX graph object for self-loop tree
-        var G_selfloop = new jsnx.DiGraph();
-        G_selfloop.addEdgesFrom([[0,1], [1,2]]); // Primary branch
-        G_selfloop.addEdgesFrom([[1,1]]); // Self-loop
-
-        tremauxTrees.push({id: 3, label: 'Tree with self loop', g: G_selfloop});
-        /*
-
-
-        Looping tree
-        ----------
-        Description: This tree contains a back edge which forms a loop, to test whether the algorithm is capable of traversing loops.
-
-        Diagram:
-
-        0 - 1 - 2
-        ^       |
-        |_______|
-
-        */
-
-        // JSNX graph object for looping tree
-        var G_loop = new jsnx.DiGraph();
-        G_loop.addCycle([0,1,2]); // Cycle
-
-        //tremauxTrees.push(G_loop);
-        
-        /*
-
-
-        Full tree
-        ----------
-        Description: This tree combines all of the above tests to test whether the algorithm can traverse a complex network.
-        This tree is accurate of complex real-world MR network conditions.
-
-        Diagram:
-
-        / - - - - - - - - - 6
-        |       2 - 3 - 4 <     
-        0 - 1 <   /         5 
-        ^       7 - 8 - 9  | 
-        |       ^   U   |  |
-        |       |_______|  |
-        |                  |
-        |__________________|
-        nb: 3->7, 0->6
-                            
-        */
-
-        // JSNX graph object for full tree
-        var G_full = new jsnx.DiGraph();
-        G_full.addEdgesFrom([[0,1], [1,2], [2,3], [3,4], [4,6], [4,5]]); // Primary branch
-        G_full.addEdgesFrom([[1,7], [7,8], [8,9]]); // Alternative branch
-        G_full.addEdgesFrom([[3,7]]); // Cross edge
-        G_full.addEdgesFrom([[0,6]]); // Forward edge
-        G_full.addEdgesFrom([[9,7], [5,0]]); // Back edges forming loops
-        G_full.addEdgesFrom([[8,8]]); // Self-loop
-
-        //tremauxTrees.push(G_full); 
-
-
-        /* 
-
-        Visualisation
-        ==============
-        Functions to visualise the trees and tests so they are more clear and the model more easily interpretable.
-
-        */
-
-        jsnx.draw(G_basic, { // Draw tree on SVG
-                element: '#tree-basic', 
-                withLabels: true, 
-                labelStyle: {fill: 'white'},
-                stickyDrag: true
-        });
-        
-        /* 
-
-        Test functions 
-        ==============
-        These functions are designed to automate tests to test that the expected values from functions match their
-        actual values. The tremaux trees are used as tests of different networks.
-        
-        */
-
-        /*
-        populateCarousel(tremauxTrees);
-
-        function populateCarousel(trees){
-            const allCarouselItems = []
-            // Iterate over different networks configurations
-            for (const treeType of trees){
-
-                var caroItemClass = 'carousel-item'; // Assign class of carousel
-                if (treeType.id==1){caroItemClass = 'carousel-item active'};
-
-                const caroItem = 
-                
-                // Create div element
-                var div = document.createElement("DIV");
-                    div.id = id;
-
-                    if (className){div.className = className;}
-
-                // Append to parent on DOM
-                document.getElementById(parent).appendChild(div);
-
-                const caroItem = `<div class=${caroItemClass}>
-                    <svg width=\"250\" height=\"250\" id=\"svg-caro-${treeType.id}\"></svg>
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>${treeType.label}</h5>
-                    </div>
-                </div>`; // Populate HTML carousel item template with variables
-
-                allCarouselItems.push(caroItem); // Add carousel item to collection
-
-            }
-            setHTML('carousel-content', allCarouselItems); // Add all carousel items to carousel
-            
-        };
-
-        //performTests(tremauxTrees[0]); // Perform tests for chosen tree
-
-        t=document.getElementsByClassName('active');
-        console.log('ACTIVE:', t);//test
-
-        function performTests(treeType){
-            const id = treeType.id; // Get tree id
-            const label = treeType.label; // Get tree label
-            const tree = treeType.g; // Get tree G object
-
-            var testLog=[]
-
-            // Create test output environment
-            const divId = `div-${id}`; // Set IDs for elements by count
-            const svgId = `svg-${id}`;
-            const pId = `p-${id}`;
-
-            createDiv(divId, 'test_graphs', 'card col-6 graph-div'); // Create div
-            
-            const svg = `<svg width=\"250\" height=\"250\" id=\"${svgId}\"></svg><svg width=\"250\" height=\"250\" id=\"${svgId}2\"></svg>`; // SVG html code
-            const p = `<p id=\"${pId}\"></p>`; // Results p html code
-            
-            document.getElementById(divId).innerHTML = svg+p; // Create svg and p
-            jsnx.draw(tree, { // Draw tree on SVG
-                element: `#${svgId}`, 
-                withLabels: true, 
-                labelStyle: {fill: 'white'},
-                stickyDrag: true
-            });
-            
-
-            // Test self-loop identification and removal
-            try {
-                var selfloops = tree.selfloopEdges(); // Identify
-                if(selfloops.length == 0){selfloops = 'None'} // If no self loops found, state this for visibility
-                else {
-                    tree.removeEdgesFrom(selfloops); // Remove selfloops if any are found
-                }
-
-                testLog.push({test: 'selfloop', status : 'Success', info: `Self loops: ${selfloops}`}); // Record in results
-
-            }
-
-            catch(err) {
-                testLog.push({test: 'selfloop', status : 'Fail', info: 'caught err'}); // Record in results
-            }
-
-            // Test traversal algorithm
-            var path = null
-            try {
-                path = findPropagationPath(tree,0); // Initiate DFS search of graph G object from root node 0
-                console.log(path)
-
-                var G = new jsnx.DiGraph();
-                
-                console.log(G)
-                jsnx.draw(G, { // Draw tree on SVG
-                    element: `#${svgId}2`,
-                    withLabels: true, 
-                    labelStyle: {fill: 'white'},
-                    stickyDrag: true
-                }, true);
-                
-                edges=[]
-                for (const step of path){
-                    edges.push([step.source, step.target])
-                }
-
-                var i=0;
-                (function myLoop(i) {
-                    setTimeout(function() {
-                        console.log(edges.length-i); 
-                        console.log(edges); 
-                        console.log(edges[i]); 
-                        G.addEdge(edges[i][0], edges[i][1]);              
-                        if (--i) myLoop(i); //  decrement i and call myLoop again if i > 0
-                    }, 3000)
-                })(edges.length); //  pass the number of iterations as an argument
-
-                testLog.push({test: 'traversal', status : 'Success', info: `${objSize(path)} steps in path`}); // Record in results
-            }
-
-            catch(err) {
-                testLog.push({test: 'traversal', status : 'Fail', info: 'caught err'}); // Record in results
-            }
-
-
-            // Test propagation MR algorithm
-            try {
-                // Supply path for propagation
-                result = propagate(path, testData.nodes, testData.edges, {0: 1}); // Run propagation MR
-                
-                testLog.push({test: 'propagation', status : 'Success', info: result}); // Record in results
-            }
-
-            catch(err) {
-                testLog.push({test: 'propagation', status : 'Fail', info: 'caught err'}); // Record in results
-            }
-
-            writeResults(testLog, pId); // Write to DOM
-            
-        }
-
-        */
-
-        // Method for writing results to DOM
-        function writeResults(results, id){
-            html='';
-
-            // Read in results and form text
-            for (const result of results){
-                test = result.test;
-                status = result.status;
-                info = JSON.stringify(result.info);
-                var txtColor = 'red'
-                
-                if (status=='Success'){txtColor = 'green';}
-
-                html += `<pre>${test}: <strong><span style=\"color: ${txtColor};\">${status} </strong><br>    ${info}</span><br></pre>`
-            }
-            
-            setHTML(id, html); // Write to DOM
-        }
-
-        // Method for testing whether self loop removal worked
-        function checkSelfLoopsRemoved(){ // Test remove self loops
-            for (const e of G_selfloop.edges()){
-                if (e[0]+e[1] == 0){ // Test if any edges have the same source and target
-                    return false;
-                } else {
-                    continue;
-                }
-            }
-            return true;
-        }
-
-
-        // Compare expected and actual values
-        tests = validate([])
-
-        if (tests['failed'].length > 0) {
-            totalTests = tests['failed'].length + tests['passed'].length
-            document.getElementById("test_results").innerText = "Failing automatic tests. " + tests['failed'].length + "/" + totalTests + " tests failed."
-            messages="<strong>Log:</strong> <br>"
-            for (const failure of tests['failed']){
-                messages += failure + '<br>'
-            }
-            document.getElementById("test_log").innerHTML = messages;
-            document.getElementById("test_results").style.backgroundColor = 'lightcoral';
-        } else {
-            document.getElementById("test_results").innerText = "Passing automatic tests (" + tests['passed'].length + "/" + tests['passed'].length + ")";
-            document.getElementById("test_results").style.backgroundColor = 'lightgreen';
-        }
-    </script>
 
 </footer>
 

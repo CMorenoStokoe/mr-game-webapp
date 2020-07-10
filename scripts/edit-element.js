@@ -71,7 +71,7 @@ function colorBackground(id, color){
 }
 
 // Text color
-function color(id, color){
+function setColor(id, color){
     document.getElementById(id).style.color = color;
 }
 

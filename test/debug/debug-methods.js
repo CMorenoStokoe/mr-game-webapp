@@ -55,21 +55,27 @@ function get(id, prop=null, child=null){
 function validate(values){
     passed = []
     failed = []
+    valuesDict = {};
     
     // Recieves array of values to check 
     for (const value of values){
-        
+
         // Output a pass or fail message in console for each value pair
         if(value.actual == value.expected){
+            value.status = 'Pass';
             passed.push(value.name);
             //console.log(value.name + ' : ' + '%cPass', 'color: green;');
         }else{
+            value.status = 'Fail';
             failed.push(value.name + ' : ' + 'Fail' + ' (expected ' + value.expected + ' got ' + value.actual + ')')
             //console.log(value.name + ' : ' + '%cFail' + ' (expected ' + value.expected + ' got ' + value.actual + ')', 'color: red;');
         }
+        
+        valuesDict[value.name]=value;// Add entry to searchable dictionary of results
+
     }
     
-    return({'passed': passed, 'failed' : failed})
+    return({values : valuesDict, 'passed': passed, 'failed' : failed})
 }
 
 // Function to test the size of an object (e.g., how many items in a dictionary)

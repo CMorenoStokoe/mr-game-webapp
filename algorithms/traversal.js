@@ -34,13 +34,13 @@ This allows a propagation network to follow its path and accurately update value
 
 // Run 'Two steps forward one step back" depth-first search variant
 function findPropagationPath (graph, root){
-    //console.log('Starting DFS search, max iterations = ', Math.pow(graph.numberOfNodes(), 2))
 
     // Initialise queue, exhaustedNodes and path lists
     const queue = [root]; // Add root node to search queue
     const exhaustedNodes = {root : true}; // Memory of nodes already travelled exhaustively
-    const path = []; // Paths taken through nodes from origin
-    const history = {traversal: [], resolutions: []}; // Dictionary containing all actions, for debug and model inspection
+    const path = {}; // Path of suggested traversal for propagation
+        path.edges = []; // Path of edges arranged in order of suggested traversal
+        path.nodes = []; // Path of nodes arranged in order of suggested traversal 
 
     // Run DFS variant
     for (i = 0; i < Math.pow(graph.nodes().length, 2); i++){ 
@@ -53,9 +53,6 @@ function findPropagationPath (graph, root){
 
         // 1. Get node n from queue 
         const currentNode = queue[0];
-
-        //console.log('searching ', currentNode, ' (exhausted ', exhaustedNodes, ' queue: ', queue, ')')
-
         // Skip node if already exhausted
         if(exhaustedNodes[currentNode]==true){
 
@@ -79,8 +76,10 @@ function findPropagationPath (graph, root){
             queue.shift();
             
             // Add exhausted node to path
-            for (const predecessor of graph.predecessors(currentNode)){
-                path.push({source: predecessor, target: currentNode});
+            path.nodes.push(currentNode) // Path of nodes
+
+            for (const predecessor of graph.predecessors(currentNode)){ // Path of edges
+                path.edges.push([predecessor, currentNode]);
             } 
 
             // Add successors of node n to queue
