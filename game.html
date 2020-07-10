@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>MR Game</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap css theme --> 
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+        
+        <!-- Fa icons -->
+        <script src="https://kit.fontawesome.com/ff3502b087.js" crossorigin="anonymous"></script>
+        
+        <!-- Custom css -->
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body>
+        
+        <!-- Top of page tilebar -->
+        <div class="row text-center" id="tilebar-top" style="height: 19vh;">
+            
+            <div class="col-sm">
+                <h2>Goal</h2>
+                <p>Raise wellbeing by 25%</p>
+            </div>
+
+            <div class="col-sm">
+                <h2>Progress</h2>
+                <div class="progress center-block" style="width: 75%; margin-left: auto; margin-right: auto;">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%">75%</div>
+                </div>
+                <p>You haven't enacted any policies yet.</p>
+            </div>
+
+            <div class="col-sm">
+                <h2>Action</h2>
+                <p>Enact policies to make progress.</p>
+                <button class="btn btn-primary" id="btn-tilebar-enact">Enact policy</button>
+            </div>
+
+        </div>
+
+        <!-- Main content area --> 
+        <div class="row text-center">
+
+            <!-- Graph area -->
+            <div class="col-sm">
+                <svg width="800" height="600" id="svg-main"></svg>
+            </div>
+
+            <!-- Choose policy panel -->
+            <div class="card" style="position: absolute; right: 0; height: 79vh; width: 400px;" id="panel-right">
+                
+                <div class="card-header">
+                    <button class="btn btn-light float-right" id="btn-x-rightPanel">x</button>
+                    <h2>Enact a policy</h2>
+                </div>
+
+                <div class="card-body" id="policy-container">
+                    <div class="card policy">
+                        <div class="card-body">
+                            <h5 class="card-title">Free gym memberships</h5>
+                            <p class="card-text">Increases exercise.</p>
+                            <a href="#" class="btn btn-primary">View policy</a>
+                        </div>
+                    </div>
+                    <div class="card policy">
+                        <div class="card-body">
+                            <h5 class="card-title">Preventative counselling services</h5>
+                            <p class="card-text">Reduces depression.</p>
+                            <a href="#" class="btn btn-primary">View policy</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                
+            <!-- Policy info panel -->
+            <div class="card" style="position: absolute; left: 0; height: 79vh; width: 400px;" id="panel-left">
+                
+                <div class="card-header">
+                    <button class="btn btn-light float-right" id="btn-x-leftPanel">x</button>
+                    <h2>View policy effects</h2>
+                </div>
+
+                <div class="card-body" id="policy-container">
+                    <div class="card policy">
+                        <div class="card-body">
+                            <h5 class="card-title">Free gym memberships</h5>
+                            <p class="card-text">Increases exercise.</p>
+                        </div>
+                    </div>
+                    <div class="card policy">
+                        <div class="card-body">
+                            <h5 class="card-title">Policy effects</h5>
+                            <svg height=200 width=300 id="svg-mini"></svg>
+                            <table style="width:100%" id="policy-effects-table">
+                                <tr>
+                                  <th>Increases</th>
+                                  <th>Decreases</th>
+                                </tr>
+                                <tr>
+                                  <td>Depression</td>
+                                  <td>Insomnia</td>
+                                </tr>
+                                <tr>
+                                  <td>Wellbeing</td>
+                                  <td></td>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="btn btn-lg btn-primary" style="margin-top: 10px;">Enact policy</a>
+                </div>
+            </div>
+            
+        </div>
+
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <!-- External dependencies -->
+        <script src="scripts/d3/d3.min.js"></script>
+        <script src="scripts/jsnx/jsnetworkx.js"></script>
+
+        <!-- GUI modules -->
+        <script src="scripts/graph.js"></script>
+        <script src="data/data_json.js"></script>
+        <script src="data/data.js"></script> 
+        <script src="scripts/edit-element.js"></script>
+        <script src="scripts/create-element.js"></script>
+        <script src="scripts/event-handling.js"></script>
+        <script src="scripts/testing/debug.js"></script> 
+
+        <!-- Propagation modules -->
+        <script src="algorithms/traversal.js"></script>
+
+        <!-- Main -->
+        <script src="scripts/main.js"></script> 
+    </body>
+    <footer>
+        
+    </footer>
+</html>

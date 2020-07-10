@@ -71,8 +71,13 @@ function colorBackground(id, color){
 }
 
 // Text color
-function color(id, color){
+function setColor(id, color){
     document.getElementById(id).style.color = color;
+}
+
+// Disable element
+function setDisabled(id){
+    document.getElementById(id).disabled = true;
 }
 
 // Number rounding
@@ -97,3 +102,45 @@ function roundNum (num, percent = false){
     }
 }
 
+// Toggle show-hide panels
+class Panel {
+
+    // For each toggleable panel initialise a Panel class object
+    constructor(id, side) {
+        this.id = id;
+        this.element = document.getElementById(id);
+        this.side = side;
+        this.position = this.getPos(this.side);
+        this.width = this.element.style.width;
+        this.widthValue = this.getWidthValue(this.width);
+        this.widthUnits = this.getWidthUnits(this.width);
+    }
+    
+    // Get units of width
+    getWidthUnits(width){
+        return(width.replace(/-|[0-9]/g, ''));
+    }
+
+    // Get numerical value of width
+    getWidthValue(width){
+        return(width.match(/-?\d+/g).map(Number)[0]);
+    }
+
+    // Add a method to get position of panel
+    getPos(side){
+        if (side=='left'){
+            return (this.element.style.left);
+        } else if (side=='right'){
+            return (this.element.style.right);
+        }
+    }
+
+    // Adding methods to toggle the panel
+    open(){
+        this.element.style[this.side] = 0;
+    }
+    close(){
+        this.element.style[this.side] = `${0 - this.widthValue}${this.widthUnits}`;
+    }
+    
+}

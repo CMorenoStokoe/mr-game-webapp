@@ -15,8 +15,16 @@
     -->
 
 <head>
+
+    <!-- Bootstrap css theme --> 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+    
+    <!-- Fa icons -->
     <script src="https://kit.fontawesome.com/ff3502b087.js" crossorigin="anonymous"></script>
+    
 </head>
 
 <body style="font-family: consolas;">
@@ -32,86 +40,80 @@
 
 
     <div class="row">
-    
-        <div class="col-3">
-            <div class="card"  style="margin: 5px; height: 95%; width: 95%;">
-                <div class=card-header>
-                    <h4>Buttons</h4>
-                </div>
-                <div class=card-body>
-                    <em style="color: rgb(2, 117, 216)" >Creating a button here: </em><div id="test_div_btns"></div>
-                    <p id="test_messages" style="background-color: lightgrey; margin-top: 0px;"></p>
-                </div>
-            </div>
-        </div>
         
-        <div class="col-3">
-            <div class="card"  style="margin: 5px; height: 95%; width: 95%;">
-                <div class=card-header>
-                    <h4>Progress bars</h4>
-                </div>
-                <div class=card-body>
-                    <div id="shadowrealm" style="display: none">
-                        <em style="color: rgb(2, 117, 216)" >HIDDEN Progress bar template (static html)</em>
-                        <div class="progress" id="progress_bar_template" style="margin: 10px;" >
-                            <div class="progress-bar" role="progressbar" aria-valuenow="70"
-                            aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                            70%
-                            </div>
-                        </div>
-                    </div>
-                    <div id="test_div_progs">
-                        <em style="color: rgb(2, 117, 216)" >Initialising a new progress bar (current value 10, bar range 0-10), and editing it (current value 10 --> 5), here: </em>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div class="col-6">
 
-        <div class="col-3">
-            <div class="card"  style="margin: 5px; height: 95%; width: 95%;">
-                <div class=card-header>
-                    <h4>Visibility</h4>
-                </div>
-                <div class=card-body>
-                    <em style="color: rgb(2, 117, 216)" >Two boxes are made visible: </em>
-                    <div id="test_hidden" style="background-color: rgb(2, 117, 216); color:white; padding: 5px; margin: 5px; border-radius: 2px; visibility: hidden;">visibility: visible</div>
-                    <div id="test_none" style="background-color: rgb(2, 117, 216); color:white; padding: 5px; margin: 5px; border-radius: 2px; display: none;">display: block</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-3">
             <div class="card"  style="margin: 5px; height: 95%; width: 95%;">
                 <div class=card-header>
                     <h4>FDG graph</h4>
                 </div>
                 <div class=card-body>
-                    <em style="color: rgb(2, 117, 216)" >Drawing and editing FDG graph on SVG: </em>
-                    <svg width="300" height="150" id="test_svg"></svg>
+                    <div><em style="color: rgb(2, 117, 216)">Drawing and editing FDG graph on SVG: </em></div>
+                    <svg width="720" height="350" id="test_svg"></svg>
                 </div>
             </div>
-        </div>
-        
-        <div class="col-3">
-            <div class="card"  style="margin: 5px; height: 95%; width: 95%;">
-                <div class=card-header>
-                    <h4>Text content</h4>
-                </div>
-                <div class=card-body>
-                    <em style="color: rgb(2, 117, 216)" >Adding 'test text' here: </em><div id="test_div_text"></div>
-                </div>
-            </div>
+            
         </div>
 
-        <div class="col-3">
-            <div class="card"  style="margin: 5px; height: 95%; width: 95%;">
-                <div class=card-header>
-                    <h4>Number rounding</h4></div>
-                <div class=card-body>
-                    <em style="color: rgb(2, 117, 216)" >>10 = 3SF, &lt;10 = 2SF (4DP max)</em><br>
-                    <em style="color: " >10.136789325 --> </em><span id="test_div_round" style="background-color: lightgrey"></span><br>
-                    <em style="color: rgb(2, 117, 216)" >Numbers can be returned as %</em><br>
-                    <em style="color: " >0.0005706 --> </em><span id="test_div_roundPct" style="background-color: lightgrey"></span>
+        <div class="col-6">
+            <div class="row">
+            
+                <div class="col-6">
+                    <div class="card"  style="margin: 5px; height: 95%; width: 95%;">
+                        <div class=card-header>
+                            <h4>Buttons</h4>
+                        </div>
+                        <div class=card-body>
+                            <em style="color: rgb(2, 117, 216)" >Creating a button here: </em><div id="test_div_btns"></div>
+                            <p id="test_messages" style="background-color: lightgrey; margin-top: 0px;"></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-6">
+                    <div class="card"  style="margin: 5px; height: 95%; width: 95%;">
+                        <div class=card-header>
+                            <h4>Progress bars</h4>
+                        </div>
+                        <div class=card-body>
+                            <div id="shadowrealm" style="display: none">
+                                <em style="color: rgb(2, 117, 216)" >HIDDEN Progress bar template (static html)</em>
+                                <div class="progress" id="progress_bar_template" style="margin: 10px;" >
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="70"
+                                    aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                                    70%
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="test_div_progs">
+                                <em style="color: rgb(2, 117, 216)" >Initialising a new progress bar (current value 10, bar range 0-10), and editing it (current value 10 --> 5), here: </em>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="card"  style="margin: 5px; height: 95%; width: 95%;">
+                        <div class=card-header>
+                            <h4>Visibility</h4>
+                        </div>
+                        <div class=card-body>
+                            <em style="color: rgb(2, 117, 216)" >Two boxes are made visible: </em>
+                            <div id="test_hidden" style="background-color: rgb(2, 117, 216); color:white; padding: 5px; margin: 5px; border-radius: 2px; visibility: hidden;">visibility: visible</div>
+                            <div id="test_none" style="background-color: rgb(2, 117, 216); color:white; padding: 5px; margin: 5px; border-radius: 2px; display: none;">display: block</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-6">
+                    <div class="card"  style="margin: 5px; height: 95%; width: 95%;">
+                        <div class=card-header>
+                            <h4>Text content</h4>
+                        </div>
+                        <div class=card-body>
+                            <em style="color: rgb(2, 117, 216)" >Adding 'test text' here: </em><div id="test_div_text"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -173,34 +175,81 @@
         </div>
 
         <div class="col-3">
-            <div class="card"  style="margin: 5px; height: 95%; width: 95%;">
+            <div class="card" style="margin: 5px; height: 95%; width: 95%;">
                 <div class=card-header>
-                    <h4>Gamedata</h4>
+                    <h4>Disable button</h4>
                 </div>
                 <div class=card-body style="ghostwhite">
-                    <em style="color: rgb(2, 117, 216)" >Getting data sumnmaries: </em>
+                    <em style="color: rgb(2, 117, 216)" >Disabling button: </em>
+                    <button class="btn btn-primary" id="test_disabled">Button</button>
                     <div id="test_data"></div>
                 </div>
             </div>
         </div>
+
+        <div class="col-3">
+            <div class="card" style="margin: 5px; height: 95%; width: 95%;">
+                <div class=card-header>
+                    <h4>Toggle panel</h4>
+                </div>
+                <div class=card-body style="ghostwhite">
+                    <em style="color: rgb(2, 117, 216)" >Hiding white panel with blue border behind blue panel: </em>
+                    <div class="row" style="height: 100%; width: 100%;">
+                        <div id="test_panel" class="card" style="height: 100%; width: 100; border: 2px solid rgb(2, 117, 216);">
+                            <div class="card-header">Panel</div>
+                            <div class="card-body">Hide me</div>
+                        </div>
+                        <div id="test_panel" class="card" style="height: 100%; width: 100; background-color: rgb(2, 117, 216);">
+                            <div class="card-header">visible panel</div>
+                            <div class="card-body"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-3">
+            <div class="card"  style="margin: 5px; height: 95%; width: 95%;">
+                <div class=card-header>
+                    <h4>Number rounding</h4></div>
+                <div class=card-body>
+                    <em style="color: rgb(2, 117, 216)" >Note: Vanilla JS rounding is used only for display and not for calculations <br>
+                        Display settings: >10 = 3SF, &lt;10 = 2SF (4DP max)</em><br>
+                    <em style="color: " >10.136789325 --> </em><span id="test_div_round" style="background-color: lightgrey"></span><br>
+                    <em style="color: rgb(2, 117, 216)" >Numbers returned as %:</em><br>
+                    <em style="color: " >0.0005706 --> </em><span id="test_div_roundPct" style="background-color: lightgrey"></span>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 </body>
 
 <footer>
+    
+    <!-- Requirements -->
+    <script src="../scripts/d3/d3.min.js"></script>
 
-    <script src="scripts/edit-element.js"></script>
-    <script src="scripts/create-element.js"></script>
-    <script src="scripts/event-handling.js"></script>
-    <script src="scripts/testing/debug.js"></script>
-    <script src="data/data.js"></script>
-    <script src="scripts/graph.js"></script>    
-    <script src="https://d3js.org/d3.v5.min.js"></script>
-    <script src="https://d3js.org/d3-color.v1.min.js"></script>
-    <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
-    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <!-- Methods to test --> 
+    <script src="../scripts/graph.js"></script>
+    <script src="../scripts/edit-element.js"></script>
+    <script src="../scripts/create-element.js"></script>
+    <script src="../scripts/event-handling.js"></script>
+
+    <!-- Debug methods -->
+    <script src="debug/debug-methods.js"></script>
 
     <script>
+
+        // Draw graph
+        drawGraph ('#test_svg', {nodes : [{id: 1, label: 'one', prevalence: 1},{id: 2, label: 'two', prevalence: 1}], edges : [{id: 'e1', source: 1, target: 2}]});
+        
+        // Change node size and color as a function of prevalence
+        updateNode(1, 0.5, 'new label');
+
+        // Outline to emphasise a node (intended for identifying an objective or the selected node)
+        outlineNode(2, 'black');
 
         // Create button 
         btn='button'
@@ -211,11 +260,11 @@
             this.id = 'new_button_id';
            
             // Verify that button was updated with correct event listener object
-            document.getElementById("test_messages").innerText = "Passed manual test (event-handling.addEvntListener)"
+            document.getElementById("test_messages").innerText = "Passed manual test (event-handling.addOnclickEvent)"
             document.getElementById("test_messages").style.backgroundColor = "lightgreen"
-            validate([{name : '[event-handling.] addEvntListener (add event)', expected : '[object HTMLButtonElement]', actual : get('new_button_id')},])
+            validate([{name : '[event-handling.] addOnclickEvent (add event)', expected : '[object HTMLButtonElement]', actual : get('new_button_id')},])
         }
-        addEvntListener(btn, test_function); //(id of element to add listener to, function to activate on-click)
+        addOnclickEvent(btn, test_function); //(id of element to add listener to, function to activate on-click)
 
         // Create progress bar
         progId='progress_clone'
@@ -230,14 +279,9 @@
         // Set div text
         setText('test_div_text', 'test text'); //(id of element, text to replace current text content with)
         
-        // Round numbers
-        setText('test_div_round', roundNum(10.136789325)); //(number to round, option to return it as a percent as a string (optional))
-        setText('test_div_roundPct', roundNum(0.0005706, percent=true));
-
         // Color text
         color('test_div_colors', 'white'); // (id of element, color to set)
         colorBackground('test_div_colors', 'rgb(2, 117, 216)'); // (id of element, color of background to set)
-        
 
         // Set div html
         setHTML('test_div_html', '<strong>test html</strong>'); // (id of element, html to replace current html content with)
@@ -253,29 +297,38 @@
         // Return FA icon
         document.getElementById('test_i').innerHTML = faIcon('adjust', 'blue') // (name of FA icon, class (optional))
 
-        // Get gamedata
-        objSize = function(obj) {
-            var size = 0, key;
-            for (key in obj) {
-                if (obj.hasOwnProperty(key)) size++;
-            }
-            return size;
-        };
-        text = '';
-        text += 'n links: ' + objSize(data.links) + '<br>';
-        text += 'n nodes: ' + objSize(data.nodes) + '<br>';
-        text += 'n game variables: ' + objSize(data.gameVars) + '<br>';
-        document.getElementById('test_data').innerHTML = text;
+        // Disable button
+        setDisabled('test_disabled');
 
-        // Create and edit FDG graph
-        drawGraph("#test_svg", data); // (id of SVG, data for graph)
-        outlineNode('l2', 'rgb(2, 117, 216)'); // (id of graph SVG g node element, new outline color)
-        updateNode('l1', 'rgb(2, 117, 216)', 'new label'); // (id of graph SVG g node element, new fill color, new label text)
-        
+        // Toggle open and closed panels
+        const panelToHide = new Panel('test_panel', 'right');
+            panelToHide.close();
+  
+        // Round numbers
+        document.getElementById('test_div_round').innerHTML = roundNum(10.136789325); //(number to round, option to return it as a percent as a string (optional))
+        document.getElementById('test_div_roundPct').innerHTML = roundNum(0.0005706, percent=true);
+
 
         // Test functions
         tests = validate([
 
+            //Check that numbers were rounded correctly
+            {name : '[edit-element.] roundNum (rounding)', expected : '10.1', actual : get('test_div_round', prop='textContent')},
+            {name : '[edit-element.] roundNum (percent)', expected : '0.0006%', actual : get('test_div_roundPct', prop='textContent')},
+
+            // Check that FDG was created and edited correctly
+            {name : '[graph.] drawGraph (create graph)', expected : 2, actual : objSize(d3.select('#test_svg'))},
+            {name : '[graph.] colorEdge (set edge color)', expected : '#d92027', actual : get('e1-line', prop=['getAttr', 'stroke'])},
+
+            // Change node color and size as function of prevalence
+            {name : '[graph.] updateNode (set fill color)', expected : 'rgb(249, 247, 174)', actual : get('1-circle', prop=['style', 'fill'])},
+            {name : '[graph.] updateNode (set text)', expected : 'new label', actual : get('1-text', prop='innerHTML')},
+            {name : '[graph.] updateNode (set r)', expected : 10, actual : get('1-circle', prop=['getAttr', 'r'])},
+
+            // Emphasise node
+            {name : '[graph.] outlineNode (set stroke width)', expected : 2, actual : get('2-circle', prop=['style', 'strokeWidth'])},
+            {name : '[graph.] outlineNode (set stroke color)', expected : 'black', actual : get('2-circle', prop=['style', 'stroke'])},
+            
             // Check button was created and has correct text and class information
             {name : '[create-element.] createButton (create element)', expected : '[object HTMLButtonElement]', actual : get(btn)},
             {name : '[create-element.] createButton (set text)', expected : 'button text', actual : get(btn, prop='innerHTML')},
@@ -291,9 +344,6 @@
 
             // Check text was set correctly
             {name : '[edit-element.] setText (set value)', expected : 'test text', actual : get('test_div_text', prop='textContent')},
-            //Check that number was rounded correctly
-            {name : '[edit-element.] roundNum (rounding)', expected : '10.1', actual : get('test_div_round', prop='textContent')},
-            {name : '[edit-element.] roundNum (percent)', expected : '0.0006%', actual : get('test_div_roundPct', prop='textContent')},
 
             // Check that color was set
             {name : '[edit-element.] color (color)', expected : 'white', actual : get('test_div_colors', prop=['style','color'])},
@@ -321,18 +371,13 @@
             {name : '[create-element.] faIcon (return element type)', expected : 'I', actual : get('test_i', prop="tagName", child=true)},
             {name : '[create-element.] faIcon (set class)', expected : 'fas fa-adjust blue', actual : get('test_i', prop="className", child=true)},
         
-            // Check that data is correct
-            {name : '[data] data.links (link list length)', expected : 2, actual : objSize(data.links)},
-            {name : '[data] data.nodes (nodes list length)', expected : 3, actual : objSize(data.nodes)},
-            {name : '[data] data.gameVars (gameVars list length)', expected : 1, actual : objSize(data.gameVars)},
-
-            // Check that FDG was created and edited correctly
-            {name : '[graph.] drawGraph (create graph)', expected : 2, actual : objSize(d3.select('#test_svg'))},
-            {name : '[graph.] outlineNode (set stroke width)', expected : 4, actual : get('l2-circle', prop=['style', 'strokeWidth'])},
-            {name : '[graph.] outlineNode (set stroke color)', expected : 'rgb(2, 117, 216)', actual : get('l2-circle', prop=['style', 'stroke'])},
-            {name : '[graph.] updateNode (set fill color)', expected : 'rgb(2, 117, 216)', actual : get('l1-circle', prop=['style', 'fill'])},
-            {name : '[graph.] updateNode (set text)', expected : 'new label', actual : get('l1-text', prop="innerHTML")},
+            // Check that disabled works correctly
+            {name : '[edit-element.] setDisabled (set disabled)', expected : true, actual : get('test_disabled', prop='disabled')},
         
+            // Check that hiding the panel works correctly
+            {name : '[edit-element.] class Panel (create class)', expected : 7, actual : objSize(panelToHide)},
+            {name : '[edit-element.] class Panel (hide)', expected : '-100px', actual : get('test_panel', prop=['style', 'right'])},
+
         ])
 
         if (tests['failed'].length > 0) {
@@ -347,7 +392,7 @@
         } else {
             document.getElementById("test_results").innerText = "Passing automatic tests (" + tests['passed'].length + "/" + tests['passed'].length + ")";
             document.getElementById("test_results").style.backgroundColor = 'lightgreen';
-            document.getElementById("test_messages").innerText = "Manual test: Click the button to test event-handling.addEvntListener."
+            document.getElementById("test_messages").innerText = "Manual test: Click the button to test event-handling.addOnclickEvent."
         }
         
     </script>
