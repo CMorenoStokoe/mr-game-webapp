@@ -37,9 +37,27 @@
         .blue{font-size: 1.1em;}
     </style>
 
-    <h1>Test page</h1>
-    <p id="test_results" style="margin-bottom: 0px; background-color: red;">Testing failure. Check console.</p>
-    <p id="test_log" style="color: white; background-color: black;"></p>
+    <div class="container-fluid"> <!-- Header -->
+        <h1>Test page</h1>
+        <p id="test_results" style="margin-bottom: 0px; background-color: red;">Testing failure. Check console.</p>
+        <p id="test_log" style="color: white; background-color: black;"></p>
+    </div>
+
+    <div class="row container-fluid"> <!-- Carousel -->
+        
+        <div class="col-2"></div>
+        
+        <div class="col-8">
+
+            <svg width="500" height="500" id="tree-svg" class="d-block mx-auto"></svg>
+            <h5 id="tree-title">Basic Trémaux tree</h5>
+            <p id="tree-subtitle">Standard branching network.</p>
+
+        </div>
+
+        <div class="col-2"></div>
+
+    </div>
 
     <div class="row" id="test_graphs"></div>
 
@@ -174,7 +192,7 @@
         G_basic.addEdgesFrom([[0,1], [1,2]]); // Primary branch
         G_basic.addEdgesFrom([[1,3], [3,4]]); // Fork to alternative branch
         
-        tremauxTrees.push(G_basic);
+        tremauxTrees.push({id: 1, label: 'Basic forked Trémaux tree', g: G_basic});
         
         /*
 
@@ -201,7 +219,7 @@
         G_crossover.addEdgesFrom([[3,5]]); // Cross edge
         G_crossover.addEdgesFrom([[4,6]]); // Forward edge
         
-        tremauxTrees.push(G_crossover);
+        tremauxTrees.push({id: 2, label: 'Tree with cross-over', g: G_crossover});
 
         /*
 
@@ -223,7 +241,7 @@
         G_selfloop.addEdgesFrom([[0,1], [1,2]]); // Primary branch
         G_selfloop.addEdgesFrom([[1,1]]); // Self-loop
 
-        tremauxTrees.push(G_selfloop);
+        tremauxTrees.push({id: 3, label: 'Tree with self loop', g: G_selfloop});
         /*
 
 
@@ -286,6 +304,13 @@
         Functions to visualise the trees and tests so they are more clear and the model more easily interpretable.
 
         */
+
+        jsnx.draw(G_basic, { // Draw tree on SVG
+                element: '#tree-basic', 
+                withLabels: true, 
+                labelStyle: {fill: 'white'},
+                stickyDrag: true
+        });
         
         /* 
 
@@ -296,16 +321,58 @@
         
         */
 
-        i=0;
-        // Iterate over different networks configurations
-        for (const tree of tremauxTrees){
+        /*
+        populateCarousel(tremauxTrees);
+
+        function populateCarousel(trees){
+            const allCarouselItems = []
+            // Iterate over different networks configurations
+            for (const treeType of trees){
+
+                var caroItemClass = 'carousel-item'; // Assign class of carousel
+                if (treeType.id==1){caroItemClass = 'carousel-item active'};
+
+                const caroItem = 
+                
+                // Create div element
+                var div = document.createElement("DIV");
+                    div.id = id;
+
+                    if (className){div.className = className;}
+
+                // Append to parent on DOM
+                document.getElementById(parent).appendChild(div);
+
+                const caroItem = `<div class=${caroItemClass}>
+                    <svg width=\"250\" height=\"250\" id=\"svg-caro-${treeType.id}\"></svg>
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>${treeType.label}</h5>
+                    </div>
+                </div>`; // Populate HTML carousel item template with variables
+
+                allCarouselItems.push(caroItem); // Add carousel item to collection
+
+            }
+            setHTML('carousel-content', allCarouselItems); // Add all carousel items to carousel
+            
+        };
+
+        //performTests(tremauxTrees[0]); // Perform tests for chosen tree
+
+        t=document.getElementsByClassName('active');
+        console.log('ACTIVE:', t);//test
+
+        function performTests(treeType){
+            const id = treeType.id; // Get tree id
+            const label = treeType.label; // Get tree label
+            const tree = treeType.g; // Get tree G object
 
             var testLog=[]
 
             // Create test output environment
-            const divId = `div-${i}`; // Set IDs for elements by count
-            const svgId = `svg-${i}`;
-            const pId = `p-${i}`;
+            const divId = `div-${id}`; // Set IDs for elements by count
+            const svgId = `svg-${id}`;
+            const pId = `p-${id}`;
 
             createDiv(divId, 'test_graphs', 'card col-6 graph-div'); // Create div
             
@@ -318,7 +385,7 @@
                 withLabels: true, 
                 labelStyle: {fill: 'white'},
                 stickyDrag: true
-            }); i++;// Increment count
+            });
             
 
             // Test self-loop identification and removal
@@ -336,24 +403,6 @@
             catch(err) {
                 testLog.push({test: 'selfloop', status : 'Fail', info: 'caught err'}); // Record in results
             }
-            
-
-            /* 
-            
-
-            TO DO:
-                
-                1) Accordian of browsable tremaux trees -->
-                2) Illustration of order of node traversal (e.g., animation)
-                3) Illustration of propagation values 
-
-                Note: Could show 4 different graphs: Network structure, traversal order, prevalence values, propagataion values 
-
-                [  () -]>   Accordian
-                [()()()]    3 extra views on tree select
-
-            /*
-
 
             // Test traversal algorithm
             var path = null
@@ -411,6 +460,8 @@
             
         }
 
+        */
+
         // Method for writing results to DOM
         function writeResults(results, id){
             html='';
@@ -444,9 +495,7 @@
 
 
         // Compare expected and actual values
-        tests = validate([
-
-        ])
+        tests = validate([])
 
         if (tests['failed'].length > 0) {
             totalTests = tests['failed'].length + tests['passed'].length
