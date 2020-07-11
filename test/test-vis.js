@@ -20,11 +20,12 @@ function setGDisplay(tremauxTrees){
     G = tremauxTrees[0].g// Get graph for tree
     title = tremauxTrees[0].title // Get title for tree
     label = tremauxTrees[0].label // Get label for tree
+    disabled = tremauxTrees[0].disabled // Get development stage; disabled or enabled
 
     jsnx.draw(G, { // Draw tree on SVG
         element: '#GDisplay-svg', 
-        //withLabels: true, 
-        //labelStyle: {fill: 'white'},
+        withLabels: true, 
+        labelStyle: {fill: 'black'},
         stickyDrag: true,
         nodeStyle: {
             fill: function(d) { 
@@ -32,6 +33,9 @@ function setGDisplay(tremauxTrees){
             }
         }, 
     });
+
+    // Grayscale graph if disabled
+    if(disabled){ document.getElementById('GDisplay-svg').style.webkitFilter = "grayscale(100%) blur(1px)";console.log(disabled);} else {document.getElementById('GDisplay-svg').style.webkitFilter = ''}
 
     setHTML('GDisplay-title', title); // Set display title to label
     setHTML('GDisplay-subtitle', label); // Set display title to label
@@ -93,14 +97,17 @@ function testAlgorithm(currentTree){
     document.getElementById("badge-results").innerHTML='';
 
     if (tests['failed'].length > 0) { // Write results
-        totalTests = tests['failed'].length + tests['passed'].length
-        document.getElementById("test_results").innerText = "Failing automatic tests. " + tests['failed'].length + "/" + totalTests + " tests failed."
+        // Set testing status to failing
+        document.getElementById("badge-results").innerText = "Failing";
+        document.getElementById("badge-results").className = "badge badge-warning";
+        // Write fails to log
         messages="<strong>Log:</strong> <br>"
         for (const failure of tests['failed']){
             messages += failure + '<br>'
         }
         document.getElementById("test_log").innerHTML = messages;
     } else {
+        // Set testing status to passing
         document.getElementById("badge-results").innerText = "Passing";
         document.getElementById("badge-results").className = "badge badge-success";
     }
