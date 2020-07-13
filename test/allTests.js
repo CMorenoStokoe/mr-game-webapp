@@ -40,7 +40,7 @@ function test_traversal(tree){
     try {
         const path = findPropagationPath(tree,'A'); // Initiate DFS search of graph G object from root node 0                
         const pathTree = constructPathTree(path);
-        return({test: 'traversal', status : 'Success', info: `${objSize(path)} steps in path`, path: path, tree: pathTree}); // Record in results
+        return({test: 'traversal', status : 'Success', info: `${objSize(path.edges)} steps in path`, path: path, tree: pathTree}); // Record in results
     }
 
     catch(err) {
@@ -58,30 +58,22 @@ function test_traversal(tree){
         for (const node of path.nodes){
             
             nodeOrder[node] = i; // Set node order by count
-            const nodeColor = n[node][1].color// Get node color
+            const nodeColor = testDat.nodes[node].color// Get node color
 
             G.addNode(nodeOrder[node], {color: nodeColor}); // Add node to G
-
             i++; // Increment count
         }
 
         // Build edges with node order as their ID instead of their original name
         for (const edge of path.edges){
 
-            // Get source and target nodes from edge
-            source=edge[0];
-            target=edge[1]; 
-
             // Get order of source and target nodes
-            sourceID = nodeOrder[source];
-            targetID = nodeOrder[target];
+            sourceID = nodeOrder[edge.source];
+            targetID = nodeOrder[edge.target];
 
             // Add edges to G
-            //console.log(sourceID,targetID)
             G.addEdge(sourceID,targetID);
         }
-
-        //console.log('pathTree', G)
 
         return(G)
     }
@@ -92,7 +84,7 @@ function test_traversal(tree){
 function test_propagation(path){
     try {
         // Supply path for propagation
-        result = propagate(path.edges, testData.nodes, testData.edges, 'A', 1); // Run propagation MR
+        result = propagate(path.edges, 'A', 1); // Run propagation MR
         tree = constructPropagationTree(path, result);
         return({test: 'propagation', status : 'Success', info: result, tree: tree}); // Record in results
     }
@@ -108,11 +100,11 @@ function test_propagation(path){
         // Replace node IDs with their change in prevalence from propagation
         for (const node of path.nodes){
             nodeLabel = '+' + result[node]
-            G.addNode(node, {color: n[node][1].color, label: nodeLabel});
+            G.addNode(node, {color: testDat.nodes[node].color, label: nodeLabel});
         }
 
         for (const edge of path.edges){
-            G.addEdge(edge[0],edge[1], {label : '.5'})
+            G.addEdge(edge.source,edge.target, {label : '.5'})
         }
 
         return(G)

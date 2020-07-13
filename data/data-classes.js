@@ -16,11 +16,14 @@ Contents of this script:
 // Pseudo data class containing network MR data
 class DataClass {
 
-    constructor(nodes, edges) {
+    constructor(nodes, edges) { // Expects nodes and edge as dictionary lists
 
-        // Index nodes and edges by id for searchability in pseudo database
+        // Resource for accessing nodes and edges by ID
         this.nodes = this.toIndex(nodes, 'id');
         this.edges = this.toIndex(edges, 'id');
+
+        // Resource for turning data into a graph
+        this.G = this.toG();
 
     }
 
@@ -48,7 +51,7 @@ class DataClass {
             */
 
             // Assign edge id if edge
-            if(item.source){item[key] = [item.source,item.target];}
+            if(item.source){item[key] = ''+item.source+'_to_'+item.target;}
             else {item[key] = item[key]};
 
             // If a desiredProperty is given then give {key : desired property}
@@ -75,37 +78,36 @@ class DataClass {
         return list;
     }
 
-    // Function to change values by list of dictionaries containing key:new value
-    updateNodes(update){
+    // Update node values with new data
+    update(nodesToUpdate, newNodeValues){
         
-        // Iterate over list of dictionaries given as update
-        for (const value in update) {
-            this.nodes[value.id].prevalence=value.prevalence;
+        // Update node data
+        for(const node of nodesToUpdate){
+            this.nodes[node].prevalence = newNodeValues[node]; // Replace [{oldData}] with [{newData}]
         }
+
     }
 
-    // Export data as D3 node-edge dictionary
+    // Export data as node-edge dictionary (for populating D3 vis)
     toD3(){
-        return {nodes : this.toList(this.nodes), edges : this.toList(this.edges)};
+        return {nodes: this.toList(this.nodes), edges: this.toList(this.edges)};
     }
 
-    // Export data as jsnx ebunch format 
-    toJsnx(){
+    // Export data as network graph (jsnx G)
+    toG(){
+
+        const G = new jsnx.DiGraph(); // Init G object
         
-        // Operate on iterable list
-        const edgeList = this.toList(this.edges);
-        
-        // Convert edges in edgeList into jsnx ebunch format
-        const ebunch = []
-        for (const edge of edgeList){
-            
-            // Compile edge bunch for jsnx graphing ([source, target])
-            ebunch.push([edge.source, edge.target]);
+        // Add nodes
+        for(const node of this.toList(this.nodes)){
+            G.addNode(node.id, node);
         }
-        
-        // Since jsnx populates nodes automatically from edges, nodes do not need to be specified to make a jsnx graph G object
-        // Nodes should be specified if their properties need to be modelled in the graph (e.g., node prevalences if propagation was integrated into the jsnx model)
-        return(ebunch);
+        // Add edges
+        for(const edge of this.toList(this.edges)){
+            G.addEdge(edge.source, edge.target, edge);
+        }
+
+        return(G) // Return G with all nodes and edges
     }
 
 }

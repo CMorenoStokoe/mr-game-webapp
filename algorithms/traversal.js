@@ -44,12 +44,12 @@ function findPropagationPath (graph, root){
 
     // Run DFS variant
     for (i = 0; i < Math.pow(graph.nodes().length, 2); i++){ 
+        if(queue[0] == undefined){break;}
         /* 
-        Failsafes
+        Failsafes (^ above ^)
             1. Maximum number of iterations (n nodes ^2) to avoid infinite loops (above)
             2. Search while the queue is not empty  to avoid runtime error when queue is emptied (below)
         */
-        if(queue[0] == undefined){break;}//console.log('DFS search finished.');
 
         // 1. Get node n from queue 
         const currentNode = queue[0];
@@ -57,7 +57,6 @@ function findPropagationPath (graph, root){
         if(exhaustedNodes[currentNode]==true){
 
             // Remove node from queue and continue
-            console.log('skipping already exhausted node');
             queue.shift();
             continue;
         }
@@ -67,7 +66,6 @@ function findPropagationPath (graph, root){
         
         // 3. If precursors are exhausted
         if(exhaustible){
-            //console.log('exhaustible')
 
             // Set node exhausted
             exhaustedNodes[currentNode] = true;
@@ -79,7 +77,8 @@ function findPropagationPath (graph, root){
             path.nodes.push(currentNode) // Path of nodes
 
             for (const predecessor of graph.predecessors(currentNode)){ // Path of edges
-                path.edges.push([predecessor, currentNode]);
+                edgeId = [predecessor,currentNode]
+                path.edges.push({source: predecessor, target: currentNode, b: graph.get(predecessor).get(currentNode).b});
             } 
 
             // Add successors of node n to queue
@@ -88,7 +87,6 @@ function findPropagationPath (graph, root){
 
         // 4. If node not exhaustible skip for now and come back to later when predecessors are exhausted
         if(!(exhaustible)){
-            //console.log('unexhaustible')
             
             // Move node to back of queue 
             queue.shift();

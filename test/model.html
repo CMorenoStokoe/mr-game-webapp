@@ -1,0 +1,82 @@
+<html>
+
+    <!--
+
+    Data test page
+    ---------------
+    
+    Intended purpose:
+
+    Testing that data, graph theory and propagation functions 
+    work in their intended purpose by performing content 
+    and existence checks.
+    
+    -->
+
+<head>
+
+    <!-- Bootstrap css theme --> 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+    
+    <!-- Fa icons -->
+    <script src="https://kit.fontawesome.com/ff3502b087.js" crossorigin="anonymous"></script>
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="../css/testpage.css">
+    
+
+</head>
+
+<body style="font-family: consolas;">
+
+    Test of data class method of running propagation. Results in console.
+    
+    <!-- External dependencies -->
+    <script src="https://d3js.org/d3.v3.min.js"></script> <!-- d3 for graph visualisation library (note: jsnetworkx only supports v3) -->
+    <script src="../scripts/jsnx/jsnetworkx.js"></script> <!-- jsnetworkx for network model and graphs -->
+    <script src="../scripts/big/big.min.js"></script> <!-- big.js for accurate number system -->
+
+    <!-- GUI utilities -->
+    <script src="../scripts/graph.js"></script>
+    <script src="../scripts/create-element.js"></script>
+    <script src="../scripts/edit-element.js"></script>
+
+    <!-- Algorithms -->
+    <script src="../algorithms/traversal.js"></script>
+    <script src="../algorithms/mr-prop.js"></script>
+    
+    <!-- Debug and testing utilities -->
+    <script src="debug/debug-methods.js"></script>
+
+    <!-- Data utilities -->
+    <script src="../data/data-classes.js"></script>
+
+    <!-- Model -->
+    <script src="../scripts/propagate.js"></script>
+
+    <!-- Data for tests -->
+    <script src="test-data.js"></script>
+    <script src="test-trees.js"></script>
+
+    <script>
+        
+        // Make test data from complex tremaux tree
+        testData = new DataClass(tremauxTrees[4].data.nodes, tremauxTrees[0].data.edges);
+        console.log('nodes: ', testData.nodes);
+
+        // Test
+        result = runPropagation(testData.G, 'A', '1');
+        console.log(result);
+
+    </script>
+
+</body>
+
+<footer>
+
+</footer>
+
+</html>

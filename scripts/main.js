@@ -23,20 +23,31 @@ window.onload = initialise();
 
 function initialise(){
 
-    /* Fill policy panel with policies from data */
+    /* Initialise data */
     
-    // Initialise graph
-    drawGraph('#svg-main', graph.nodesAndEdges);
+        // Populate DataClass with data
+        data = new DataClass(data_json.nodes, data_json.edges); // Payload: nodes, edges
 
-    /* Initialise buttons to open and close panels */
+    /* Initialise GUI */
 
-    // Create Panel class objects for each panel with ID & orientation on page
-    const leftPanel = new Panel('panel-left', 'left');
-    const rightPanel = new Panel('panel-right', 'right');
+        // Initialise graph
+        drawGraph('#svg-main', data.toD3);
 
-    // Add event listeners to buttons which use Panel class functions to close panels at startup
-    addEventListener('#btn-x-leftPanel', function(){leftPanel.close;});
-    addEventListener('#btn-x-rightPanel', function(){rightPanel.close;});
+        // Create display panels (using Panel class, giving ID & side of screen)
+        const leftPanel = new Panel('panel-left', 'left');
+        const rightPanel = new Panel('panel-right', 'right');
 
-};
+    /* Initialise controls */
 
+        // Panel close buttons
+        addEventListener('#btn-x-leftPanel', function(){leftPanel.close;});
+        addEventListener('#btn-x-rightPanel', function(){rightPanel.close;});
+
+        // Intervention button
+        /*
+        addEventListener('#btn-x-rightPanel', function(){
+            runPropagation(testData.G, 'A', '1');
+        });
+        */
+
+};    
