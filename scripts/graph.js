@@ -58,7 +58,7 @@ function outlineNode(id, color){
 function nodeColor(prevalence){
   
   // Pass number between 0-1 to d3 gradient function to return color in specified gradient
-  return d3.interpolateRdYlGn(prevalence)
+  return d3.interpolateSpectral(prevalence)
 }
 
 
@@ -142,6 +142,7 @@ function drawGraph (svgId, data) {
         .attr('r', d => Math.abs(d.prevalence)*circleRadius) 
         .attr('stroke', 'none')
         .attr('stroke-width', 1)
+        .attr('opacity', 0.9)
         .attr('fill', d => nodeColor(d.prevalence));
 
     // Append text to nodes on SVG

@@ -22,8 +22,9 @@ class DataClass {
         this.nodes = this.toIndex(nodes, 'id');
         this.edges = this.toIndex(edges, 'id');
 
-        // Resource for turning data into a graph
-        this.G = this.toG();
+        // Resources for turning data into a graphs
+        this.G = this.toG(); // jsnx G object
+        this.D3 = this.toD3(); // D3 graph format
 
     }
 

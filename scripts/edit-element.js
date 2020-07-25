@@ -38,6 +38,14 @@ function setVisibility(id, visibility){
     
     document.getElementById(id).style.visibility = visibility;
 }
+function toggleVisibility(id){
+    currentState = document.getElementById(id).style.visibility;
+    if(currentState=='visible'){
+        document.getElementById(id).style.visibility = 'hidden';
+    } else {
+        document.getElementById(id).style.visibility = 'visible';
+    }
+}
 
 // Display
 function setDisplay(id, display){
@@ -114,6 +122,8 @@ class Panel {
         this.width = this.element.style.width;
         this.widthValue = this.getWidthValue(this.width);
         this.widthUnits = this.getWidthUnits(this.width);
+        this.close = this.close();
+        this.open = this.open();
     }
     
     // Get units of width
@@ -137,9 +147,11 @@ class Panel {
 
     // Adding methods to toggle the panel
     open(){
+        console.log(this.element.style[this.side])
         this.element.style[this.side] = 0;
     }
     close(){
+        console.log(this.element.style[this.side])
         this.element.style[this.side] = `${0 - this.widthValue}${this.widthUnits}`;
     }
     

@@ -27,11 +27,12 @@ function initialise(){
     
         // Populate DataClass with data
         data = new DataClass(data_json.nodes, data_json.edges); // Payload: nodes, edges
-
+        
     /* Initialise GUI */
 
         // Initialise graph
-        drawGraph('#svg-main', data.toD3);
+        
+        drawGraph('#svg-main', data.D3);
 
         // Create display panels (using Panel class, giving ID & side of screen)
         const leftPanel = new Panel('panel-left', 'left');
@@ -40,8 +41,8 @@ function initialise(){
     /* Initialise controls */
 
         // Panel close buttons
-        addEventListener('#btn-x-leftPanel', function(){leftPanel.close;});
-        addEventListener('#btn-x-rightPanel', function(){rightPanel.close;});
+        //addEventListener('#btn-x-leftPanel', function(){leftPanel.close;});
+        //addEventListener('#btn-x-rightPanel', function(){rightPanel.close;});
 
         // Intervention button
         /*
