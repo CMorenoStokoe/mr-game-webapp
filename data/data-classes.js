@@ -91,7 +91,7 @@ class DataClass {
 
     // Export data as node-edge dictionary (for populating D3 vis)
     toD3(){
-        return {nodes: this.toList(this.nodes), edges: this.toList(this.edges)};
+        return {nodes: this.toList(this.nodes), links: this.toList(this.edges)};
     }
 
     // Export data as network graph (jsnx G)

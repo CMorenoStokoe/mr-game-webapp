@@ -23,6 +23,6 @@ functions are designed to have no dependencies other than vanilla JS.
 
 // Trigger function on element click
 function addOnclickEvent(id, event){
-
+    
     document.getElementById(id).addEventListener("click", event);
 }

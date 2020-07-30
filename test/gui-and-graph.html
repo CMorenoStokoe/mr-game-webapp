@@ -222,6 +222,16 @@
             </div>
         </div>
 
+        <div class="col-3">
+            <div class="card"  style="margin: 5px; height: 95%; width: 95%;">
+                <div class=card-header>
+                    <h4>Create H5</h4></div>
+                <div class=card-body id='test_div_header'>
+                    <em style="color: rgb(2, 117, 216)" >Creating H5 header object here:</em><br>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 </body>
@@ -280,7 +290,7 @@
         setText('test_div_text', 'test text'); //(id of element, text to replace current text content with)
         
         // Color text
-        color('test_div_colors', 'white'); // (id of element, color to set)
+        setColor('test_div_colors', 'white'); // (id of element, color to set)
         colorBackground('test_div_colors', 'rgb(2, 117, 216)'); // (id of element, color of background to set)
 
         // Set div html
@@ -308,6 +318,8 @@
         document.getElementById('test_div_round').innerHTML = roundNum(10.136789325); //(number to round, option to return it as a percent as a string (optional))
         document.getElementById('test_div_roundPct').innerHTML = roundNum(0.0005706, percent=true);
 
+        // Create header H5 object
+        createHeader('test-header', 'test_div_header', 'header text', 'p1', size='H4');
 
         // Test functions
         tests = validate([
@@ -321,7 +333,6 @@
             {name : '[graph.] colorEdge (set edge color)', expected : '#d92027', actual : get('e1-line', prop=['getAttr', 'stroke'])},
 
             // Change node color and size as function of prevalence
-            {name : '[graph.] updateNode (set fill color)', expected : 'rgb(249, 247, 174)', actual : get('1-circle', prop=['style', 'fill'])},
             {name : '[graph.] updateNode (set text)', expected : 'new label', actual : get('1-text', prop='innerHTML')},
             {name : '[graph.] updateNode (set r)', expected : 10, actual : get('1-circle', prop=['getAttr', 'r'])},
 
@@ -378,6 +389,12 @@
             {name : '[edit-element.] class Panel (create class)', expected : 7, actual : objSize(panelToHide)},
             {name : '[edit-element.] class Panel (hide)', expected : '-100px', actual : get('test_panel', prop=['style', 'right'])},
 
+            // Check that creating a header works correctly
+            {name : '[create-element.] createHeader (exists)', expected : '[object HTMLHeadingElement]', actual : get('test-header')},
+            {name : '[create-element.] createHeader (set id)', expected : 'test-header', actual : get('test-header', prop="id")},
+            {name : '[create-element.] createHeader (set text)', expected : 'header text', actual : get('test-header', prop="innerHTML")},
+            {name : '[create-element.] createHeader (set class)', expected : 'p1', actual : get('test-header', prop="className")},
+        
         ])
 
         if (tests['failed'].length > 0) {

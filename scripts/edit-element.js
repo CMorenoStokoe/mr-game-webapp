@@ -122,8 +122,6 @@ class Panel {
         this.width = this.element.style.width;
         this.widthValue = this.getWidthValue(this.width);
         this.widthUnits = this.getWidthUnits(this.width);
-        this.close = this.close();
-        this.open = this.open();
     }
     
     // Get units of width
@@ -147,11 +145,11 @@ class Panel {
 
     // Adding methods to toggle the panel
     open(){
-        console.log(this.element.style[this.side])
+        console.log('opening panel: ', this.element.style[this.side])
         this.element.style[this.side] = 0;
     }
     close(){
-        console.log(this.element.style[this.side])
+        console.log('closing panel: ', this.element.style[this.side])
         this.element.style[this.side] = `${0 - this.widthValue}${this.widthUnits}`;
     }
     

@@ -1,11 +1,19 @@
 /* General styles */
 
 /* Colors */
-.root{
-    var(--col-primary : rgb(255, 0, 0));
+:root{
+    --col-primary: rgb(22, 110, 211);
 }
 
 /* Styles for game.html */
 .policy{
     margin-top: 10px;
+}
+.policy-container{
+    overflow: scroll;
+}
+
+/* Colors */
+.col-primary{
+    color: var(--col-primary);
 }

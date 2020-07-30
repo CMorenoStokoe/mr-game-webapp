@@ -26,26 +26,25 @@ function initialise(){
     /* Initialise data */
     
         // Populate DataClass with data
-        data = new DataClass(data_json.nodes, data_json.edges); // Payload: nodes, edges
+        data = new DataClass(jsonData.nodes, jsonData.links); // Payload: nodes, edges
         
     /* Initialise GUI */
 
         // Initialise graph
-        
-        drawGraph('#svg-main', data.D3);
+        generateGraphFromJSON(data.D3.nodes, data.D3.links, '#svg-main', settings); // settings located in graph-settings-preset file
 
         // Create display panels (using Panel class, giving ID & side of screen)
         const leftPanel = new Panel('panel-left', 'left');
-        const rightPanel = new Panel('panel-right', 'right');
+            leftPanel.close(); // Start closed
 
     /* Initialise controls */
 
         // Panel close buttons
-        //addEventListener('#btn-x-leftPanel', function(){leftPanel.close;});
-        //addEventListener('#btn-x-rightPanel', function(){rightPanel.close;});
+        addOnclickEvent('btn-x-leftPanel', function(){leftPanel.close();});
 
         // Intervention button
-        /*
+        /*        
+
         addEventListener('#btn-x-rightPanel', function(){
             runPropagation(testData.G, 'A', '1');
         });
