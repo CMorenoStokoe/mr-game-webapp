@@ -23,8 +23,8 @@ class DataClass {
         this.edges = this.toIndex(edges, 'id');
 
         // Resources for turning data into a graphs
-        this.G = this.toG(); // jsnx G object
-        this.D3 = this.toD3(); // D3 graph format
+        //this.G = this.toG(); // jsnx G object
+        //this.D3 = this.toD3(); // D3 graph format
 
     }
 
@@ -33,23 +33,6 @@ class DataClass {
         var indexed = {}
 
         for (const item of items){
-
-            /* TEMPORARY : Move to MiRANA: csv to json operation 
-            // Make sure node and edge ID strings are safe for use as index keys (e.g., in js numbers are not safe keys since edges[0] returns the first edge whereas edges[e0] correctly returns edge e0)
-            if (typeof item[key] == 'string'){
-                item[key] = safeStr(item[key]);
-            } else {
-                let source = safeStr(item.source);
-                let target = safeStr(item.target);
-                item[key] = [source,target];
-                item.source = source
-                item.target = target
-            } 
-            //temp key cleaning
-            function safeStr(str){
-                return str.replace(/-/g, '_')
-            }
-            */
 
             // Assign edge id if edge
             if(item.source){item[key] = ''+item.source+'_to_'+item.target;}
@@ -79,6 +62,12 @@ class DataClass {
         return list;
     }
 
+    // Set objective at random 
+    setObjective(){
+        const count = Math.floor(Math.random() * Object.keys(this.nodes).length);
+        this.objective = this.nodes[Object.keys(this.nodes)[count]];
+    }
+
     // Update node values with new data
     update(nodesToUpdate, newNodeValues){
         
@@ -98,34 +87,55 @@ class DataClass {
     toG(){
 
         const G = new jsnx.DiGraph(); // Init G object
-        
-        // Add nodes
+        var idDict = {};
+        var count = 0;
+        var edgeList = [];
+
         for(const node of this.toList(this.nodes)){
-            G.addNode(node.id, node);
-        }
-        // Add edges
-        for(const edge of this.toList(this.edges)){
-            G.addEdge(edge.source, edge.target, edge);
+            // Add nodes to graph
+            G.addNode(count, node);
+            idDict[node.id]=count;
+            count++;
+
+            // Add edges
+            for(const edge of node.edges){
+                const source = edge['id.exposure'];
+                const target = edge['id.outcome'];
+
+                switch(true){
+                    case (source == undefined || target == undefined): break; // Ignore undefined 
+                    case (!(source in idDict)):
+                        idDict[source] = count;
+                        count++;
+                    case (!(target in idDict)):
+                        idDict[target] = count;
+                        count++;
+                    default:
+                        edgeList.push([idDict[source], idDict[target], edge]);
+                        break;
+                }            
+            }
         }
 
-        return(G) // Return G with all nodes and edges
+        G.addEdgesFrom(edgeList);
+
+        return({G:G, idDict:idDict}) // Return G with all nodes and edges
     }
 
 }
 
 // Class for variables used only by the game
-class GameData extends DataClass {
+class GameData {
 
     constructor(nodes, edges) {
-        // Get nodes and edges from parent class
-        super(nodes, edges);
+        this.nodes = nodes;
+
         // Make game variables
         this.objective = this.setObjective();
-        this.log = [];
     }
 
     setObjective(){
-        return (this.nodes.ieu_a_1187);
+        return (this.nodes[0]);
     }
 
     addLogEntry(entry){

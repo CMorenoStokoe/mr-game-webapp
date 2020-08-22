@@ -26,17 +26,17 @@
     <body>
         
         <!-- Top of page tilebar -->
-        <div class="row text-center" id="tilebar-top" style="height: 19vh;">
+        <div class="row text-center" id="tilebar-top" style='height: 10vh;'>
             
             <div class="col-sm">
                 <h2>Goal</h2>
-                <p>Raise wellbeing by 25%</p>
+                <p id='goal'>Raise wellbeing by 25%</p>
             </div>
 
             <div class="col-sm">
                 <h2>Progress</h2>
                 <div class="progress center-block" style="width: 75%; margin-left: auto; margin-right: auto;">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%">75%</div>
+                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary col-dark" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%">75%</div>
                 </div>
                 <p>Enact policies to make progress.</p>
             </div>
@@ -49,50 +49,47 @@
         </div>
 
         <!-- Main content area --> 
-        <div class="row text-center">
+        <div class="row text-center" style='height: 87vh;' >
 
             <!-- Graph area -->
-            <div class="col-sm">
+            <div class="d-flex w-100 justify-content-center align-item-center"id='svg-container'>
                 <svg width="1000" height="700" id="svg-main"></svg>
             </div>
                 
             <!-- Policy info panel -->
-            <div class="card" style="position: absolute; left: 0; height: 79vh; width: 400px;" id="panel-left">
+            <div class="card" id="panel-left">
                 
                 <div class="card-header">
-                    <button class="btn btn-light float-right" id="btn-x-leftPanel"'>x</button>
+                    <button class="btn btn-light float-right" id="btn-x-leftPanel"><i class="fas fa-times"></i></button>
                     <h2>View policy effects</h2>
                 </div>
 
                 <div class="card-body" id="policy-container">
                     <div class="card policy">
-                        <div class="card-body">
-                            <h5 class="card-title">Free gym memberships</h5>
-                            <p class="card-text">Increases exercise.</p>
+                        <div class="card-body d-flex justify-content-center align-items-center">
+                            <div><img src='' id='panel-policy-icon'></div>
+                            <div>
+                                <h5 class="card-title" id='panel-policy-title'>Free gym memberships</h5>
+                                <p class="card-text" id='panel-policy-subtitle'>Increases exercise.</p></div>
                         </div>
                     </div>
                     <div class="card policy">
                         <div class="card-body">
                             <h5 class="card-title">Policy effects</h5>
-                            <svg height=200 width=300 id="svg-mini"></svg>
-                            <table style="width:100%" id="policy-effects-table">
-                                <tr>
-                                  <th>Increases</th>
-                                  <th>Decreases</th>
-                                </tr>
-                                <tr>
-                                  <td>Depression</td>
-                                  <td>Insomnia</td>
-                                </tr>
-                                <tr>
-                                  <td>Wellbeing</td>
-                                  <td></td>
-                                </tr>
-                            </table>
-
+                            <div class='d-flex flex-row justify-content-center'>
+                                <!-- Increases -->
+                                <div class='d-flex flex-column justify-content-left align-items-center p-2 m-2'>
+                                    <h5 class='col-pos'>Increases</h5>
+                                    <div id='policyEffects-increases'></div>
+                                </div>
+                                <!-- Decreases -->
+                                <div class='d-flex flex-column justify-content-left align-items-center p-2 m-2'>
+                                    <h5 class='col-neg'>Decreases</h5>
+                                    <div id='policyEffects-decreases'></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    
                     <a href="#" class="btn btn-lg btn-primary" style="margin-top: 10px;">Enact policy</a>
                 </div>
             </div>
@@ -103,7 +100,10 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         
-        <!-- External dependencies -->
+        <!-- External dependencies (Bootstrap, JQuery, D3, jsnetworkx) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script src="scripts/d3/d3.min.js"></script>
         <script src="scripts/jsnx/jsnetworkx.js"></script>
 
@@ -113,24 +113,29 @@
         <script src="scripts/event-handling.js"></script>
         <script src="test/debug/debug-methods.js"></script> 
 
-
         <!-- Data -->
         <script src="data/data-classes.js"></script> 
         <script src="data/data.js"></script>
+        <script src="data/icons.js"></script>
 
         <!-- MiRANA network visualisation -->
-        <script src="scripts/MiRANA/scripts/graph.js"></script>
-        <script src="scripts/MiRANA/scripts/edit-graph.js"></script>
-        <script src="scripts/MiRANA/scripts/data-cleaning.js"></script>
-        <script src="scripts/MiRANA/scripts/node-properties.js"></script>
-        <script src="scripts/MiRANA/scripts/edge-properties.js"></script>
-        <script src="scripts/graph-settings-preset.js"></script>
-        <script src="scripts/MiRANA/scripts/graph-from-json.js"></script>
+        <script src="../network-mr-vis-tool/scripts/settings-defaults.js"></script>
+        <script src="scripts/settings.js"></script>
+        <script src="../network-mr-vis-tool/scripts/graph.js"></script>
+        <script src="../network-mr-vis-tool/scripts/edit-graph.js"></script>
+        <script src="../network-mr-vis-tool/scripts/data-cleaning.js"></script>
+        <script src="../network-mr-vis-tool/scripts/node-properties.js"></script>
+        <script src="../network-mr-vis-tool/scripts/edge-properties.js"></script>
+        <script src="../network-mr-vis-tool/scripts/graph-from-json.js"></script>
 
         <!-- Propagation modules -->
         <script src="algorithms/traversal.js"></script>
+        <script src="algorithms/mr-prop.js"></script>
+        <script src="algorithms/loop-detection.js"></script>
+        <script src="scripts/propagate.js"></script>
 
         <!-- Main -->
+        <script src="scripts/model.js"></script> 
         <script src="scripts/main.js"></script> 
     </body>
     <footer>

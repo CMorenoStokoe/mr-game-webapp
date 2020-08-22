@@ -2,18 +2,58 @@
 
 /* Colors */
 :root{
-    --col-primary: rgb(22, 110, 211);
+    --col-primary: gold;
+    --col-pos: coral;
+    --col-neg: cornflowerblue;
+    --col-dark: rgb(1, 31, 66);
+    --col-light: ghostwhite;
+}
+.col-primary{
+    color: var(--col-primary);
+}
+.col-pos{
+    color: var(--col-pos);
+}
+.col-neg{
+    color: var(--col-neg);
+}
+.col-dark{
+    color: var(--col-dark);
+}
+.bg-primary{
+    background-color: var(--col-primary) !important;
 }
 
-/* Styles for game.html */
+/* Style for game GUI */
 .policy{
     margin-top: 10px;
+}
+#panel-policy-icon{
+    height: 100px;
+    width: auto;
 }
 .policy-container{
     overflow: scroll;
 }
+.policyEffect-none{
+    color: grey;
+}
+#panel-left{
+    position: absolute; 
+    left: -400px; 
+    height: 79vh; 
+    width: 400px;
+    opacity: 0.9;
+}
 
-/* Colors */
-.col-primary{
-    color: var(--col-primary);
+/* Style for visualisation */
+#svg-main{
+    height: var(--100pct-in-px);
+    width: var(--100pct-in-px);
+}
+.nodeLabel{
+    opacity: 0;
+}
+.nodeLabel_bg{
+    opacity: 0;
 }
