@@ -50,8 +50,8 @@ tremauxTrees.push({
     data: getTestDataInfo(edges),
     answers: {
         selfloops: [],
-        traversal: ['A', 'B', 'D', 'E', 'C'], //or ['A', 'B', 'C', 'D', 'E']
-        propagation: {'A':1,'B':"0.5",'D':"0.25",'E':"0.125",'C':"0.25"},
+        traversal: ['A', 'B', 'C', 'D', 'E'], //or ['A', 'B', 'D', 'E', 'C']
+        propagation: {'A':"1",'B':"0.5",'C':"0.25", 'D':"0.25", 'E':"0.125",}, //or {'A':"1",'B':"0.5",'D':"0.25",'E':"0.125",'C':"0.25"}
     },
     disabled:false,
 });
@@ -81,14 +81,14 @@ edges=[
 ]; 
 
 tremauxTrees.push({
-    id: 1, 
+    id: "1", 
     title: 'Cross-over edge', 
     label: 'Trémaux tree containing one edge which crosses from one branch over to another, and one edge which skips ahead in the path. This tests whether the algorithm can handle non-linear networks in which branches intermingle and interact with nodes in the same branch as well as other branches.', 
     data: getTestDataInfo(edges),
     answers: {
         selfloops: [],
-        traversal: ['A', 'D', 'B', 'C', 'E', 'F'], //or ['A', 'B', 'C', 'D', 'E', 'F'] 
-        propagation:{'A':1, 'D':'0.5', 'B':'0.5', 'C':'0.25', 'E':'0.375', 'F':'0.1875'},
+        traversal: ["A","B","D","C","E","F"] , //or ['A', 'D', 'B', 'C', 'E', 'F']
+        propagation:{"A":"1","B":"0.5","C":"0.25","D":"0.5","E":"0.375","F":"0.1875"}, //or {'A':"1", 'D':'0.5', 'B':'0.5', 'C':'0.25', 'E':'0.375', 'F':'0.1875'}
     },
     disabled:false,
 });
@@ -121,7 +121,7 @@ tremauxTrees.push({
     answers: {
         selfloops: [['B', 'B']],
         traversal: ['A', 'B', 'C'],
-        propagation: {'A':1,'B':"0.5",'C':"0.25"}
+        propagation: {'A':"1",'B':"0.5",'C':"0.25"}
     },
     disabled:false,
 });
@@ -154,14 +154,14 @@ tremauxTrees.push({
     answers: {
         selfloops: [],
         traversal: ['A', 'B', 'C', 'D'],
-        propagation:{'A':1,'B':"0.5",'C':"0.25", 'D':'0.375'},
+        propagation:{'A':"1",'B':"0.5",'C':"0.25", 'D':'0.375'},
     },
     disabled:false,
 });
 
 /*
 
-Full tree
+Complex tree
 ----------
 Description: Complex tree containing edges which cross over from one branch to another, as well as a forward edge, and a self loop.
 This tests whether the algorithm is capable of traversing cross edges and forward edges, as well as self loops all in the same network.
@@ -176,7 +176,7 @@ A - B <     |
         
 */
 
-// JSNX graph object for full tree
+// JSNX graph object for Complex tree
 edges=[
     ['A','B'], ['B','C'], ['C','D'], // Primary branch
     ['B','E'], ['E','F'], ['F','G'], // Alternative branch
@@ -192,8 +192,8 @@ tremauxTrees.push({
     data: getTestDataInfo(edges),
     answers: {
         selfloops: [['B','B']],
-        traversal: ['A', 'B', 'E', 'C', 'D', 'F', 'G'], //or ['A', 'B', 'C', 'D', 'E', 'F', 'G'] 
-        propagation:{'A':1,'B':"0.5",'E':"0.25",'C':"0.25",'D':"0.125",'F':"0.1875",'G':"0.21875"},
+        traversal: ["A","B","C","E","D","F","G"], //or ['A', 'B', 'C', 'D', 'E', 'F', 'G'] or ['A', 'B', 'E', 'C', 'D', 'F', 'G']
+        propagation:{"A":"1","B":"0.5","C":"0.25","D":"0.125","E":"0.25","F":"0.1875","G":"0.21875"}, //or {'A':"1",'B':"0.5",'E':"0.25",'C':"0.25",'D':"0.125",'F':"0.1875",'G':"0.21875"}
     },
     disabled:false,
 });
@@ -220,14 +220,13 @@ edges=[
 
 tremauxTrees.push({
     id: 5, 
-    title: `<span class="badge badge-warning">Not yet supported</span><br>
-    Bi-directional edge`, 
+    title: `Bi-directional edge`, 
     label: 'This Trémaux tree tests whether the algorithm can handle bi-directional edges between two nodes. These relationships do not present strong evidence in MR and so should not end up in valid MR networks, but if these do the plan is to identify and remove them.', 
     data: getTestDataInfo(edges),
     answers: {
         selfloops: [],
-        traversal: ['Not yet supported'],
-        propagation: {'Not yet supported' : true, 'A':1,'B':"0.5",'C':"0.25"}
+        traversal: ['A', 'B', 'C'],
+        propagation: {"A":"1","B":"0.5","C":"0.25"}, //or {'A':"1",'B':"0.5",'C':"0.25"}
     },
     disabled: true,
 });
@@ -255,14 +254,48 @@ edges=[
 
 tremauxTrees.push({
     id: 6, 
-    title: `<span class="badge badge-warning">Not yet supported</span><br>
-    Looping network`, 
+    title: `Looping network`, 
     label: 'This Trémaux tree tests whether the algorithm can handle edges between nodes which loop back on themselves forming a cycle. While legal in MR, these form infinite propagation loops so the plan is to identify and remove looping edges.', 
     data: getTestDataInfo(edges),
     answers: {
         selfloops: [],
-        traversal: ['Not yet supported'],
-        propagation: {'Not yet supported' : true, 'A':1,'B':"0.5",'C':"0.25"}
+        traversal: ['A','B','C'],
+        propagation: {'A':"1",'B':"0.5",'C':"0.25"}
     },
     disabled:true,
+});
+
+/*
+
+
+Strongly related looping tree
+----------
+Description: This tree contains many looping edges.
+
+Diagram:
+
+*/
+
+// JSNX graph object for looping tree
+edges=[ // Cycles
+    ['A','B'], ['B','C'], ['C','A'], 
+    ['B','B'], ['B','F'], ['F','B'], 
+    ['C','A'], ['A','F'], ['F','C'], 
+    ['D','E'], ['E','C'], ['C','D'], 
+    ['E','F'], ['F','G'], ['G','E'], 
+    ['F','A'], ['A','C'], ['C','F'], 
+    ['G','C'], ['C','F'], ['F','G'], 
+];
+
+tremauxTrees.push({
+    id: 7, 
+    title: `Strongly related looping network`, 
+    label: 'This tree contains many looping edges similar to the real life situation.', 
+    data: getTestDataInfo(edges),
+    answers: {
+        selfloops: [],
+        traversal: ["A","B","F","C","G","D","E"], //or ["A","B","C","D","E","F","G"]
+        propagation: {"A":"1","B":"0.5","C":"0.75","F":"1.21875","D":"0.375","E":"0.1875","G":"0.609375"}, //or {"A":"1","B":"0.5","C":"0.75","D":"0.375","E":"0.1875","F":""1".21875","G":"0.609375"}
+    },
+    disabled:false,
 });

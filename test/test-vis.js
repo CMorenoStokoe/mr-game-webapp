@@ -17,10 +17,17 @@ Designed to present the results of tests along with the node/edge and tree data.
 function setGDisplay(tremauxTrees){
 
     // Build network tree for current tremaux tree design
-    data = new DataClass(tremauxTrees[0].data.nodes, tremauxTrees[0].data.edges);
-    tremauxTrees[0].G = data.G; // Get graph for tree
+    tremauxTrees[0].G = new jsnx.DiGraph();
+        for(const node of tremauxTrees[0].data.nodes){
+            tremauxTrees[0].G.addNode(node.id, node);
+        }
+        for(const edge of tremauxTrees[0].data.edges){
+            tremauxTrees[0].G.addEdge(edge.source, edge.target, edge);
+        } 
+    console.log(tremauxTrees[0].G);
     
-    jsnx.draw(tremauxTrees[0].G, { // Draw tree on SVG
+    // Draw tree on SVG
+    jsnx.draw(tremauxTrees[0].G, { 
         element: '#GDisplay-svg', 
         withLabels: true, 
         labelStyle: {fill: 'black'},
@@ -31,6 +38,9 @@ function setGDisplay(tremauxTrees){
             }
         }, 
     });
+
+    tremauxTrees[0].G.removeEdgesFrom(removeLoops(tremauxTrees[0].G, 'A'));
+    console.log(tremauxTrees[0].G);
 
     // Grayscale graph if disabled
     if(tremauxTrees[0].disabled){ document.getElementById('GDisplay-svg').style.webkitFilter = "grayscale(100%) blur(1px)";} else {document.getElementById('GDisplay-svg').style.webkitFilter = ''}
@@ -82,7 +92,7 @@ function testAlgorithm(currentTree){
     // Run tests
     const result_selfloop = test_selfloop(tree); // Identify and remove self-loops
     const result_traversal = test_traversal(tree); // Search network and get path of order in which to search nodes
-    const result_propagation = test_propagation(result_traversal.path); // Use traversal path for propagation
+    const result_propagation = test_propagation(result_traversal.path, tree); // Use traversal path for propagation
     console.log('Results. Selfloop: ', result_selfloop,' Traversal: ',result_traversal ,' Propagation: ', result_propagation)
     
     // Test results against expected values

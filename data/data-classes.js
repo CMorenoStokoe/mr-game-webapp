@@ -33,11 +33,7 @@ class DataClass {
         var indexed = {}
 
         for (const item of items){
-
-            // Assign edge id if edge
-            if(item.source){item[key] = ''+item.source+'_to_'+item.target;}
-            else {item[key] = item[key]};
-
+            
             // If a desiredProperty is given then give {key : desired property}
             // This is used if only one property is desired (e.g., an index of ids : names)
             if(desiredProperty){indexed[item[key]] = item[desiredProperty];}
@@ -62,6 +58,16 @@ class DataClass {
         return list;
     }
 
+    // Get edge by source and target nodes
+    getEdge(source, target){
+        for(const [key, value] of Object.entries(this.edges)){
+            if(value['id.exposure'] == source & value['id.outcome'] == target){
+                return(key);
+            }
+        }
+
+    }
+
     // Set objective at random 
     setObjective(){
         const count = Math.floor(Math.random() * Object.keys(this.nodes).length);
@@ -78,68 +84,42 @@ class DataClass {
 
     }
 
+    // Remove edges
+    updateEdges(newEdges){
+
+        for(const edge of newEdges){
+            var edgeToDelete = this.getEdge(edge[0],edge[1]);
+            delete this.edges[edgeToDelete];
+        }
+        console.log(`Deleted ${newEdges.length} edges from DataFrame`)
+    }
+
     // Export data as node-edge dictionary (for populating D3 vis)
     toD3(){
         return {nodes: this.toList(this.nodes), links: this.toList(this.edges)};
     }
-
+    
     // Export data as network graph (jsnx G)
     toG(){
 
         const G = new jsnx.DiGraph(); // Init G object
-        var idDict = {};
-        var count = 0;
-        var edgeList = [];
 
-        for(const node of this.toList(this.nodes)){
+        for(const [key, value] of Object.entries(this.nodes)){
+            
+            /* Add exposure and outcome to source and target
+            value.source = value['id.exposure'];
+            value.target = value['id.target']; */
+
             // Add nodes to graph
-            G.addNode(count, node);
-            idDict[node.id]=count;
-            count++;
-
-            // Add edges
-            for(const edge of node.edges){
-                const source = edge['id.exposure'];
-                const target = edge['id.outcome'];
-
-                switch(true){
-                    case (source == undefined || target == undefined): break; // Ignore undefined 
-                    case (!(source in idDict)):
-                        idDict[source] = count;
-                        count++;
-                    case (!(target in idDict)):
-                        idDict[target] = count;
-                        count++;
-                    default:
-                        edgeList.push([idDict[source], idDict[target], edge]);
-                        break;
-                }            
+            G.addNode(key, value);
+            
+            // Add edges to graph
+            for(const edge of value.edges){
+                G.addEdge(edge['id.exposure'], edge['id.outcome'], edge);
             }
         }
 
-        G.addEdgesFrom(edgeList);
-
-        return({G:G, idDict:idDict}) // Return G with all nodes and edges
-    }
-
-}
-
-// Class for variables used only by the game
-class GameData {
-
-    constructor(nodes, edges) {
-        this.nodes = nodes;
-
-        // Make game variables
-        this.objective = this.setObjective();
-    }
-
-    setObjective(){
-        return (this.nodes[0]);
-    }
-
-    addLogEntry(entry){
-        this.log.push(entry);
+        return(G) // Return G with all nodes and edges
     }
 
 }

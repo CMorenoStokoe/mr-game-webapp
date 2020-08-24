@@ -54,7 +54,7 @@ function setDisplay(id, display){
 }
 
 // Progress bar attributes
-function setProgress(id, value, range = null){
+function setProgress(id, value, range = {min: 0, max: 100}){
     
     // Select child progress bar div from parent
     progress = document.getElementById(id).children[0];
@@ -66,11 +66,14 @@ function setProgress(id, value, range = null){
     }
 
     // Set current value of progress bar and accompanying label
-    progress.ariaValueNow = value
-    progress.innerHTML = value
+    progress.ariaValueNow = value;
+    progress.innerHTML = value;
 
     // Convert values to percentages for width
-    progress.style.width = value/progress.ariaValueMax*100+'%'
+    absoluteRange = Math.abs(gameData.objective.max - gameData.objective.min);
+    progress.style.width = value/absoluteRange*100+'%'
+    
+    console.log(absoluteRange, progress.style.width)
 }
 
 // Background color

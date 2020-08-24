@@ -19,10 +19,12 @@ collections of methods categorised by purpose.
 
 */
 
-// Gamestates
-var gameState = 1;
-
-const leagues = {
+// Global game variables
+var gameData = null; // Game variables and public health data
+var leftPanel = null; // Important GUI window which displays information on nodes
+var gameState = 1; // State of the game
+var playerInterventionCount = 0; // Number of interventions made by player, on 3 becomes a policy ad triggers an event
+const leagues = { // Different leagues within the game (player levelling system)
     1 : {
         name: 'bronze',
         pval: 0.00000000000000005,
@@ -41,93 +43,67 @@ const leagues = {
     },
 }
 
+// Function to initialise the game data, view and controllers
 function initialise(){
 
-/* Initialise gameData */
+    // Initialise gameData
+
+    gameData = setGameData();
+
+    // Initialise GUI
+
+    initialiseView(gameData, leagues[gameState].pval); // Network visualisation
+
+    leftPanel = new Panel('panel-left', 'left'); // node information GUI panel
+
+    // Initialise controls
+
+    initialiseControls(gameData, leftPanel); // Create ability for players to click on nodes in visualisation
+
+}
+
+// Function to set the game data by the player's current in-game progress 
+function setGameData(){
+    
+    // Get pval threshold by player league level
     var pValueThreshold = leagues[gameState].pval;
-    var gameData = initialiseData(jsonData.nodes, jsonData.links, pValueThreshold);
+
+    // Set game data using base game data and pval appropriate to player's level
+    gameData = initialiseData(jsonData.nodes, jsonData.links, pValueThreshold);
     
-/* Initialise GUI */
+    // Return gameData
+    return(gameData)
+}
 
-    // Set SVG height to fill window container
-    svgContainerHeight = document.getElementById('svg-container').offsetHeight;
-        document.getElementById('svg-main').setAttribute('height', svgContainerHeight);
-    svgContainerWidth = document.getElementById('svg-container').offsetWidth;
-        document.getElementById('svg-main').setAttribute('width', svgContainerWidth);
+// Function to update game displays
+function updateTick(){
 
-    // Initialise graph with pval = bonferroni, settings = mirana + settings.js modifications
-    generateGraphFromJSON(gameData.toD3().nodes, gameData.toD3().links, '#svg-main', settings, pValueThreshold); 
-
-    // Set objective
-    setText('goal', `Raise ${gameData.objective.label}`);
     
-    // Create display panels (using Panel class, giving ID & side of screen)
-    const leftPanel = new Panel('panel-left', 'left');
+    // Update the GUI and progress
+    updateView(gameData);
 
+}
 
-/* Initialise controls */
+// Function to configure what happens when a player enacts 3 interventions in a row to form a policy
+function playerMadePolicy(){
 
-    // Panel close buttons
-    addOnclickEvent('btn-x-leftPanel', function(){leftPanel.close();});
+    // Action on player enacting a policy ...
+    alert('Policy enacted!')
+    
+    // Reset the game data so new policies can be made
+    gameData = setGameData();
 
-    // Add onclick function to bring up node information
-    d3.selectAll('g').on("click", function(){
-        if(this.id){
+    // Reset the network visualisation
+    clearFDG('#svg-main');
+    initialiseView(gameData, leagues[gameState].pval);
+    addOnclickEventsToNodes(gameData, leftPanel); // On click controller
 
-            // Reset policy panel
-            setHTML('policyEffects-decreases', null); setHTML('policyEffects-increases', null);
+    // Reset intervention count
+    playerInterventionCount = 0;
 
-            // Find information on the selected node
-            var node = gameData.nodes[this.id];
-
-            // Populate with node information
-            const title = document.getElementById('panel-policy-title') ;
-                title.innerHTML = node.label;
-            const subtitle = document.getElementById('panel-policy-subtitle');
-                subtitle.innerHTML = node.id;
-            const icon = document.getElementById('panel-policy-icon');
-                icon.src = this.childNodes[1].href.baseVal; // Get image href of this node's icon
-
-            // Display outgoing effects from this edge
-            outGoingEdgeCount = 0;
-
-            for(const edge of node.edges){
-                
-                // Color effects differently if it is an increase or decrease and append to a corresponding column in policy panel
-                switch(edge['id.exposure']){
-
-                    case node.id: outGoingEdgeCount++;
-                        
-                        // Add text to policy effects detailing this relationship
-                        if(Number(edge.b)<0){
-                            createP(`policyEffect${edge.outcome}`, `${edge.outcome} <i class="fas fa-sort-down col-neg"></i>`, 'policyEffects-decreases');
-                        } else if (Number(edge.b)>=0){
-                            createP(`policyEffect${edge.outcome}`, `${edge.outcome} <i class="fas fa-sort-up col-pos"></i>`, 'policyEffects-increases');}
-                    
-                    default:
-                        break;
-                }
-            }
-            
-            if(outGoingEdgeCount==0){
-                createP(`policyEffectNone-incr`, `- None -`, 'policyEffects-decreases', 'policyEffect-none');
-                createP(`policyEffectNone-decr`, `- None -`, 'policyEffects-increases', 'policyEffect-none');
-            }
-            
-            // Open node info panel 
-            leftPanel.open(); 
-        }
-    })
-
-    // Intervention button
-    /*        
-
-    addEventListener('#btn-x-rightPanel', function(){
-        runPropagation(testData.G, 'A', '1');
-    });
-    */
-
-};    
+    // Update game
+    updateTick();
+}
 
 // On window load, initialise
 window.onload = initialise();

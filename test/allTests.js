@@ -38,7 +38,7 @@ function test_selfloop(tree){
 // Test traversal algorithm
 function test_traversal(tree){
     try {
-        const path = findPropagationPath(tree,'A'); // Initiate DFS search of graph G object from root node 0                
+        const path = DFS(tree,'A'); // Initiate DFS search of graph G object from root node 0                
         const pathTree = constructPathTree(path);
         return({test: 'traversal', status : 'Success', info: `${objSize(path.edges)} steps in path`, path: path, tree: pathTree}); // Record in results
     }
@@ -81,10 +81,11 @@ function test_traversal(tree){
 }
 
 // Test propagation MR algorithm
-function test_propagation(path){
+function test_propagation(path, graph){
     try {
         // Supply path for propagation
-        result = propagate(path.edges, 'A', 1); // Run propagation MR
+        result = propagate(graph, 'A', 1); // Run propagation MR
+        for(const [key, value] of Object.entries(result)){result[key] = `${value}`}
         tree = constructPropagationTree(path, result);
         return({test: 'propagation', status : 'Success', info: result, tree: tree}); // Record in results
     }

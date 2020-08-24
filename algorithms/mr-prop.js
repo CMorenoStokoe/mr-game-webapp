@@ -22,70 +22,76 @@ and very small numbers with lots of decimal places are not represented
 accurately. To solve this, the Big.js dependency is used which has
 Big number classes which represent numbers accurately in binary base 10.
 Multiplication and addition are accurate using this method, although division
-is still liable to inaccuracy.
+is still liable to inaccuracy. Currently disabled.
 
 */
 
 
 // Propagation method
-function propagate(path, origin, valueChange){
-    console.log('propagate called: ', path,origin,valueChange)
-    results = [];
-    changes = {}; // Array of {node id: value change} dictionaries containing changes to nodes during propagation
-    changes[origin]=valueChange // Start by recording the value change to propagate and the origin node which will be propagated from
+function propagate(graph, root, valueChange){
 
-    // Extract the data required for propagation MR from the propagation path and MR data (PropMRData bundle)
-    for (const edge of path){
-        console.log(changes[origin])
-        // Convert values to big numbers (for 40 decimal place accuracy)
-        const deltaX = new Big(changes[edge.source]); // change in prevalence (delta) of source node (x, precursor in path)
-        const b = new Big(edge.b); // beta weight of edge from source to target node (b)
-        
-        // Calculate propagation effect
-        const deltaY = b.times(deltaX); 
+    // Init propagation queue
+    const queue = [root];
 
-        // Save deltaY for use as deltaX in next propagation cycle since for A -> B -> C to calculate B -> C we need to know deltaB
-        if(changes[edge.target] == undefined){
-            changes[edge.target] = deltaY.valueOf(); // Get total delta
-        } else {
-            const totalDeltaY = new Big(changes[edge.target]); // Get total delta Y
-            changes[edge.target] = totalDeltaY.plus(deltaY).valueOf(); // Add to delta
+    // Initialise object containing the results of propagation
+    const prevalence = {};
+        for(const node of graph.nodes()){prevalence[node] = {}}; // Init all node values with 0 at start
+        prevalence[root] = {root: valueChange}; // Set origin node value to be the value change to propagate through network
+
+    // Run search with failsafes to avoid infinite loops
+    for (i = 0; i < Math.pow(graph.nodes().length, 2); i++){ 
+        if(queue[0] == undefined){break;}
+
+        // Add successors of current node to queue
+        for(const successor of graph.successors(queue[0])){queue.push(successor)};
+
+        // Calculate propagation effect from predecessors
+        for(const predecessor of graph.predecessors(queue[0])){
+            
+            // Get Beta weight to incoming change
+            const b = getEdgeBeta([predecessor, queue[0]]); // 
+
+            // Calculate total incoming change from previous node
+            let deltaX = 0; 
+
+            for(const [key, value] of Object.entries(prevalence[predecessor])){
+                deltaX += value;
+            };
+
+            // Calculate change to node from this predecessor
+            var deltaY = b*deltaX;
+
+            // Update node prevalence
+            prevalence[queue[0]][predecessor] = deltaY;
         }
+        
+        // Remove current item from queue
+        queue.shift();
+
     }
 
-    // Return results once propagation finished
-    console.log(`Propagated +${valueChange} ${origin}. Results:`, changes);
-    return(changes)
-}
-
-// Propagation method
-function propagate(path, origin, valueChange){
-    console.log('propagate called: ', path,origin,valueChange)
-    results = [];
-    changes = {}; // Array of {node id: value change} dictionaries containing changes to nodes during propagation
-    changes[origin]=valueChange // Start by recording the value change to propagate and the origin node which will be propagated from
-
-    // Extract the data required for propagation MR from the propagation path and MR data (PropMRData bundle)
-    for (const edge of path){
-        console.log(changes[origin])
-        // Convert values to big numbers (for 40 decimal place accuracy)
-        const deltaX = new Big(changes[edge.source]); // change in prevalence (delta) of source node (x, precursor in path)
-        const b = new Big(edge.b); // beta weight of edge from source to target node (b)
+    // Add up changes to nodes
+    results = {};
+    for(const [key1, value1] of Object.entries(prevalence)){
         
-        // Calculate propagation effect
-        const deltaY = b.times(deltaX); 
-
-        // Save deltaY for use as deltaX in next propagation cycle since for A -> B -> C to calculate B -> C we need to know deltaB
-        if(changes[edge.target] == undefined){
-            changes[edge.target] = deltaY.valueOf(); // Get total delta
-        } else {
-            const totalDeltaY = new Big(changes[edge.target]); // Get total delta Y
-            changes[edge.target] = totalDeltaY.plus(deltaY).valueOf(); // Add to delta
+        var prev = 0;
+        for(const [key2, value2] of Object.entries(prevalence[key1])){
+            prev = Number(prev + value2);
         }
+        
+        // If a node value changed add it to results
+        if(prev!=0){results[key1] = prev;}
+        
     }
 
-    // Return results once propagation finished
-    console.log(`Propagated +${valueChange} ${origin}. Results:`, changes);
-    return(changes)
+    return(results);
 
+    // Function to return edge beta weights
+    function getEdgeBeta(edge){
+
+        for([key, value] of jsnx.getEdgeAttributes(graph, 'b').entries()){
+            if(key[0] == edge[0] && key[1] == edge[1]){return(value)};
+        }
+
+    }
 }

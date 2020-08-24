@@ -34,20 +34,42 @@ function initialiseData(nodes, edges, pValueThreshold){
         // Remove self loops from list of edges
         gameData.nodes[key].edges = removeSelfloopEdges( gameData.nodes[key].edges);
 
-        // Give prevalence
-        gameData.nodes[key].prevalence = 1;
+        // Give node values
+        gameData.nodes[key].prevalence = nodeValues[key].prevalence;
+        gameData.nodes[key].min = nodeValues[key].min;
+        gameData.nodes[key].max = nodeValues[key].max;
+        gameData.nodes[key].units = nodeValues[key].units;
 
         // Give icon
         gameData.nodes[key].icon = `https://www.morenostok.io/epicons/svg/${icons[gameData.nodes[key].id]}.svg`; // Icon assignment in gameData/icons.js
     }
 
+    // Make Graph object
+    gameData.G = gameData.toG();
+
     // Detect loops
-    //findLoops(gameG, 0, recursionLimit = 10)
+    var loopsRemoved = 0;
+    for(const node of gameData.G.nodes()){
+        if(gameData.G.successors(node).length>0){
+
+            // Find loops
+            const loops = removeLoops(gameData.G, node);
+
+            // Remove loops
+            loopsRemoved += loops.length;
+            gameData.G.removeEdgesFrom(loops);
+            gameData.updateEdges(loops);
+
+        }
+    }
     
     // Choose an objective target
     gameData.setObjective();
 
-    console.log(gameData);
+    // Return gameData
+    console.log(`${loopsRemoved} loops removed`);
+    console.log('GAMEDATA: ', gameData);
+    
     return(gameData);
 
 }

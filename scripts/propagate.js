@@ -10,28 +10,24 @@ This file invokes the propagation and traversal algorithms to produce propagatio
 
 */
 
-function runPropagation(network, originNode, valueChange){
-    console.log('Propagate invoked: ', network, originNode, valueChange)
-
-    // Remove any self-loops 
-    selfloops = network.selfloopEdges();
-    network.removeEdgesFrom(selfloops); 
+function runPropagation(gameData, originNode, valueChange){
     
-    // Remove any loops 
-    //network.removeEdgesFrom(network.loopEdges());
+    // Get data network graph object to search
+    network = gameData.G
 
     // Find traversal path
-    const path = findPropagationPath(network, originNode);
+    const path = DFS(network, originNode);
 
     // Follow traversal path in propagation
-    const result = propagate(path.edges, originNode, valueChange);
+    const result = propagate(network, originNode, valueChange);
 
     // Update values with propagation effects
-    for(const node of path.nodes){
-        network.node.get(node).prevalence = result[node];
+    for(const [key, value] of Object.entries(result)){
+        gameData.nodes[key].prevalence += value;
+        console.log([key, value], gameData.nodes[key], gameData.nodes[key].prevalence)
     }
 
     // Return the result of nodes to change
-    console.log('Propagation complete: ', network.nodes(optData=true))
+    console.log(`Propagated the effect of changing ${originNode} by ${valueChange} with results: `, result)
     return(result);
 }
