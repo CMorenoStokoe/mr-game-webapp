@@ -17,23 +17,30 @@ function initialiseControls(gameData, leftPanel){
 
     // Add event to show information on-clicking nodes
     addOnclickEventsToNodes(gameData, leftPanel);
-
-    // Intervention button
     
+    // Path to objective button on the information panel 
+    document.getElementById('panel-policy-showPathBtn').addEventListener("click", function(){
+        try{highlightPath(document.getElementById('panel-policy-interventionBtn').getAttribute("data-nodeId"), gameData.objective.id)}catch{}
+    });
+            
+    // Intervention button
     document.getElementById('panel-policy-interventionBtn').addEventListener("click", function(){
         
         // Increment the number of policies made
         playerInterventionCount ++;
 
         // Run propagation using gameData Graph object, this node's ID, and increase
-        thisNodeId = this.getAttribute('data-nodeId');
-        prevalenceIncrease = Math.abs(gameData.nodes[thisNodeId].prevalence * 0.25);
-        runPropagation(gameData, this.getAttribute('data-nodeId'), prevalenceIncrease);
+        const thisNodeId = this.getAttribute('data-nodeId');
+        runPropagation(gameData, this.getAttribute('data-nodeId'),  gameData.nodes[thisNodeId].prevalenceIncrease);
+
+        // Update display
+        updateTick();
 
         // If this is the third intervention then trigger the event for a player enacting a full policy
         if(playerInterventionCount == 3){playerMadePolicy()};
 
-        updateTick();
+        // Close panel
+        leftPanel.close();
 
     });
 
@@ -51,46 +58,11 @@ function addOnclickEventsToNodes(gameData, leftPanel){
 
             // Find information on the selected node
             var node = gameData.nodes[this.id];
+            const node_icon_src = this.childNodes[1].href.baseVal; // Get image href of this node's icon
 
-            // Populate with node information
-            const title = document.getElementById('panel-policy-title') ;
-                title.innerHTML = node.label;
-            const subtitle = document.getElementById('panel-policy-subtitle');
-                subtitle.innerHTML = node.id;
-            const icon = document.getElementById('panel-policy-icon');
-                icon.src = this.childNodes[1].href.baseVal; // Get image href of this node's icon
+            // Set left panel information
+            setInformationPanel(node, gameData, node_icon_src);
 
-            // Set data attribute for intervention
-            const dataAttr = document.getElementById('panel-policy-interventionBtn');
-                dataAttr.setAttribute('data-nodeId', node.id);
-
-            // Display outgoing effects from this edge
-            outGoingEdgeCount = 0;
-
-            for(const edge of node.edges){
-                
-                // Color effects differently if it is an increase or decrease and append to a corresponding column in policy panel
-                switch(edge['id.exposure']){
-
-                    case node.id: outGoingEdgeCount++;
-                        
-                        // Add text to policy effects detailing this relationship
-                        if(Number(edge.b)<0){
-                            createP(`policyEffect${edge.outcome}`, `${edge.outcome} <i class="fas fa-sort-down col-neg"></i>`, 'policyEffects-decreases');
-                        } else if (Number(edge.b)>=0){
-                            createP(`policyEffect${edge.outcome}`, `${edge.outcome} <i class="fas fa-sort-up col-pos"></i>`, 'policyEffects-increases');}
-                    
-                    default:
-                        break;
-                }
-            }
-            
-            // If node has no effects, say this
-            if(outGoingEdgeCount==0){
-                createP(`policyEffectNone-incr`, `- None -`, 'policyEffects-decreases', 'policyEffect-none');
-                createP(`policyEffectNone-decr`, `- None -`, 'policyEffects-increases', 'policyEffect-none');
-            }
-            
             // Open node info panel 
             leftPanel.open(); 
         }

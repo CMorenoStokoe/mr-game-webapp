@@ -61,6 +61,8 @@ function propagate(graph, root, valueChange){
             // Calculate change to node from this predecessor
             var deltaY = b*deltaX;
 
+            console.log(b, deltaX, deltaY)
+
             // Update node prevalence
             prevalence[queue[0]][predecessor] = deltaY;
         }
@@ -83,7 +85,7 @@ function propagate(graph, root, valueChange){
         if(prev!=0){results[key1] = prev;}
         
     }
-
+    
     return(results);
 
     // Function to return edge beta weights

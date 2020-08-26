@@ -22,10 +22,7 @@ function runPropagation(gameData, originNode, valueChange){
     const result = propagate(network, originNode, valueChange);
 
     // Update values with propagation effects
-    for(const [key, value] of Object.entries(result)){
-        gameData.nodes[key].prevalence += value;
-        console.log([key, value], gameData.nodes[key], gameData.nodes[key].prevalence)
-    }
+    gameData.update(result);
 
     // Return the result of nodes to change
     console.log(`Propagated the effect of changing ${originNode} by ${valueChange} with results: `, result)

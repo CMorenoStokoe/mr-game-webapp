@@ -59,39 +59,101 @@ class DataClass {
     }
 
     // Get edge by source and target nodes
-    getEdge(source, target){
+    getEdgeId(source, target){
         for(const [key, value] of Object.entries(this.edges)){
             if(value['id.exposure'] == source & value['id.outcome'] == target){
                 return(key);
             }
         }
-
+        return('no entries found');
     }
 
     // Set objective at random 
     setObjective(){
-        const count = Math.floor(Math.random() * Object.keys(this.nodes).length);
-        this.objective = this.nodes[Object.keys(this.nodes)[count]];
+
+        // Make sure the objective is valid and can be affected by policies
+        var objective = getRandomObjective(this);
+        while(isInvalid(objective)){
+            objective = getRandomObjective(this);
+        }
+
+        // When a valid objective is found, set it
+        this.objective = objective;
+
+        // Function to pick a random objective
+        function getRandomObjective(nodeList){
+            console.log(nodeList)
+            // Generate random number in range of number of nodes
+            const count = Math.floor(Math.random() * Object.keys(nodeList.nodes).length);
+
+            // Select and return a node by this number 
+            return(nodeList.nodes[Object.keys(nodeList.nodes)[count]])
+        }
+
+        // Function to check whether the node is valid
+        function isInvalid(node){
+            for(const edge of node.edges){
+                if(edge['id.outcome'] == node.id){return false}
+            }
+            return true
+        }
     }
 
     // Update node values with new data
-    update(nodesToUpdate, newNodeValues){
+    update(result){
         
         // Update node data
-        for(const node of nodesToUpdate){
-            this.nodes[node].prevalence = newNodeValues[node]; // Replace [{oldData}] with [{newData}]
-        }
+        for(const [key, value] of Object.entries(result)){
+            console.log([key, value])
+            console.log(this.nodes[key].prevalence, this.nodes[key].change, this.nodes[key].change_bar)
 
+            // Get new prevalence value
+            var newNodePrevalence = this.nodes[key].prevalence += value;
+
+            // Clip prevalence to within min/max limits
+            newNodePrevalence = Math.min(this.nodes[key].max, newNodePrevalence);
+            newNodePrevalence = Math.max(this.nodes[key].min, newNodePrevalence);
+
+            // Update prevalence related values for node (e.g., change and progress bar width)
+            this.setPrevalenceValues(key, newNodePrevalence);
+            console.log(this.nodes[key].prevalence, this.nodes[key].change, this.nodes[key].change_bar)
+        }
+    }
+        
+    // Function to set prevalence values of node
+    setPrevalenceValues(nodeId, prevalence){
+
+        // Set extra data variables for showing prevalence changes
+        this.nodes[nodeId].prevalence = prevalence;
+        this.nodes[nodeId].change = (prevalence - this.nodes[nodeId].average) / this.nodes[nodeId].average * 100;
+        this.nodes[nodeId].change_bar = (this.nodes[nodeId].change / 2) + 50;
     }
 
     // Remove edges
-    updateEdges(newEdges){
+    updateEdges(newEdges){ console.log(`Deleting ${newEdges.length} edges from DataFrame`, newEdges);
 
         for(const edge of newEdges){
-            var edgeToDelete = this.getEdge(edge[0],edge[1]);
-            delete this.edges[edgeToDelete];
+            const edgeId = this.getEdgeId(edge[0],edge[1]);
+
+            // Delete edge from edge list
+            delete this.edges[edgeId];
+            
+            // Delete edges from list of edges for each node
+            for(const node of edge){
+                const index = edgeIndex(edge[0], edge[1], this.nodes[node].edges);
+                this.nodes[node].edges.splice(index, 1);
+            }
         }
-        console.log(`Deleted ${newEdges.length} edges from DataFrame`)
+
+        // Function to find and remove edges from node edge list
+        function edgeIndex(exposure, outcome, edges){
+            // Identify and delete edge from node edge lists
+            for(const i in edges){
+                if(edges[i]['id.exposure']==exposure && edges[i]['id.outcome']==outcome){
+                    return(i);
+                }
+            }
+        }
     }
 
     // Export data as node-edge dictionary (for populating D3 vis)
@@ -105,10 +167,6 @@ class DataClass {
         const G = new jsnx.DiGraph(); // Init G object
 
         for(const [key, value] of Object.entries(this.nodes)){
-            
-            /* Add exposure and outcome to source and target
-            value.source = value['id.exposure'];
-            value.target = value['id.target']; */
 
             // Add nodes to graph
             G.addNode(key, value);

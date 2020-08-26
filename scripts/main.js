@@ -48,17 +48,24 @@ function initialise(){
 
     // Initialise gameData
 
-    gameData = setGameData();
+        // Set game data to default values and apply pvalue filtering
+        gameData = setGameData();
 
     // Initialise GUI
 
-    initialiseView(gameData, leagues[gameState].pval); // Network visualisation
+        // Network visualisation
+        initialiseView(gameData, leagues[gameState].pval); 
 
-    leftPanel = new Panel('panel-left', 'left'); // node information GUI panel
+        // node information GUI panel
+        leftPanel = new Panel('panel-left', 'left'); 
+        
+        // Set node sizes
+        setNodeSizes(gameData)
 
     // Initialise controls
-
-    initialiseControls(gameData, leftPanel); // Create ability for players to click on nodes in visualisation
+        
+        // Create ability for players to click on nodes in visualisation
+        initialiseControls(gameData, leftPanel); 
 
 }
 
@@ -77,7 +84,6 @@ function setGameData(){
 
 // Function to update game displays
 function updateTick(){
-
     
     // Update the GUI and progress
     updateView(gameData);
@@ -87,8 +93,11 @@ function updateTick(){
 // Function to configure what happens when a player enacts 3 interventions in a row to form a policy
 function playerMadePolicy(){
 
+    // Update game
+    updateTick();
+    
     // Action on player enacting a policy ...
-    alert('Policy enacted!')
+    alert(`Policy enacted! You changed ${gameData.objective.label} by ${to4SF(gameData.objective.change)}`)
     
     // Reset the game data so new policies can be made
     gameData = setGameData();
@@ -100,9 +109,6 @@ function playerMadePolicy(){
 
     // Reset intervention count
     playerInterventionCount = 0;
-
-    // Update game
-    updateTick();
 }
 
 // On window load, initialise

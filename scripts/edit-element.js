@@ -59,21 +59,16 @@ function setProgress(id, value, range = {min: 0, max: 100}){
     // Select child progress bar div from parent
     progress = document.getElementById(id).children[0];
     
-    // If min/max values are given set range of progress bar
-    if(range){
-        progress.ariaValueMin = range.min;
-        progress.ariaValueMax = range.max;
-    }
+    // Set range of progress bar
+    progress.ariaValueMin = range.min;
+    progress.ariaValueMax = range.max;
 
     // Set current value of progress bar and accompanying label
     progress.ariaValueNow = value;
-    progress.innerHTML = value;
+    progress.innerHTML = value+'%';
 
     // Convert values to percentages for width
-    absoluteRange = Math.abs(gameData.objective.max - gameData.objective.min);
-    progress.style.width = value/absoluteRange*100+'%'
-    
-    console.log(absoluteRange, progress.style.width)
+    progress.style.width = value+'%'
 }
 
 // Background color
