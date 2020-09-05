@@ -3,148 +3,171 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>MR Game</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>MR Game</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- Bootstrap css theme --> 
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-        
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;800&display=swap" rel="stylesheet">
-        
-        <!-- Fa icons -->
-        <script src="https://kit.fontawesome.com/ff3502b087.js" crossorigin="anonymous"></script>
-        
-        <!-- Custom css -->
-        <link rel="stylesheet" href="css/style.css">
+    <!-- Bootstrap css theme --> 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@200;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,200;0,300;1,200&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gugi&display=swap" rel="stylesheet">
 
-    </head>
-    <body>
-        
-        <!-- Top of page tilebar -->
-        <div class="row text-center" id="tilebar-top" style='height: 10vh;'>
-            
-            <div class="col-sm">
-                <h2>Goal</h2>
-                <p id='goal'>...</p>
-            </div>
+    <!-- Fa icons -->
+    <script src="https://kit.fontawesome.com/ff3502b087.js" crossorigin="anonymous"></script>
+    
+    <!-- Custom css -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/game.css">
 
-            <div class="col-sm">
-                <h2>Progress</h2>
-                <div class="progress center-block" style="width: 75%; margin-left: auto; margin-right: auto;" id='progress-goal'>
-                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary col-dark" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 50%"></div>
-                </div>
-                <p id='progress-helpText'>Enact policies to make progress.</p>
-            </div>
+</head>
+<body style='overflow: hidden !important;'>
 
-            <div class="col-sm">
-                <h2>Enact policy</h2>
-                <p><i class="far fa-hand-pointer col-primary"></i> Click a trait to learn more</p>
-            </div>
 
+    <div class='container'>
+
+    <!-- Main title -->
+    <div class='d-flex justify-content-center align-items-center' id='splash'>
+        <h1 id='splash-title'>MENDEL</h1>
+        <img id='splash-logo' src='images/logo v5_white.png' height='150px' width='150px' style='display: inline-block;'>
+    </div>
+    <div id='splash-login'>
+        <div class='card m-2 p-2 bg-light'>     
+            <input class='m-2 bg-light' type="text" id="splash-form" name="fname" placeholder=" Enter username">
+            <button class='btn btn-lg m-2 btn-custom' id='splash-button'>Login</button>
         </div>
+    </div>
+    <div id='splash-planet'></div> <!-- Planet -->
+    
+    <!-- Planet image -->
+    <div id='GUI-planet'></div>
 
-        <!-- Main content area --> 
-        <div class="row text-center" style='height: 87vh;' >
+    <p id='progress-helpText' style='display: none; position: absolute; top:0; left: 45%;'><i class="far fa-hand-pointer col-primary"></i>  Enact policies to make progress.</p>
+    
+    <!-- Current planet, system and goal information -->
+    <div id='GUI-planetInfo'>
+        <h1 id='GUI-currentPlanet' class='display-4'></h1>
+        <div class="progress center-block position-relative" style="visibility: hidden;" id='progress-goal'>
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary col-dark" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+            <h5 class="justify-content-center d-flex position-absolute w-100 mt-1" id='GUI-currentSystem'></h5>
+        </div>
+        <div id='GUI-goal' class='p-2'>
+            <p class='p-2'>
+                <img id='goal-icon' src='' class='m-2' style='height: 30px; width: auto;'>
+                <i class="" id='goal-indicator'></i>
+                <span id='goal'></span>
+            </p>
+        </div>    
+    </div>  
 
-            <!-- Graph area -->
-            <div class="d-flex w-100 justify-content-center align-item-center"id='svg-container'>
-                <svg width="1000" height="700" id="svg-main"></svg>
+    <!-- Main content area --> 
+    <div class="row text-center" style='height: 100vh;' >
+
+        <!-- Graph area -->
+        <div class="d-flex w-100 justify-content-center align-item-center" style='height: 100%' id='svg-container'>
+            <svg width="1000" height="700" id="svg-main" style='display: none;'></svg>
+        </div>
+            
+        <!-- Policy info panel -->
+        <div class="card" id="panel-left">
+            
+            <div class="card-header">
+                <button class="btn btn-light float-right" id="btn-x-leftPanel"><i class="fas fa-times"></i></button>
+                <h2>View policy effects</h2>
             </div>
-                
-            <!-- Policy info panel -->
-            <div class="card" id="panel-left">
-                
-                <div class="card-header">
-                    <button class="btn btn-light float-right" id="btn-x-leftPanel"><i class="fas fa-times"></i></button>
-                    <h2>View policy effects</h2>
+
+            <div class="card-body" id="policy-container">
+                <div class="card policy">
+                    <div class="card-body d-flex justify-content-center align-items-center">
+                        <div><img src='' id='panel-policy-icon'></div>
+                        <div>
+                            <h5 class="card-title" id='panel-policy-title'>...</h5>
+                            <p class="card-text" id='panel-policy-subtitle'>...</p></div>
+                    </div>
                 </div>
 
-                <div class="card-body" id="policy-container">
-                    <div class="card policy">
-                        <div class="card-body d-flex justify-content-center align-items-center">
-                            <div><img src='' id='panel-policy-icon'></div>
-                            <div>
-                                <h5 class="card-title" id='panel-policy-title'>...</h5>
-                                <p class="card-text" id='panel-policy-subtitle'>...</p></div>
-                        </div>
-                    </div>
+                <button class='btn btn-primary' id='panel-policy-showPathBtn'>Show relation to objective</button>
 
-                    <button class='btn btn-primary' id='panel-policy-showPathBtn'>Show relation to objective</button>
-
-                    <div class="card policy">
-                        <div class="card-body">
-                            <h5 class="card-title" id='policyEffects-title'>Intervention would affect:</h5>
-                            <div class='d-flex flex-row justify-content-center'>
-                                <!-- Increases -->
-                                <div class='d-flex flex-column justify-content-left align-items-center p-2 m-2'>
-                                    <h5 class='col-pos'>Increases</h5>
-                                    <div id='policyEffects-increases'></div>
-                                </div>
-                                <!-- Decreases -->
-                                <div class='d-flex flex-column justify-content-left align-items-center p-2 m-2'>
-                                    <h5 class='col-neg'>Decreases</h5>
-                                    <div id='policyEffects-decreases'></div>
-                                </div>
+                <div class="card policy">
+                    <div class="card-body">
+                        <h5 class="card-title" id='policyEffects-title'>Intervention would affect:</h5>
+                        <div class='d-flex flex-row justify-content-center'>
+                            <!-- Increases -->
+                            <div class='d-flex flex-column justify-content-left align-items-center p-2 m-2'>
+                                <h5 class='col-pos'>Increases</h5>
+                                <div id='policyEffects-increases'></div>
+                            </div>
+                            <!-- Decreases -->
+                            <div class='d-flex flex-column justify-content-left align-items-center p-2 m-2'>
+                                <h5 class='col-neg'>Decreases</h5>
+                                <div id='policyEffects-decreases'></div>
                             </div>
                         </div>
                     </div>
-                    <button type='button' class="btn btn-lg btn-primary" style="margin-top: 10px;" id='panel-policy-interventionBtn'>Enact policy</button>
                 </div>
+                <button type='button' class="btn btn-lg btn-primary" style="margin-top: 10px;" id='panel-policy-interventionBtn'>Enact policy</button>
             </div>
-            
         </div>
-
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
         
-        <!-- External dependencies (Bootstrap, JQuery, D3, jsnetworkx) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <script src="scripts/d3/d3.min.js"></script>
-        <script src="scripts/jsnx/jsnetworkx.js"></script>
-        <script src="scripts/big/big.min.js"></script>
+    </div> 
 
-        <!-- GUI modules -->
-        <script src="scripts/edit-element.js"></script>
-        <script src="scripts/create-element.js"></script>
-        <script src="scripts/event-handling.js"></script>
-        <script src="test/debug/debug-methods.js"></script> 
+    </div><!-- / container-->
 
-        <!-- Data -->
-        <script src="data/data-classes.js"></script> 
-        <script src="data/data.js"></script>
-        <script src="data/node-info.js"></script>
+    <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    
+    <!-- External dependencies (Bootstrap, JQuery, D3, jsnetworkx) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="scripts/d3/d3.min.js"></script>
+    <script src="scripts/jsnx/jsnetworkx.js"></script>
+    <script src="scripts/big/big.min.js"></script>
 
-        <!-- MiRANA network visualisation -->
-        <script src="../network-mr-vis-tool/scripts/settings-defaults.js"></script>
-        <script src="scripts/settings.js"></script>
-        <script src="../network-mr-vis-tool/scripts/graph.js"></script>
-        <script src="../network-mr-vis-tool/scripts/edit-graph.js"></script>
-        <script src="../network-mr-vis-tool/scripts/data-cleaning.js"></script>
-        <script src="../network-mr-vis-tool/scripts/node-properties.js"></script>
-        <script src="../network-mr-vis-tool/scripts/edge-properties.js"></script>
-        <script src="../network-mr-vis-tool/scripts/graph-from-json.js"></script>
+    <!-- GUI modules -->
+    <script src="scripts/edit-element.js"></script>
+    <script src="scripts/create-element.js"></script>
+    <script src="scripts/event-handling.js"></script>
+    <script src="test/debug/debug-methods.js"></script> 
 
-        <!-- Propagation modules -->
-        <script src="algorithms/traversal.js"></script>
-        <script src="algorithms/mr-prop.js"></script>
-        <script src="algorithms/loop-detection.js"></script>
-        <script src="scripts/propagate.js"></script>
+    <!-- Data -->
+    <script src="data/data-classes.js"></script> 
+    <script src="data/data.js"></script>
+    <script src="data/node-info.js"></script>
 
-        <!-- Main -->
-        <script src="scripts/model.js"></script> 
-        <script src="scripts/view.js"></script> 
-        <script src="scripts/controller.js"></script> 
-        <script src="scripts/main.js"></script> 
-    </body>
-    <footer>
-        
-    </footer>
+    <!-- MiRANA network visualisation -->
+    <script src="../network-mr-vis-tool/scripts/settings-defaults.js"></script>
+    <script src="../network-mr-vis-tool/scripts/graph.js"></script>
+    <script src="../network-mr-vis-tool/scripts/edit-graph.js"></script>
+    <script src="../network-mr-vis-tool/scripts/data-cleaning.js"></script>
+    <script src="../network-mr-vis-tool/scripts/node-properties.js"></script>
+    <script src="../network-mr-vis-tool/scripts/edge-properties.js"></script>
+    <script src="../network-mr-vis-tool/scripts/graph-from-json.js"></script>
+
+    <!-- Settings for network vis-->
+    <script src="scripts/settings.js"></script>
+
+    <!-- Propagation modules -->
+    <script src="algorithms/traversal.js"></script>
+    <script src="algorithms/mr-prop.js"></script>
+    <script src="algorithms/loop-detection.js"></script>
+    <script src="scripts/propagate.js"></script>
+
+    <!-- Main -->
+    <script src="data/database.js"></script> 
+    <script src="scripts/intro.js"></script> 
+    <script src="scripts/tutorial.js"></script> 
+    <script src="scripts/model.js"></script> 
+    <script src="scripts/view.js"></script> 
+    <script src="scripts/controller.js"></script> 
+    <script src="scripts/main.js"></script> 
+
+</body>
 </html>
