@@ -1,0 +1,103 @@
+/*
+CSS styles for the game
+:::::::::::::::::::::::
+Description: Contains style formatting for elements in the game.
+*/
+
+body{
+    background: url("../images/spaceboxes/space2.jpg") ;
+        background-color: black;
+        background-size: cover;
+}
+
+#splash{
+    position: absolute;
+        top: 40%;
+        right: 50px;
+    opacity: 0;
+    z-index: 2;
+}
+#splash-title{
+    font-family: 'Gugi', cursive;
+        color: var(--col-light);
+        text-shadow: 0 0 3px black;
+        font-weight: 400;
+        font-size: 8rem;
+}
+#splash-login{
+    position: absolute;
+        top: 50%;
+        right: 50px;
+    font-family: 'Oxanium', cursive;
+        font-weight: 700;
+        font-size: 2em;
+        color: var(--col-light);
+    opacity: 0;
+    z-index: 2;
+}
+#splash-planet{
+    position: absolute;
+        top: calc(100vh - 600px); 
+        left: 0; 
+    height: 600px;
+    width: 800px;
+    z-index: 1;
+    overflow: hidden;
+    background: url("../images/planets/earth.png") no-repeat;
+    background-position: -150px 0px;
+    background-size: 800px 800px;
+    opacity: 0;
+}
+#rockets{
+    width: 100%; 
+    height: 100%; 
+    overflow: hidden;
+}
+
+#GUI-planet{
+    position: absolute;
+        top: calc(100vh - 600px); 
+        right: 0; 
+    height:600px;
+    width:800px;
+    z-index: -1;
+    overflow: hidden;
+}
+#GUI-planetInfo{
+    position: absolute; 
+        top: 0; 
+        left: 0; 
+    border-bottom-right-radius: 10%;
+    /*font-family: 'Oxanium', cursive;*/
+    padding: 20px;
+    font-family: 'Exo 2', sans-serif;
+        font-weight: 200;
+        color: var(--col-light);
+        text-shadow: 0 0 3px black;
+    opacity: 0;
+}
+#GUI-currentPlanet{
+    font-weight: 300;
+}
+#GUI-currentSystem{
+    font-weight: 300;
+        font-style: italic; 
+}
+
+#GUI-goal{
+    font-weight: 300;   
+}
+
+#progress-goal{
+    height: 3em; 
+    width: 200px; 
+    background: rgba(0,0,0,0);
+}
+
+.chevron-pos{
+    color: var(--col-pos);
+}
+
+.chevron-neg{
+    color: var(--col-neg);
+}

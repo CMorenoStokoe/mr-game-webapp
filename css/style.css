@@ -20,8 +20,22 @@
 .col-dark{
     color: var(--col-dark);
 }
+.col-light{
+    color: var(--col-light);
+}
 .bg-primary{
     background-color: var(--col-primary) !important;
+}
+.bg-light{
+    background-color: var(--col-light) !important;
+}
+.btn-custom{
+    font-family: 'Oxanium', cursive;
+        font-weight: 700;
+    background-color: var(--col-primary) !important;
+}
+.btn-custom:hover{
+    background-color: var(--col-light) !important;
 }
 
 /* Style for game GUI */
@@ -50,10 +64,13 @@
 #svg-main{
     height: var(--100pct-in-px);
     width: var(--100pct-in-px);
+    opacity: 0;
 }
+
 .nodeLabel{
     opacity: 0;
 }
 .nodeLabel_bg{
     opacity: 0;
 }
+
