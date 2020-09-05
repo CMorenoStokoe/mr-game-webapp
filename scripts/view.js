@@ -10,48 +10,89 @@ This file is called by the main script and calls other functions in other second
 
 */
 
-function initialiseView(gameData, pValueThreshold){
+// On start set visualisation SVG to scale dynamically to the window height and width
+svgContainerHeight = document.getElementById('svg-container').offsetHeight;
+    document.getElementById('svg-main').setAttribute('height', svgContainerHeight);
+svgContainerWidth = document.getElementById('svg-container').offsetWidth;
+    document.getElementById('svg-main').setAttribute('width', svgContainerWidth);
 
-    // Set SVG height to fill window container
-    svgContainerHeight = document.getElementById('svg-container').offsetHeight;
-        document.getElementById('svg-main').setAttribute('height', svgContainerHeight);
-    svgContainerWidth = document.getElementById('svg-container').offsetWidth;
-        document.getElementById('svg-main').setAttribute('width', svgContainerWidth);
+// Function to set view of game
+function initialiseView(gameData, pValueThreshold, currentGameState){
+    
+    // Fade in SVG
+    setDisplay('svg-main', 'inline-block');
+    $('#svg-main')
+        .delay(1000)
+        .animate({opacity: 1}, 500);
+
+    // Fade in text
+    $('#GUI-planetInfo')
+        .delay(1000)
+        .animate({opacity: 1}, 500);
 
     // Initialise graph with pval = bonferroni, settings = mirana + settings.js modifications
     generateGraphFromJSON(gameData.toD3().nodes, gameData.toD3().links, '#svg-main', settings, pValueThreshold); 
 
-    // Ensure objective is correctly set
-    if(gameData.objective.good){
-        setText('goal', `Raise ${gameData.objective.label}`);
-    } else {
-        setText('goal', `Lower ${gameData.objective.label}`);
-    }    
+    // Set objective text, progress and icon       
+        if(gameData.objective.good){ // If objective is to increase a good trait
 
-    // Set progress towards goal
-    setProgress('progress-goal', gameData.objective.change);
-    
+            // Set objective text
+            setText('goal', `Raise ${gameData.objective.label}`);
+
+            // Set direction indicating arrow
+            document.getElementById('goal-indicator').className = 'fas fa-chevron-up chevron-pos';
+
+        } else { // If objective is to reduce a bad trait
+
+            // Set objective text
+            setText('goal', `Lower ${gameData.objective.label}`);
+
+            // Set direction indicating arrow
+            document.getElementById('goal-indicator').className = 'fas fa-chevron-down chevron-neg';
+        }    
+
+        // Set objective icon
+        document.getElementById('goal-icon').src = gameData.objective.icon;
+
     // Have helper text on initialisation prompting the player to make an intervention
     setText('progress-helpText', `Enact policies to make progress.`);
+
+    // Set system planet image and name
     
+        // Set system name
+        setText('GUI-currentSystem', `${currentGameState.leagueName} system`);
+
+        // Set system progress
+        setProgress('progress-goal', 10);
+        setVisibility('progress-goal', 'visible');
+
+        // Randomly select a planet
+        const planetNames = ['Aeries Prime', 'Surtur', 'Grappel', 'Ivr-Dist', 'Hom', 'Terranovo', 'Casa', 'Destrey', 'Tato', 'Lux', 'Ndalore']
+        const planetName = planetNames[getRandomInt(planetNames.length)];
+        const planetGraphic = getRandomInt(4);
+
+        // Set planet name
+        setText('GUI-currentPlanet', `${planetName}`);
+
+        // Set planet image
+        var planet = document.getElementById('GUI-planet').style;
+            planet.background = `url("images/planets/${planetGraphic}.png") no-repeat`;
+            planet.backgroundPosition = '150px 0px';
+            planet.backgroundSize= '800px 800px';
+
+    // Set node sizes
+    setNodeSizes(gameData);
+
+    // Function to generate random number (from: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random)
+    function getRandomInt(max) {
+        return Math.floor(Math.random() * Math.floor(max));
+    }
 }
 
 // Update GUI
 function updateView(gameData){
-    
-    // Ensure objective is correctly set
-    setText('goal', `Raise ${gameData.objective.label}`);
-
-    // Set progress towards goal
-    setProgress('progress-goal', to4SF(gameData.objective.change_bar));
-
-    // Remove helper text under policies
-    setText('progress-helpText', ``);
-
-    // Set node sizes
-    setNodeSizes(gameData);
 }
-
+ 
 // Set node sizes
 function setNodeSizes(gameData){
 
@@ -247,5 +288,4 @@ function to4SF(number){
     } else {
         return number.toFixed(0)
     }
-
 }

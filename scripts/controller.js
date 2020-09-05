@@ -10,6 +10,23 @@ It is called by the main script and calls other secondary functions.
 
 */
 
+// Function to intialise login
+function initialiseLogin(){
+    
+    // Make login button
+    addOnclickEvent('splash-button', function(){
+        const username = document.getElementById('splash-form').value;
+        if(username){
+            createNewUser(
+                username,
+                function(){loadPlayerData(username)}
+            );
+            dismissSplash();
+        } else {alert('Please enter your username')}
+    });
+}
+
+// Function to intiialise game controls
 function initialiseControls(gameData, leftPanel){
 
     // Panel close buttons
@@ -37,7 +54,7 @@ function initialiseControls(gameData, leftPanel){
         updateTick();
 
         // If this is the third intervention then trigger the event for a player enacting a full policy
-        if(playerInterventionCount == 3){playerMadePolicy()};
+        if(playerInterventionCount == playerInterventionMax){playerMadePolicy()};
 
         // Close panel
         leftPanel.close();
