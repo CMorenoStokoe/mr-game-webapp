@@ -54,21 +54,21 @@ function setDisplay(id, display){
 }
 
 // Progress bar attributes
-function setProgress(id, value, range = {min: 0, max: 100}){
+function setProgress(id, value, range = false){
     
     // Select child progress bar div from parent
     progress = document.getElementById(id).children[0];
     
     // Set range of progress bar
-    progress.ariaValueMin = range.min;
-    progress.ariaValueMax = range.max;
+    if(range){
+        progress.ariaValueMin = range.min;
+        progress.ariaValueMax = range.max;
+    }
 
     // Set current value of progress bar and accompanying label
     progress.ariaValueNow = value;
-    progress.innerHTML = value+'%';
-
-    // Convert values to percentages for width
-    progress.style.width = value+'%'
+        progress.innerHTML = `${value / progress.ariaValueMax * 100}%`;
+        progress.style.width = `${value / progress.ariaValueMax * 100}%`;
 }
 
 // Background color

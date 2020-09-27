@@ -13,7 +13,7 @@ This file invokes the propagation and traversal algorithms to produce propagatio
 function runPropagation(gameData, originNode, valueChange){
     
     // Get data network graph object to search
-    network = gameData.G
+    var network = gameData.G;
 
     // Find traversal path
     const path = DFS(network, originNode);
@@ -26,5 +26,5 @@ function runPropagation(gameData, originNode, valueChange){
 
     // Return the result of nodes to change
     console.log(`Propagated the effect of changing ${originNode} by ${valueChange} with results: `, result)
-    return(result);
+    return({path: path, result: result});
 }

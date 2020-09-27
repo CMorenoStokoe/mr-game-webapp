@@ -10,12 +10,34 @@ body{
         background-size: cover;
 }
 
+/* Initial button to dismiss and play */
+#screen-button{
+    opacity: 0;
+    border-radius: 20px;
+    display: hidden;
+}
+#loading-screen{
+    font-family: 'Oxanium', cursive;
+        font-weight: 700;
+        font-size: 2em;
+        color: var(--col-light);
+    position: absolute;
+        top: 0%;
+        right: 0%;
+    width: 100vw;
+    height: 100vh;
+    z-index: 3;
+    background-color: black;
+}
+
+/* Splash login screen */
 #splash{
     position: absolute;
         top: 40%;
         right: 50px;
     opacity: 0;
     z-index: 2;
+    display: none;
 }
 #splash-title{
     font-family: 'Gugi', cursive;
@@ -34,6 +56,7 @@ body{
         color: var(--col-light);
     opacity: 0;
     z-index: 2;
+    display: none;
 }
 #splash-planet{
     position: absolute;
@@ -44,16 +67,32 @@ body{
     z-index: 1;
     overflow: hidden;
     background: url("../images/planets/earth.png") no-repeat;
-    background-position: -150px 0px;
-    background-size: 800px 800px;
+        background-position: -150px 0px;
+        background-size: 800px 800px;
     opacity: 0;
+    display: none;
 }
+
+/* Space traffic graphics */
 #rockets{
     width: 100%; 
     height: 100%; 
     overflow: hidden;
 }
 
+/* Tutorial */
+.tutorial{
+    z-index: 5;
+    width: auto;
+        min-width: 350px;
+        max-width: 65vw;
+    display: none;
+    opacity: 0;
+    color: black;
+    text-shadow: none !important;
+}
+
+/* Main GUI showing current planet information, goal and progress */
 #GUI-planet{
     position: absolute;
         top: calc(100vh - 600px); 
@@ -67,6 +106,7 @@ body{
     position: absolute; 
         top: 0; 
         left: 0; 
+        width: 30vw;
     border-bottom-right-radius: 10%;
     /*font-family: 'Oxanium', cursive;*/
     padding: 20px;
@@ -75,6 +115,7 @@ body{
         color: var(--col-light);
         text-shadow: 0 0 3px black;
     opacity: 0;
+    z-index: 5;
 }
 #GUI-currentPlanet{
     font-weight: 300;
@@ -83,21 +124,107 @@ body{
     font-weight: 300;
         font-style: italic; 
 }
-
-#GUI-goal{
+#GUI-goal-p{
     font-weight: 300;   
+    border-radius: 5px;
+    background: none;
+    position: relative;
 }
-
-#progress-goal{
+#goal-success{
+    font-size: 3rem;
+    position: absolute;
+        right: -1.5rem;
+}
+#progress-goal-div{
     height: 3em; 
-    width: 200px; 
+    width: 100%; 
+        min-width: 200px;
     background: rgba(0,0,0,0);
 }
 
-.chevron-pos{
-    color: var(--col-pos);
+/* Win score screen */
+#win-screen{
+    display: none;
+        opacity: 0;
+        z-index: 6;
+}
+#win-screen-div{
+    width: 500px;
+}
+#win-screen-progress-div{
+    height: 3em; 
+    width: 100%; 
+        min-width: 200px;
+}
+#score-awards{
+    overflow-x: scroll;
+}
+.award{
+    width: 200px;
+        max-width: 150px;
+        min-width: 150px;
+    color: var(--col-dark);
 }
 
-.chevron-neg{
-    color: var(--col-neg);
+/* Intervention dialogue */
+#GUI-intervention{
+  border: 1px solid var(--col-light);
+  border-radius: 5px;
+}
+[type=radio] { /* Radio btn style for intervention increase / decrease adapted from: https://stackoverflow.com/questions/17541614/use-images-instead-of-radio-buttons)*/
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  [type=radio] + i {
+    cursor: pointer;
+    color: lightgrey;
+    font-size: 6em;
+  }
+  [type=radio]:checked + i {
+    color: var(--col-dark);
+  }
+
+/* GUI below planet info showing effects of policies */
+#GUI-policyEffects{
+    display: none;
+    border: 1px solid var(--col-light);
+    border-radius: 5px; 
+}
+#GUI-policyEffects-title{
+    background: var(--col-light);
+    border-radius: 5px; 
+    color: var(--col-dark);
+    text-shadow: none;
+    position: relative;
+        top: -1.5rem;
+    margin-bottom: -1.5rem;
+}
+#policyEffects-goal{
+    font-weight: 300;
+    border-bottom: 1px dashed var(--col-light);
+}
+#policyEffects-sideeffects{
+    max-height: 40vh;
+    overflow: auto;
+}
+.policyEffect{
+    opacity: 0;
+}
+.policyEffect-img{
+    height: 30px;
+    width: auto;
+}
+.btn-custom-outline{
+    border: 1px solid var(--col-light) !important;
+    background: none;
+    cursor: pointer;
+    color: var(--col-light);
+    float: right;
+}
+.btn-custom-outline:hover{
+    color: var(--col-dark);
+    background-color: var(--col-light);
+    cursor: pointer;
 }

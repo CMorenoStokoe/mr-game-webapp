@@ -45,6 +45,7 @@ function DFS(graph, root){
 
     // Run search with failsafes to avoid infinite loops
     for (i = 0; i < Math.pow(graph.nodes().length, 2); i++){ 
+
         if(queue[0] == undefined){break;}
 
         // Add node to search path
@@ -52,7 +53,7 @@ function DFS(graph, root){
 
         // Find successors of node
         for(const successor of graph.successors(queue[0])){
-            
+
             // Get edge beta
             const b = getEdgeBeta([queue[0], successor]);
 

@@ -13,32 +13,18 @@ This function is called by the main script, and calls functions in lower order f
 // Function to create data for the game
 function initialiseData(nodes, edges, pValueThreshold){
 
-    // Filter out edges above p value threshold
-    var filteredEdges = filterByPval(edges, pValueThreshold);
 
-    // Filter out self loop edges
-    filteredEdges = removeSelfloopEdges(filteredEdges);
-
-    // Populate DataClass with gameData
-    var gameData = new DataClass(nodes, filteredEdges); // Payload: nodes, edges
-
-    // Set value by which an intervention changes a trait
-    gameData.interventionStrength = 0.05;
-
-    // Prepare nodes for visualisation
-    for(const [key, value] of Object.entries(gameData.nodes)){
+    /* Filter data */
         
-        // Filter list of related edges and remove node if not part of the network
-        gameData.nodes[key].edges = filterByPval(gameData.nodes[key].edges, pValueThreshold);
-        if(!(gameData.nodes[key].edges.length>0)){
-            delete gameData.nodes[key]; continue;
-        };
+        // Filter out edges above p value threshold
+        var filteredEdges = filterByPval(edges, pValueThreshold);
 
-        // Convert betas for edges listed under this node to percentage effects
-        convertBetasToPctEffects(gameData.nodes[key].edges);
+        // Initialise DataClass 
+        var gameData = new DataClass(nodes, filteredEdges); // Populate DataClass with gameData
 
-        // Remove self loops from list of edges
-        gameData.nodes[key].edges = removeSelfloopEdges( gameData.nodes[key].edges);
+
+    /* Configure node data */
+    for(const [key, value] of Object.entries(gameData.nodes)){
 
         // Give node values
         gameData.nodes[key].average = nodeValues[key].prevalence;
@@ -48,11 +34,11 @@ function initialiseData(nodes, edges, pValueThreshold){
         gameData.nodes[key].units = nodeValues[key].units;
         gameData.setPrevalenceValues(key, nodeValues[key].prevalence); // In data-classes
 
-        // Calculate how much this node should increase as a result of intervention
-        gameData.nodes[key].prevalenceIncrease = gameData.nodes[key].average * gameData.interventionStrength;
+        // Calculate how much this node should increase as a result of a 5% increase intervention
+        gameData.nodes[key].prevalenceIncrease = gameData.nodes[key].average * 0.05;
 
         // Give icon
-        gameData.nodes[key].icon = `https://www.morenostok.io/epicons/svg/${icons[gameData.nodes[key].id]}.svg`; // Icon assignment in gameData/icons.js
+        gameData.nodes[key].icon = `images/epicons/${icons[gameData.nodes[key].id]}.png`; // Icon assignment in gameData/icons.js
     
         // Give circle radius
         gameData.nodes[key].circleRadius = settings.nodes.circleRadius;
@@ -62,53 +48,150 @@ function initialiseData(nodes, edges, pValueThreshold){
 
         // Record whether the node is good or bad (i.e., wellbeing is good but diabetes is bad)
         gameData.nodes[key].good = isGood[value.id];
+
+        // Reset edge list so we can update this after filtering
+        gameData.nodes[key].edges = [];
         
     }
-
-    // Prepare edges for visualisation
-    convertBetasToPctEffects(gameData.edges);
+  
+    /* Convert data to graph and remove loops */
     
-    // Calculate % effects for each edge
-    function convertBetasToPctEffects(edges){
+        // Initialise graph object for algorithmic operation
+        gameData.G = gameData.toG();
+    
+        // Remove loops from data network
+        var loopsRemoved = 0;
+        for(const node of gameData.G.nodes()){
+            if(gameData.G.successors(node).length>0){
+                
+                // Find loops
+                const loops = removeLoops(gameData.G, node);
 
-        for(const [key, value] of Object.entries(edges)){
+                // Remove loops
+                loopsRemoved += loops.length;
+                gameData.G.removeEdgesFrom(loops);
+                gameData.updateEdges(loops);
 
-            // Convert beta effect estimate to a % change in the outcome as a result of intervention
-            const exposure = gameData.nodes[value['id.exposure']];
-            const outcome = gameData.nodes[value['id.outcome']];
-
-            value.b_pct = (exposure.prevalenceIncrease * value.b) / outcome.range * 100;
-            console.log(value.b_pct)
+            }
         }
 
-    }
+    /* Configure edge data */
+    for(const [key, value] of Object.entries(gameData.edges)){
+        
+        // Convert beta effect estimate to a % change in the outcome as a result of intervention
+        const exposure = gameData.nodes[value['id.exposure']];
+        const outcome = gameData.nodes[value['id.outcome']];
 
-    // Make Graph object
-    gameData.G = gameData.toG();
+        value.b_pct = (exposure.prevalenceIncrease * value.b) / outcome.range * 100;
 
-    // Detect loops
-    var loopsRemoved = 0;
-    for(const node of gameData.G.nodes()){
-        if(gameData.G.successors(node).length>0){
-            
-            // Find loops
-            const loops = removeLoops(gameData.G, node);
+        // Update nodes' edge lists
+        exposure.edges.push(value);
+            exposure.edgeCount =  exposure.edges.length;
+        outcome.edges.push(value);
+            outcome.edgeCount =  outcome.edges.length;
+    }    
 
-            // Remove loops
-            loopsRemoved += loops.length;
-            gameData.G.removeEdgesFrom(loops);
-            gameData.updateEdges(loops);
+    /* Simplify and validate data view */
 
+        // Remove unused nodes from data
+        for(const [key, value] of Object.entries(gameData.nodes)){
+            if(!(value.edges.length>0)){
+                delete gameData.nodes[key]; continue;
+            };
         }
+
+    /* Return final gameData */
+        
+        // Update graph data
+        gameData.G = gameData.toG();
+        
+        // Return
+        console.log('GAMEDATA: ', gameData, `${loopsRemoved} loops removed`);
+        return(gameData);
+}
+
+
+// Function to get score for policy
+function scoreInterventionSuccess(gameData){
+    var changedNodes = [];
+    var mostIncreased = {id:null, b:0};
+    var mostDecreased = {id:null, b:0};
+    var mostGood = {id:null, b:0, goodness:0};
+    var mostBad = {id:null, b:0, goodness:0};
+
+    var objectiveScore = 0;
+    var goodnessScore = 0;
+    var timeScore = 0;
+
+    // Iterate over nodes and detect changes
+    for(const [id, node] of Object.entries(gameData.nodes)){
+
+        // If it has been changed, push to list of nodes changed by this policy
+        if(node.change > 0){changedNodes.push(node)};
+        
+        // Check if node is a good trait
+        const nodeIsGood = isGood[id];
+
+        // Score whether effect on node was good or bad
+        var goodness = 0;
+        if(nodeIsGood){
+            goodness += node.change;
+        }else{
+            goodness -= node.change;
+        }
+        goodnessScore += goodness;
+
+        // Score effect on the objective (if this node was the objective)
+        if(id == gameData.objective.id){
+            if(nodeIsGood){
+                objectiveScore += node.change;
+            }else{
+                objectiveScore -= node.change;
+            }
+        }
+
+        // Check awards
+        if(node.change > mostIncreased.b){mostIncreased = {id: id, b: node.change}} // ? Most increased trait
+        if(node.change < mostDecreased.b){mostDecreased = {id: id, b: node.change}} // ? Most decreased trait
+        if(goodness > mostGood.goodness){mostGood = {id: id, b: node.change, goodness: goodness,}} // ? Most good done
+        if(goodness < mostBad.goodness){mostBad = {id: id, b: node.change, goodness: goodness}} // ? Most bad done
+    
     }
     
-    // Choose an objective target
-    gameData.setObjective();
+    // Calculate award score
+    var awardScore = 0;
+        if(mostIncreased.id){awardScore+=0.25};
+        if(mostDecreased.id){awardScore+=0.25};
+        if(mostGood.id){awardScore+=0.5};
+        if(mostBad.id){awardScore-=0.25};
 
-    // Return gameData
-    console.log(`${loopsRemoved} loops removed`);
-    console.log('GAMEDATA: ', gameData);
-    
-    return(gameData);
+    // Final weighting of scores
+    objectiveScore = boundScoreToRange(objectiveScore);
+    goodnessScore = boundScoreToRange(goodnessScore / 4);
+    timeScore = boundScoreToRange(timeScore);
+    awardScore = boundScoreToRange(awardScore);
+    const totalScore = objectiveScore + goodnessScore + timeScore + awardScore;
 
+    // Return scores
+    return({
+        scores: {
+            objective: objectiveScore, 
+            goodness: goodnessScore,
+            time: timeScore,
+            awards: awardScore,
+            total: totalScore,
+        },
+        effects: changedNodes,
+        awards: {
+            mostGood: mostGood,
+            mostBad: mostBad,
+            mostDecreased: mostDecreased,
+            mostIncreased: mostIncreased,
+        }
+    })
+
+    // Function to bound scores within min & max
+    function boundScoreToRange(score, min=0, max=5){
+        return(Math.min(Math.max(min, score), max))
+    }
 }

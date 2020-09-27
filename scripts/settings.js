@@ -63,15 +63,37 @@ var settings = defaultSettings;
 
     // Make link widths proportionate to their propagation effects
     settings.links.scaleToBeta.maxWidth = settings.links.scaleToBeta.minWidth + (settings.links.scaleToBeta.scaleFactor * 5);
-    settings.links.width = d => settings.links.scaleToBeta.calcScaledWidth(d.b_pct);
     settings.links.scaleToBeta.calcScaledWidth = function(b){
-        return(Math.min(settings.links.scaleToBeta.minWidth+(b/100*settings.links.scaleToBeta.scaleFactor), settings.links.scaleToBeta.maxWidth));}, // Method to calculate scale
-
+        const b_abs = Math.abs(b); // Make beta absolute
+        const width = b_abs/100*settings.links.scaleToBeta.scaleFactor; // Calculate relative width
+        return( 
+            Math.min( // Scale edge width by beta within min and max limits for visibility
+                settings.links.scaleToBeta.minWidth + width, 
+                settings.links.scaleToBeta.maxWidth
+            )
+        )
+    ;},settings.links.outlineCalcScaledWidth = function(b){
+        const b_abs = Math.abs(b); // Make beta absolute
+        const width = b_abs/100*settings.links.scaleToBeta.scaleFactor; // Calculate relative width
+        return( 
+            Math.min( // Scale edge width by beta within min and max limits for visibility
+                settings.links.scaleToBeta.minWidth + width, 
+                settings.links.scaleToBeta.maxWidth + 2
+            )
+        )
+    ;},
+    settings.links.width = d => settings.links.outlineCalcScaledWidth(d.b_pct);
+    settings.links.outlineWidth = d => settings.links.scaleToBeta.calcScaledWidth(d.b_pct) + 2;
+    
     // Modify edges for visibility
-    settings.links.opacity = 0.8;
+    settings.links.opacity = 1;
     settings.links.scaleToBeta.minWidth = 1;
     settings.links.scaleToBeta.scaleFactor = 5;
     settings.links.scaleToBeta.scaleFactor = 5;
+    /*
+        // Edge outlines temporarily removed for performance
+        settings.links.outline = true;
+    */
 
     // Change color pallet
     settings.links.colNeg = 'cornflowerblue';

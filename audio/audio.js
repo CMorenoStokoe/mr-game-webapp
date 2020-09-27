@@ -22,42 +22,50 @@ function createBGAudio(id){
 
 // Create soundtrack audio elements
 
+
+    // Create win screen progress audio sound
+    var progressSound = new Audio();
+        progressSound.src = `audio/sounds/event-positive/moment2.mp3`;
+
     // Define songs in soundtrack
     const soundtrack = [
-        '01_infinity_awaits_us',
-        '02_miniboss',
-        '03_imagine',
-        '04_artificial_serenity',
-        '05_castles_of_ice',
-        '06_tetanus',
-        '07_flora',
-        '08_glades',
-        '09_village',
-        '10_cascade',
-        '11_claustrophobia',
-        '12_boss',
-        '13_spheres',
-        '14_skeletons',
-        '15_men_of_stone',
-        '16_deaths_embrace',
-        '17_omnia_peratus',        
+        '04_artificial_serenity',   
+        'space/space_imagine',     
     ]
 
     // Create sound object for music
     var music = new Audio();
+        music.id = 'soundtrack';
         music.addEventListener('ended', function(){playSoundtrack()});
+        music.volume = 0.6;
 
     // Function to play songs from soundtrack
     function playSoundtrack(song = false){
-        if(song){ // Play a specific song
-            music.src = `audio/music/${song}.mp3`;
-                music.play();
-        }
-        else{ // Else choose a random song to play
-            const randomSong = Math.floor(Math.random() * Math.floor(soundtrack.length));
-            music.src = `audio/music/${soundtrack[randomSong]}.mp3`;
-                music.play();
-        }
+
+        // Transition music out
+        $('#soundtrack').animate({volume: 0}, 2000);
+
+        // Set music
+        setTimeout(function(){
+
+            // Transition music back in
+            $('#soundtrack').animate({volume: 0.6}, 2000);
+
+            // Play a specified song (if specified)
+            if(song){ 
+                music.src = `audio/music/${song}.mp3`;
+                    music.play();
+            }
+
+            // Else play a random song from soundtrack
+            else { 
+                const randomSong = Math.floor(Math.random() * Math.floor(soundtrack.length));
+                music.src = `audio/music/${soundtrack[randomSong]}.mp3`;
+                    music.play();
+            }
+
+        }, 1000)
+
     }
 
 // Create sound effects audio elements
@@ -99,5 +107,15 @@ function createBGAudio(id){
         audio.play();
     }
 
-// Function to change volume
-//$music.animate({volume: volume}, fade);
+// Function to give all buttons a sound effect on press
+function addButtonPressSound(){
+    
+    // Create button audio sound
+    var buttonPressSound = new Audio();
+        buttonPressSound.src = `audio/sounds/ui/effect-good.wav`;
+
+    // Play sound on button press
+    $('button').click(function(){
+        buttonPressSound.play();
+    })
+}

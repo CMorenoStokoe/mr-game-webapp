@@ -69,7 +69,7 @@ class DataClass {
     }
 
     // Set objective at random 
-    setObjective(){
+    setObjective(specificNode=false){
 
         // Make sure the objective is valid and can be affected by policies
         var objective = getRandomObjective(this);
@@ -80,9 +80,12 @@ class DataClass {
         // When a valid objective is found, set it
         this.objective = objective;
 
+        // If a specific objective is given, set objective to this node
+        if(specificNode){this.objective = this.nodes[specificNode]};
+
         // Function to pick a random objective
         function getRandomObjective(nodeList){
-            console.log(nodeList)
+
             // Generate random number in range of number of nodes
             const count = Math.floor(Math.random() * Object.keys(nodeList.nodes).length);
 
@@ -104,19 +107,16 @@ class DataClass {
         
         // Update node data
         for(const [key, value] of Object.entries(result)){
-            console.log([key, value])
-            console.log(this.nodes[key].prevalence, this.nodes[key].change, this.nodes[key].change_bar)
 
             // Get new prevalence value
             var newNodePrevalence = this.nodes[key].prevalence += value;
 
-            // Clip prevalence to within min/max limits
-            newNodePrevalence = Math.min(this.nodes[key].max, newNodePrevalence);
-            newNodePrevalence = Math.max(this.nodes[key].min, newNodePrevalence);
+                // Clip prevalence to within min/max limits
+                newNodePrevalence = Math.min(this.nodes[key].max, newNodePrevalence);
+                newNodePrevalence = Math.max(this.nodes[key].min, newNodePrevalence);
 
             // Update prevalence related values for node (e.g., change and progress bar width)
             this.setPrevalenceValues(key, newNodePrevalence);
-            console.log(this.nodes[key].prevalence, this.nodes[key].change, this.nodes[key].change_bar)
         }
     }
         

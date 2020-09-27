@@ -29,6 +29,9 @@
 .bg-light{
     background-color: var(--col-light) !important;
 }
+.bg-dark{
+    background-color: var(--col-dark) !important;
+}
 .btn-custom{
     font-family: 'Oxanium', cursive;
         font-weight: 700;
@@ -36,6 +39,17 @@
 }
 .btn-custom:hover{
     background-color: var(--col-light) !important;
+}
+
+/* Font */
+.fnt-safe{
+    font-family: Arial, Helvetica, sans-serif !important;
+}
+.fnt-bold{
+    font-weight: 400;
+}
+.fnt-light{
+    font-weight: 300;
 }
 
 /* Style for game GUI */
@@ -65,6 +79,7 @@
     height: var(--100pct-in-px);
     width: var(--100pct-in-px);
     opacity: 0;
+    z-index: 4;
 }
 
 .nodeLabel{
