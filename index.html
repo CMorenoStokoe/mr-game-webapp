@@ -1,7 +1,438 @@
 <!DOCTYPE html>
-<html>
-<body>
-<h1>Link to test page</h1>
-<p><a href="test/propagation.html">Click here to access the test page</a>.</p>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Mendel Game</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap css theme --> 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@200;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,200;0,300;1,200&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gugi&display=swap" rel="stylesheet">
+
+    <!-- Fa icons -->
+    <link rel="stylesheet" href="css/all.css">
+
+    <!-- Custom css -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/game.css">
+
+</head>
+<body style='overflow: hidden !important;'>
+
+    <div class='container'>
+        
+        <!-- Loading screen -->
+        <div id='loading-screen'>
+            <div class='w-100 h-100 d-flex flex-column justify-content-center align-items-center text-center fnt-safe'>
+
+                <!-- Progress bar -->
+                <div id='loading-div'>
+                    <h5 id='loading-text'> Loading ... </h5>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary col-dark fnt-safe" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" id='loading-progress'></div>
+                    </div>
+                </div>
+                
+                <!-- Start game button -->
+                <button type='button' class='btn btn-lrg btn-custom-outline p-3 fnt-safe' id='screen-button'>
+                    <h1 style='margin: 0;'> Start <i class="fas fa-play" id='screen-arrow'></i> </h1>
+                </button>
+
+            </div>
+        </div>
+
+        <!-- Main title -->
+        <div id='splash'>
+            <div class='w-100 h-100 d-flex justify-content-center align-items-center text-center fnt-safe'>
+                <h1 id='splash-title'>MENDEL</h1>
+                <img id='splash-logo' src='images/logo v5_white.png' height='150px' width='150px' style='display: inline-block;'>
+            </div>
+        </div>
+        <div id='splash-login'>
+            <div class='card m-2 p-2 bg-light' id='splash-login-box'>     
+                <input class='m-2 bg-light' type="text" id="splash-form" name="fname" placeholder=" Enter username">
+                <button class='btn btn-lg m-2 btn-custom' id='splash-button'>Login</button>
+            </div>
+        </div>
+        <div id='splash-planet'></div> <!-- Planet -->
+        
+        <!-- Planet image -->
+        <div id='GUI-planet'></div>
+
+        <p id='progress-helpText' style='display: none; position: absolute; top:0; left: 45%;'><i class="far fa-hand-pointer col-primary"></i>  Enact policies to make progress.</p>
+        
+        <!-- Current planet, system and goal information -->
+        <div id='GUI-planetInfo'>
+
+            <!-- Current planet-->
+            <h1 id='GUI-currentPlanet' class='display-4'>
+                Aeries IV
+            </h1>
+
+            <!-- Current system -->
+            <div class="progress center-block position-relative" id='progress-goal-div'>
+                <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%; color: rgba(0,0,0,0); text-shadow: none;" id='progress-goal'></div>
+                <h5 class="justify-content-center d-flex position-absolute w-100 mt-1" id='GUI-currentSystem'>
+                    Aeries system
+                </h5>
+            </div>
+
+            <!-- Current goal -->
+            <div id='GUI-goal' class='p-2'>
+                <p class='p-2' id='GUI-goal-p'>
+                    <img id='goal-icon' src='images/epicons/sleep.png' class='m-2' style='height: 30px; width: auto;'>
+                    <i class='' id='goal-indicator'></i>
+                    <span id='goal'>Increase sleep</span>
+                    <i class="fas fa-check-circle" id='goal-success'></i>
+                </p>
+            </div> 
+
+            <!-- Intervention effects -->
+            <div id='GUI-policyEffects' class='p-2'>
+
+                <h5 class='p-1 text-center' id='GUI-policyEffects-title'>
+                   Side-effects
+                </h5>
+
+                <div id='policyEffects-sideeffects'>
+
+                    <div class='policyEffect'>
+                        <p class='p-2'>
+                            <img src='images/epicons/sleep.png' class='m-2 policyEffect-icon' style='height: 30px; width: auto;'>
+                            <i class="col-pos"></i>
+                            <span>Increased heart disease</span>
+                        </p>
+                    </div>   
+                    <div class='policyEffect'>
+                        <p class='p-2'>
+                            <img src='images/epicons/sleep.png' class='m-2 policyEffect-icon' style='height: 30px; width: auto;'>
+                            <i class="col-pos"></i>
+                            <span>Increased education</span>
+                        </p>
+                    </div>   
+
+                </div>
+
+                <!-- Button to continue -->
+                <button id='policyEffects-button' class='btn btn-lrg btn-custom-outline mt-3'>Next level <i class="fas fa-chevron-right"></i> <i class="fas fa-globe-africa"></i></button>
+
+            </div>
+
+            <!-- Tutorial -->
+            <div id='tutorial-2' class='card tutorial'>
+                <div class='row w-100'>
+                    <div class='col-md-3 d-flex justify-content-center align-items-center'>
+                        <i class="fas fa-arrow-up" style='font-size: 3em;'></i>
+                    </div>
+                    <div class='col-md-9 p-2'>
+                        <h5>Goal:</h5>
+                        <p class='p-2' style='white-space: nowrap;'>
+                            <img src='images/epicons/intelligence.png' class='m-2' style='height: 30px; width: auto;'>
+                            <i class='fas fa-chevron-up chevron-pos'></i>
+                            Raise intelligence
+                        </p>
+                    </div>
+                </div>
+                <button id='tutorial-2-btn' class='btn w-100 btn-lrg btn-custom'>Continue</button>
+            </div>
+
+            <!-- Tutorial -->
+            <div id='tutorial-6' class='card tutorial'>
+                <div class='row w-100'>
+                    <div class='col-md-3 d-flex justify-content-center align-items-center'>
+                        <i class="fas fa-arrow-up" style='font-size: 3em;'></i>
+                    </div>
+                    <div class='col-md-9 p-2'>
+                        <p class='p-2'>
+                            Press 'Next' to continue to the next level
+                        </p>
+                    </div>
+                </div>
+                <button id='tutorial-6-btn' class='btn w-100 btn-lrg btn-custom'>Continue</button>
+            </div>
+
+        </div>  
+
+        <!-- Main content area --> 
+        <div class="row text-center" style='height: 100vh; width: 100vw;' >
+
+            <!-- Graph area -->
+            <div class="d-flex w-100 justify-content-center align-item-center" style='height: 100%' id='svg-container'>
+                
+                <svg width="1000" height="700" id="svg-main" style='display: none;'></svg>
+            
+            </div>
+            
+        </div> 
+
+        <!-- Intervention dialogue -->
+
+        <div class="modal" tabindex="-1" role="dialog" id='intervention-modal'>
+            <div class="modal-dialog modal-sm" role="document">
+              <div class="modal-content">
+                <div class="modal-header" style='border: none;'>
+                  <h5 class="modal-title">
+                    <i class="fas fa-crosshairs"></i> Intervention
+                  </h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <div class='d-flex flex-row align-items-center justify-content-center'>
+                            
+                        <form id='intervention-direction-form'>
+
+                            <label class='p-3'>
+                                <input type="radio" name="direction" value="Increase" checked>
+                                <i class="fas fa-caret-up"></i>
+                                <br>
+                                Increase
+                            </label>
+                            
+                            <label class='p-3'>
+                                <input type="radio" name="direction" value="Reduce">
+                                <i class="fas fa-caret-down"></i>
+                                <br>
+                                Reduce
+                            </label>
+    
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer" style='border: none;'>
+                  <button id='intervention-btn' type="button" class="w-100 btn btn-lrg btn-custom" data-dismiss="modal" data-nodeId='ieu_a_1239'>
+                      <i class="fas fa-dna"></i> 
+                      <span id='intervention-direction'>Increase</span> 
+                      <span id='intervention-text'>education</span>
+                    </button>
+                </div>
+              </div>
+            </div>
+            <div class='d-flex flex-row justify-content-center align-items-center'>
+
+                <!-- Tutorial -->
+                <div id='tutorial-5' class='card tutorial' style='min-width: 500px;'>
+                    <div class='row'>
+                        <div class='col-md-3 d-flex justify-content-center align-items-center'>
+                            <i class="fas fa-arrow-up" style='font-size: 3em;'></i>
+                        </div>
+                        <div class='col-md-9'>
+                            <p class='p-2'>
+                                Use the 
+                                <i class="fas fa-caret-up"></i>
+                                <i class="fas fa-caret-down"></i> 
+                                buttons to select either an increase or decrease.
+                                <br>
+                                <strong>Raise education to improve intelligence</strong>
+                            </p>
+                        </div>
+                    </div>
+                    <button id='tutorial-5-btn' class='btn w-100 btn-lrg btn-custom'>Dismiss</button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Win screen -->
+        <div id='win-screen' class='w-100 h-100' style='position: absolute; top:0px; left:0px;'>
+            <div class='d-flex flex-column h-100 align-items-center justify-content-center'>
+                <div class='card p-3 fnt-light' id='win-screen-div'>
+                    
+                    <!-- Header -->
+                    <h1 class='display-4 text-center m-2 fnt-bold'>Success!</h1>
+                    
+                    <!-- Score -->
+                    <h5 class='mt-2 fnt-bold'>Your score:</h5>
+                    <ul style='list-style-type: none; margin-bottom: 5px;'>
+                        <li>Goal score: <span id='score-goal'>12523</span></li>
+                        <li>Side-effect score: <span id='score-goodness'>54326</span></li>
+                        <li>Time score: <span id='score-time'>3326</span></li>
+                        <li>Award score: <span id='score-award'>36</span></li>
+                        <li><p class='fnt-bold'>Total score: <span id='score-total'>21353</span></p></li>
+                    </ul>
+                    
+                    <!-- Awards -->
+                    <div class='p-1 m-1' id='score-awards-superDiv'>
+                        <p class='fnt-bold'>Awards</p>
+                        <div class='' id='win-screen-effects'>
+                            <div id='score-awards' class='d-flex flex-row m-2 align-items-center fnt-light'></div>
+                        </div>
+                    </div>
+
+                    <!-- System progress -->
+                    <div class='p-2 mb-2 w-100 d-flex flex-column justify-content-center align-items-center text-center'>
+                        <div id='win-screen-systemProgress' class='w-100'></div>
+                        <p><span id='win-screen-progress-text'></span> score remaining to unlock next system</p>
+                    </div>
+                    
+                    <!-- Continue button -->
+                    <button id='win-screen-btn' class='btn w-100 btn-lrg btn-custom'>Continue</button>
+    
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Tutorial -->
+        <div class="modal" tabindex="-1" role="dialog" id='tutorial-0-modal'>
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header" style='border: none;'>
+                  <h5 class="modal-title">Tutorial</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <strong>You join a genetic epidemiology ship on its journey to heal the galaxy.</strong>
+                    <br><br>
+                    Your knowledge of epidemiology allows you to make interventions and change people's 
+                    health, Psychology and behaviours...
+                    <br><br>
+                    <div class='d-flex justify-content-center align-items-center'>
+                        <img src='images/epicons/sleep.png' style='height: 50px; width: auto;'>
+                        <img src='images/epicons/caffeine.png' style='height: 50px; width: auto;'>
+                        <img src='images/epicons/bmi.png' style='height: 50px; width: auto;'>
+                    </div>
+                </div>
+                <div class="modal-footer" style='border: none;'>
+                  <button type="button" class="w-100 btn btn-lrg btn-custom" data-dismiss="modal">Continue</button>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <div id='tutorial-1' class='card tutorial' style='position: absolute; left: 35vw; top: 10px; min-width: 500px;'>
+            <div class='row'>
+                <div class='col-md-3 d-flex justify-content-center align-items-center'>
+                    <i class="fas fa-arrow-left" style='font-size: 3em;'></i>
+                </div>
+                <div class='col-md-9 p-2'>
+                    <strong>You arrive at your first planet.</strong>
+                    <br>
+                    The population of Aeries-IV are not very bright...
+                    <br>
+                    They would like to be smarter.
+                </div>
+            </div>
+            <button id='tutorial-1-btn' class='btn w-100 btn-lrg btn-custom'>Continue</button>
+        </div>
+        
+        <div id='tutorial-3' class='card tutorial' style='position: absolute; right: 10px; bottom: 10px; min-width: 600px;'>
+            <h5 class='text-center p-2'>Trait network</h5>
+            <p class='text-center p-2'>
+                Here you will find the network of traits you can intervene on. <br>
+                Health related traits are shown as circles, and the arrows between them show how they affect each-other
+                (<strong style='color: coral'>Red = Increase </strong>, and
+                <strong style='color: cornflowerblue'>Blue = Decrease </strong>)
+            </p>
+            <div class='d-flex justify-content-center align-items-center'>
+                <ul class='text-left' style='list-style-type: none;'>
+                    <li><strong><i class="fas fa-mouse-pointer"></i> Hover </strong>
+                        <br>
+                        <ul class='text-left' style='list-style-type: none;'><li>
+                            over a trait to show its <strong>name</strong> and more clearly see its <strong>effects</strong>
+                        </li></ul>
+                    </li>
+                    <br>
+                    <li><strong><i class="fas fa-mouse"></i> Click </strong>
+                        <br>
+                        <ul class='text-left' style='list-style-type: none;'><li>
+                            on a trait to <strong>intervene</strong> on it
+                        </li></ul>
+                    </li>
+                </ul>
+                <img src='images/tutorial/controls.gif' class='m-2 d-flex align-self-center' style='height: 200px; width: auto;'>
+            </div>
+            <button id='tutorial-3-btn' class='btn w-100 btn-lrg btn-custom'>Continue</button>
+        </div>
+
+        <div id='tutorial-4' class='card tutorial' style='position: absolute; right: 10px; top: 10px; min-width: 500px;'>
+            <div class='d-flex flex-column justify-content-center align-items-center'>
+                <p class='m-2 text-center'>
+                    <strong>You can't intervene on the goal directly</strong><br>
+                    Instead, find and intervene on a trait which affects the goal (e.g., education)
+                </p>    
+                <img src='images/tutorial/fdgExample2.png' class='m-2' style='height: 50px; width: auto;'>
+                <strong class='m-2'><i class="fas fa-dna"></i> Intervene on education now</strong>
+            </div>
+            <button id='tutorial-4-btn' class='w-100 btn btn-lrg btn-custom'>Play!</button>
+        </div>
+       
+
+    </div><!-- / container-->
+
+    <!--[if lt IE 7]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    
+    <!-- External dependencies (Bootstrap, JQuery, D3, jsnetworkx) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="scripts/d3/d3.min.js"></script>
+    <script src="scripts/jsnx/jsnetworkx.js"></script>
+    <script src="scripts/big/big.min.js"></script>
+
+    <!-- Preload assets -->
+    <script src='scripts/preload-assets.js'></script>
+    <script src='scripts/preload.js'></script>
+
+    <!-- GUI modules -->
+    <script src="scripts/edit-element.js"></script>
+    <script src="scripts/create-element.js"></script>
+    <script src="scripts/event-handling.js"></script>
+    <script src="test/debug/debug-methods.js"></script> 
+
+    <!-- Data -->    
+    <script src="data/data-classes.js"></script> 
+    <script src="data/data-tutorial.js"></script> 
+    <script src="data/data.js"></script>
+    <script src="data/node-info.js"></script>
+
+    <!-- MiRANA network visualisation -->
+    <script src="../network-mr-vis-tool/scripts/settings-defaults.js"></script>
+    <script src="../network-mr-vis-tool/scripts/graph.js"></script>
+    <script src="../network-mr-vis-tool/scripts/edit-graph.js"></script>
+    <script src="../network-mr-vis-tool/scripts/data-cleaning.js"></script>
+    <script src="../network-mr-vis-tool/scripts/node-properties.js"></script>
+    <script src="../network-mr-vis-tool/scripts/edge-properties.js"></script>
+    <script src="../network-mr-vis-tool/scripts/graph-from-json.js"></script>
+
+    <!-- Settings for network vis-->
+    <script src="scripts/settings.js"></script>
+
+    <!-- Propagation modules -->
+    <script src="algorithms/traversal.js"></script>
+    <script src="algorithms/mr-prop.js"></script>
+    <script src="algorithms/loop-detection.js"></script>
+    <script src="scripts/propagate.js"></script>
+
+    <!-- Game Audio -->
+    <script src="audio/audio.js"></script>
+
+    <!-- Game Visuals -->
+    <script src="scripts/planet-names.js"></script>
+
+    <!-- Main -->
+    <script src="data/database.js"></script> 
+    <script src="scripts/intro.js"></script> 
+    <script src="scripts/tutorial.js"></script> 
+    <script src="scripts/model.js"></script> 
+    <script src="scripts/view.js"></script> 
+    <script src="scripts/controller.js"></script> 
+    <script src="scripts/main.js"></script> 
+
 </body>
 </html>
