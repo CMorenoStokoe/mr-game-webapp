@@ -22,55 +22,76 @@ and very small numbers with lots of decimal places are not represented
 accurately. To solve this, the Big.js dependency is used which has
 Big number classes which represent numbers accurately in binary base 10.
 Multiplication and addition are accurate using this method, although division
-is still liable to inaccuracy.
+is still liable to inaccuracy. Currently disabled.
 
 */
 
+
 // Propagation method
-function propagate(path, nodeData, edgeData, origin, valueChange){
-    results = [];
-    changes = {}; // Array of {node id: value change} dictionaries containing changes to nodes during propagation
-    
-    changes[origin]=valueChange // Start by recording the value change to propagate and the origin node which will be propagated from
-    
-    // Extract the data required for propagation MR from the propagation path and MR data (PropMRData bundle)
-    for (const edge of path){
+function propagate(graph, root, valueChange){
 
-        // Get source and target nodes from edge, relabel for convenience
-        const source = edge[0];
-        const target = edge[1];
+    // Init propagation queue
+    const queue = [root];
 
-        // Construct edge ID from source and target nodes in edge
-        const key = [source,target]
+    // Initialise object containing the results of propagation
+    const prevalence = {};
+        for(const node of graph.nodes()){prevalence[node] = {}}; // Init all node values with 0 at start
+        prevalence[root] = {root: valueChange}; // Set origin node value to be the value change to propagate through network
 
-        // Convert delta, starting node value and edge beta to big numbers (40 decimal place accuracy)
-        const deltaX = new Big(changes[source]); // change in prevalence (delta) of source node (x, precursor in path)
-        const b = new Big(edgeData[key].b); // beta weight of edge from source to target node (b)
-        
-        // Calculate propagation effects and final prevalence of target node (y1)
-        const deltaY = propagationMR(deltaX, b);
+    // Run search with failsafes to avoid infinite loops
+    for (i = 0; i < Math.pow(graph.nodes().length, 2); i++){ 
+        if(queue[0] == undefined){break;}
 
-        // Save deltaY for use as deltaX in next propagation cycle since for A -> B -> C to calculate B -> C we need to know deltaB
-        if(changes[target] == undefined){
-            changes[target] = deltaY.valueOf(); // Get total delta
-        } else {
-            const totalDeltaY = new Big(changes[target]); // Get total delta Y
-            changes[target] = totalDeltaY.plus(deltaY).valueOf(); // Add to delta
+        // Add successors of current node to queue
+        for(const successor of graph.successors(queue[0])){queue.push(successor)};
+
+        // Calculate propagation effect from predecessors
+        for(const predecessor of graph.predecessors(queue[0])){
+            
+            // Get Beta weight to incoming change
+            const b = getEdgeBeta([predecessor, queue[0]]); // 
+
+            // Calculate total incoming change from previous node
+            let deltaX = 0; 
+
+            for(const [key, value] of Object.entries(prevalence[predecessor])){
+                deltaX += value;
+            };
+
+            // Calculate change to node from this predecessor
+            var deltaY = b*deltaX;
+
+            // Update node prevalence
+            prevalence[queue[0]][predecessor] = deltaY;
         }
+        
+        // Remove current item from queue
+        queue.shift();
+
+    }
+
+    // Add up changes to nodes
+    results = {};
+    for(const [key1, value1] of Object.entries(prevalence)){
+        
+        var prev = 0;
+        for(const [key2, value2] of Object.entries(prevalence[key1])){
+            prev = Number(prev + value2);
+        }
+        
+        // If a node value changed add it to results
+        if(prev!=0){results[key1] = prev;}
+        
+    }
     
+    return(results);
+
+    // Function to return edge beta weights
+    function getEdgeBeta(edge){
+
+        for([key, value] of jsnx.getEdgeAttributes(graph, 'b').entries()){
+            if(key[0] == edge[0] && key[1] == edge[1]){return(value)};
+        }
+
     }
-
-    // Return results once propagation finished
-    return(changes)
-
-
-    // Method returns value of successor node Y given change to precursor node X and edge weight beta
-    function propagationMR(deltaX, b){
-
-        // Calculate propagation effect (deltaY)
-        deltaY = b.times(deltaX);
-
-        return deltaY;
-    }
-
 }

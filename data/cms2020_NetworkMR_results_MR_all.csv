@@ -1,0 +1,1806 @@
+id.exposure,id.outcome,outcome,exposure,method,nsnp,b,se,pval,analysis_type
+ieu-a-1187,ukb-b-6519,Worry,Depression,MR Egger intercept,33,0.000859152,0.007115973,0.904679534,Network
+ieu-a-1187,ukb-b-6519,Worry,Depression,MR Egger,33,0.006131434,0.075029653,0.935394621,Network
+ieu-a-1187,ukb-b-6519,Worry,Depression,Weighted median,33,0.064733594,0.012220087,1.18E-07,Network
+ieu-a-1187,ukb-b-6519,Worry,Depression,Inverse variance weighted,33,0.092800285,0.015610785,2.77E-09,Network
+ieu-a-1187,ukb-b-6519,Worry,Depression,Simple mode,33,0.050165964,0.030547694,0.110337592,Network
+ieu-a-1187,ukb-b-6519,Worry,Depression,Weighted mode,33,0.049103203,0.02273905,0.038418164,Network
+ieu-a-1187,ukb-b-5779,Alcohol,Depression,MR Egger intercept,33,0.018006566,0.008826801,0.049949952,Network
+ieu-a-1187,ukb-b-5779,Alcohol,Depression,MR Egger,33,-0.046845519,0.242395901,0.84801575,Network
+ieu-a-1187,ukb-b-5779,Alcohol,Depression,Weighted median,33,0.062849283,0.032720384,0.054757043,Network
+ieu-a-1187,ukb-b-5779,Alcohol,Depression,Inverse variance weighted,33,0.028674729,0.049404317,0.561638573,Network
+ieu-a-1187,ukb-b-5779,Alcohol,Depression,Simple mode,33,0.092401965,0.062626688,0.149866609,Network
+ieu-a-1187,ukb-b-5779,Alcohol,Depression,Weighted mode,33,0.066956501,0.058339579,0.259599496,Network
+ieu-a-1187,ieu-a-961,Smoking,Depression,MR Egger intercept,27,-0.004053483,0.029354506,0.891277686,Network
+ieu-a-1187,ieu-a-961,Smoking,Depression,MR Egger,27,6.921201311,3.960478389,0.092813294,Network
+ieu-a-1187,ieu-a-961,Smoking,Depression,Weighted median,27,-0.788462773,0.760503051,0.299845496,Network
+ieu-a-1187,ieu-a-961,Smoking,Depression,Inverse variance weighted,27,-0.534173811,0.546254965,0.328131861,Network
+ieu-a-1187,ieu-a-961,Smoking,Depression,Simple mode,27,-2.3572938,1.663155348,0.168249998,Network
+ieu-a-1187,ieu-a-961,Smoking,Depression,Weighted mode,27,-2.13258753,1.642463534,0.205546563,Network
+ieu-a-1187,ieu-a-1239,Education,Depression,MR Egger intercept,32,-0.013494257,0.010685501,0.216368499,Network
+ieu-a-1187,ieu-a-1239,Education,Depression,MR Egger,32,0.023912639,0.184702237,0.897853157,Network
+ieu-a-1187,ieu-a-1239,Education,Depression,Weighted median,32,-0.024768972,0.023677054,0.295506943,Network
+ieu-a-1187,ieu-a-1239,Education,Depression,Inverse variance weighted,32,0.041229269,0.037299896,0.269009938,Network
+ieu-a-1187,ieu-a-1239,Education,Depression,Simple mode,32,-0.10034179,0.041061056,0.020425881,Network
+ieu-a-1187,ieu-a-1239,Education,Depression,Weighted mode,32,-0.063477331,0.040672473,0.128747721,Network
+ieu-a-1187,ukb-b-19953,BMI,Depression,MR Egger intercept,33,-0.007640048,0.010041904,0.452515236,Network
+ieu-a-1187,ukb-b-19953,BMI,Depression,MR Egger,33,0.114506221,0.221522835,0.608891104,Network
+ieu-a-1187,ukb-b-19953,BMI,Depression,Weighted median,33,-0.029333736,0.026666883,0.271329446,Network
+ieu-a-1187,ukb-b-19953,BMI,Depression,Inverse variance weighted,33,0.014402331,0.045280649,0.750433266,Network
+ieu-a-1187,ukb-b-19953,BMI,Depression,Simple mode,33,-0.064529107,0.076656795,0.406151432,Network
+ieu-a-1187,ukb-b-19953,BMI,Depression,Weighted mode,33,-0.03824823,0.057652944,0.511811755,Network
+ieu-a-1187,ukb-b-5238,Intelligence,Depression,MR Egger intercept,33,-0.00246664,0.008833226,0.781910945,Network
+ieu-a-1187,ukb-b-5238,Intelligence,Depression,MR Egger,33,-0.274597187,0.56896381,0.632751457,Network
+ieu-a-1187,ukb-b-5238,Intelligence,Depression,Weighted median,33,-0.005612893,0.08283361,0.945975849,Network
+ieu-a-1187,ukb-b-5238,Intelligence,Depression,Inverse variance weighted,33,0.039890217,0.116370229,0.731758608,Network
+ieu-a-1187,ukb-b-5238,Intelligence,Depression,Simple mode,33,-0.122989352,0.155511252,0.434841915,Network
+ieu-a-1187,ukb-b-5238,Intelligence,Depression,Weighted mode,33,-0.122989352,0.140629992,0.388330233,Network
+ieu-a-1187,ieu-a-1018,Wellbeing,Depression,MR Egger intercept,27,-0.013619016,0.006987008,0.062576842,Network
+ieu-a-1187,ieu-a-1018,Wellbeing,Depression,MR Egger,27,0.031235026,0.210625353,0.883298359,Network
+ieu-a-1187,ieu-a-1018,Wellbeing,Depression,Weighted median,27,-0.04934003,0.034043464,0.147246951,Network
+ieu-a-1187,ieu-a-1018,Wellbeing,Depression,Inverse variance weighted,27,-0.112098692,0.028688531,9.33E-05,Network
+ieu-a-1187,ieu-a-1018,Wellbeing,Depression,Simple mode,27,-0.041720977,0.067559977,0.542250092,Network
+ieu-a-1187,ieu-a-1018,Wellbeing,Depression,Weighted mode,27,-0.036172262,0.053468404,0.504687188,Network
+ieu-a-1187,ukb-b-4424,Sleep duration,Depression,MR Egger intercept,33,-0.022659218,0.009099021,0.018331255,Network
+ieu-a-1187,ukb-b-4424,Sleep duration,Depression,MR Egger,33,-0.006309498,0.139525307,0.96422107,Network
+ieu-a-1187,ukb-b-4424,Sleep duration,Depression,Weighted median,33,-0.049563413,0.01794475,0.005744834,Network
+ieu-a-1187,ukb-b-4424,Sleep duration,Depression,Inverse variance weighted,33,-0.01137047,0.028389701,0.688778052,Network
+ieu-a-1187,ukb-b-4424,Sleep duration,Depression,Simple mode,33,-0.071390297,0.03130527,0.029383672,Network
+ieu-a-1187,ukb-b-4424,Sleep duration,Depression,Weighted mode,33,-0.071390297,0.025241291,0.008008937,Network
+ieu-a-1187,ukb-b-8476,Loneliness,Depression,MR Egger intercept,33,0.019069522,0.005671642,0.002068051,Network
+ieu-a-1187,ukb-b-8476,Loneliness,Depression,MR Egger,33,-0.048911405,0.031456588,0.130124445,Network
+ieu-a-1187,ukb-b-8476,Loneliness,Depression,Weighted median,33,0.034366712,0.00783629,1.16E-05,Network
+ieu-a-1187,ukb-b-8476,Loneliness,Depression,Inverse variance weighted,33,0.051390675,0.007412852,4.13E-12,Network
+ieu-a-1187,ukb-b-8476,Loneliness,Depression,Simple mode,33,0.029949275,0.017291812,0.092905883,Network
+ieu-a-1187,ukb-b-8476,Loneliness,Depression,Weighted mode,33,0.026479124,0.013678115,0.061759272,Network
+ieu-a-1187,ukb-b-3957,Sleeplessness,Depression,MR Egger intercept,33,0.016749352,0.006664478,0.017373791,Network
+ieu-a-1187,ukb-b-3957,Sleeplessness,Depression,MR Egger,33,-0.004822507,0.095780305,0.960166766,Network
+ieu-a-1187,ukb-b-3957,Sleeplessness,Depression,Weighted median,33,0.058236349,0.016174061,0.000317482,Network
+ieu-a-1187,ukb-b-3957,Sleeplessness,Depression,Inverse variance weighted,33,0.088357897,0.019794448,8.05E-06,Network
+ieu-a-1187,ukb-b-3957,Sleeplessness,Depression,Simple mode,33,0.045413626,0.039470845,0.258438294,Network
+ieu-a-1187,ukb-b-3957,Sleeplessness,Depression,Weighted mode,33,0.041247,0.034827675,0.245010028,Network
+ieu-a-1187,ukb-b-4956,Eveningness,Depression,MR Egger intercept,33,-0.009659291,0.008992861,0.291064767,Network
+ieu-a-1187,ukb-b-4956,Eveningness,Depression,MR Egger,33,-0.047568133,0.156831259,0.763681627,Network
+ieu-a-1187,ukb-b-4956,Eveningness,Depression,Weighted median,33,-0.022996405,0.021504459,0.284899181,Network
+ieu-a-1187,ukb-b-4956,Eveningness,Depression,Inverse variance weighted,33,0.002676425,0.031974275,0.933290537,Network
+ieu-a-1187,ukb-b-4956,Eveningness,Depression,Simple mode,33,0.010151223,0.039398424,0.7983225,Network
+ieu-a-1187,ukb-b-4956,Eveningness,Depression,Weighted mode,33,0.015094466,0.034630217,0.665853383,Network
+ieu-a-1187,ukb-d-SLEEP,ICD10 Insomni,Depression,MR Egger intercept,33,0.003030171,0.006722646,0.655313277,Network
+ieu-a-1187,ukb-d-SLEEP,ICD10 Insomni,Depression,MR Egger,33,0.00389556,0.006012054,0.521782529,Network
+ieu-a-1187,ukb-d-SLEEP,ICD10 Insomni,Depression,Weighted median,33,0.004681147,0.001718798,0.006459416,Network
+ieu-a-1187,ukb-d-SLEEP,ICD10 Insomni,Depression,Inverse variance weighted,33,0.005264187,0.001243815,2.31E-05,Network
+ieu-a-1187,ukb-d-SLEEP,ICD10 Insomni,Depression,Simple mode,33,0.006492083,0.003621136,0.082458125,Network
+ieu-a-1187,ukb-d-SLEEP,ICD10 Insomni,Depression,Weighted mode,33,0.00640639,0.00380861,0.102288187,Network
+ieu-a-1187,ukb-b-4062,Happiness,Depression,MR Egger intercept,33,-0.005954789,0.007007594,0.401972554,Network
+ieu-a-1187,ukb-b-4062,Happiness,Depression,MR Egger,33,0.014945913,0.086355278,0.863717853,Network
+ieu-a-1187,ukb-b-4062,Happiness,Depression,Weighted median,33,0.081450842,0.023875597,0.00064614,Network
+ieu-a-1187,ukb-b-4062,Happiness,Depression,Inverse variance weighted,33,0.101301822,0.01785714,1.40E-08,Network
+ieu-a-1187,ukb-b-4062,Happiness,Depression,Simple mode,33,0.024881967,0.057528036,0.668265264,Network
+ieu-a-1187,ukb-b-4062,Happiness,Depression,Weighted mode,33,0.026065717,0.05560555,0.642418266,Network
+ieu-a-1187,ukb-b-4710,Exercise,Depression,MR Egger intercept,33,-0.008061212,0.008474458,0.348842515,Network
+ieu-a-1187,ukb-b-4710,Exercise,Depression,MR Egger,33,0.223757803,0.21966418,0.316260271,Network
+ieu-a-1187,ukb-b-4710,Exercise,Depression,Weighted median,33,0.036653509,0.047516937,0.440483054,Network
+ieu-a-1187,ukb-b-4710,Exercise,Depression,Inverse variance weighted,33,0.038067112,0.045202708,0.399708313,Network
+ieu-a-1187,ukb-b-4710,Exercise,Depression,Simple mode,33,0.056248865,0.107298345,0.60373211,Network
+ieu-a-1187,ukb-b-4710,Exercise,Depression,Weighted mode,33,0.083739892,0.114313773,0.469168533,Network
+ieu-a-1187,ukb-b-5076,Not socialising,Depression,MR Egger intercept,33,-0.01800182,0.008799157,0.049334227,Network
+ieu-a-1187,ukb-b-5076,Not socialising,Depression,MR Egger,33,-0.061484041,0.04874379,0.216584621,Network
+ieu-a-1187,ukb-b-5076,Not socialising,Depression,Weighted median,33,-0.005610261,0.009389153,0.550156418,Network
+ieu-a-1187,ukb-b-5076,Not socialising,Depression,Inverse variance weighted,33,0.000794845,0.010182893,0.937782822,Network
+ieu-a-1187,ukb-b-5076,Not socialising,Depression,Simple mode,33,-0.011870282,0.018638447,0.52873916,Network
+ieu-a-1187,ukb-b-5076,Not socialising,Depression,Weighted mode,33,-0.016102456,0.016510006,0.336719782,Network
+ieu-a-1187,ieu-a-118,Neuroticism,Depression,MR Egger intercept,33,0.003679635,0.007077997,0.60684729,Network
+ieu-a-1187,ieu-a-118,Neuroticism,Depression,MR Egger,33,0.404266675,0.224967043,0.082084507,Network
+ieu-a-1187,ieu-a-118,Neuroticism,Depression,Weighted median,33,0.181839576,0.049356064,0.000229386,Network
+ieu-a-1187,ieu-a-118,Neuroticism,Depression,Inverse variance weighted,33,0.160294413,0.036653866,1.22E-05,Network
+ieu-a-1187,ieu-a-118,Neuroticism,Depression,Simple mode,33,0.212474765,0.121590391,0.090148529,Network
+ieu-a-1187,ieu-a-118,Neuroticism,Depression,Weighted mode,33,0.11934777,0.127441795,0.356036093,Network
+ieu-a-1187,ukb-b-5237,Coffee intake,Depression,MR Egger intercept,33,0.007511401,0.009758375,0.447280879,Network
+ieu-a-1187,ukb-b-5237,Coffee intake,Depression,MR Egger,33,0.007254001,0.083003953,0.930920878,Network
+ieu-a-1187,ukb-b-5237,Coffee intake,Depression,Weighted median,33,0.006349918,0.01564771,0.684885915,Network
+ieu-a-1187,ukb-b-5237,Coffee intake,Depression,Inverse variance weighted,33,-0.003786494,0.016893428,0.822648303,Network
+ieu-a-1187,ukb-b-5237,Coffee intake,Depression,Simple mode,33,0.024393566,0.030552036,0.430508829,Network
+ieu-a-1187,ukb-b-5237,Coffee intake,Depression,Weighted mode,33,0.017800963,0.023936717,0.462503317,Network
+ieu-a-1187,ieu-a-24,Diabetes,Depression,MR Egger intercept,4,-0.01942762,0.046487661,0.716608112,Network
+ieu-a-1187,ieu-a-24,Diabetes,Depression,MR Egger,4,0.224388811,2.868488842,0.944770684,Network
+ieu-a-1187,ieu-a-24,Diabetes,Depression,Weighted median,4,0.34567348,0.275381882,0.209387529,Network
+ieu-a-1187,ieu-a-24,Diabetes,Depression,Inverse variance weighted,4,0.210212887,0.426936519,0.622454239,Network
+ieu-a-1187,ieu-a-24,Diabetes,Depression,Simple mode,4,0.580670334,0.485629696,0.317706548,Network
+ieu-a-1187,ieu-a-24,Diabetes,Depression,Weighted mode,4,0.600755788,0.477710177,0.297532313,Network
+ieu-a-1187,ieu-a-7,CHD,Depression,MR Egger intercept,33,0.000921272,0.010182973,0.92849438,Network
+ieu-a-1187,ieu-a-7,CHD,Depression,MR Egger,33,-0.140424349,0.359718597,0.69893058,Network
+ieu-a-1187,ieu-a-7,CHD,Depression,Weighted median,33,0.096790584,0.080745962,0.230642692,Network
+ieu-a-1187,ieu-a-7,CHD,Depression,Inverse variance weighted,33,0.076499569,0.065628202,0.243755645,Network
+ieu-a-1187,ieu-a-7,CHD,Depression,Simple mode,33,0.214826453,0.176529871,0.232525949,Network
+ieu-a-1187,ieu-a-7,CHD,Depression,Weighted mode,33,0.214826453,0.184911307,0.253916845,Network
+ukb-b-6519,ieu-a-1187,Depression,Worry,MR Egger intercept,5,-0.017629396,0.009386118,0.156967836,Network
+ukb-b-6519,ieu-a-1187,Depression,Worry,MR Egger,5,7.102636539,8.72267701,0.475116903,Network
+ukb-b-6519,ieu-a-1187,Depression,Worry,Weighted median,5,3.148751746,0.496851601,2.34E-10,Network
+ukb-b-6519,ieu-a-1187,Depression,Worry,Inverse variance weighted,5,2.218120882,1.086954389,0.04128312,Network
+ukb-b-6519,ieu-a-1187,Depression,Worry,Simple mode,5,3.547879332,0.548524798,0.002943335,Network
+ukb-b-6519,ieu-a-1187,Depression,Worry,Weighted mode,5,3.516680187,0.57720346,0.0036703,Network
+ukb-b-6519,ukb-b-5779,Alcohol,Worry,MR Egger intercept,64,0.001593765,0.001330467,0.235515605,Network
+ukb-b-6519,ukb-b-5779,Alcohol,Worry,MR Egger,64,0.36646294,0.686175979,0.595206015,Network
+ukb-b-6519,ukb-b-5779,Alcohol,Worry,Weighted median,64,0.291481631,0.098001271,0.002936925,Network
+ukb-b-6519,ukb-b-5779,Alcohol,Worry,Inverse variance weighted,64,0.29126971,0.132739563,0.028214236,Network
+ukb-b-6519,ukb-b-5779,Alcohol,Worry,Simple mode,64,0.388752659,0.224901707,0.088789061,Network
+ukb-b-6519,ukb-b-5779,Alcohol,Worry,Weighted mode,64,0.358881137,0.197697998,0.074237911,Network
+ukb-b-6519,ieu-a-961,Smoking,Worry,MR Egger intercept,48,0.002650641,0.025065083,0.916240256,Network
+ukb-b-6519,ieu-a-961,Smoking,Worry,MR Egger,48,-2.765317133,10.93308764,0.801448431,Network
+ukb-b-6519,ieu-a-961,Smoking,Worry,Weighted median,48,-0.42818677,2.546604097,0.866472908,Network
+ukb-b-6519,ieu-a-961,Smoking,Worry,Inverse variance weighted,48,-1.325545711,1.8040546,0.46248616,Network
+ukb-b-6519,ieu-a-961,Smoking,Worry,Simple mode,48,-5.706037683,6.328814551,0.371868376,Network
+ukb-b-6519,ieu-a-961,Smoking,Worry,Weighted mode,48,7.094083682,6.160409941,0.255326216,Network
+ukb-b-6519,ieu-a-1239,Education,Worry,MR Egger intercept,60,0.00025273,0.001373399,0.854641496,Network
+ukb-b-6519,ieu-a-1239,Education,Worry,MR Egger,60,0.537280812,0.543506087,0.326991443,Network
+ukb-b-6519,ieu-a-1239,Education,Worry,Weighted median,60,0.011310352,0.063019971,0.857566706,Network
+ukb-b-6519,ieu-a-1239,Education,Worry,Inverse variance weighted,60,-0.078055527,0.104017094,0.453007463,Network
+ukb-b-6519,ieu-a-1239,Education,Worry,Simple mode,60,-0.104777071,0.174293065,0.550039805,Network
+ukb-b-6519,ieu-a-1239,Education,Worry,Weighted mode,60,0.000145988,0.130847924,0.999113556,Network
+ukb-b-6519,ukb-b-19953,BMI,Worry,MR Egger intercept,64,-0.001317245,0.001165607,0.262789938,Network
+ukb-b-6519,ukb-b-19953,BMI,Worry,MR Egger,64,-2.358647175,0.829681297,0.006046759,Network
+ukb-b-6519,ukb-b-19953,BMI,Worry,Weighted median,64,-0.329632518,0.083495313,7.88E-05,Network
+ukb-b-6519,ukb-b-19953,BMI,Worry,Inverse variance weighted,64,-0.549791981,0.166724753,0.00097514,Network
+ukb-b-6519,ukb-b-19953,BMI,Worry,Simple mode,64,-0.204589683,0.239875305,0.396945712,Network
+ukb-b-6519,ukb-b-19953,BMI,Worry,Weighted mode,64,-0.204589683,0.205270658,0.322731465,Network
+ukb-b-6519,ukb-b-5238,Intelligence,Worry,MR Egger intercept,64,-0.000326669,0.001580327,0.836913887,Network
+ukb-b-6519,ukb-b-5238,Intelligence,Worry,MR Egger,64,0.518479658,1.600031529,0.746995829,Network
+ukb-b-6519,ukb-b-5238,Intelligence,Worry,Weighted median,64,-0.803120876,0.259206514,0.001945802,Network
+ukb-b-6519,ukb-b-5238,Intelligence,Worry,Inverse variance weighted,64,-1.014491354,0.311493188,0.001126499,Network
+ukb-b-6519,ukb-b-5238,Intelligence,Worry,Simple mode,64,-0.613160164,0.613252364,0.321208222,Network
+ukb-b-6519,ukb-b-5238,Intelligence,Worry,Weighted mode,64,-0.30822648,0.54512304,0.573792626,Network
+ukb-b-6519,ieu-a-1018,Wellbeing,Worry,MR Egger intercept,47,-0.000555917,0.001471559,0.707374198,Network
+ukb-b-6519,ieu-a-1018,Wellbeing,Worry,MR Egger,47,-0.518689541,0.472310104,0.277959871,Network
+ukb-b-6519,ieu-a-1018,Wellbeing,Worry,Weighted median,47,-0.257319989,0.107850864,0.017037979,Network
+ukb-b-6519,ieu-a-1018,Wellbeing,Worry,Inverse variance weighted,47,-0.411089571,0.078303032,1.52E-07,Network
+ukb-b-6519,ieu-a-1018,Wellbeing,Worry,Simple mode,47,-0.225001982,0.264014981,0.398500831,Network
+ukb-b-6519,ieu-a-1018,Wellbeing,Worry,Weighted mode,47,-0.189436883,0.265419685,0.479002559,Network
+ukb-b-6519,ukb-b-4424,Sleep duration,Worry,MR Egger intercept,64,-0.000430331,0.001436537,0.765513788,Network
+ukb-b-6519,ukb-b-4424,Sleep duration,Worry,MR Egger,64,-0.265665719,0.377175682,0.483848844,Network
+ukb-b-6519,ukb-b-4424,Sleep duration,Worry,Weighted median,64,-0.101260753,0.055134035,0.066264721,Network
+ukb-b-6519,ukb-b-4424,Sleep duration,Worry,Inverse variance weighted,64,-0.076257184,0.073113549,0.296949864,Network
+ukb-b-6519,ukb-b-4424,Sleep duration,Worry,Simple mode,64,-0.202632898,0.168932989,0.234830485,Network
+ukb-b-6519,ukb-b-4424,Sleep duration,Worry,Weighted mode,64,0.141841357,0.157747961,0.371989054,Network
+ukb-b-6519,ukb-b-8476,Loneliness,Worry,MR Egger intercept,64,0.003170681,0.00120485,0.010709731,Network
+ukb-b-6519,ukb-b-8476,Loneliness,Worry,MR Egger,64,-0.094946136,0.120710574,0.434535552,Network
+ukb-b-6519,ukb-b-8476,Loneliness,Worry,Weighted median,64,0.185638162,0.026131244,1.21E-12,Network
+ukb-b-6519,ukb-b-8476,Loneliness,Worry,Inverse variance weighted,64,0.187065925,0.024393285,1.74E-14,Network
+ukb-b-6519,ukb-b-8476,Loneliness,Worry,Simple mode,64,0.177549567,0.064424427,0.007644312,Network
+ukb-b-6519,ukb-b-8476,Loneliness,Worry,Weighted mode,64,0.180215367,0.05511208,0.001745635,Network
+ukb-b-6519,ukb-b-3957,Sleeplessness,Worry,MR Egger intercept,64,0.000620549,0.00118618,0.602735504,Network
+ukb-b-6519,ukb-b-3957,Sleeplessness,Worry,MR Egger,64,0.222380473,0.255529693,0.387508538,Network
+ukb-b-6519,ukb-b-3957,Sleeplessness,Worry,Weighted median,64,0.355916501,0.04965432,7.62E-13,Network
+ukb-b-6519,ukb-b-3957,Sleeplessness,Worry,Inverse variance weighted,64,0.362839861,0.049551376,2.43E-13,Network
+ukb-b-6519,ukb-b-3957,Sleeplessness,Worry,Simple mode,64,0.426671399,0.141806223,0.003767116,Network
+ukb-b-6519,ukb-b-3957,Sleeplessness,Worry,Weighted mode,64,0.443571249,0.143941776,0.003051987,Network
+ukb-b-6519,ukb-b-4956,Eveningness,Worry,MR Egger intercept,64,-0.002408287,0.001400256,0.090440949,Network
+ukb-b-6519,ukb-b-4956,Eveningness,Worry,MR Egger,64,0.83513005,0.389412654,0.035912733,Network
+ukb-b-6519,ukb-b-4956,Eveningness,Worry,Weighted median,64,-0.085609469,0.067475103,0.204527962,Network
+ukb-b-6519,ukb-b-4956,Eveningness,Worry,Inverse variance weighted,64,-0.047856781,0.078496666,0.542082801,Network
+ukb-b-6519,ukb-b-4956,Eveningness,Worry,Simple mode,64,-0.108583896,0.180048092,0.548618693,Network
+ukb-b-6519,ukb-b-4956,Eveningness,Worry,Weighted mode,64,-0.081101742,0.177217573,0.648785972,Network
+ukb-b-6519,ukb-d-SLEEP,ICD10 Insomni,Worry,MR Egger intercept,63,-0.000816077,0.001442648,0.573686516,Network
+ukb-b-6519,ukb-d-SLEEP,ICD10 Insomni,Worry,MR Egger,63,-0.005897045,0.022825866,0.797007086,Network
+ukb-b-6519,ukb-d-SLEEP,ICD10 Insomni,Worry,Weighted median,63,0.001852325,0.005868448,0.752274755,Network
+ukb-b-6519,ukb-d-SLEEP,ICD10 Insomni,Worry,Inverse variance weighted,63,0.004403229,0.004267868,0.302205053,Network
+ukb-b-6519,ukb-d-SLEEP,ICD10 Insomni,Worry,Simple mode,63,-0.005536752,0.0135215,0.683600421,Network
+ukb-b-6519,ukb-d-SLEEP,ICD10 Insomni,Worry,Weighted mode,63,-0.008218881,0.012050429,0.49775346,Network
+ukb-b-6519,ukb-b-4062,Happiness,Worry,MR Egger intercept,64,0.001407985,0.001174586,0.235203093,Network
+ukb-b-6519,ukb-b-4062,Happiness,Worry,MR Egger,64,0.168776028,0.287577968,0.559410067,Network
+ukb-b-6519,ukb-b-4062,Happiness,Worry,Weighted median,64,0.385153459,0.074137953,2.05E-07,Network
+ukb-b-6519,ukb-b-4062,Happiness,Worry,Inverse variance weighted,64,0.382557736,0.055834493,7.30E-12,Network
+ukb-b-6519,ukb-b-4062,Happiness,Worry,Simple mode,64,0.391133635,0.211326495,0.068880324,Network
+ukb-b-6519,ukb-b-4062,Happiness,Worry,Weighted mode,64,0.159210508,0.195621813,0.418785616,Network
+ukb-b-6519,ukb-b-4710,Exercise,Worry,MR Egger intercept,64,0.001529646,0.001332433,0.255374863,Network
+ukb-b-6519,ukb-b-4710,Exercise,Worry,MR Egger,64,0.689637032,0.873270176,0.432702522,Network
+ukb-b-6519,ukb-b-4710,Exercise,Worry,Weighted median,64,0.413142252,0.159474831,0.009579699,Network
+ukb-b-6519,ukb-b-4710,Exercise,Worry,Inverse variance weighted,64,0.38046834,0.169100858,0.024452171,Network
+ukb-b-6519,ukb-b-4710,Exercise,Worry,Simple mode,64,0.516096969,0.392107195,0.19287115,Network
+ukb-b-6519,ukb-b-4710,Exercise,Worry,Weighted mode,64,0.668519682,0.378096326,0.081882498,Network
+ukb-b-6519,ukb-b-5076,Not socialising,Worry,MR Egger intercept,64,0.002685946,0.001510541,0.08028502,Network
+ukb-b-6519,ukb-b-5076,Not socialising,Worry,MR Egger,64,-0.220058695,0.163001895,0.181912098,Network
+ukb-b-6519,ukb-b-5076,Not socialising,Worry,Weighted median,64,0.009779873,0.03179331,0.75838073,Network
+ukb-b-6519,ukb-b-5076,Not socialising,Worry,Inverse variance weighted,64,-0.007324469,0.031976129,0.818821861,Network
+ukb-b-6519,ukb-b-5076,Not socialising,Worry,Simple mode,64,0.066055741,0.090134008,0.466361048,Network
+ukb-b-6519,ukb-b-5076,Not socialising,Worry,Weighted mode,64,0.080950699,0.105930192,0.447607357,Network
+ukb-b-6519,ieu-a-118,Neuroticism,Worry,MR Egger intercept,48,0.001937552,0.001629006,0.240382731,Network
+ukb-b-6519,ieu-a-118,Neuroticism,Worry,MR Egger,48,1.113921336,0.715790202,0.126511731,Network
+ukb-b-6519,ieu-a-118,Neuroticism,Worry,Weighted median,48,0.722976144,0.179742781,5.76E-05,Network
+ukb-b-6519,ieu-a-118,Neuroticism,Worry,Inverse variance weighted,48,0.767011475,0.130499623,4.17E-09,Network
+ukb-b-6519,ieu-a-118,Neuroticism,Worry,Simple mode,48,0.758009202,0.33550566,0.028542438,Network
+ukb-b-6519,ieu-a-118,Neuroticism,Worry,Weighted mode,48,0.758009202,0.285324216,0.010745884,Network
+ukb-b-6519,ukb-b-5237,Coffee intake,Worry,MR Egger intercept,64,0.001829046,0.001339503,0.177040581,Network
+ukb-b-6519,ukb-b-5237,Coffee intake,Worry,MR Egger,64,-0.522865511,0.340392538,0.129610033,Network
+ukb-b-6519,ukb-b-5237,Coffee intake,Worry,Weighted median,64,-0.07579469,0.057527997,0.187662032,Network
+ukb-b-6519,ukb-b-5237,Coffee intake,Worry,Inverse variance weighted,64,-0.159627909,0.066480043,0.016344069,Network
+ukb-b-6519,ukb-b-5237,Coffee intake,Worry,Simple mode,64,-0.020246416,0.152666822,0.894917922,Network
+ukb-b-6519,ukb-b-5237,Coffee intake,Worry,Weighted mode,64,-0.059654073,0.127928424,0.642603306,Network
+ukb-b-6519,ieu-a-24,Diabetes,Worry,MR Egger intercept,11,0.00344749,0.006774028,0.623044497,Network
+ukb-b-6519,ieu-a-24,Diabetes,Worry,MR Egger,11,-1.424955128,6.941101312,0.841911831,Network
+ukb-b-6519,ieu-a-24,Diabetes,Worry,Weighted median,11,0.110568534,0.891195387,0.901261697,Network
+ukb-b-6519,ieu-a-24,Diabetes,Worry,Inverse variance weighted,11,-0.333359753,1.029637165,0.746116488,Network
+ukb-b-6519,ieu-a-24,Diabetes,Worry,Simple mode,11,1.139795769,1.57902276,0.486930592,Network
+ukb-b-6519,ieu-a-24,Diabetes,Worry,Weighted mode,11,1.280173295,1.458923397,0.400816964,Network
+ukb-b-6519,ieu-a-7,CHD,Worry,MR Egger intercept,59,-0.000583871,0.00197553,0.768646421,Network
+ukb-b-6519,ieu-a-7,CHD,Worry,MR Egger,59,-1.850792338,1.461748307,0.210609738,Network
+ukb-b-6519,ieu-a-7,CHD,Worry,Weighted median,59,-0.25140683,0.279872938,0.369031402,Network
+ukb-b-6519,ieu-a-7,CHD,Worry,Inverse variance weighted,59,-0.157175535,0.25503718,0.537706576,Network
+ukb-b-6519,ieu-a-7,CHD,Worry,Simple mode,59,-0.118196974,0.650707007,0.856495502,Network
+ukb-b-6519,ieu-a-7,CHD,Worry,Weighted mode,59,-0.300313075,0.582613718,0.608192043,Network
+ukb-b-5779,ieu-a-1187,Depression,Alcohol,Wald ratio,1,0.762508024,0.245747071,0.001916886,Network
+ukb-b-5779,ukb-b-6519,Worry,Alcohol,MR Egger intercept,99,-0.006548941,0.003862765,0.093206874,Network
+ukb-b-5779,ukb-b-6519,Worry,Alcohol,MR Egger,99,0.035591859,0.024017053,0.141597396,Network
+ukb-b-5779,ukb-b-6519,Worry,Alcohol,Weighted median,99,0.012530033,0.008462049,0.138677813,Network
+ukb-b-5779,ukb-b-6519,Worry,Alcohol,Inverse variance weighted,99,0.007671783,0.010614699,0.469832976,Network
+ukb-b-5779,ukb-b-6519,Worry,Alcohol,Simple mode,99,-0.029987454,0.025355606,0.239799163,Network
+ukb-b-5779,ukb-b-6519,Worry,Alcohol,Weighted mode,99,0.016725786,0.00980803,0.091303508,Network
+ukb-b-5779,ieu-a-961,Smoking,Alcohol,MR Egger intercept,67,-0.001596949,0.017872671,0.929077349,Network
+ukb-b-5779,ieu-a-961,Smoking,Alcohol,MR Egger,67,0.426981227,1.771697357,0.810312756,Network
+ukb-b-5779,ieu-a-961,Smoking,Alcohol,Weighted median,67,1.48325976,0.746716545,0.046991599,Network
+ukb-b-5779,ieu-a-961,Smoking,Alcohol,Inverse variance weighted,67,0.98183081,0.494297092,0.046998116,Network
+ukb-b-5779,ieu-a-961,Smoking,Alcohol,Simple mode,67,1.665768162,1.479567418,0.264307114,Network
+ukb-b-5779,ieu-a-961,Smoking,Alcohol,Weighted mode,67,1.752296537,1.210576581,0.152493485,Network
+ukb-b-5779,ieu-a-1239,Education,Alcohol,MR Egger intercept,95,-0.003386426,0.00335503,0.315421957,Network
+ukb-b-5779,ieu-a-1239,Education,Alcohol,MR Egger,95,0.052048581,0.060865696,0.39467232,Network
+ukb-b-5779,ieu-a-1239,Education,Alcohol,Weighted median,95,-0.104254186,0.022247411,2.78E-06,Network
+ukb-b-5779,ieu-a-1239,Education,Alcohol,Inverse variance weighted,95,-0.19472278,0.028487799,8.18E-12,Network
+ukb-b-5779,ieu-a-1239,Education,Alcohol,Simple mode,95,-0.22366259,0.061898356,0.000487805,Network
+ukb-b-5779,ieu-a-1239,Education,Alcohol,Weighted mode,95,0.07581518,0.019096715,0.000140529,Network
+ukb-b-5779,ukb-b-19953,BMI,Alcohol,MR Egger intercept,99,0.010291114,0.002936824,0.000694822,Network
+ukb-b-5779,ukb-b-19953,BMI,Alcohol,MR Egger,99,-0.126297354,0.111119826,0.258511094,Network
+ukb-b-5779,ukb-b-19953,BMI,Alcohol,Weighted median,99,0.065649298,0.024279642,0.006853452,Network
+ukb-b-5779,ukb-b-19953,BMI,Alcohol,Inverse variance weighted,99,0.215436583,0.051581057,2.96E-05,Network
+ukb-b-5779,ukb-b-19953,BMI,Alcohol,Simple mode,99,0.12494569,0.044335709,0.005843108,Network
+ukb-b-5779,ukb-b-19953,BMI,Alcohol,Weighted mode,99,-0.104475908,0.023867492,3.01E-05,Network
+ukb-b-5779,ukb-b-5238,Intelligence,Alcohol,MR Egger intercept,99,0.000498704,0.003431071,0.884736597,Network
+ukb-b-5779,ukb-b-5238,Intelligence,Alcohol,MR Egger,99,0.006561012,0.165045803,0.968372011,Network
+ukb-b-5779,ukb-b-5238,Intelligence,Alcohol,Weighted median,99,-0.29975988,0.076425489,8.77E-05,Network
+ukb-b-5779,ukb-b-5238,Intelligence,Alcohol,Inverse variance weighted,99,-0.485908143,0.077235208,3.15E-10,Network
+ukb-b-5779,ukb-b-5238,Intelligence,Alcohol,Simple mode,99,-0.905698958,0.333125197,0.007750244,Network
+ukb-b-5779,ukb-b-5238,Intelligence,Alcohol,Weighted mode,99,0.138806055,0.088423112,0.119686367,Network
+ukb-b-5779,ieu-a-1018,Wellbeing,Alcohol,MR Egger intercept,65,0.001177975,0.004648492,0.80077648,Network
+ukb-b-5779,ieu-a-1018,Wellbeing,Alcohol,MR Egger,65,0.002348829,0.108249437,0.982757194,Network
+ukb-b-5779,ieu-a-1018,Wellbeing,Alcohol,Weighted median,65,-0.001051409,0.033038196,0.974612368,Network
+ukb-b-5779,ieu-a-1018,Wellbeing,Alcohol,Inverse variance weighted,65,-0.018442897,0.028916743,0.523608416,Network
+ukb-b-5779,ieu-a-1018,Wellbeing,Alcohol,Simple mode,65,-0.005324217,0.089651856,0.952828368,Network
+ukb-b-5779,ieu-a-1018,Wellbeing,Alcohol,Weighted mode,65,0.057410803,0.084617364,0.499916289,Network
+ukb-b-5779,ukb-b-4424,Sleep duration,Alcohol,MR Egger intercept,99,0.004509958,0.003526786,0.204028166,Network
+ukb-b-5779,ukb-b-4424,Sleep duration,Alcohol,MR Egger,99,-0.019063246,0.036820775,0.605824941,Network
+ukb-b-5779,ukb-b-4424,Sleep duration,Alcohol,Weighted median,99,-0.025382128,0.015091934,0.092601033,Network
+ukb-b-5779,ukb-b-4424,Sleep duration,Alcohol,Inverse variance weighted,99,-0.037300855,0.016166357,0.021037342,Network
+ukb-b-5779,ukb-b-4424,Sleep duration,Alcohol,Simple mode,99,0.001175079,0.031833487,0.970629233,Network
+ukb-b-5779,ukb-b-4424,Sleep duration,Alcohol,Weighted mode,99,-0.019062557,0.014401051,0.188684872,Network
+ukb-b-5779,ukb-b-8476,Loneliness,Alcohol,MR Egger intercept,99,0.001663285,0.003773014,0.660311906,Network
+ukb-b-5779,ukb-b-8476,Loneliness,Alcohol,MR Egger,99,-0.002232609,0.012683003,0.860636101,Network
+ukb-b-5779,ukb-b-8476,Loneliness,Alcohol,Weighted median,99,0.017001616,0.006554517,0.009490021,Network
+ukb-b-5779,ukb-b-8476,Loneliness,Alcohol,Inverse variance weighted,99,0.026303005,0.005734891,4.51E-06,Network
+ukb-b-5779,ukb-b-8476,Loneliness,Alcohol,Simple mode,99,0.021450539,0.020908351,0.307449488,Network
+ukb-b-5779,ukb-b-8476,Loneliness,Alcohol,Weighted mode,99,0.003874873,0.008403617,0.645751532,Network
+ukb-b-5779,ukb-b-3957,Sleeplessness,Alcohol,MR Egger intercept,99,0.004616808,0.00398907,0.249965554,Network
+ukb-b-5779,ukb-b-3957,Sleeplessness,Alcohol,MR Egger,99,-0.039133319,0.027446301,0.15713233,Network
+ukb-b-5779,ukb-b-3957,Sleeplessness,Alcohol,Weighted median,99,-0.011010946,0.011909446,0.355197088,Network
+ukb-b-5779,ukb-b-3957,Sleeplessness,Alcohol,Inverse variance weighted,99,0.008435577,0.012257503,0.491328722,Network
+ukb-b-5779,ukb-b-3957,Sleeplessness,Alcohol,Simple mode,99,0.0203338,0.038465443,0.598260706,Network
+ukb-b-5779,ukb-b-3957,Sleeplessness,Alcohol,Weighted mode,99,-0.019742879,0.014981125,0.190626128,Network
+ukb-b-5779,ukb-b-4956,Eveningness,Alcohol,MR Egger intercept,99,0.001462719,0.003537489,0.68015981,Network
+ukb-b-5779,ukb-b-4956,Eveningness,Alcohol,MR Egger,99,-0.032304861,0.048311246,0.505286581,Network
+ukb-b-5779,ukb-b-4956,Eveningness,Alcohol,Weighted median,99,-0.019710064,0.018046705,0.274758517,Network
+ukb-b-5779,ukb-b-4956,Eveningness,Alcohol,Inverse variance weighted,99,-0.087828748,0.021344382,3.87E-05,Network
+ukb-b-5779,ukb-b-4956,Eveningness,Alcohol,Simple mode,99,-0.102619174,0.05076876,0.045975178,Network
+ukb-b-5779,ukb-b-4956,Eveningness,Alcohol,Weighted mode,99,-0.022158998,0.022114532,0.318806134,Network
+ukb-b-5779,ukb-d-SLEEP,ICD10 Insomni,Alcohol,MR Egger intercept,99,-0.003249883,0.003648513,0.375271812,Network
+ukb-b-5779,ukb-d-SLEEP,ICD10 Insomni,Alcohol,MR Egger,99,-0.001122277,0.002844002,0.693995693,Network
+ukb-b-5779,ukb-d-SLEEP,ICD10 Insomni,Alcohol,Weighted median,99,-3.44E-05,0.001749509,0.984291593,Network
+ukb-b-5779,ukb-d-SLEEP,ICD10 Insomni,Alcohol,Inverse variance weighted,99,0.002797641,0.001192126,0.018937133,Network
+ukb-b-5779,ukb-d-SLEEP,ICD10 Insomni,Alcohol,Simple mode,99,0.002976024,0.004117822,0.471574346,Network
+ukb-b-5779,ukb-d-SLEEP,ICD10 Insomni,Alcohol,Weighted mode,99,0.000220689,0.002187135,0.919833299,Network
+ukb-b-5779,ukb-b-4062,Happiness,Alcohol,MR Egger intercept,99,-0.002560466,0.004251565,0.548419091,Network
+ukb-b-5779,ukb-b-4062,Happiness,Alcohol,MR Egger,99,-0.040280095,0.036319776,0.270154896,Network
+ukb-b-5779,ukb-b-4062,Happiness,Alcohol,Weighted median,99,-0.034633995,0.022631575,0.125932688,Network
+ukb-b-5779,ukb-b-4062,Happiness,Alcohol,Inverse variance weighted,99,-0.005264695,0.016206171,0.745288992,Network
+ukb-b-5779,ukb-b-4062,Happiness,Alcohol,Simple mode,99,0.004365403,0.056275383,0.938326553,Network
+ukb-b-5779,ukb-b-4062,Happiness,Alcohol,Weighted mode,99,-0.029483369,0.028616506,0.305408843,Network
+ukb-b-5779,ukb-b-4710,Exercise,Alcohol,MR Egger intercept,99,-0.001178423,0.003995329,0.768662307,Network
+ukb-b-5779,ukb-b-4710,Exercise,Alcohol,MR Egger,99,-0.035459599,0.087813862,0.687245613,Network
+ukb-b-5779,ukb-b-4710,Exercise,Alcohol,Weighted median,99,-0.021805671,0.041059361,0.595365619,Network
+ukb-b-5779,ukb-b-4710,Exercise,Alcohol,Inverse variance weighted,99,0.036417663,0.038651955,0.346093016,Network
+ukb-b-5779,ukb-b-4710,Exercise,Alcohol,Simple mode,99,-0.059444767,0.10546622,0.574288039,Network
+ukb-b-5779,ukb-b-4710,Exercise,Alcohol,Weighted mode,99,-0.047431785,0.047439582,0.31985243,Network
+ukb-b-5779,ukb-b-5076,Not socialising,Alcohol,MR Egger intercept,99,0.004667647,0.002866361,0.106679118,Network
+ukb-b-5779,ukb-b-5076,Not socialising,Alcohol,MR Egger,99,0.046819715,0.014683808,0.001925595,Network
+ukb-b-5779,ukb-b-5076,Not socialising,Alcohol,Weighted median,99,0.060715113,0.007484878,4.99E-16,Network
+ukb-b-5779,ukb-b-5076,Not socialising,Alcohol,Inverse variance weighted,99,0.074042036,0.006573918,2.00E-29,Network
+ukb-b-5779,ukb-b-5076,Not socialising,Alcohol,Simple mode,99,0.084237254,0.023580842,0.000550708,Network
+ukb-b-5779,ukb-b-5076,Not socialising,Alcohol,Weighted mode,99,0.047802674,0.008842655,4.54E-07,Network
+ukb-b-5779,ieu-a-118,Neuroticism,Alcohol,MR Egger intercept,88,0.000632228,0.004243236,0.881905042,Network
+ukb-b-5779,ieu-a-118,Neuroticism,Alcohol,MR Egger,88,-0.066688049,0.077871514,0.394164421,Network
+ukb-b-5779,ieu-a-118,Neuroticism,Alcohol,Weighted median,88,0.011963249,0.047365725,0.800599087,Network
+ukb-b-5779,ieu-a-118,Neuroticism,Alcohol,Inverse variance weighted,88,-0.025778123,0.031883169,0.418792328,Network
+ukb-b-5779,ieu-a-118,Neuroticism,Alcohol,Simple mode,88,-0.014601516,0.113205084,0.897668926,Network
+ukb-b-5779,ieu-a-118,Neuroticism,Alcohol,Weighted mode,88,-0.014601516,0.06179262,0.81375633,Network
+ukb-b-5779,ukb-b-5237,Coffee intake,Alcohol,MR Egger intercept,99,-0.008110302,0.003362864,0.017758668,Network
+ukb-b-5779,ukb-b-5237,Coffee intake,Alcohol,MR Egger,99,-0.015572363,0.041785998,0.710207558,Network
+ukb-b-5779,ukb-b-5237,Coffee intake,Alcohol,Weighted median,99,-0.052135417,0.013810847,0.000160032,Network
+ukb-b-5779,ukb-b-5237,Coffee intake,Alcohol,Inverse variance weighted,99,-0.063118745,0.018471385,0.000632898,Network
+ukb-b-5779,ukb-b-5237,Coffee intake,Alcohol,Simple mode,99,-0.082794269,0.044497711,0.065793182,Network
+ukb-b-5779,ukb-b-5237,Coffee intake,Alcohol,Weighted mode,99,-0.020154231,0.01813895,0.269242856,Network
+ukb-b-5779,ieu-a-24,Diabetes,Alcohol,MR Egger intercept,22,0.010497343,0.007603312,0.182629262,Network
+ukb-b-5779,ieu-a-24,Diabetes,Alcohol,MR Egger,22,-1.780223648,0.953956306,0.076754991,Network
+ukb-b-5779,ieu-a-24,Diabetes,Alcohol,Weighted median,22,0.11830988,0.217374641,0.586257637,Network
+ukb-b-5779,ieu-a-24,Diabetes,Alcohol,Inverse variance weighted,22,0.231474789,0.342502831,0.499146545,Network
+ukb-b-5779,ieu-a-24,Diabetes,Alcohol,Simple mode,22,0.4317015,0.343801058,0.223026868,Network
+ukb-b-5779,ieu-a-24,Diabetes,Alcohol,Weighted mode,22,0.411552022,0.737262184,0.582599713,Network
+ukb-b-5779,ieu-a-7,CHD,Alcohol,MR Egger intercept,93,0.006745508,0.003684663,0.070418528,Network
+ukb-b-5779,ieu-a-7,CHD,Alcohol,MR Egger,93,-0.131926874,0.14073279,0.351019711,Network
+ukb-b-5779,ieu-a-7,CHD,Alcohol,Weighted median,93,-0.122187159,0.064667594,0.05882954,Network
+ukb-b-5779,ieu-a-7,CHD,Alcohol,Inverse variance weighted,93,0.076435165,0.081514374,0.348404048,Network
+ukb-b-5779,ieu-a-7,CHD,Alcohol,Simple mode,93,0.129585178,0.206294388,0.531457642,Network
+ukb-b-5779,ieu-a-7,CHD,Alcohol,Weighted mode,93,-0.098492931,0.062024524,0.115724706,Network
+ieu-a-961,ukb-b-6519,Worry,Smoking,Wald ratio,1,0.000833828,0.001032115,0.419158137,Network
+ieu-a-961,ukb-b-5779,Alcohol,Smoking,Wald ratio,1,0.002994968,0.003046888,0.325627273,Network
+ieu-a-961,ieu-a-1239,Education,Smoking,Wald ratio,1,0.000713239,0.001709819,0.676573919,Network
+ieu-a-961,ukb-b-19953,BMI,Smoking,Wald ratio,1,-0.004691275,0.00199235,0.018540444,Network
+ieu-a-961,ukb-b-5238,Intelligence,Smoking,Wald ratio,1,-0.002347347,0.007625852,0.75822355,Network
+ieu-a-961,ieu-a-1018,Wellbeing,Smoking,Wald ratio,1,0.001603547,0.003207103,0.61707615,Network
+ieu-a-961,ukb-b-4424,Sleep duration,Smoking,Wald ratio,1,0.000576087,0.001608793,0.720278686,Network
+ieu-a-961,ukb-b-8476,Loneliness,Smoking,Wald ratio,1,0.000460304,0.000808191,0.568983833,Network
+ieu-a-961,ukb-b-3957,Sleeplessness,Smoking,Wald ratio,1,-0.000920452,0.001493766,0.537765418,Network
+ieu-a-961,ukb-b-4956,Eveningness,Smoking,Wald ratio,1,0.004495203,0.002048149,0.028180527,Network
+ieu-a-961,ukb-d-SLEEP,ICD10 Insomni,Smoking,Wald ratio,1,0.000168616,0.000212776,0.428094564,Network
+ieu-a-961,ukb-b-4062,Happiness,Smoking,Wald ratio,1,0.003686781,0.002556063,0.149198823,Network
+ieu-a-961,ukb-b-4710,Exercise,Smoking,Wald ratio,1,-0.00263829,0.005002355,0.597909136,Network
+ieu-a-961,ukb-b-5076,Not socialising,Smoking,Wald ratio,1,0.000104834,0.000962167,0.913236964,Network
+ieu-a-961,ieu-a-118,Neuroticism,Smoking,Wald ratio,1,0.001465559,0.00566683,0.795927918,Network
+ieu-a-961,ukb-b-5237,Coffee intake,Smoking,Wald ratio,1,-0.001116961,0.001623283,0.491397384,Network
+ieu-a-961,ieu-a-24,Diabetes,Smoking,Wald ratio,1,-0.030828139,0.012047386,0.01050019,Network
+ieu-a-961,ieu-a-7,CHD,Smoking,Wald ratio,1,-0.016344895,0.009443771,0.083494707,Network
+ieu-a-1239,ieu-a-1187,Depression,Education,MR Egger intercept,5,0.048878559,0.01933781,0.085602817,Network
+ieu-a-1239,ieu-a-1187,Depression,Education,MR Egger,5,3.023037866,4.458262769,0.546340538,Network
+ieu-a-1239,ieu-a-1187,Depression,Education,Weighted median,5,-0.503647645,0.244239144,0.039197396,Network
+ieu-a-1239,ieu-a-1187,Depression,Education,Inverse variance weighted,5,-0.469608624,0.672800299,0.485182757,Network
+ieu-a-1239,ieu-a-1187,Depression,Education,Simple mode,5,-1.734521017,0.308626876,0.004927701,Network
+ieu-a-1239,ieu-a-1187,Depression,Education,Weighted mode,5,0.914350073,0.556677239,0.175828211,Network
+ieu-a-1239,ukb-b-6519,Worry,Education,MR Egger intercept,309,-0.001494301,0.001233771,0.226763457,Network
+ieu-a-1239,ukb-b-6519,Worry,Education,MR Egger,309,-0.023450495,0.035081177,0.5043399,Network
+ieu-a-1239,ukb-b-6519,Worry,Education,Weighted median,309,-0.040788982,0.008899592,4.58E-06,Network
+ieu-a-1239,ukb-b-6519,Worry,Education,Inverse variance weighted,309,-0.029571327,0.008893688,0.000884252,Network
+ieu-a-1239,ukb-b-6519,Worry,Education,Simple mode,309,-0.086055278,0.034436531,0.012976641,Network
+ieu-a-1239,ukb-b-6519,Worry,Education,Weighted mode,309,-0.086055278,0.02981802,0.004177151,Network
+ieu-a-1239,ukb-b-5779,Alcohol,Education,MR Egger intercept,309,-0.005627468,0.000828309,5.67E-11,Network
+ieu-a-1239,ukb-b-5779,Alcohol,Education,MR Egger,309,-0.409616525,0.110370131,0.000244765,Network
+ieu-a-1239,ukb-b-5779,Alcohol,Education,Weighted median,309,-0.42650318,0.027424031,1.54E-54,Network
+ieu-a-1239,ukb-b-5779,Alcohol,Education,Inverse variance weighted,309,-0.494513151,0.028006324,8.96E-70,Network
+ieu-a-1239,ukb-b-5779,Alcohol,Education,Simple mode,309,-0.611755508,0.107656214,3.08E-08,Network
+ieu-a-1239,ukb-b-5779,Alcohol,Education,Weighted mode,309,-0.239955367,0.07940999,0.002724208,Network
+ieu-a-1239,ieu-a-961,Smoking,Education,MR Egger intercept,243,-0.002004359,0.009547483,0.833895075,Network
+ieu-a-1239,ieu-a-961,Smoking,Education,MR Egger,243,-2.535974351,1.932984801,0.190786176,Network
+ieu-a-1239,ieu-a-961,Smoking,Education,Weighted median,243,-1.884219689,0.671426852,0.005011528,Network
+ieu-a-1239,ieu-a-961,Smoking,Education,Inverse variance weighted,243,-2.180782311,0.461081887,2.25E-06,Network
+ieu-a-1239,ieu-a-961,Smoking,Education,Simple mode,243,-1.549772984,2.025109133,0.444851258,Network
+ieu-a-1239,ieu-a-961,Smoking,Education,Weighted mode,243,-1.683896889,1.613613417,0.297731914,Network
+ieu-a-1239,ukb-b-19953,BMI,Education,MR Egger intercept,309,-0.003087598,0.000968546,0.001581024,Network
+ieu-a-1239,ukb-b-19953,BMI,Education,MR Egger,309,-0.312426566,0.102131642,0.002416079,Network
+ieu-a-1239,ukb-b-19953,BMI,Education,Weighted median,309,-0.276311981,0.020249099,2.14E-42,Network
+ieu-a-1239,ukb-b-19953,BMI,Education,Inverse variance weighted,309,-0.34611712,0.025898114,9.74E-41,Network
+ieu-a-1239,ukb-b-19953,BMI,Education,Simple mode,309,-0.423111402,0.097124762,1.80E-05,Network
+ieu-a-1239,ukb-b-19953,BMI,Education,Weighted mode,309,-0.200563648,0.077857626,0.010459992,Network
+ieu-a-1239,ukb-b-5238,Intelligence,Education,MR Egger intercept,309,0.005190381,0.000918333,3.62E-08,Network
+ieu-a-1239,ukb-b-5238,Intelligence,Education,MR Egger,309,1.899438784,0.229776369,4.21E-15,Network
+ieu-a-1239,ukb-b-5238,Intelligence,Education,Weighted median,309,1.665379811,0.066852541,5.62E-137,Network
+ieu-a-1239,ukb-b-5238,Intelligence,Education,Inverse variance weighted,309,1.690847752,0.058317941,7.92E-185,Network
+ieu-a-1239,ukb-b-5238,Intelligence,Education,Simple mode,309,1.885579901,0.257151978,2.01E-12,Network
+ieu-a-1239,ukb-b-5238,Intelligence,Education,Weighted mode,309,1.94145201,0.263463177,1.59E-12,Network
+ieu-a-1239,ieu-a-1018,Wellbeing,Education,MR Egger intercept,243,0.001467563,0.001334158,0.272433083,Network
+ieu-a-1239,ieu-a-1018,Wellbeing,Education,MR Egger,243,-0.011439989,0.086822144,0.895281293,Network
+ieu-a-1239,ieu-a-1018,Wellbeing,Education,Weighted median,243,0.053536395,0.026546162,0.043723878,Network
+ieu-a-1239,ieu-a-1018,Wellbeing,Education,Inverse variance weighted,243,0.072577737,0.020736274,0.000465193,Network
+ieu-a-1239,ieu-a-1018,Wellbeing,Education,Simple mode,243,0.053760765,0.07995411,0.501973577,Network
+ieu-a-1239,ieu-a-1018,Wellbeing,Education,Weighted mode,243,0.031775519,0.062828359,0.613491666,Network
+ieu-a-1239,ukb-b-4424,Sleep duration,Education,MR Egger intercept,309,0.001116045,0.001145181,0.33054687,Network
+ieu-a-1239,ukb-b-4424,Sleep duration,Education,MR Egger,309,0.029241435,0.055372934,0.597824105,Network
+ieu-a-1239,ukb-b-4424,Sleep duration,Education,Weighted median,309,0.040490129,0.01354076,0.002787579,Network
+ieu-a-1239,ukb-b-4424,Sleep duration,Education,Inverse variance weighted,309,0.04540235,0.014038293,0.001219931,Network
+ieu-a-1239,ukb-b-4424,Sleep duration,Education,Simple mode,309,0.028962393,0.0446774,0.517302365,Network
+ieu-a-1239,ukb-b-4424,Sleep duration,Education,Weighted mode,309,0.045319868,0.030346537,0.136353179,Network
+ieu-a-1239,ukb-b-8476,Loneliness,Education,MR Egger intercept,309,-0.00270065,0.001032874,0.009371467,Network
+ieu-a-1239,ukb-b-8476,Loneliness,Education,MR Egger,309,-0.030295064,0.022853676,0.185954452,Network
+ieu-a-1239,ukb-b-8476,Loneliness,Education,Weighted median,309,-0.048687032,0.006361531,1.96E-14,Network
+ieu-a-1239,ukb-b-8476,Loneliness,Education,Inverse variance weighted,309,-0.057395909,0.005807104,4.90E-23,Network
+ieu-a-1239,ukb-b-8476,Loneliness,Education,Simple mode,309,-0.037987818,0.020944093,0.070685832,Network
+ieu-a-1239,ukb-b-8476,Loneliness,Education,Weighted mode,309,-0.042165162,0.017925397,0.019288999,Network
+ieu-a-1239,ukb-b-3957,Sleeplessness,Education,MR Egger intercept,309,-0.001425465,0.0011443,0.213820909,Network
+ieu-a-1239,ukb-b-3957,Sleeplessness,Education,MR Egger,309,-0.064530577,0.045633613,0.1583453,Network
+ieu-a-1239,ukb-b-3957,Sleeplessness,Education,Weighted median,309,-0.125498132,0.0116527,4.78E-27,Network
+ieu-a-1239,ukb-b-3957,Sleeplessness,Education,Inverse variance weighted,309,-0.107349581,0.011585204,1.93E-20,Network
+ieu-a-1239,ukb-b-3957,Sleeplessness,Education,Simple mode,309,-0.139907667,0.040805399,0.000689169,Network
+ieu-a-1239,ukb-b-3957,Sleeplessness,Education,Weighted mode,309,-0.139907667,0.035913833,0.000120164,Network
+ieu-a-1239,ukb-b-4956,Eveningness,Education,MR Egger intercept,309,-0.000191547,0.001204991,0.873803967,Network
+ieu-a-1239,ukb-b-4956,Eveningness,Education,MR Egger,309,0.115921322,0.079507935,0.145867077,Network
+ieu-a-1239,ukb-b-4956,Eveningness,Education,Weighted median,309,0.09293552,0.017586054,1.26E-07,Network
+ieu-a-1239,ukb-b-4956,Eveningness,Education,Inverse variance weighted,309,0.102033765,0.020155739,4.14E-07,Network
+ieu-a-1239,ukb-b-4956,Eveningness,Education,Simple mode,309,0.13168298,0.090064618,0.144734881,Network
+ieu-a-1239,ukb-b-4956,Eveningness,Education,Weighted mode,309,0.138514212,0.098007837,0.158578144,Network
+ieu-a-1239,ukb-d-SLEEP,ICD10 Insomni,Education,MR Egger intercept,307,0.000337943,0.001271334,0.7905594,Network
+ieu-a-1239,ukb-d-SLEEP,ICD10 Insomni,Education,MR Egger,307,-0.003173024,0.004296315,0.460750966,Network
+ieu-a-1239,ukb-d-SLEEP,ICD10 Insomni,Education,Weighted median,307,-0.002678073,0.00153489,0.081020079,Network
+ieu-a-1239,ukb-d-SLEEP,ICD10 Insomni,Education,Inverse variance weighted,307,-0.002762384,0.001089559,0.011234362,Network
+ieu-a-1239,ukb-d-SLEEP,ICD10 Insomni,Education,Simple mode,307,-0.00391752,0.005408476,0.46941672,Network
+ieu-a-1239,ukb-d-SLEEP,ICD10 Insomni,Education,Weighted mode,307,-0.004511174,0.00520207,0.386518329,Network
+ieu-a-1239,ukb-b-4062,Happiness,Education,MR Egger intercept,309,-2.34E-05,0.001260539,0.985232687,Network
+ieu-a-1239,ukb-b-4062,Happiness,Education,MR Egger,309,0.001876059,0.060044411,0.975094836,Network
+ieu-a-1239,ukb-b-4062,Happiness,Education,Weighted median,309,0.024578202,0.019214529,0.20084539,Network
+ieu-a-1239,ukb-b-4062,Happiness,Education,Inverse variance weighted,309,0.019997537,0.015218926,0.188849098,Network
+ieu-a-1239,ukb-b-4062,Happiness,Education,Simple mode,309,0.019707127,0.068104388,0.772495623,Network
+ieu-a-1239,ukb-b-4062,Happiness,Education,Weighted mode,309,0.0359336,0.0550372,0.51430998,Network
+ieu-a-1239,ukb-b-4710,Exercise,Education,MR Egger intercept,309,-0.002540114,0.001164161,0.029872896,Network
+ieu-a-1239,ukb-b-4710,Exercise,Education,MR Egger,309,-0.074626676,0.149173155,0.617244228,Network
+ieu-a-1239,ukb-b-4710,Exercise,Education,Weighted median,309,-0.293299204,0.042075571,3.15E-12,Network
+ieu-a-1239,ukb-b-4710,Exercise,Education,Inverse variance weighted,309,-0.237204179,0.037893241,3.85E-10,Network
+ieu-a-1239,ukb-b-4710,Exercise,Education,Simple mode,309,-0.423508555,0.150806296,0.005298485,Network
+ieu-a-1239,ukb-b-4710,Exercise,Education,Weighted mode,309,-0.400655561,0.143092685,0.005433489,Network
+ieu-a-1239,ukb-b-5076,Not socialising,Education,MR Egger intercept,309,-0.003153622,0.000884179,0.000419162,Network
+ieu-a-1239,ukb-b-5076,Not socialising,Education,MR Egger,309,-0.129259994,0.026258043,1.40E-06,Network
+ieu-a-1239,ukb-b-5076,Not socialising,Education,Weighted median,309,-0.109095444,0.007580098,5.78E-47,Network
+ieu-a-1239,ukb-b-5076,Not socialising,Education,Inverse variance weighted,309,-0.117992583,0.006658141,2.86E-70,Network
+ieu-a-1239,ukb-b-5076,Not socialising,Education,Simple mode,309,-0.109062473,0.028724911,0.000176537,Network
+ieu-a-1239,ukb-b-5076,Not socialising,Education,Weighted mode,309,-0.105514614,0.029517664,0.000407003,Network
+ieu-a-1239,ieu-a-118,Neuroticism,Education,MR Egger intercept,260,0.000224112,0.001243842,0.857154629,Network
+ieu-a-1239,ieu-a-118,Neuroticism,Education,MR Egger,260,-0.316431678,0.120188115,0.008979203,Network
+ieu-a-1239,ieu-a-118,Neuroticism,Education,Weighted median,260,-0.18697201,0.041940172,8.27E-06,Network
+ieu-a-1239,ieu-a-118,Neuroticism,Education,Inverse variance weighted,260,-0.173589147,0.029355802,3.35E-09,Network
+ieu-a-1239,ieu-a-118,Neuroticism,Education,Simple mode,260,-0.128915847,0.154882674,0.405980939,Network
+ieu-a-1239,ieu-a-118,Neuroticism,Education,Weighted mode,260,-0.258779864,0.133469815,0.053604087,Network
+ieu-a-1239,ukb-b-5237,Coffee intake,Education,MR Egger intercept,309,0.002000147,0.001068588,0.062189638,Network
+ieu-a-1239,ukb-b-5237,Coffee intake,Education,MR Egger,309,0.134555836,0.043670102,0.002248532,Network
+ieu-a-1239,ukb-b-5237,Coffee intake,Education,Weighted median,309,0.092585894,0.01275356,3.88E-13,Network
+ieu-a-1239,ukb-b-5237,Coffee intake,Education,Inverse variance weighted,309,0.097252376,0.01108342,1.72E-18,Network
+ieu-a-1239,ukb-b-5237,Coffee intake,Education,Simple mode,309,0.119391015,0.042674496,0.005470665,Network
+ieu-a-1239,ukb-b-5237,Coffee intake,Education,Weighted mode,309,0.089829274,0.039698929,0.024346474,Network
+ieu-a-1239,ieu-a-24,Diabetes,Education,MR Egger intercept,36,-0.003837017,0.004267062,0.374861447,Network
+ieu-a-1239,ieu-a-24,Diabetes,Education,MR Egger,36,0.144629401,0.508311672,0.777730868,Network
+ieu-a-1239,ieu-a-24,Diabetes,Education,Weighted median,36,-0.296225171,0.234234155,0.20599537,Network
+ieu-a-1239,ieu-a-24,Diabetes,Education,Inverse variance weighted,36,-0.310843673,0.157555521,0.048505232,Network
+ieu-a-1239,ieu-a-24,Diabetes,Education,Simple mode,36,-0.557764133,0.448357151,0.221760454,Network
+ieu-a-1239,ieu-a-24,Diabetes,Education,Weighted mode,36,-0.347364856,0.351576511,0.329924041,Network
+ieu-a-1239,ieu-a-7,CHD,Education,MR Egger intercept,303,-0.002659219,0.001091648,0.015432004,Network
+ieu-a-1239,ieu-a-7,CHD,Education,MR Egger,303,-0.283616349,0.212581533,0.183162122,Network
+ieu-a-1239,ieu-a-7,CHD,Education,Weighted median,303,-0.441777222,0.07378114,2.13E-09,Network
+ieu-a-1239,ieu-a-7,CHD,Education,Inverse variance weighted,303,-0.470568416,0.052568188,3.50E-19,Network
+ieu-a-1239,ieu-a-7,CHD,Education,Simple mode,303,-0.580211913,0.255342391,0.023771847,Network
+ieu-a-1239,ieu-a-7,CHD,Education,Weighted mode,303,-0.183645413,0.223660399,0.412242442,Network
+ukb-b-19953,ieu-a-1187,Depression,BMI,MR Egger intercept,7,-0.000771211,0.01371629,0.957339504,Network
+ukb-b-19953,ieu-a-1187,Depression,BMI,MR Egger,7,2.481663168,2.462958964,0.359893541,Network
+ukb-b-19953,ieu-a-1187,Depression,BMI,Weighted median,7,1.171063599,0.198006281,3.33E-09,Network
+ukb-b-19953,ieu-a-1187,Depression,BMI,Inverse variance weighted,7,1.09586429,0.367002716,0.002826673,Network
+ukb-b-19953,ieu-a-1187,Depression,BMI,Simple mode,7,1.191146131,0.255299516,0.003446895,Network
+ukb-b-19953,ieu-a-1187,Depression,BMI,Weighted mode,7,1.15162033,0.222752064,0.002074492,Network
+ukb-b-19953,ukb-b-6519,Worry,BMI,MR Egger intercept,443,0.000805676,0.001277551,0.528602033,Network
+ukb-b-19953,ukb-b-6519,Worry,BMI,MR Egger,443,-0.032533933,0.015063347,0.031325829,Network
+ukb-b-19953,ukb-b-6519,Worry,BMI,Weighted median,443,-0.033454072,0.006000715,2.48E-08,Network
+ukb-b-19953,ukb-b-6519,Worry,BMI,Inverse variance weighted,443,-0.041694374,0.005524401,4.44E-14,Network
+ukb-b-19953,ukb-b-6519,Worry,BMI,Simple mode,443,-0.016142815,0.024743157,0.514472426,Network
+ukb-b-19953,ukb-b-6519,Worry,BMI,Weighted mode,443,-0.005882149,0.01863349,0.752397296,Network
+ukb-b-19953,ukb-b-5779,Alcohol,BMI,MR Egger intercept,447,0.003659692,0.000958483,0.000153486,Network
+ukb-b-19953,ukb-b-5779,Alcohol,BMI,MR Egger,447,0.459070984,0.040613159,3.23E-26,Network
+ukb-b-19953,ukb-b-5779,Alcohol,BMI,Weighted median,447,0.268618919,0.024040089,5.48E-29,Network
+ukb-b-19953,ukb-b-5779,Alcohol,BMI,Inverse variance weighted,447,0.339398814,0.020821118,9.76E-60,Network
+ukb-b-19953,ukb-b-5779,Alcohol,BMI,Simple mode,447,0.358582019,0.080089204,9.61E-06,Network
+ukb-b-19953,ukb-b-5779,Alcohol,BMI,Weighted mode,447,0.232665539,0.041348871,3.25E-08,Network
+ukb-b-19953,ieu-a-961,Smoking,BMI,MR Egger intercept,328,0.000114185,0.008714146,0.989553349,Network
+ukb-b-19953,ieu-a-961,Smoking,BMI,MR Egger,328,1.594883446,0.83952311,0.058348328,Network
+ukb-b-19953,ieu-a-961,Smoking,BMI,Weighted median,328,2.028883691,0.506321947,6.15E-05,Network
+ukb-b-19953,ieu-a-961,Smoking,BMI,Inverse variance weighted,328,1.884789556,0.307089326,8.38E-10,Network
+ukb-b-19953,ieu-a-961,Smoking,BMI,Simple mode,328,3.857856404,1.384325268,0.005633866,Network
+ukb-b-19953,ieu-a-961,Smoking,BMI,Weighted mode,328,2.283166156,0.829323488,0.006234179,Network
+ukb-b-19953,ieu-a-1239,Education,BMI,MR Egger intercept,433,-0.004277189,0.001095621,0.000109826,Network
+ukb-b-19953,ieu-a-1239,Education,BMI,MR Egger,433,-0.001665572,0.036927711,0.964045645,Network
+ukb-b-19953,ieu-a-1239,Education,BMI,Weighted median,433,-0.11967543,0.011572026,4.56E-25,Network
+ukb-b-19953,ieu-a-1239,Education,BMI,Inverse variance weighted,433,-0.182283403,0.01400859,1.04E-38,Network
+ukb-b-19953,ieu-a-1239,Education,BMI,Simple mode,433,-0.156436883,0.044105358,0.000432467,Network
+ukb-b-19953,ieu-a-1239,Education,BMI,Weighted mode,433,-0.104827888,0.030789927,0.000724458,Network
+ukb-b-19953,ukb-b-5238,Intelligence,BMI,MR Egger intercept,443,0.001491515,0.001226517,0.224613795,Network
+ukb-b-19953,ukb-b-5238,Intelligence,BMI,MR Egger,443,-0.12714493,0.119178322,0.286625016,Network
+ukb-b-19953,ukb-b-5238,Intelligence,BMI,Weighted median,443,-0.180630153,0.043918946,3.91E-05,Network
+ukb-b-19953,ukb-b-5238,Intelligence,BMI,Inverse variance weighted,443,-0.293973612,0.043817154,1.96E-11,Network
+ukb-b-19953,ukb-b-5238,Intelligence,BMI,Simple mode,443,0.180745191,0.165759969,0.276129676,Network
+ukb-b-19953,ukb-b-5238,Intelligence,BMI,Weighted mode,443,0.147325068,0.101490293,0.147317433,Network
+ukb-b-19953,ieu-a-1018,Wellbeing,BMI,MR Egger intercept,325,0.002527296,0.001566317,0.107606372,Network
+ukb-b-19953,ieu-a-1018,Wellbeing,BMI,MR Egger,325,-0.065401351,0.036344124,0.072872363,Network
+ukb-b-19953,ieu-a-1018,Wellbeing,BMI,Weighted median,325,-0.004607451,0.018551212,0.803852889,Network
+ukb-b-19953,ieu-a-1018,Wellbeing,BMI,Inverse variance weighted,325,-0.01616586,0.013178753,0.219950089,Network
+ukb-b-19953,ieu-a-1018,Wellbeing,BMI,Simple mode,325,0.040571148,0.059552566,0.496189718,Network
+ukb-b-19953,ieu-a-1018,Wellbeing,BMI,Weighted mode,325,0.02471571,0.050999977,0.628271978,Network
+ukb-b-19953,ukb-b-4424,Sleep duration,BMI,MR Egger intercept,447,9.62E-05,0.001387965,0.944784713,Network
+ukb-b-19953,ukb-b-4424,Sleep duration,BMI,MR Egger,447,-0.055423737,0.016194999,0.00067839,Network
+ukb-b-19953,ukb-b-4424,Sleep duration,BMI,Weighted median,447,-0.052856449,0.00938854,1.80E-08,Network
+ukb-b-19953,ukb-b-4424,Sleep duration,BMI,Inverse variance weighted,447,-0.059662744,0.008196502,3.36E-13,Network
+ukb-b-19953,ukb-b-4424,Sleep duration,BMI,Simple mode,447,-0.051104825,0.028738907,0.076044759,Network
+ukb-b-19953,ukb-b-4424,Sleep duration,BMI,Weighted mode,447,-0.054038074,0.01215093,1.10E-05,Network
+ukb-b-19953,ukb-b-8476,Loneliness,BMI,MR Egger intercept,443,0.001340086,0.001206047,0.267113955,Network
+ukb-b-19953,ukb-b-8476,Loneliness,BMI,MR Egger,443,0.026433813,0.009733666,0.006873186,Network
+ukb-b-19953,ukb-b-8476,Loneliness,BMI,Weighted median,443,0.028349541,0.004702722,1.66E-09,Network
+ukb-b-19953,ukb-b-8476,Loneliness,BMI,Inverse variance weighted,443,0.03483345,0.003571435,1.78E-22,Network
+ukb-b-19953,ukb-b-8476,Loneliness,BMI,Simple mode,443,0.052107965,0.015588589,0.000900227,Network
+ukb-b-19953,ukb-b-8476,Loneliness,BMI,Weighted mode,443,0.024082382,0.009717991,0.013580001,Network
+ukb-b-19953,ukb-b-3957,Sleeplessness,BMI,MR Egger intercept,447,0.005266459,0.001479242,0.000410417,Network
+ukb-b-19953,ukb-b-3957,Sleeplessness,BMI,MR Egger,447,-0.049003289,0.014448549,0.00075697,Network
+ukb-b-19953,ukb-b-3957,Sleeplessness,BMI,Weighted median,447,0.011505724,0.008712325,0.186626077,Network
+ukb-b-19953,ukb-b-3957,Sleeplessness,BMI,Inverse variance weighted,447,0.027090612,0.007612568,0.000372738,Network
+ukb-b-19953,ukb-b-3957,Sleeplessness,BMI,Simple mode,447,0.072275911,0.036948146,0.051071912,Network
+ukb-b-19953,ukb-b-3957,Sleeplessness,BMI,Weighted mode,447,-0.035367815,0.011311139,0.001882703,Network
+ukb-b-19953,ukb-b-4956,Eveningness,BMI,MR Egger intercept,447,-0.004513159,0.001288186,0.00050565,Network
+ukb-b-19953,ukb-b-4956,Eveningness,BMI,MR Egger,447,0.161279929,0.025865397,1.05E-09,Network
+ukb-b-19953,ukb-b-4956,Eveningness,BMI,Weighted median,447,-0.026210173,0.012759868,0.039965042,Network
+ukb-b-19953,ukb-b-4956,Eveningness,BMI,Inverse variance weighted,447,0.034523766,0.01355461,0.01086494,Network
+ukb-b-19953,ukb-b-4956,Eveningness,BMI,Simple mode,447,-0.008243254,0.051486575,0.872870913,Network
+ukb-b-19953,ukb-b-4956,Eveningness,BMI,Weighted mode,447,-0.024699545,0.030808125,0.423140839,Network
+ukb-b-19953,ukb-d-SLEEP,ICD10 Insomni,BMI,MR Egger intercept,443,0.000658305,0.001232956,0.593663191,Network
+ukb-b-19953,ukb-d-SLEEP,ICD10 Insomni,BMI,MR Egger,443,0.004565018,0.001742206,0.009089731,Network
+ukb-b-19953,ukb-d-SLEEP,ICD10 Insomni,BMI,Weighted median,443,0.005841746,0.001014975,8.64E-09,Network
+ukb-b-19953,ukb-d-SLEEP,ICD10 Insomni,BMI,Inverse variance weighted,443,0.005964305,0.00063927,1.06E-20,Network
+ukb-b-19953,ukb-d-SLEEP,ICD10 Insomni,BMI,Simple mode,443,0.005669281,0.003422511,0.098336711,Network
+ukb-b-19953,ukb-d-SLEEP,ICD10 Insomni,BMI,Weighted mode,443,0.007460202,0.002500032,0.003002337,Network
+ukb-b-19953,ukb-b-4062,Happiness,BMI,MR Egger intercept,443,-0.000359975,0.00137758,0.793975476,Network
+ukb-b-19953,ukb-b-4062,Happiness,BMI,MR Egger,443,0.028368302,0.025103172,0.259061659,Network
+ukb-b-19953,ukb-b-4062,Happiness,BMI,Weighted median,443,0.018630757,0.01417344,0.188683474,Network
+ukb-b-19953,ukb-b-4062,Happiness,BMI,Inverse variance weighted,443,-0.005102716,0.009225882,0.580203811,Network
+ukb-b-19953,ukb-b-4062,Happiness,BMI,Simple mode,443,-0.057241052,0.039959916,0.152718548,Network
+ukb-b-19953,ukb-b-4062,Happiness,BMI,Weighted mode,443,0.024731271,0.022425639,0.270708769,Network
+ukb-b-19953,ukb-b-4710,Exercise,BMI,MR Egger intercept,447,-0.002693283,0.001456155,0.065036281,Network
+ukb-b-19953,ukb-b-4710,Exercise,BMI,MR Egger,447,-0.07211719,0.040164174,0.073242828,Network
+ukb-b-19953,ukb-b-4710,Exercise,BMI,Weighted median,447,-0.035163756,0.029287202,0.22988598,Network
+ukb-b-19953,ukb-b-4710,Exercise,BMI,Inverse variance weighted,447,-0.074726532,0.020325281,0.000236427,Network
+ukb-b-19953,ukb-b-4710,Exercise,BMI,Simple mode,447,-0.105944794,0.083977353,0.207756607,Network
+ukb-b-19953,ukb-b-4710,Exercise,BMI,Weighted mode,447,-0.04689974,0.027931611,0.093834531,Network
+ukb-b-19953,ukb-b-5076,Not socialising,BMI,MR Egger intercept,443,-0.001278834,0.001285077,0.320212953,Network
+ukb-b-19953,ukb-b-5076,Not socialising,BMI,MR Egger,443,0.002736876,0.011201348,0.80708536,Network
+ukb-b-19953,ukb-b-5076,Not socialising,BMI,Weighted median,443,0.022825807,0.005279303,1.53E-05,Network
+ukb-b-19953,ukb-b-5076,Not socialising,BMI,Inverse variance weighted,443,0.032569083,0.004143956,3.86E-15,Network
+ukb-b-19953,ukb-b-5076,Not socialising,BMI,Simple mode,443,0.041785906,0.02209487,0.059250733,Network
+ukb-b-19953,ukb-b-5076,Not socialising,BMI,Weighted mode,443,-0.003760547,0.012601848,0.765528724,Network
+ukb-b-19953,ieu-a-118,Neuroticism,BMI,MR Egger intercept,372,0.000132149,0.001493203,0.929527108,Network
+ukb-b-19953,ieu-a-118,Neuroticism,BMI,MR Egger,372,0.023266685,0.05551555,0.675384698,Network
+ukb-b-19953,ieu-a-118,Neuroticism,BMI,Weighted median,372,0.020734019,0.031697365,0.513031677,Network
+ukb-b-19953,ieu-a-118,Neuroticism,BMI,Inverse variance weighted,372,0.002868164,0.020110777,0.886591689,Network
+ukb-b-19953,ieu-a-118,Neuroticism,BMI,Simple mode,372,0.028082134,0.089192715,0.753054179,Network
+ukb-b-19953,ieu-a-118,Neuroticism,BMI,Weighted mode,372,0.034802946,0.053543904,0.516101625,Network
+ukb-b-19953,ukb-b-5237,Coffee intake,BMI,MR Egger intercept,447,-0.003555,0.001034638,0.000645823,Network
+ukb-b-19953,ukb-b-5237,Coffee intake,BMI,MR Egger,447,0.21229325,0.014451846,4.12E-40,Network
+ukb-b-19953,ukb-b-5237,Coffee intake,BMI,Weighted median,447,0.095560831,0.009285078,7.67E-25,Network
+ukb-b-19953,ukb-b-5237,Coffee intake,BMI,Inverse variance weighted,447,0.113122999,0.00781537,1.76E-47,Network
+ukb-b-19953,ukb-b-5237,Coffee intake,BMI,Simple mode,447,0.035009781,0.041550615,0.399914129,Network
+ukb-b-19953,ukb-b-5237,Coffee intake,BMI,Weighted mode,447,0.199597652,0.032883505,2.74E-09,Network
+ukb-b-19953,ieu-a-24,Diabetes,BMI,MR Egger intercept,47,-0.000632747,0.00340327,0.853340444,Network
+ukb-b-19953,ieu-a-24,Diabetes,BMI,MR Egger,47,1.457566692,0.238148292,2.07E-07,Network
+ukb-b-19953,ieu-a-24,Diabetes,BMI,Weighted median,47,1.259087491,0.151040751,7.68E-17,Network
+ukb-b-19953,ieu-a-24,Diabetes,BMI,Inverse variance weighted,47,1.025993414,0.122018899,4.15E-17,Network
+ukb-b-19953,ieu-a-24,Diabetes,BMI,Simple mode,47,1.187047627,0.290154937,0.000171153,Network
+ukb-b-19953,ieu-a-24,Diabetes,BMI,Weighted mode,47,1.39438098,0.151057119,4.87E-12,Network
+ukb-b-19953,ieu-a-7,CHD,BMI,MR Egger intercept,425,0.001923028,0.001173102,0.101901104,Network
+ukb-b-19953,ieu-a-7,CHD,BMI,MR Egger,425,0.520678227,0.1008716,3.77E-07,Network
+ukb-b-19953,ieu-a-7,CHD,BMI,Weighted median,425,0.405951185,0.05944139,8.52E-12,Network
+ukb-b-19953,ieu-a-7,CHD,BMI,Inverse variance weighted,425,0.415070823,0.036875924,2.17E-29,Network
+ukb-b-19953,ieu-a-7,CHD,BMI,Simple mode,425,0.376895564,0.18060699,0.037500551,Network
+ukb-b-19953,ieu-a-7,CHD,BMI,Weighted mode,425,0.392426155,0.098918347,8.54E-05,Network
+ukb-b-5238,ieu-a-1187,Depression,Intelligence,MR Egger intercept,5,-0.154759808,0.117957774,0.280884087,Network
+ukb-b-5238,ieu-a-1187,Depression,Intelligence,MR Egger,5,2.660787892,4.180264326,0.569685384,Network
+ukb-b-5238,ieu-a-1187,Depression,Intelligence,Weighted median,5,-0.192623933,0.09557209,0.043854055,Network
+ukb-b-5238,ieu-a-1187,Depression,Intelligence,Inverse variance weighted,5,-0.0090214,0.196364057,0.963356307,Network
+ukb-b-5238,ieu-a-1187,Depression,Intelligence,Simple mode,5,-0.363345394,0.081559562,0.011203668,Network
+ukb-b-5238,ieu-a-1187,Depression,Intelligence,Weighted mode,5,-0.354273961,0.095317507,0.020532169,Network
+ukb-b-5238,ukb-b-6519,Worry,Intelligence,MR Egger intercept,77,0.002405452,0.009691534,0.804656915,Network
+ukb-b-5238,ukb-b-6519,Worry,Intelligence,MR Egger,77,-0.024255808,0.023573709,0.306817277,Network
+ukb-b-5238,ukb-b-6519,Worry,Intelligence,Weighted median,77,-0.015039426,0.004313226,0.000488807,Network
+ukb-b-5238,ukb-b-6519,Worry,Intelligence,Inverse variance weighted,77,-0.007663085,0.005201494,0.140684484,Network
+ukb-b-5238,ukb-b-6519,Worry,Intelligence,Simple mode,77,-0.019498982,0.011343743,0.089699993,Network
+ukb-b-5238,ukb-b-6519,Worry,Intelligence,Weighted mode,77,-0.020822543,0.009608862,0.033366847,Network
+ukb-b-5238,ukb-b-5779,Alcohol,Intelligence,MR Egger intercept,77,-0.005973772,0.008135593,0.465069921,Network
+ukb-b-5238,ukb-b-5779,Alcohol,Intelligence,MR Egger,77,-0.152643037,0.086235983,0.080780934,Network
+ukb-b-5238,ukb-b-5779,Alcohol,Intelligence,Weighted median,77,-0.066186415,0.013898994,1.92E-06,Network
+ukb-b-5238,ukb-b-5779,Alcohol,Intelligence,Inverse variance weighted,77,-0.102014252,0.019007431,8.00E-08,Network
+ukb-b-5238,ukb-b-5779,Alcohol,Intelligence,Simple mode,77,-0.0396551,0.041679937,0.34440753,Network
+ukb-b-5238,ukb-b-5779,Alcohol,Intelligence,Weighted mode,77,-0.046864986,0.036765213,0.206295405,Network
+ukb-b-5238,ieu-a-961,Smoking,Intelligence,MR Egger intercept,55,0.00506595,0.021649239,0.815885513,Network
+ukb-b-5238,ieu-a-961,Smoking,Intelligence,MR Egger,55,-0.924884497,1.386275409,0.507556592,Network
+ukb-b-5238,ieu-a-961,Smoking,Intelligence,Weighted median,55,-0.57784258,0.356844369,0.105380023,Network
+ukb-b-5238,ieu-a-961,Smoking,Intelligence,Inverse variance weighted,55,-0.360132295,0.254455411,0.156978768,Network
+ukb-b-5238,ieu-a-961,Smoking,Intelligence,Simple mode,55,-0.970247901,0.843628175,0.255174922,Network
+ukb-b-5238,ieu-a-961,Smoking,Intelligence,Weighted mode,55,-0.883184597,0.696956355,0.210520844,Network
+ukb-b-5238,ieu-a-1239,Education,Intelligence,MR Egger intercept,74,0.029634813,0.004869239,5.08E-08,Network
+ukb-b-5238,ieu-a-1239,Education,Intelligence,MR Egger,74,0.220456118,0.05746754,0.000265541,Network
+ukb-b-5238,ieu-a-1239,Education,Intelligence,Weighted median,74,0.155010288,0.008715348,9.09E-71,Network
+ukb-b-5238,ieu-a-1239,Education,Intelligence,Inverse variance weighted,74,0.185334422,0.012104068,6.38E-53,Network
+ukb-b-5238,ieu-a-1239,Education,Intelligence,Simple mode,74,0.162618686,0.021631168,1.13E-10,Network
+ukb-b-5238,ieu-a-1239,Education,Intelligence,Weighted mode,74,0.154003966,0.021995642,1.03E-09,Network
+ukb-b-5238,ukb-b-19953,BMI,Intelligence,MR Egger intercept,77,-0.006709818,0.008562302,0.435715362,Network
+ukb-b-5238,ukb-b-19953,BMI,Intelligence,MR Egger,77,-0.096262442,0.095987376,0.319150368,Network
+ukb-b-5238,ukb-b-19953,BMI,Intelligence,Weighted median,77,-0.037562399,0.010885979,0.000559486,Network
+ukb-b-5238,ukb-b-19953,BMI,Intelligence,Inverse variance weighted,77,-0.067820726,0.021123111,0.001323956,Network
+ukb-b-5238,ukb-b-19953,BMI,Intelligence,Simple mode,77,-0.037618428,0.025448129,0.14347632,Network
+ukb-b-5238,ukb-b-19953,BMI,Intelligence,Weighted mode,77,-0.037618428,0.020290636,0.067622097,Network
+ukb-b-5238,ieu-a-1018,Wellbeing,Intelligence,MR Egger intercept,56,-0.009710978,0.011717979,0.410908307,Network
+ukb-b-5238,ieu-a-1018,Wellbeing,Intelligence,MR Egger,56,0.064422789,0.065805796,0.331953851,Network
+ukb-b-5238,ieu-a-1018,Wellbeing,Intelligence,Weighted median,56,0.002132248,0.013615089,0.875552842,Network
+ukb-b-5238,ieu-a-1018,Wellbeing,Intelligence,Inverse variance weighted,56,0.008512825,0.012398759,0.492343122,Network
+ukb-b-5238,ieu-a-1018,Wellbeing,Intelligence,Simple mode,56,-0.016119634,0.034163424,0.638908344,Network
+ukb-b-5238,ieu-a-1018,Wellbeing,Intelligence,Weighted mode,56,-0.013460224,0.029560998,0.650659134,Network
+ukb-b-5238,ukb-b-4424,Sleep duration,Intelligence,MR Egger intercept,77,0.01932715,0.008794545,0.031062435,Network
+ukb-b-5238,ukb-b-4424,Sleep duration,Intelligence,MR Egger,77,0.070938631,0.038531416,0.069567505,Network
+ukb-b-5238,ukb-b-4424,Sleep duration,Intelligence,Weighted median,77,0.011653883,0.006837339,0.088297591,Network
+ukb-b-5238,ukb-b-4424,Sleep duration,Intelligence,Inverse variance weighted,77,-0.00120561,0.008677843,0.889505673,Network
+ukb-b-5238,ukb-b-4424,Sleep duration,Intelligence,Simple mode,77,0.020147276,0.014704951,0.174689147,Network
+ukb-b-5238,ukb-b-4424,Sleep duration,Intelligence,Weighted mode,77,0.020147276,0.012286175,0.105172892,Network
+ukb-b-5238,ukb-b-8476,Loneliness,Intelligence,MR Egger intercept,77,-0.011489325,0.009453766,0.22805707,Network
+ukb-b-5238,ukb-b-8476,Loneliness,Intelligence,MR Egger,77,-0.026608544,0.015552585,0.091237422,Network
+ukb-b-5238,ukb-b-8476,Loneliness,Intelligence,Weighted median,77,-0.018456337,0.003208483,8.80E-09,Network
+ukb-b-5238,ukb-b-8476,Loneliness,Intelligence,Inverse variance weighted,77,-0.012741235,0.003438323,0.000210846,Network
+ukb-b-5238,ukb-b-8476,Loneliness,Intelligence,Simple mode,77,-0.021619664,0.007808783,0.007068638,Network
+ukb-b-5238,ukb-b-8476,Loneliness,Intelligence,Weighted mode,77,-0.022082355,0.007457145,0.00408658,Network
+ukb-b-5238,ukb-b-3957,Sleeplessness,Intelligence,MR Egger intercept,77,-0.007884951,0.009003134,0.383934751,Network
+ukb-b-5238,ukb-b-3957,Sleeplessness,Intelligence,MR Egger,77,-0.052231426,0.028903413,0.074756761,Network
+ukb-b-5238,ukb-b-3957,Sleeplessness,Intelligence,Weighted median,77,-0.017161774,0.005884495,0.003540511,Network
+ukb-b-5238,ukb-b-3957,Sleeplessness,Intelligence,Inverse variance weighted,77,-0.017012213,0.00642103,0.008062234,Network
+ukb-b-5238,ukb-b-3957,Sleeplessness,Intelligence,Simple mode,77,-0.017324148,0.015486393,0.266804742,Network
+ukb-b-5238,ukb-b-3957,Sleeplessness,Intelligence,Weighted mode,77,-0.016499275,0.013893922,0.238721845,Network
+ukb-b-5238,ukb-b-4956,Eveningness,Intelligence,MR Egger intercept,77,-0.005453949,0.009622374,0.572543396,Network
+ukb-b-5238,ukb-b-4956,Eveningness,Intelligence,MR Egger,77,-0.003658568,0.050381106,0.942303535,Network
+ukb-b-5238,ukb-b-4956,Eveningness,Intelligence,Weighted median,77,0.009379386,0.009444784,0.320673015,Network
+ukb-b-5238,ukb-b-4956,Eveningness,Intelligence,Inverse variance weighted,77,0.023519989,0.011101936,0.034128648,Network
+ukb-b-5238,ukb-b-4956,Eveningness,Intelligence,Simple mode,77,-0.01324664,0.030308026,0.663302108,Network
+ukb-b-5238,ukb-b-4956,Eveningness,Intelligence,Weighted mode,77,-0.006777201,0.025550987,0.791540971,Network
+ukb-b-5238,ukb-d-SLEEP,ICD10 Insomni,Intelligence,MR Egger intercept,80,0.018348594,0.009768363,0.064067388,Network
+ukb-b-5238,ukb-d-SLEEP,ICD10 Insomni,Intelligence,MR Egger,80,-0.005613496,0.002540444,0.030062228,Network
+ukb-b-5238,ukb-d-SLEEP,ICD10 Insomni,Intelligence,Weighted median,80,0.000840135,0.000767141,0.273450552,Network
+ukb-b-5238,ukb-d-SLEEP,ICD10 Insomni,Intelligence,Inverse variance weighted,80,-3.21E-05,0.000578326,0.955800379,Network
+ukb-b-5238,ukb-d-SLEEP,ICD10 Insomni,Intelligence,Simple mode,80,0.002924197,0.002212149,0.190022855,Network
+ukb-b-5238,ukb-d-SLEEP,ICD10 Insomni,Intelligence,Weighted mode,80,0.002995579,0.002033877,0.144766994,Network
+ukb-b-5238,ukb-b-4062,Happiness,Intelligence,MR Egger intercept,77,0.000821336,0.009655321,0.932435874,Network
+ukb-b-5238,ukb-b-4062,Happiness,Intelligence,MR Egger,77,-0.010161129,0.040058563,0.800454734,Network
+ukb-b-5238,ukb-b-4062,Happiness,Intelligence,Weighted median,77,0.005349682,0.009249188,0.562997639,Network
+ukb-b-5238,ukb-b-4062,Happiness,Intelligence,Inverse variance weighted,77,0.00541421,0.008810658,0.53888039,Network
+ukb-b-5238,ukb-b-4062,Happiness,Intelligence,Simple mode,77,-0.010983439,0.023249554,0.637984339,Network
+ukb-b-5238,ukb-b-4062,Happiness,Intelligence,Weighted mode,77,-0.012134767,0.023422783,0.605910638,Network
+ukb-b-5238,ukb-b-4710,Exercise,Intelligence,MR Egger intercept,77,-0.003830129,0.008139088,0.639303176,Network
+ukb-b-5238,ukb-b-4710,Exercise,Intelligence,MR Egger,77,-0.10905723,0.093311455,0.246208124,Network
+ukb-b-5238,ukb-b-4710,Exercise,Intelligence,Weighted median,77,-0.10912018,0.019545568,2.37E-08,Network
+ukb-b-5238,ukb-b-4710,Exercise,Intelligence,Inverse variance weighted,77,-0.115472639,0.020511495,1.81E-08,Network
+ukb-b-5238,ukb-b-4710,Exercise,Intelligence,Simple mode,77,-0.119436018,0.048605242,0.016279505,Network
+ukb-b-5238,ukb-b-4710,Exercise,Intelligence,Weighted mode,77,-0.110774376,0.050370142,0.030904427,Network
+ukb-b-5238,ukb-b-5076,Not socialising,Intelligence,MR Egger intercept,77,-0.018124303,0.007678582,0.020857804,Network
+ukb-b-5238,ukb-b-5076,Not socialising,Intelligence,MR Egger,77,-0.026778368,0.017398221,0.127977776,Network
+ukb-b-5238,ukb-b-5076,Not socialising,Intelligence,Weighted median,77,-0.019052259,0.003850625,7.50E-07,Network
+ukb-b-5238,ukb-b-5076,Not socialising,Intelligence,Inverse variance weighted,77,-0.02052727,0.003829051,8.28E-08,Network
+ukb-b-5238,ukb-b-5076,Not socialising,Intelligence,Simple mode,77,-0.01409821,0.0095074,0.142244853,Network
+ukb-b-5238,ukb-b-5076,Not socialising,Intelligence,Weighted mode,77,-0.014572043,0.009323851,0.122235972,Network
+ukb-b-5238,ieu-a-118,Neuroticism,Intelligence,MR Egger intercept,69,-0.004569707,0.00935913,0.626958532,Network
+ukb-b-5238,ieu-a-118,Neuroticism,Intelligence,MR Egger,69,-0.028507629,0.088145957,0.747389098,Network
+ukb-b-5238,ieu-a-118,Neuroticism,Intelligence,Weighted median,69,-0.014385512,0.021226347,0.497949476,Network
+ukb-b-5238,ieu-a-118,Neuroticism,Intelligence,Inverse variance weighted,69,-0.01756908,0.016515428,0.287420199,Network
+ukb-b-5238,ieu-a-118,Neuroticism,Intelligence,Simple mode,69,-0.002391687,0.052603757,0.963869059,Network
+ukb-b-5238,ieu-a-118,Neuroticism,Intelligence,Weighted mode,69,-0.01000921,0.04771132,0.834461274,Network
+ukb-b-5238,ukb-b-5237,Coffee intake,Intelligence,MR Egger intercept,77,0.004103304,0.00777517,0.599234497,Network
+ukb-b-5238,ukb-b-5237,Coffee intake,Intelligence,MR Egger,77,0.020257386,0.02765785,0.46619012,Network
+ukb-b-5238,ukb-b-5237,Coffee intake,Intelligence,Weighted median,77,0.026178603,0.005965993,1.14E-05,Network
+ukb-b-5238,ukb-b-5237,Coffee intake,Intelligence,Inverse variance weighted,77,0.03267658,0.006090057,8.07E-08,Network
+ukb-b-5238,ukb-b-5237,Coffee intake,Intelligence,Simple mode,77,0.026184502,0.014485187,0.07461392,Network
+ukb-b-5238,ukb-b-5237,Coffee intake,Intelligence,Weighted mode,77,0.024077595,0.011857808,0.045801616,Network
+ukb-b-5238,ieu-a-24,Diabetes,Intelligence,MR Egger intercept,4,0.079571726,0.019628131,0.055802734,Network
+ukb-b-5238,ieu-a-24,Diabetes,Intelligence,MR Egger,4,-1.173741295,0.445395954,0.118862439,Network
+ukb-b-5238,ieu-a-24,Diabetes,Intelligence,Weighted median,4,0.126871092,0.144903221,0.381270676,Network
+ukb-b-5238,ieu-a-24,Diabetes,Intelligence,Inverse variance weighted,4,0.012756503,0.216030896,0.952912729,Network
+ukb-b-5238,ieu-a-24,Diabetes,Intelligence,Simple mode,4,0.282610686,0.212545614,0.275695535,Network
+ukb-b-5238,ieu-a-24,Diabetes,Intelligence,Weighted mode,4,0.213262005,0.211905144,0.388363005,Network
+ukb-b-5238,ieu-a-7,CHD,Intelligence,MR Egger intercept,75,-0.010130603,0.008747163,0.25057434,Network
+ukb-b-5238,ieu-a-7,CHD,Intelligence,MR Egger,75,0.010413741,0.150565338,0.945047977,Network
+ukb-b-5238,ieu-a-7,CHD,Intelligence,Weighted median,75,-0.145623145,0.036118103,5.53E-05,Network
+ukb-b-5238,ieu-a-7,CHD,Intelligence,Inverse variance weighted,75,-0.119537869,0.030011256,6.80E-05,Network
+ukb-b-5238,ieu-a-7,CHD,Intelligence,Simple mode,75,-0.157128812,0.088174727,0.078848921,Network
+ukb-b-5238,ieu-a-7,CHD,Intelligence,Weighted mode,75,-0.145087613,0.088018779,0.103516183,Network
+ieu-a-1018,ukb-b-6519,Worry,Wellbeing,MR Egger intercept,3,0.017613071,0.015388544,0.457152439,Network
+ieu-a-1018,ukb-b-6519,Worry,Wellbeing,MR Egger,3,0.063927276,0.217214677,0.817784466,Network
+ieu-a-1018,ukb-b-6519,Worry,Wellbeing,Weighted median,3,-0.050085419,0.046018299,0.276427165,Network
+ieu-a-1018,ukb-b-6519,Worry,Wellbeing,Inverse variance weighted,3,-0.055443904,0.037601075,0.140339014,Network
+ieu-a-1018,ukb-b-6519,Worry,Wellbeing,Simple mode,3,-0.056435491,0.057060458,0.426888576,Network
+ieu-a-1018,ukb-b-6519,Worry,Wellbeing,Weighted mode,3,-0.049438017,0.058303395,0.485764723,Network
+ieu-a-1018,ukb-b-5779,Alcohol,Wellbeing,MR Egger intercept,3,-0.031386892,0.007933617,0.157615974,Network
+ieu-a-1018,ukb-b-5779,Alcohol,Wellbeing,MR Egger,3,0.27072612,0.550192407,0.708890851,Network
+ieu-a-1018,ukb-b-5779,Alcohol,Wellbeing,Weighted median,3,-0.174293488,0.13104853,0.183520928,Network
+ieu-a-1018,ukb-b-5779,Alcohol,Wellbeing,Inverse variance weighted,3,-0.19719453,0.110990908,0.075622085,Network
+ieu-a-1018,ukb-b-5779,Alcohol,Wellbeing,Simple mode,3,-0.18391797,0.170976788,0.394600208,Network
+ieu-a-1018,ukb-b-5779,Alcohol,Wellbeing,Weighted mode,3,-0.151430836,0.138945744,0.389585976,Network
+ieu-a-1018,ieu-a-961,Smoking,Wellbeing,MR Egger intercept,3,-0.027687984,0.254312031,0.930960551,Network
+ieu-a-1018,ieu-a-961,Smoking,Wellbeing,MR Egger,3,6.93546285,23.7347243,0.819013833,Network
+ieu-a-1018,ieu-a-961,Smoking,Wellbeing,Weighted median,3,-1.882271698,3.595346268,0.600605467,Network
+ieu-a-1018,ieu-a-961,Smoking,Wellbeing,Inverse variance weighted,3,-1.598960507,3.588197582,0.655874197,Network
+ieu-a-1018,ieu-a-961,Smoking,Wellbeing,Simple mode,3,-4.437713728,5.099801152,0.475951234,Network
+ieu-a-1018,ieu-a-961,Smoking,Wellbeing,Weighted mode,3,-2.808125765,4.486344454,0.59527236,Network
+ieu-a-1018,ieu-a-1239,Education,Wellbeing,MR Egger intercept,3,0.014418676,0.030858251,0.721726958,Network
+ieu-a-1018,ieu-a-1239,Education,Wellbeing,MR Egger,3,-0.497138009,1.146089978,0.739447859,Network
+ieu-a-1018,ieu-a-1239,Education,Wellbeing,Weighted median,3,-0.254169417,0.107291873,0.017838515,Network
+ieu-a-1018,ieu-a-1239,Education,Wellbeing,Inverse variance weighted,3,-0.173718669,0.17073045,0.308914418,Network
+ieu-a-1018,ieu-a-1239,Education,Wellbeing,Simple mode,3,-0.303557922,0.125468819,0.136672319,Network
+ieu-a-1018,ieu-a-1239,Education,Wellbeing,Weighted mode,3,-0.325151598,0.105755956,0.09150082,Network
+ieu-a-1018,ukb-b-19953,BMI,Wellbeing,MR Egger intercept,3,0.012820765,0.002098486,0.103285209,Network
+ieu-a-1018,ukb-b-19953,BMI,Wellbeing,MR Egger,3,1.450660519,0.359502931,0.154651498,Network
+ieu-a-1018,ukb-b-19953,BMI,Wellbeing,Weighted median,3,0.38479679,0.134205529,0.004140949,Network
+ieu-a-1018,ukb-b-19953,BMI,Wellbeing,Inverse variance weighted,3,0.427791897,0.149574769,0.00423569,Network
+ieu-a-1018,ukb-b-19953,BMI,Wellbeing,Simple mode,3,0.417453045,0.187077237,0.15534581,Network
+ieu-a-1018,ukb-b-19953,BMI,Wellbeing,Weighted mode,3,0.440849797,0.192313268,0.148928038,Network
+ieu-a-1018,ukb-b-5238,Intelligence,Wellbeing,MR Egger intercept,3,0.021158747,0.025059918,0.553607982,Network
+ieu-a-1018,ukb-b-5238,Intelligence,Wellbeing,MR Egger,3,-2.009328548,5.274606542,0.768288582,Network
+ieu-a-1018,ukb-b-5238,Intelligence,Wellbeing,Weighted median,3,-1.387725585,0.441379316,0.00166618,Network
+ieu-a-1018,ukb-b-5238,Intelligence,Wellbeing,Inverse variance weighted,3,-0.908209144,0.769045479,0.237620063,Network
+ieu-a-1018,ukb-b-5238,Intelligence,Wellbeing,Simple mode,3,-1.541816529,0.569019337,0.113483274,Network
+ieu-a-1018,ukb-b-5238,Intelligence,Wellbeing,Weighted mode,3,-1.617553923,0.493720956,0.081883465,Network
+ieu-a-1018,ukb-b-4424,Sleep duration,Wellbeing,MR Egger intercept,3,0.016423387,0.03954579,0.749409582,Replication
+ieu-a-1018,ukb-b-4424,Sleep duration,Wellbeing,MR Egger,3,0.126859414,0.323577572,0.762135672,Replication
+ieu-a-1018,ukb-b-4424,Sleep duration,Wellbeing,Weighted median,3,-0.040960713,0.067810446,0.545812235,Replication
+ieu-a-1018,ukb-b-4424,Sleep duration,Wellbeing,Inverse variance weighted,3,-0.046144401,0.058615482,0.431141896,Replication
+ieu-a-1018,ukb-b-4424,Sleep duration,Wellbeing,Simple mode,3,-0.051961118,0.08802523,0.614805126,Replication
+ieu-a-1018,ukb-b-4424,Sleep duration,Wellbeing,Weighted mode,3,-0.041620402,0.084110706,0.669736337,Replication
+ieu-a-1018,ukb-b-8476,Loneliness,Wellbeing,MR Egger intercept,3,0.018198851,0.004563081,0.156398301,Network
+ieu-a-1018,ukb-b-8476,Loneliness,Wellbeing,MR Egger,3,-0.00675924,0.545161618,0.992107211,Network
+ieu-a-1018,ukb-b-8476,Loneliness,Wellbeing,Weighted median,3,-0.127320459,0.055043136,0.020716961,Network
+ieu-a-1018,ukb-b-8476,Loneliness,Wellbeing,Inverse variance weighted,3,-0.162443829,0.081011136,0.044941275,Network
+ieu-a-1018,ukb-b-8476,Loneliness,Wellbeing,Simple mode,3,-0.233452687,0.08016307,0.100456101,Network
+ieu-a-1018,ukb-b-8476,Loneliness,Wellbeing,Weighted mode,3,-0.148910095,0.087183914,0.229760002,Network
+ieu-a-1018,ukb-b-3957,Sleeplessness,Wellbeing,MR Egger intercept,3,0.012856831,0.013168759,0.507629797,Main
+ieu-a-1018,ukb-b-3957,Sleeplessness,Wellbeing,MR Egger,3,-0.300156379,0.269814695,0.466142315,Main
+ieu-a-1018,ukb-b-3957,Sleeplessness,Wellbeing,Weighted median,3,-0.075752388,0.063886858,0.235730034,Main
+ieu-a-1018,ukb-b-3957,Sleeplessness,Wellbeing,Inverse variance weighted,3,-0.064409803,0.054430426,0.236673682,Main
+ieu-a-1018,ukb-b-3957,Sleeplessness,Wellbeing,Simple mode,3,-0.076631707,0.081336079,0.445563717,Main
+ieu-a-1018,ukb-b-3957,Sleeplessness,Wellbeing,Weighted mode,3,-0.086695863,0.075919383,0.371763802,Main
+ieu-a-1018,ukb-b-4956,Eveningness,Wellbeing,MR Egger intercept,3,-0.018014968,0.031069312,0.665483201,Replication
+ieu-a-1018,ukb-b-4956,Eveningness,Wellbeing,MR Egger,3,1.190163574,0.369674331,0.191724583,Replication
+ieu-a-1018,ukb-b-4956,Eveningness,Wellbeing,Weighted median,3,0.066081716,0.101666136,0.515700305,Replication
+ieu-a-1018,ukb-b-4956,Eveningness,Wellbeing,Inverse variance weighted,3,0.014028623,0.171424671,0.934777528,Replication
+ieu-a-1018,ukb-b-4956,Eveningness,Wellbeing,Simple mode,3,0.035798909,0.166461367,0.849659159,Replication
+ieu-a-1018,ukb-b-4956,Eveningness,Wellbeing,Weighted mode,3,0.117111603,0.087829888,0.313989889,Replication
+ieu-a-1018,ukb-d-SLEEP,ICD10 Insomni,Wellbeing,MR Egger intercept,3,-0.001752062,0.071348382,0.984370024,Replication
+ieu-a-1018,ukb-d-SLEEP,ICD10 Insomni,Wellbeing,MR Egger,3,0.055044562,0.03838409,0.387656961,Replication
+ieu-a-1018,ukb-d-SLEEP,ICD10 Insomni,Wellbeing,Weighted median,3,0.009443127,0.008979981,0.29299441,Replication
+ieu-a-1018,ukb-d-SLEEP,ICD10 Insomni,Wellbeing,Inverse variance weighted,3,0.004948111,0.007757085,0.523549959,Replication
+ieu-a-1018,ukb-d-SLEEP,ICD10 Insomni,Wellbeing,Simple mode,3,0.00996884,0.011699616,0.483929721,Replication
+ieu-a-1018,ukb-d-SLEEP,ICD10 Insomni,Wellbeing,Weighted mode,3,0.010584958,0.010134452,0.405916296,Replication
+ieu-a-1018,ukb-b-4062,Happiness,Wellbeing,MR Egger intercept,3,-0.013359659,0.003461515,0.16140018,Replication
+ieu-a-1018,ukb-b-4062,Happiness,Wellbeing,MR Egger,3,-1.131692014,0.779800817,0.384100821,Replication
+ieu-a-1018,ukb-b-4062,Happiness,Wellbeing,Weighted median,3,-0.290858711,0.148162489,0.049633828,Replication
+ieu-a-1018,ukb-b-4062,Happiness,Wellbeing,Inverse variance weighted,3,-0.419424918,0.152066856,0.005812751,Replication
+ieu-a-1018,ukb-b-4062,Happiness,Wellbeing,Simple mode,3,-0.229884915,0.197259394,0.364049703,Replication
+ieu-a-1018,ukb-b-4062,Happiness,Wellbeing,Weighted mode,3,-0.212049584,0.208209663,0.41561637,Replication
+ieu-a-1018,ukb-b-4710,Exercise,Wellbeing,MR Egger intercept,3,0.025857325,0.017129728,0.37248131,Network
+ieu-a-1018,ukb-b-4710,Exercise,Wellbeing,MR Egger,3,0.688927957,0.903251855,0.585183573,Network
+ieu-a-1018,ukb-b-4710,Exercise,Wellbeing,Weighted median,3,-0.113220329,0.2114666,0.592369655,Network
+ieu-a-1018,ukb-b-4710,Exercise,Wellbeing,Inverse variance weighted,3,-0.122211747,0.18225596,0.502507198,Network
+ieu-a-1018,ukb-b-4710,Exercise,Wellbeing,Simple mode,3,-0.241858381,0.264553913,0.457111802,Network
+ieu-a-1018,ukb-b-4710,Exercise,Wellbeing,Weighted mode,3,-0.036986575,0.237443499,0.890516108,Network
+ieu-a-1018,ukb-b-5076,Not socialising,Wellbeing,MR Egger intercept,3,-0.028727825,0.005258767,0.1152602,Network
+ieu-a-1018,ukb-b-5076,Not socialising,Wellbeing,MR Egger,3,0.083547928,0.173777356,0.714698708,Network
+ieu-a-1018,ukb-b-5076,Not socialising,Wellbeing,Weighted median,3,-0.057345158,0.040306179,0.15481194,Network
+ieu-a-1018,ukb-b-5076,Not socialising,Wellbeing,Inverse variance weighted,3,-0.058975163,0.035056094,0.092509043,Network
+ieu-a-1018,ukb-b-5076,Not socialising,Wellbeing,Simple mode,3,-0.082136919,0.054255824,0.269247452,Network
+ieu-a-1018,ukb-b-5076,Not socialising,Wellbeing,Weighted mode,3,-0.042002602,0.046414798,0.461012555,Network
+ieu-a-1018,ieu-a-118,Neuroticism,Wellbeing,MR Egger intercept,3,-0.016600899,0.005413678,0.200683722,Network
+ieu-a-1018,ieu-a-118,Neuroticism,Wellbeing,MR Egger,3,-0.23883693,1.500202229,0.899491608,Network
+ieu-a-1018,ieu-a-118,Neuroticism,Wellbeing,Weighted median,3,-0.150289606,0.256453568,0.557855037,Network
+ieu-a-1018,ieu-a-118,Neuroticism,Wellbeing,Inverse variance weighted,3,-0.341623796,0.217520015,0.116289631,Network
+ieu-a-1018,ieu-a-118,Neuroticism,Wellbeing,Simple mode,3,-0.146941548,0.336934707,0.705315339,Network
+ieu-a-1018,ieu-a-118,Neuroticism,Wellbeing,Weighted mode,3,-0.142165533,0.285605998,0.667990302,Network
+ieu-a-1018,ukb-b-5237,Coffee intake,Wellbeing,MR Egger intercept,3,-0.019058289,0.038130678,0.704926936,Network
+ieu-a-1018,ukb-b-5237,Coffee intake,Wellbeing,MR Egger,3,-0.829811239,0.293273497,0.216272506,Network
+ieu-a-1018,ukb-b-5237,Coffee intake,Wellbeing,Weighted median,3,-0.093218239,0.07735058,0.228149455,Network
+ieu-a-1018,ukb-b-5237,Coffee intake,Wellbeing,Inverse variance weighted,3,-0.04213939,0.115516119,0.715266455,Network
+ieu-a-1018,ukb-b-5237,Coffee intake,Wellbeing,Simple mode,3,-0.106260984,0.105318621,0.419221122,Network
+ieu-a-1018,ukb-b-5237,Coffee intake,Wellbeing,Weighted mode,3,-0.122370526,0.069932123,0.222249063,Network
+ieu-a-1018,ieu-a-7,CHD,Wellbeing,MR Egger intercept,3,-0.00736266,0.017070378,0.740765348,Network
+ieu-a-1018,ieu-a-7,CHD,Wellbeing,MR Egger,3,1.72277379,1.909862149,0.532758308,Network
+ieu-a-1018,ieu-a-7,CHD,Wellbeing,Weighted median,3,0.310584783,0.467796703,0.506734405,Network
+ieu-a-1018,ieu-a-7,CHD,Wellbeing,Inverse variance weighted,3,0.403004603,0.353224944,0.253899446,Network
+ieu-a-1018,ieu-a-7,CHD,Wellbeing,Simple mode,3,0.156186159,0.628071273,0.826816637,Network
+ieu-a-1018,ieu-a-7,CHD,Wellbeing,Weighted mode,3,0.087147682,0.632697164,0.90306184,Network
+ukb-b-4424,ieu-a-1187,Depression,Sleep duration,Wald ratio,1,2.627409613,0.523327047,5.15E-07,Network
+ukb-b-4424,ukb-b-6519,Worry,Sleep duration,MR Egger intercept,72,0.00182168,0.002127696,0.394822381,Network
+ukb-b-4424,ukb-b-6519,Worry,Sleep duration,MR Egger,72,-0.040228685,0.110839423,0.717739163,Network
+ukb-b-4424,ukb-b-6519,Worry,Sleep duration,Weighted median,72,-0.054341668,0.022580685,0.016103763,Network
+ukb-b-4424,ukb-b-6519,Worry,Sleep duration,Inverse variance weighted,72,-0.052283083,0.028330506,0.064969281,Network
+ukb-b-4424,ukb-b-6519,Worry,Sleep duration,Simple mode,72,0.008057455,0.066472809,0.903863703,Network
+ukb-b-4424,ukb-b-6519,Worry,Sleep duration,Weighted mode,72,-0.036898366,0.039154873,0.349198945,Network
+ukb-b-4424,ukb-b-5779,Alcohol,Sleep duration,MR Egger intercept,72,3.30E-05,0.001927237,0.986387538,Network
+ukb-b-4424,ukb-b-5779,Alcohol,Sleep duration,MR Egger,72,-0.240876034,0.335877746,0.475665419,Network
+ukb-b-4424,ukb-b-5779,Alcohol,Sleep duration,Weighted median,72,-0.050929122,0.066130302,0.441221057,Network
+ukb-b-4424,ukb-b-5779,Alcohol,Sleep duration,Inverse variance weighted,72,-0.263220086,0.085846205,0.002168113,Network
+ukb-b-4424,ukb-b-5779,Alcohol,Sleep duration,Simple mode,72,0.079477507,0.151862061,0.602358092,Network
+ukb-b-4424,ukb-b-5779,Alcohol,Sleep duration,Weighted mode,72,0.090708608,0.089606346,0.314831508,Network
+ukb-b-4424,ieu-a-961,Smoking,Sleep duration,MR Egger intercept,53,0.003573579,0.019673418,0.856581329,Network
+ukb-b-4424,ieu-a-961,Smoking,Sleep duration,MR Egger,53,1.100572085,4.283803569,0.798278294,Network
+ukb-b-4424,ieu-a-961,Smoking,Sleep duration,Weighted median,53,1.437958227,1.597093062,0.367928861,Network
+ukb-b-4424,ieu-a-961,Smoking,Sleep duration,Inverse variance weighted,53,0.307825032,1.089208769,0.77747318,Network
+ukb-b-4424,ieu-a-961,Smoking,Sleep duration,Simple mode,53,1.687548422,3.094238369,0.587821264,Network
+ukb-b-4424,ieu-a-961,Smoking,Sleep duration,Weighted mode,53,1.817789035,2.69723926,0.50333168,Network
+ukb-b-4424,ieu-a-1239,Education,Sleep duration,MR Egger intercept,66,0.001659299,0.002456361,0.501784794,Network
+ukb-b-4424,ieu-a-1239,Education,Sleep duration,MR Egger,66,0.175025043,0.207567536,0.402246071,Network
+ukb-b-4424,ieu-a-1239,Education,Sleep duration,Weighted median,66,0.08845617,0.046542841,0.057363311,Network
+ukb-b-4424,ieu-a-1239,Education,Sleep duration,Inverse variance weighted,66,0.074330252,0.054187348,0.170148423,Network
+ukb-b-4424,ieu-a-1239,Education,Sleep duration,Simple mode,66,0.077665266,0.142416247,0.58738628,Network
+ukb-b-4424,ieu-a-1239,Education,Sleep duration,Weighted mode,66,0.083952566,0.079355008,0.294000251,Network
+ukb-b-4424,ukb-b-19953,BMI,Sleep duration,MR Egger intercept,72,-0.001302813,0.00171707,0.450554342,Network
+ukb-b-4424,ukb-b-19953,BMI,Sleep duration,MR Egger,72,-0.553801699,0.467906254,0.240585572,Network
+ukb-b-4424,ukb-b-19953,BMI,Sleep duration,Weighted median,72,-0.096535783,0.050850988,0.057642716,Network
+ukb-b-4424,ukb-b-19953,BMI,Sleep duration,Inverse variance weighted,72,-0.213101276,0.120178915,0.076195539,Network
+ukb-b-4424,ukb-b-19953,BMI,Sleep duration,Simple mode,72,-0.073810631,0.122013281,0.547147927,Network
+ukb-b-4424,ukb-b-19953,BMI,Sleep duration,Weighted mode,72,-0.073810631,0.065947226,0.266810914,Network
+ukb-b-4424,ukb-b-5238,Intelligence,Sleep duration,MR Egger intercept,72,0.000904816,0.001985195,0.649957617,Network
+ukb-b-4424,ukb-b-5238,Intelligence,Sleep duration,MR Egger,72,0.472465553,0.77500806,0.544082979,Network
+ukb-b-4424,ukb-b-5238,Intelligence,Sleep duration,Weighted median,72,0.09167883,0.156841626,0.558862957,Network
+ukb-b-4424,ukb-b-5238,Intelligence,Sleep duration,Inverse variance weighted,72,-0.245715538,0.199388525,0.217820076,Network
+ukb-b-4424,ukb-b-5238,Intelligence,Sleep duration,Simple mode,72,0.428314043,0.320800879,0.186095711,Network
+ukb-b-4424,ukb-b-5238,Intelligence,Sleep duration,Weighted mode,72,0.404247496,0.221157373,0.071770135,Network
+ukb-b-4424,ieu-a-1018,Wellbeing,Sleep duration,MR Egger intercept,52,-0.003163232,0.002605929,0.230503956,Replication
+ukb-b-4424,ieu-a-1018,Wellbeing,Sleep duration,MR Egger,52,-0.01285002,0.225340853,0.95475271,Replication
+ukb-b-4424,ieu-a-1018,Wellbeing,Sleep duration,Weighted median,52,0.029370438,0.066448435,0.658486701,Replication
+ukb-b-4424,ieu-a-1018,Wellbeing,Sleep duration,Inverse variance weighted,52,0.095673258,0.056953366,0.092986002,Replication
+ukb-b-4424,ieu-a-1018,Wellbeing,Sleep duration,Simple mode,52,-0.109982151,0.145492849,0.453169761,Replication
+ukb-b-4424,ieu-a-1018,Wellbeing,Sleep duration,Weighted mode,52,-0.051199084,0.109167528,0.641071555,Replication
+ukb-b-4424,ukb-b-8476,Loneliness,Sleep duration,MR Egger intercept,72,-0.000762978,0.002034453,0.708773115,Network
+ukb-b-4424,ukb-b-8476,Loneliness,Sleep duration,MR Egger,72,0.089116348,0.062107269,0.155774855,Network
+ukb-b-4424,ukb-b-8476,Loneliness,Sleep duration,Weighted median,72,-0.002761321,0.016214443,0.864774164,Network
+ukb-b-4424,ukb-b-8476,Loneliness,Sleep duration,Inverse variance weighted,72,-0.029229482,0.016303357,0.072996829,Network
+ukb-b-4424,ukb-b-8476,Loneliness,Sleep duration,Simple mode,72,-0.007232929,0.038935489,0.853157182,Network
+ukb-b-4424,ukb-b-8476,Loneliness,Sleep duration,Weighted mode,72,-0.00298752,0.029607158,0.919910029,Network
+ukb-b-4424,ukb-b-3957,Sleeplessness,Sleep duration,MR Egger intercept,72,-0.00336121,0.00157194,0.035988175,Replication
+ukb-b-4424,ukb-b-3957,Sleeplessness,Sleep duration,MR Egger,72,-0.312862883,0.136713701,0.025133843,Replication
+ukb-b-4424,ukb-b-3957,Sleeplessness,Sleep duration,Weighted median,72,-0.299484064,0.03024606,4.10E-23,Replication
+ukb-b-4424,ukb-b-3957,Sleeplessness,Sleep duration,Inverse variance weighted,72,-0.350082755,0.034955361,1.31E-23,Replication
+ukb-b-4424,ukb-b-3957,Sleeplessness,Sleep duration,Simple mode,72,-0.292647412,0.070548525,9.16E-05,Replication
+ukb-b-4424,ukb-b-3957,Sleeplessness,Sleep duration,Weighted mode,72,-0.36503244,0.055129493,5.76E-09,Replication
+ukb-b-4424,ukb-b-4956,Eveningness,Sleep duration,MR Egger intercept,72,-0.003030069,0.002150876,0.163332596,Replication
+ukb-b-4424,ukb-b-4956,Eveningness,Sleep duration,MR Egger,72,0.523182788,0.222127282,0.021313686,Replication
+ukb-b-4424,ukb-b-4956,Eveningness,Sleep duration,Weighted median,72,-0.042674619,0.043401788,0.325486554,Replication
+ukb-b-4424,ukb-b-4956,Eveningness,Sleep duration,Inverse variance weighted,72,-0.017346506,0.059293972,0.769865432,Replication
+ukb-b-4424,ukb-b-4956,Eveningness,Sleep duration,Simple mode,72,-0.184610219,0.13806139,0.18543866,Replication
+ukb-b-4424,ukb-b-4956,Eveningness,Sleep duration,Weighted mode,72,0.103329286,0.081555218,0.209300742,Replication
+ukb-b-4424,ukb-d-SLEEP,ICD10 Insomni,Sleep duration,MR Egger intercept,72,0.001479409,0.002146168,0.492896957,Replication
+ukb-b-4424,ukb-d-SLEEP,ICD10 Insomni,Sleep duration,MR Egger,72,-0.013687612,0.011117853,0.222391686,Replication
+ukb-b-4424,ukb-d-SLEEP,ICD10 Insomni,Sleep duration,Weighted median,72,-0.008784178,0.003872575,0.023310684,Replication
+ukb-b-4424,ukb-d-SLEEP,ICD10 Insomni,Sleep duration,Inverse variance weighted,72,-0.007321322,0.002846587,0.010112319,Replication
+ukb-b-4424,ukb-d-SLEEP,ICD10 Insomni,Sleep duration,Simple mode,72,-0.014452636,0.010196299,0.160728121,Replication
+ukb-b-4424,ukb-d-SLEEP,ICD10 Insomni,Sleep duration,Weighted mode,72,-0.012397208,0.007658437,0.109931933,Replication
+ukb-b-4424,ukb-b-4062,Happiness,Sleep duration,MR Egger intercept,72,0.000421938,0.002480734,0.865433123,Replication
+ukb-b-4424,ukb-b-4062,Happiness,Sleep duration,MR Egger,72,0.338662281,0.140351528,0.018445625,Replication
+ukb-b-4424,ukb-b-4062,Happiness,Sleep duration,Weighted median,72,0.042018354,0.047424805,0.375617786,Replication
+ukb-b-4424,ukb-b-4062,Happiness,Sleep duration,Inverse variance weighted,72,-0.015012418,0.037547099,0.689282493,Replication
+ukb-b-4424,ukb-b-4062,Happiness,Sleep duration,Simple mode,72,0.134634226,0.146646591,0.361682028,Replication
+ukb-b-4424,ukb-b-4062,Happiness,Sleep duration,Weighted mode,72,0.170120572,0.096124781,0.08105588,Replication
+ukb-b-4424,ukb-b-4710,Exercise,Sleep duration,MR Egger intercept,72,-0.00314491,0.00209407,0.137642177,Network
+ukb-b-4424,ukb-b-4710,Exercise,Sleep duration,MR Egger,72,0.371633253,0.442728584,0.404093855,Network
+ukb-b-4424,ukb-b-4710,Exercise,Sleep duration,Weighted median,72,0.002063312,0.10280748,0.983987796,Network
+ukb-b-4424,ukb-b-4710,Exercise,Sleep duration,Inverse variance weighted,72,0.181773696,0.113263048,0.108520031,Network
+ukb-b-4424,ukb-b-4710,Exercise,Sleep duration,Simple mode,72,-0.088738497,0.265827616,0.739499558,Network
+ukb-b-4424,ukb-b-4710,Exercise,Sleep duration,Weighted mode,72,-0.128646131,0.181263936,0.480203925,Network
+ukb-b-4424,ukb-b-5076,Not socialising,Sleep duration,MR Egger intercept,72,-0.00090666,0.002149216,0.674422714,Network
+ukb-b-4424,ukb-b-5076,Not socialising,Sleep duration,MR Egger,72,-0.098115637,0.072022368,0.177472594,Network
+ukb-b-4424,ukb-b-5076,Not socialising,Sleep duration,Weighted median,72,-0.044112316,0.019218018,0.021712362,Network
+ukb-b-4424,ukb-b-5076,Not socialising,Sleep duration,Inverse variance weighted,72,-0.034214899,0.018513518,0.06458735,Network
+ukb-b-4424,ukb-b-5076,Not socialising,Sleep duration,Simple mode,72,-0.068790837,0.041115714,0.0987079,Network
+ukb-b-4424,ukb-b-5076,Not socialising,Sleep duration,Weighted mode,72,-0.049476142,0.031140167,0.116544396,Network
+ukb-b-4424,ieu-a-118,Neuroticism,Sleep duration,MR Egger intercept,56,-0.005244442,0.002522781,0.042397559,Network
+ukb-b-4424,ieu-a-118,Neuroticism,Sleep duration,MR Egger,56,-0.027609395,0.313446078,0.930136244,Network
+ukb-b-4424,ieu-a-118,Neuroticism,Sleep duration,Weighted median,56,-0.143382129,0.11464113,0.21104246,Network
+ukb-b-4424,ieu-a-118,Neuroticism,Sleep duration,Inverse variance weighted,56,-0.054883727,0.084132869,0.514178098,Network
+ukb-b-4424,ieu-a-118,Neuroticism,Sleep duration,Simple mode,56,-0.0949338,0.242827978,0.69734394,Network
+ukb-b-4424,ieu-a-118,Neuroticism,Sleep duration,Weighted mode,56,-0.143358639,0.175041031,0.416321018,Network
+ukb-b-4424,ukb-b-5237,Coffee intake,Sleep duration,MR Egger intercept,72,0.000569905,0.002076173,0.784510752,Network
+ukb-b-4424,ukb-b-5237,Coffee intake,Sleep duration,MR Egger,72,-0.055938807,0.146630071,0.703990692,Network
+ukb-b-4424,ukb-b-5237,Coffee intake,Sleep duration,Weighted median,72,-0.010441838,0.031187901,0.737772857,Network
+ukb-b-4424,ukb-b-5237,Coffee intake,Sleep duration,Inverse variance weighted,72,-0.002463016,0.03750875,0.947644458,Network
+ukb-b-4424,ukb-b-5237,Coffee intake,Sleep duration,Simple mode,72,0.114051369,0.090345697,0.210939812,Network
+ukb-b-4424,ukb-b-5237,Coffee intake,Sleep duration,Weighted mode,72,-0.074845771,0.055361159,0.180681003,Network
+ukb-b-4424,ieu-a-24,Diabetes,Sleep duration,MR Egger intercept,3,-0.014819229,0.017163182,0.54657385,Network
+ukb-b-4424,ieu-a-24,Diabetes,Sleep duration,MR Egger,3,2.037303676,11.45596537,0.887956316,Network
+ukb-b-4424,ieu-a-24,Diabetes,Sleep duration,Weighted median,3,-2.248465489,0.950240881,0.017971451,Network
+ukb-b-4424,ieu-a-24,Diabetes,Sleep duration,Inverse variance weighted,3,-4.153671453,2.806341701,0.138846077,Network
+ukb-b-4424,ieu-a-24,Diabetes,Sleep duration,Simple mode,3,-1.926828201,0.951179795,0.180047339,Network
+ukb-b-4424,ieu-a-24,Diabetes,Sleep duration,Weighted mode,3,-1.926828201,0.874582605,0.158458416,Network
+ukb-b-4424,ieu-a-7,CHD,Sleep duration,MR Egger intercept,65,-0.002630808,0.002336129,0.264377824,Network
+ukb-b-4424,ieu-a-7,CHD,Sleep duration,MR Egger,65,-0.289364317,0.561532,0.608138395,Network
+ukb-b-4424,ieu-a-7,CHD,Sleep duration,Weighted median,65,-0.34520918,0.184385707,0.061177245,Network
+ukb-b-4424,ieu-a-7,CHD,Sleep duration,Inverse variance weighted,65,-0.372148635,0.14302198,0.009267157,Network
+ukb-b-4424,ieu-a-7,CHD,Sleep duration,Simple mode,65,-0.961695312,0.446949252,0.035201315,Network
+ukb-b-4424,ieu-a-7,CHD,Sleep duration,Weighted mode,65,-0.371784929,0.33993209,0.278184504,Network
+ukb-b-8476,ieu-a-1187,Depression,Loneliness,MR Egger intercept,NA,NA,NA,NA,Network
+ukb-b-8476,ieu-a-1187,Depression,Loneliness,Inverse variance weighted,2,5.843146519,0.777796962,5.80E-14,Network
+ukb-b-8476,ukb-b-6519,Worry,Loneliness,MR Egger intercept,16,0.002104014,0.001357715,0.143525391,Network
+ukb-b-8476,ukb-b-6519,Worry,Loneliness,MR Egger,16,0.258257738,0.338182395,0.457744786,Network
+ukb-b-8476,ukb-b-6519,Worry,Loneliness,Weighted median,16,0.462877044,0.079586056,6.03E-09,Network
+ukb-b-8476,ukb-b-6519,Worry,Loneliness,Inverse variance weighted,16,0.470133968,0.0694727,1.31E-11,Network
+ukb-b-8476,ukb-b-6519,Worry,Loneliness,Simple mode,16,0.458748268,0.161202367,0.012270513,Network
+ukb-b-8476,ukb-b-6519,Worry,Loneliness,Weighted mode,16,0.419683918,0.131025347,0.005926428,Network
+ukb-b-8476,ukb-b-5779,Alcohol,Loneliness,MR Egger intercept,16,0.004038399,0.001667694,0.029619762,Network
+ukb-b-8476,ukb-b-5779,Alcohol,Loneliness,MR Egger,16,3.690233154,1.701202445,0.047776168,Network
+ukb-b-8476,ukb-b-5779,Alcohol,Loneliness,Weighted median,16,0.958254682,0.245018735,9.19E-05,Network
+ukb-b-8476,ukb-b-5779,Alcohol,Loneliness,Inverse variance weighted,16,0.947985528,0.37637786,0.011778665,Network
+ukb-b-8476,ukb-b-5779,Alcohol,Loneliness,Simple mode,16,1.120489048,0.419354613,0.017410578,Network
+ukb-b-8476,ukb-b-5779,Alcohol,Loneliness,Weighted mode,16,1.021194943,0.419497993,0.027886273,Network
+ukb-b-8476,ieu-a-961,Smoking,Loneliness,MR Egger intercept,13,0.001556693,0.034802281,0.965124503,Network
+ukb-b-8476,ieu-a-961,Smoking,Loneliness,MR Egger,13,3.608582635,31.22185578,0.910069351,Network
+ukb-b-8476,ieu-a-961,Smoking,Loneliness,Weighted median,13,6.700143936,6.816493375,0.325641306,Network
+ukb-b-8476,ieu-a-961,Smoking,Loneliness,Inverse variance weighted,13,2.036511149,5.293965266,0.700470513,Network
+ukb-b-8476,ieu-a-961,Smoking,Loneliness,Simple mode,13,10.6786293,9.461018272,0.281085222,Network
+ukb-b-8476,ieu-a-961,Smoking,Loneliness,Weighted mode,13,10.6786293,8.33635112,0.224406449,Network
+ukb-b-8476,ieu-a-1239,Education,Loneliness,MR Egger intercept,16,0.001340876,0.002357752,0.578562705,Network
+ukb-b-8476,ieu-a-1239,Education,Loneliness,MR Egger,16,-1.14844881,1.388483906,0.422041274,Network
+ukb-b-8476,ieu-a-1239,Education,Loneliness,Weighted median,16,-0.409451885,0.187436638,0.028926879,Network
+ukb-b-8476,ieu-a-1239,Education,Loneliness,Inverse variance weighted,16,-0.461041252,0.284483454,0.105097896,Network
+ukb-b-8476,ieu-a-1239,Education,Loneliness,Simple mode,16,-0.748657103,0.362932525,0.05689049,Network
+ukb-b-8476,ieu-a-1239,Education,Loneliness,Weighted mode,16,-0.525199152,0.323017567,0.124788027,Network
+ukb-b-8476,ukb-b-19953,BMI,Loneliness,MR Egger intercept,16,0.002220822,0.002488387,0.387221982,Network
+ukb-b-8476,ukb-b-19953,BMI,Loneliness,MR Egger,16,3.573224512,1.820262377,0.069826253,Network
+ukb-b-8476,ukb-b-19953,BMI,Loneliness,Weighted median,16,0.647578624,0.19739941,0.001036049,Network
+ukb-b-8476,ukb-b-19953,BMI,Loneliness,Inverse variance weighted,16,0.41146814,0.40782599,0.313007896,Network
+ukb-b-8476,ukb-b-19953,BMI,Loneliness,Simple mode,16,0.912070588,0.298877044,0.008076105,Network
+ukb-b-8476,ukb-b-19953,BMI,Loneliness,Weighted mode,16,0.737777013,0.260755155,0.0126843,Network
+ukb-b-8476,ukb-b-5238,Intelligence,Loneliness,MR Egger intercept,16,2.08E-05,0.003822363,0.99572979,Network
+ukb-b-8476,ukb-b-5238,Intelligence,Loneliness,MR Egger,16,-6.19183232,4.586765227,0.198459922,Network
+ukb-b-8476,ukb-b-5238,Intelligence,Loneliness,Weighted median,16,-0.5772893,0.774026425,0.455772323,Network
+ukb-b-8476,ukb-b-5238,Intelligence,Loneliness,Inverse variance weighted,16,0.008477547,0.990764433,0.993172927,Network
+ukb-b-8476,ukb-b-5238,Intelligence,Loneliness,Simple mode,16,-0.289964337,1.669882806,0.864467282,Network
+ukb-b-8476,ukb-b-5238,Intelligence,Loneliness,Weighted mode,16,-0.489011603,1.381913848,0.728364487,Network
+ukb-b-8476,ieu-a-1018,Wellbeing,Loneliness,MR Egger intercept,13,0.001303775,0.001901423,0.507106269,Network
+ukb-b-8476,ieu-a-1018,Wellbeing,Loneliness,MR Egger,13,-1.239786831,1.60586726,0.456359841,Network
+ukb-b-8476,ieu-a-1018,Wellbeing,Loneliness,Weighted median,13,-1.025187689,0.297588494,0.000571093,Network
+ukb-b-8476,ieu-a-1018,Wellbeing,Loneliness,Inverse variance weighted,13,-0.968517014,0.343991577,0.004869755,Network
+ukb-b-8476,ieu-a-1018,Wellbeing,Loneliness,Simple mode,13,-1.240410171,0.588313256,0.056690783,Network
+ukb-b-8476,ieu-a-1018,Wellbeing,Loneliness,Weighted mode,13,-1.097604013,0.554178683,0.071029386,Network
+ukb-b-8476,ukb-b-4424,Sleep duration,Loneliness,MR Egger intercept,16,-0.001209427,0.002033575,0.561513772,Network
+ukb-b-8476,ukb-b-4424,Sleep duration,Loneliness,MR Egger,16,-0.709648808,1.140789712,0.543895748,Network
+ukb-b-8476,ukb-b-4424,Sleep duration,Loneliness,Weighted median,16,-0.173905632,0.137808577,0.206971744,Network
+ukb-b-8476,ukb-b-4424,Sleep duration,Loneliness,Inverse variance weighted,16,-0.151994329,0.233040554,0.514257548,Network
+ukb-b-8476,ukb-b-4424,Sleep duration,Loneliness,Simple mode,16,-0.111608831,0.203826132,0.592043053,Network
+ukb-b-8476,ukb-b-4424,Sleep duration,Loneliness,Weighted mode,16,-0.144560609,0.197258802,0.474948875,Network
+ukb-b-8476,ukb-b-3957,Sleeplessness,Loneliness,MR Egger intercept,16,0.001956655,0.00171445,0.27290289,Network
+ukb-b-8476,ukb-b-3957,Sleeplessness,Loneliness,MR Egger,16,0.324962872,0.820784657,0.698134016,Network
+ukb-b-8476,ukb-b-3957,Sleeplessness,Loneliness,Weighted median,16,0.583859376,0.119542549,1.04E-06,Network
+ukb-b-8476,ukb-b-3957,Sleeplessness,Loneliness,Inverse variance weighted,16,0.664395507,0.167244052,7.11E-05,Network
+ukb-b-8476,ukb-b-3957,Sleeplessness,Loneliness,Simple mode,16,0.621143652,0.19779947,0.006739134,Network
+ukb-b-8476,ukb-b-3957,Sleeplessness,Loneliness,Weighted mode,16,0.606112298,0.18267909,0.004683719,Network
+ukb-b-8476,ukb-b-4956,Eveningness,Loneliness,MR Egger intercept,16,0.001782988,0.002030786,0.394773208,Network
+ukb-b-8476,ukb-b-4956,Eveningness,Loneliness,MR Egger,16,0.989185884,1.705350943,0.571100164,Network
+ukb-b-8476,ukb-b-4956,Eveningness,Loneliness,Weighted median,16,0.22711693,0.179037681,0.204604239,Network
+ukb-b-8476,ukb-b-4956,Eveningness,Loneliness,Inverse variance weighted,16,0.069454976,0.349049774,0.842276031,Network
+ukb-b-8476,ukb-b-4956,Eveningness,Loneliness,Simple mode,16,0.344630716,0.251834698,0.191310542,Network
+ukb-b-8476,ukb-b-4956,Eveningness,Loneliness,Weighted mode,16,0.344630716,0.23669728,0.166004234,Network
+ukb-b-8476,ukb-d-SLEEP,ICD10 Insomni,Loneliness,MR Egger intercept,16,0.003976698,0.003026816,0.210028705,Network
+ukb-b-8476,ukb-d-SLEEP,ICD10 Insomni,Loneliness,MR Egger,16,0.015031573,0.052364615,0.778274298,Network
+ukb-b-8476,ukb-d-SLEEP,ICD10 Insomni,Loneliness,Weighted median,16,-0.014609855,0.015430001,0.343716571,Network
+ukb-b-8476,ukb-d-SLEEP,ICD10 Insomni,Loneliness,Inverse variance weighted,16,-0.011262803,0.010993033,0.305580232,Network
+ukb-b-8476,ukb-d-SLEEP,ICD10 Insomni,Loneliness,Simple mode,16,-0.039561106,0.030023816,0.207389828,Network
+ukb-b-8476,ukb-d-SLEEP,ICD10 Insomni,Loneliness,Weighted mode,16,-0.035643221,0.027246333,0.210503476,Network
+ukb-b-8476,ukb-b-4062,Happiness,Loneliness,MR Egger intercept,16,0.001435547,0.001479979,0.348517786,Network
+ukb-b-8476,ukb-b-4062,Happiness,Loneliness,MR Egger,16,1.345242718,0.694973729,0.073366569,Network
+ukb-b-8476,ukb-b-4062,Happiness,Loneliness,Weighted median,16,1.108429263,0.192811903,8.99E-09,Network
+ukb-b-8476,ukb-b-4062,Happiness,Loneliness,Inverse variance weighted,16,1.126924796,0.14134031,1.55E-15,Network
+ukb-b-8476,ukb-b-4062,Happiness,Loneliness,Simple mode,16,1.302587496,0.347595262,0.001941151,Network
+ukb-b-8476,ukb-b-4062,Happiness,Loneliness,Weighted mode,16,1.302587496,0.356903681,0.002371355,Network
+ukb-b-8476,ukb-b-4710,Exercise,Loneliness,MR Egger intercept,16,-0.001607865,0.002523505,0.534304895,Network
+ukb-b-8476,ukb-b-4710,Exercise,Loneliness,MR Egger,16,-0.065636626,1.624933725,0.968349875,Network
+ukb-b-8476,ukb-b-4710,Exercise,Loneliness,Weighted median,16,-0.197272372,0.377853061,0.601609388,Network
+ukb-b-8476,ukb-b-4710,Exercise,Loneliness,Inverse variance weighted,16,0.041394644,0.329223045,0.899942214,Network
+ukb-b-8476,ukb-b-4710,Exercise,Loneliness,Simple mode,16,-0.16119641,0.678407181,0.815398443,Network
+ukb-b-8476,ukb-b-4710,Exercise,Loneliness,Weighted mode,16,-0.049502792,0.690458216,0.943791401,Network
+ukb-b-8476,ukb-b-5076,Not socialising,Loneliness,MR Egger intercept,16,0.001143863,0.001668681,0.504228353,Network
+ukb-b-8476,ukb-b-5076,Not socialising,Loneliness,MR Egger,16,-0.12547897,0.313805597,0.695292256,Network
+ukb-b-8476,ukb-b-5076,Not socialising,Loneliness,Weighted median,16,0.110335007,0.077630313,0.155233146,Network
+ukb-b-8476,ukb-b-5076,Not socialising,Loneliness,Inverse variance weighted,16,0.20747073,0.066160042,0.001713324,Network
+ukb-b-8476,ukb-b-5076,Not socialising,Loneliness,Simple mode,16,0.01866356,0.145445117,0.899600147,Network
+ukb-b-8476,ukb-b-5076,Not socialising,Loneliness,Weighted mode,16,0.025950173,0.128149746,0.84224778,Network
+ukb-b-8476,ieu-a-118,Neuroticism,Loneliness,MR Egger intercept,14,0.000677706,0.003063728,0.828653537,Network
+ukb-b-8476,ieu-a-118,Neuroticism,Loneliness,MR Egger,14,0.402322243,1.63059189,0.809284566,Network
+ukb-b-8476,ieu-a-118,Neuroticism,Loneliness,Weighted median,14,1.112781039,0.430627244,0.009763534,Network
+ukb-b-8476,ieu-a-118,Neuroticism,Loneliness,Inverse variance weighted,14,1.363748229,0.324734702,2.67E-05,Network
+ukb-b-8476,ieu-a-118,Neuroticism,Loneliness,Simple mode,14,0.840483712,0.801252207,0.313305922,Network
+ukb-b-8476,ieu-a-118,Neuroticism,Loneliness,Weighted mode,14,0.913441554,0.71983099,0.226703164,Network
+ukb-b-8476,ukb-b-5237,Coffee intake,Loneliness,MR Egger intercept,16,-0.002686782,0.002946808,0.377327711,Network
+ukb-b-8476,ukb-b-5237,Coffee intake,Loneliness,MR Egger,16,0.131954552,0.754613654,0.863690401,Network
+ukb-b-8476,ukb-b-5237,Coffee intake,Loneliness,Weighted median,16,-0.297708242,0.132280947,0.024412445,Network
+ukb-b-8476,ukb-b-5237,Coffee intake,Loneliness,Inverse variance weighted,16,-0.183493711,0.15381148,0.232877993,Network
+ukb-b-8476,ukb-b-5237,Coffee intake,Loneliness,Simple mode,16,-0.469113205,0.215497485,0.045872184,Network
+ukb-b-8476,ukb-b-5237,Coffee intake,Loneliness,Weighted mode,16,-0.406732504,0.23084185,0.098437998,Network
+ukb-b-8476,ieu-a-7,CHD,Loneliness,MR Egger intercept,16,0.004330379,0.005304989,0.42800895,Network
+ukb-b-8476,ieu-a-7,CHD,Loneliness,MR Egger,16,4.536330019,4.413302117,0.321440329,Network
+ukb-b-8476,ieu-a-7,CHD,Loneliness,Weighted median,16,1.257523724,0.818925367,0.12464193,Network
+ukb-b-8476,ieu-a-7,CHD,Loneliness,Inverse variance weighted,16,0.244906919,0.846535006,0.772347888,Network
+ukb-b-8476,ieu-a-7,CHD,Loneliness,Simple mode,16,1.906578387,1.2764866,0.156012074,Network
+ukb-b-8476,ieu-a-7,CHD,Loneliness,Weighted mode,16,1.650147933,1.207299481,0.191822621,Network
+ukb-b-3957,ieu-a-1187,Depression,Sleeplessness,MR Egger intercept,7,0.003505644,0.006883197,0.632212886,Network
+ukb-b-3957,ieu-a-1187,Depression,Sleeplessness,MR Egger,7,2.178375743,1.24741796,0.141192539,Network
+ukb-b-3957,ieu-a-1187,Depression,Sleeplessness,Weighted median,7,2.446768053,0.462441499,1.22E-07,Network
+ukb-b-3957,ieu-a-1187,Depression,Sleeplessness,Inverse variance weighted,7,2.872374238,0.283443119,3.91E-24,Network
+ukb-b-3957,ieu-a-1187,Depression,Sleeplessness,Simple mode,7,2.347869226,0.619408575,0.009068055,Network
+ukb-b-3957,ieu-a-1187,Depression,Sleeplessness,Weighted mode,7,2.386666757,0.526549866,0.003963998,Network
+ukb-b-3957,ukb-b-6519,Worry,Sleeplessness,MR Egger intercept,110,0.001175253,0.001102185,0.288668534,Network
+ukb-b-3957,ukb-b-6519,Worry,Sleeplessness,MR Egger,110,0.060719156,0.085111283,0.477131475,Network
+ukb-b-3957,ukb-b-6519,Worry,Sleeplessness,Weighted median,110,0.073772306,0.025276378,0.003515772,Network
+ukb-b-3957,ukb-b-6519,Worry,Sleeplessness,Inverse variance weighted,110,0.166134103,0.027607486,1.77E-09,Network
+ukb-b-3957,ukb-b-6519,Worry,Sleeplessness,Simple mode,110,0.066692447,0.082547098,0.42088942,Network
+ukb-b-3957,ukb-b-6519,Worry,Sleeplessness,Weighted mode,110,0.02841528,0.041300036,0.492901334,Network
+ukb-b-3957,ukb-b-5779,Alcohol,Sleeplessness,MR Egger intercept,110,0.000518393,0.001119797,0.64434279,Network
+ukb-b-3957,ukb-b-5779,Alcohol,Sleeplessness,MR Egger,110,-0.064816316,0.278366975,0.816322594,Network
+ukb-b-3957,ukb-b-5779,Alcohol,Sleeplessness,Weighted median,110,0.167039603,0.07244683,0.021128214,Network
+ukb-b-3957,ukb-b-5779,Alcohol,Sleeplessness,Inverse variance weighted,110,0.377664201,0.090776595,3.18E-05,Network
+ukb-b-3957,ukb-b-5779,Alcohol,Sleeplessness,Simple mode,110,0.183105095,0.199345057,0.36036779,Network
+ukb-b-3957,ukb-b-5779,Alcohol,Sleeplessness,Weighted mode,110,0.027386256,0.108591225,0.80136462,Network
+ukb-b-3957,ieu-a-961,Smoking,Sleeplessness,MR Egger intercept,81,-0.000560956,0.01810002,0.975354076,Network
+ukb-b-3957,ieu-a-961,Smoking,Sleeplessness,MR Egger,81,18.20239302,7.008720863,0.011209029,Network
+ukb-b-3957,ieu-a-961,Smoking,Sleeplessness,Weighted median,81,4.982525637,2.154024874,0.020715848,Network
+ukb-b-3957,ieu-a-961,Smoking,Sleeplessness,Inverse variance weighted,81,5.548915175,1.571854108,0.00041529,Network
+ukb-b-3957,ieu-a-961,Smoking,Sleeplessness,Simple mode,81,1.777553448,5.783523793,0.75937731,Network
+ukb-b-3957,ieu-a-961,Smoking,Sleeplessness,Weighted mode,81,0.693057087,5.646996388,0.902628535,Network
+ukb-b-3957,ieu-a-1239,Education,Sleeplessness,MR Egger intercept,109,-0.000390949,0.001092895,0.721258189,Network
+ukb-b-3957,ieu-a-1239,Education,Sleeplessness,MR Egger,109,-0.113233654,0.191917711,0.556426895,Network
+ukb-b-3957,ieu-a-1239,Education,Sleeplessness,Weighted median,109,-0.157860248,0.045591111,0.000535137,Network
+ukb-b-3957,ieu-a-1239,Education,Sleeplessness,Inverse variance weighted,109,-0.328204049,0.062818673,1.75E-07,Network
+ukb-b-3957,ieu-a-1239,Education,Sleeplessness,Simple mode,109,-0.236520277,0.106876286,0.028999255,Network
+ukb-b-3957,ieu-a-1239,Education,Sleeplessness,Weighted mode,109,-0.170553218,0.065325632,0.010315844,Network
+ukb-b-3957,ukb-b-19953,BMI,Sleeplessness,MR Egger intercept,110,0.004353253,0.000991608,2.65E-05,Network
+ukb-b-3957,ukb-b-19953,BMI,Sleeplessness,MR Egger,110,0.051622789,0.318393071,0.871502182,Network
+ukb-b-3957,ukb-b-19953,BMI,Sleeplessness,Weighted median,110,0.298379392,0.053138954,1.96E-08,Network
+ukb-b-3957,ukb-b-19953,BMI,Sleeplessness,Inverse variance weighted,110,0.48919593,0.103594181,2.33E-06,Network
+ukb-b-3957,ukb-b-19953,BMI,Sleeplessness,Simple mode,110,0.333583284,0.107970649,0.002543796,Network
+ukb-b-3957,ukb-b-19953,BMI,Sleeplessness,Weighted mode,110,0.2416933,0.062965311,0.000208011,Network
+ukb-b-3957,ukb-b-5238,Intelligence,Sleeplessness,MR Egger intercept,110,0.000531006,0.001251575,0.672212827,Network
+ukb-b-3957,ukb-b-5238,Intelligence,Sleeplessness,MR Egger,110,-0.551499096,0.689087119,0.425274944,Network
+ukb-b-3957,ukb-b-5238,Intelligence,Sleeplessness,Weighted median,110,-0.373044184,0.202755384,0.065786865,Network
+ukb-b-3957,ukb-b-5238,Intelligence,Sleeplessness,Inverse variance weighted,110,-0.377135518,0.221491863,0.088623106,Network
+ukb-b-3957,ukb-b-5238,Intelligence,Sleeplessness,Simple mode,110,-0.007111698,0.422255003,0.986593304,Network
+ukb-b-3957,ukb-b-5238,Intelligence,Sleeplessness,Weighted mode,110,-0.406490053,0.273630233,0.140286029,Network
+ukb-b-3957,ieu-a-1018,Wellbeing,Sleeplessness,MR Egger intercept,80,3.53E-05,0.001268413,0.977847709,Main
+ukb-b-3957,ieu-a-1018,Wellbeing,Sleeplessness,MR Egger,80,-0.442530761,0.27863599,0.116285876,Main
+ukb-b-3957,ieu-a-1018,Wellbeing,Sleeplessness,Weighted median,80,-0.221083585,0.081155739,0.006445958,Main
+ukb-b-3957,ieu-a-1018,Wellbeing,Sleeplessness,Inverse variance weighted,80,-0.303440544,0.060105618,4.45E-07,Main
+ukb-b-3957,ieu-a-1018,Wellbeing,Sleeplessness,Simple mode,80,-0.182117693,0.215974065,0.401640903,Main
+ukb-b-3957,ieu-a-1018,Wellbeing,Sleeplessness,Weighted mode,80,-0.147176776,0.222623395,0.510470345,Main
+ukb-b-3957,ukb-b-4424,Sleep duration,Sleeplessness,MR Egger intercept,110,-0.005110135,0.00073264,2.56E-10,Replication
+ukb-b-3957,ukb-b-4424,Sleep duration,Sleeplessness,MR Egger,110,-0.252086863,0.138645472,0.071803432,Replication
+ukb-b-3957,ukb-b-4424,Sleep duration,Sleeplessness,Weighted median,110,-0.380448486,0.04065464,8.12E-21,Replication
+ukb-b-3957,ukb-b-4424,Sleep duration,Sleeplessness,Inverse variance weighted,110,-0.531438084,0.045550462,1.88E-31,Replication
+ukb-b-3957,ukb-b-4424,Sleep duration,Sleeplessness,Simple mode,110,-0.416326691,0.101315345,7.71E-05,Replication
+ukb-b-3957,ukb-b-4424,Sleep duration,Sleeplessness,Weighted mode,110,-0.311245705,0.065204779,5.67E-06,Replication
+ukb-b-3957,ukb-b-8476,Loneliness,Sleeplessness,MR Egger intercept,110,0.002032557,0.000992677,0.043030592,Network
+ukb-b-3957,ukb-b-8476,Loneliness,Sleeplessness,MR Egger,110,0.048014104,0.052409833,0.361640986,Network
+ukb-b-3957,ukb-b-8476,Loneliness,Sleeplessness,Weighted median,110,0.079630381,0.018694599,2.05E-05,Network
+ukb-b-3957,ukb-b-8476,Loneliness,Sleeplessness,Inverse variance weighted,110,0.133718227,0.017097592,5.25E-15,Network
+ukb-b-3957,ukb-b-8476,Loneliness,Sleeplessness,Simple mode,110,0.077769467,0.051855605,0.13657497,Network
+ukb-b-3957,ukb-b-8476,Loneliness,Sleeplessness,Weighted mode,110,0.035928913,0.029043579,0.218720004,Network
+ukb-b-3957,ukb-b-4956,Eveningness,Sleeplessness,MR Egger intercept,110,0.002535825,0.001085059,0.021281126,Replication
+ukb-b-3957,ukb-b-4956,Eveningness,Sleeplessness,MR Egger,110,0.133025615,0.206041165,0.5198907,Replication
+ukb-b-3957,ukb-b-4956,Eveningness,Sleeplessness,Weighted median,110,0.177476446,0.049781828,0.000363738,Replication
+ukb-b-3957,ukb-b-4956,Eveningness,Sleeplessness,Inverse variance weighted,110,0.239027788,0.066430266,0.000320457,Replication
+ukb-b-3957,ukb-b-4956,Eveningness,Sleeplessness,Simple mode,110,0.199243163,0.11220094,0.078561283,Replication
+ukb-b-3957,ukb-b-4956,Eveningness,Sleeplessness,Weighted mode,110,0.221430831,0.128755871,0.088311947,Replication
+ukb-b-3957,ukb-d-SLEEP,ICD10 Insomni,Sleeplessness,MR Egger intercept,110,0.000668583,0.001304412,0.60930919,Replication
+ukb-b-3957,ukb-d-SLEEP,ICD10 Insomni,Sleeplessness,MR Egger,110,0.002499775,0.009504692,0.793048316,Replication
+ukb-b-3957,ukb-d-SLEEP,ICD10 Insomni,Sleeplessness,Weighted median,110,0.01196468,0.004613638,0.009505189,Replication
+ukb-b-3957,ukb-d-SLEEP,ICD10 Insomni,Sleeplessness,Inverse variance weighted,110,0.009143653,0.003067241,0.002872453,Replication
+ukb-b-3957,ukb-d-SLEEP,ICD10 Insomni,Sleeplessness,Simple mode,110,0.0168738,0.009990513,0.094081555,Replication
+ukb-b-3957,ukb-d-SLEEP,ICD10 Insomni,Sleeplessness,Weighted mode,110,0.014771014,0.007645786,0.055965865,Replication
+ukb-b-3957,ukb-b-4062,Happiness,Sleeplessness,MR Egger intercept,110,0.003171078,0.001156794,0.007164467,Replication
+ukb-b-3957,ukb-b-4062,Happiness,Sleeplessness,MR Egger,110,0.018028867,0.126769401,0.887172931,Replication
+ukb-b-3957,ukb-b-4062,Happiness,Sleeplessness,Weighted median,110,0.172249378,0.052747502,0.001092534,Replication
+ukb-b-3957,ukb-b-4062,Happiness,Sleeplessness,Inverse variance weighted,110,0.208045635,0.041170836,4.34E-07,Replication
+ukb-b-3957,ukb-b-4062,Happiness,Sleeplessness,Simple mode,110,0.200231656,0.143880723,0.166861797,Replication
+ukb-b-3957,ukb-b-4062,Happiness,Sleeplessness,Weighted mode,110,0.109637916,0.115486647,0.344539867,Replication
+ukb-b-3957,ukb-b-4710,Exercise,Sleeplessness,MR Egger intercept,110,9.76E-05,0.001384071,0.943894171,Network
+ukb-b-3957,ukb-b-4710,Exercise,Sleeplessness,MR Egger,110,0.536391556,0.374334147,0.154768572,Network
+ukb-b-3957,ukb-b-4710,Exercise,Sleeplessness,Weighted median,110,0.098798991,0.120837595,0.413575355,Network
+ukb-b-3957,ukb-b-4710,Exercise,Sleeplessness,Inverse variance weighted,110,-0.119509636,0.122359878,0.328714687,Network
+ukb-b-3957,ukb-b-4710,Exercise,Sleeplessness,Simple mode,110,-0.637201938,0.407464143,0.120757801,Network
+ukb-b-3957,ukb-b-4710,Exercise,Sleeplessness,Weighted mode,110,0.311263666,0.201880703,0.126015644,Network
+ukb-b-3957,ukb-b-5076,Not socialising,Sleeplessness,MR Egger intercept,110,0.000342362,0.001086721,0.75333841,Network
+ukb-b-3957,ukb-b-5076,Not socialising,Sleeplessness,MR Egger,110,0.067162149,0.065761465,0.309394873,Network
+ukb-b-3957,ukb-b-5076,Not socialising,Sleeplessness,Weighted median,110,0.086749756,0.02237982,0.000106079,Network
+ukb-b-3957,ukb-b-5076,Not socialising,Sleeplessness,Inverse variance weighted,110,0.134443052,0.021277225,2.64E-10,Network
+ukb-b-3957,ukb-b-5076,Not socialising,Sleeplessness,Simple mode,110,0.113089034,0.058546476,0.056003904,Network
+ukb-b-3957,ukb-b-5076,Not socialising,Sleeplessness,Weighted mode,110,0.052098266,0.034511117,0.134036823,Network
+ukb-b-3957,ieu-a-118,Neuroticism,Sleeplessness,MR Egger intercept,95,0.001898294,0.001366285,0.168033694,Network
+ukb-b-3957,ieu-a-118,Neuroticism,Sleeplessness,MR Egger,95,-0.014538011,0.30959643,0.962647439,Network
+ukb-b-3957,ieu-a-118,Neuroticism,Sleeplessness,Weighted median,95,0.197535038,0.122944729,0.108120654,Network
+ukb-b-3957,ieu-a-118,Neuroticism,Sleeplessness,Inverse variance weighted,95,0.286723654,0.095727263,0.002742522,Network
+ukb-b-3957,ieu-a-118,Neuroticism,Sleeplessness,Simple mode,95,0.329029292,0.261149881,0.210815442,Network
+ukb-b-3957,ieu-a-118,Neuroticism,Sleeplessness,Weighted mode,95,0.22634752,0.200364774,0.261486754,Network
+ukb-b-3957,ukb-b-5237,Coffee intake,Sleeplessness,MR Egger intercept,110,-0.000831304,0.001261426,0.511286008,Network
+ukb-b-3957,ukb-b-5237,Coffee intake,Sleeplessness,MR Egger,110,0.016573359,0.110720635,0.88129132,Network
+ukb-b-3957,ukb-b-5237,Coffee intake,Sleeplessness,Weighted median,110,-0.038968953,0.035911203,0.277856314,Network
+ukb-b-3957,ukb-b-5237,Coffee intake,Sleeplessness,Inverse variance weighted,110,-0.077121548,0.035758213,0.031025102,Network
+ukb-b-3957,ukb-b-5237,Coffee intake,Sleeplessness,Simple mode,110,-0.131572487,0.094912758,0.168500793,Network
+ukb-b-3957,ukb-b-5237,Coffee intake,Sleeplessness,Weighted mode,110,-0.003288427,0.061556588,0.9574941,Network
+ukb-b-3957,ieu-a-24,Diabetes,Sleeplessness,MR Egger intercept,5,-0.005097302,0.016940916,0.783148756,Network
+ukb-b-3957,ieu-a-24,Diabetes,Sleeplessness,MR Egger,5,18.22925384,9.80732034,0.160029956,Network
+ukb-b-3957,ieu-a-24,Diabetes,Sleeplessness,Weighted median,5,3.877671135,1.386513632,0.005162647,Network
+ukb-b-3957,ieu-a-24,Diabetes,Sleeplessness,Inverse variance weighted,5,3.594075992,1.919100548,0.061097125,Network
+ukb-b-3957,ieu-a-24,Diabetes,Sleeplessness,Simple mode,5,4.385620131,1.887728735,0.080850137,Network
+ukb-b-3957,ieu-a-24,Diabetes,Sleeplessness,Weighted mode,5,4.019750311,1.475282197,0.052728622,Network
+ukb-b-3957,ieu-a-7,CHD,Sleeplessness,MR Egger intercept,108,0.003085456,0.001570928,0.052137105,Network
+ukb-b-3957,ieu-a-7,CHD,Sleeplessness,MR Egger,108,0.148500632,0.574649595,0.796584314,Network
+ukb-b-3957,ieu-a-7,CHD,Sleeplessness,Weighted median,108,0.622660935,0.20581004,0.002482916,Network
+ukb-b-3957,ieu-a-7,CHD,Sleeplessness,Inverse variance weighted,108,0.851103286,0.178729768,1.92E-06,Network
+ukb-b-3957,ieu-a-7,CHD,Sleeplessness,Simple mode,108,0.606020029,0.449666835,0.180598623,Network
+ukb-b-3957,ieu-a-7,CHD,Sleeplessness,Weighted mode,108,0.606020029,0.314358226,0.056530791,Network
+ukb-b-4956,ieu-a-1187,Depression,Eveningness,MR Egger intercept,4,-0.087057789,0.039003412,0.155279865,Network
+ukb-b-4956,ieu-a-1187,Depression,Eveningness,MR Egger,4,-1.046856801,4.553000765,0.839524322,Network
+ukb-b-4956,ieu-a-1187,Depression,Eveningness,Weighted median,4,4.11E-05,0.254190697,0.999871144,Network
+ukb-b-4956,ieu-a-1187,Depression,Eveningness,Inverse variance weighted,4,0.049036542,0.745023014,0.947522066,Network
+ukb-b-4956,ieu-a-1187,Depression,Eveningness,Simple mode,4,1.293969774,0.39195615,0.045688468,Network
+ukb-b-4956,ieu-a-1187,Depression,Eveningness,Weighted mode,4,-0.657697849,0.294718631,0.111828861,Network
+ukb-b-4956,ukb-b-6519,Worry,Eveningness,MR Egger intercept,156,-0.001195127,0.00199972,0.550953008,Network
+ukb-b-4956,ukb-b-6519,Worry,Eveningness,MR Egger,156,-0.032895535,0.03356453,0.328589509,Network
+ukb-b-4956,ukb-b-6519,Worry,Eveningness,Weighted median,156,-0.01490487,0.01001814,0.136806778,Network
+ukb-b-4956,ukb-b-6519,Worry,Eveningness,Inverse variance weighted,156,-0.00511374,0.010560197,0.628210842,Network
+ukb-b-4956,ukb-b-6519,Worry,Eveningness,Simple mode,156,-0.010223453,0.030627143,0.738978868,Network
+ukb-b-4956,ukb-b-6519,Worry,Eveningness,Weighted mode,156,-0.0300583,0.025196298,0.234706022,Network
+ukb-b-4956,ukb-b-5779,Alcohol,Eveningness,MR Egger intercept,156,0.001190684,0.002044273,0.561116296,Network
+ukb-b-4956,ukb-b-5779,Alcohol,Eveningness,MR Egger,156,-0.031951622,0.114572056,0.780712619,Network
+ukb-b-4956,ukb-b-5779,Alcohol,Eveningness,Weighted median,156,-0.041030973,0.032229096,0.202981338,Network
+ukb-b-4956,ukb-b-5779,Alcohol,Eveningness,Inverse variance weighted,156,-0.078308948,0.035983318,0.029536047,Network
+ukb-b-4956,ukb-b-5779,Alcohol,Eveningness,Simple mode,156,0.052736815,0.100226392,0.59951735,Network
+ukb-b-4956,ukb-b-5779,Alcohol,Eveningness,Weighted mode,156,0.019285572,0.074810381,0.796908827,Network
+ukb-b-4956,ieu-a-961,Smoking,Eveningness,MR Egger intercept,112,-0.001738436,0.0157042,0.912056929,Network
+ukb-b-4956,ieu-a-961,Smoking,Eveningness,MR Egger,112,-1.344899544,2.608360359,0.607160818,Network
+ukb-b-4956,ieu-a-961,Smoking,Eveningness,Weighted median,112,0.868159699,0.887420407,0.327928023,Network
+ukb-b-4956,ieu-a-961,Smoking,Eveningness,Inverse variance weighted,112,0.738696084,0.623348251,0.235999429,Network
+ukb-b-4956,ieu-a-961,Smoking,Eveningness,Simple mode,112,-2.641583292,2.462575563,0.285736247,Network
+ukb-b-4956,ieu-a-961,Smoking,Eveningness,Weighted mode,112,-2.153877809,2.546768617,0.399523,Network
+ukb-b-4956,ieu-a-1239,Education,Eveningness,MR Egger intercept,151,-0.001176374,0.00199857,0.557015643,Network
+ukb-b-4956,ieu-a-1239,Education,Eveningness,MR Egger,151,-0.009877089,0.088817811,0.911602515,Network
+ukb-b-4956,ieu-a-1239,Education,Eveningness,Weighted median,151,0.063273569,0.019314867,0.001053259,Network
+ukb-b-4956,ieu-a-1239,Education,Eveningness,Inverse variance weighted,151,0.076655367,0.028174406,0.006513504,Network
+ukb-b-4956,ieu-a-1239,Education,Eveningness,Simple mode,151,0.066834331,0.051221817,0.193958496,Network
+ukb-b-4956,ieu-a-1239,Education,Eveningness,Weighted mode,151,0.072048705,0.036679447,0.051345843,Network
+ukb-b-4956,ukb-b-19953,BMI,Eveningness,MR Egger intercept,156,0.000759403,0.001631404,0.642237851,Network
+ukb-b-4956,ukb-b-19953,BMI,Eveningness,MR Egger,156,-0.089738815,0.157927037,0.570706688,Network
+ukb-b-4956,ukb-b-19953,BMI,Eveningness,Weighted median,156,0.034006107,0.023809793,0.153222694,Network
+ukb-b-4956,ukb-b-19953,BMI,Eveningness,Inverse variance weighted,156,-0.0676172,0.049608528,0.17287758,Network
+ukb-b-4956,ukb-b-19953,BMI,Eveningness,Simple mode,156,0.043342355,0.057023996,0.448365975,Network
+ukb-b-4956,ukb-b-19953,BMI,Eveningness,Weighted mode,156,0.081326522,0.039044705,0.038901861,Network
+ukb-b-4956,ukb-b-5238,Intelligence,Eveningness,MR Egger intercept,156,0.004103271,0.002042475,0.046287714,Network
+ukb-b-4956,ukb-b-5238,Intelligence,Eveningness,MR Egger,156,-0.254654401,0.266467867,0.340738541,Network
+ukb-b-4956,ukb-b-5238,Intelligence,Eveningness,Weighted median,156,0.190510185,0.081790661,0.019846286,Network
+ukb-b-4956,ukb-b-5238,Intelligence,Eveningness,Inverse variance weighted,156,0.16900195,0.084467079,0.045413669,Network
+ukb-b-4956,ukb-b-5238,Intelligence,Eveningness,Simple mode,156,0.36100361,0.229506524,0.117768075,Network
+ukb-b-4956,ukb-b-5238,Intelligence,Eveningness,Weighted mode,156,0.284507643,0.182708655,0.12147063,Network
+ukb-b-4956,ieu-a-1018,Wellbeing,Eveningness,MR Egger intercept,109,0.000129076,0.002483497,0.95864668,Replication
+ukb-b-4956,ieu-a-1018,Wellbeing,Eveningness,MR Egger,109,0.028040413,0.124183158,0.821788613,Replication
+ukb-b-4956,ieu-a-1018,Wellbeing,Eveningness,Weighted median,109,-0.057270996,0.035870487,0.110353807,Replication
+ukb-b-4956,ieu-a-1018,Wellbeing,Eveningness,Inverse variance weighted,109,-0.04378244,0.029324902,0.135433959,Replication
+ukb-b-4956,ieu-a-1018,Wellbeing,Eveningness,Simple mode,109,-0.215610741,0.096086226,0.026876543,Replication
+ukb-b-4956,ieu-a-1018,Wellbeing,Eveningness,Weighted mode,109,0.048464895,0.096238231,0.615573097,Replication
+ukb-b-4956,ukb-b-4424,Sleep duration,Eveningness,MR Egger intercept,156,0.001147494,0.001932403,0.553505639,Replication
+ukb-b-4956,ukb-b-4424,Sleep duration,Eveningness,MR Egger,156,0.067753071,0.060110716,0.261437311,Replication
+ukb-b-4956,ukb-b-4424,Sleep duration,Eveningness,Weighted median,156,0.017374621,0.016831956,0.301959629,Replication
+ukb-b-4956,ukb-b-4424,Sleep duration,Eveningness,Inverse variance weighted,156,0.019448076,0.018911996,0.303787096,Replication
+ukb-b-4956,ukb-b-4424,Sleep duration,Eveningness,Simple mode,156,0.040459917,0.044773884,0.367583336,Replication
+ukb-b-4956,ukb-b-4424,Sleep duration,Eveningness,Weighted mode,156,0.01547782,0.034009352,0.649670641,Replication
+ukb-b-4956,ukb-b-8476,Loneliness,Eveningness,MR Egger intercept,156,0.000853732,0.001933945,0.659509641,Network
+ukb-b-4956,ukb-b-8476,Loneliness,Eveningness,MR Egger,156,0.028249085,0.022290859,0.206962993,Network
+ukb-b-4956,ukb-b-8476,Loneliness,Eveningness,Weighted median,156,0.010490851,0.007272465,0.149148982,Network
+ukb-b-4956,ukb-b-8476,Loneliness,Eveningness,Inverse variance weighted,156,0.014310541,0.007006147,0.041095095,Network
+ukb-b-4956,ukb-b-8476,Loneliness,Eveningness,Simple mode,156,0.0086326,0.023494947,0.713804209,Network
+ukb-b-4956,ukb-b-8476,Loneliness,Eveningness,Weighted mode,156,-0.003294168,0.019308297,0.864753791,Network
+ukb-b-4956,ukb-b-3957,Sleeplessness,Eveningness,MR Egger intercept,156,0.000908197,0.002169505,0.676077518,Replication
+ukb-b-4956,ukb-b-3957,Sleeplessness,Eveningness,MR Egger,156,0.035831929,0.0482143,0.458504624,Replication
+ukb-b-4956,ukb-b-3957,Sleeplessness,Eveningness,Weighted median,156,0.00527859,0.015394186,0.731677405,Replication
+ukb-b-4956,ukb-b-3957,Sleeplessness,Eveningness,Inverse variance weighted,156,-0.000863843,0.015165074,0.954574923,Replication
+ukb-b-4956,ukb-b-3957,Sleeplessness,Eveningness,Simple mode,156,0.062765347,0.063526015,0.324679804,Replication
+ukb-b-4956,ukb-b-3957,Sleeplessness,Eveningness,Weighted mode,156,0.059755435,0.059902812,0.32005735,Replication
+ukb-b-4956,ukb-d-SLEEP,ICD10 Insomni,Eveningness,MR Egger intercept,155,0.002095064,0.002052978,0.309102322,Replication
+ukb-b-4956,ukb-d-SLEEP,ICD10 Insomni,Eveningness,MR Egger,155,0.000421469,0.004561801,0.926508323,Replication
+ukb-b-4956,ukb-d-SLEEP,ICD10 Insomni,Eveningness,Weighted median,155,0.001592441,0.001893694,0.400393842,Replication
+ukb-b-4956,ukb-d-SLEEP,ICD10 Insomni,Eveningness,Inverse variance weighted,155,0.00056497,0.001437574,0.694317693,Replication
+ukb-b-4956,ukb-d-SLEEP,ICD10 Insomni,Eveningness,Simple mode,155,0.006779018,0.005524881,0.221695846,Replication
+ukb-b-4956,ukb-d-SLEEP,ICD10 Insomni,Eveningness,Weighted mode,155,0.004969248,0.004713171,0.293382148,Replication
+ukb-b-4956,ukb-b-4062,Happiness,Eveningness,MR Egger intercept,156,0.001311963,0.002008676,0.514634609,Replication
+ukb-b-4956,ukb-b-4062,Happiness,Eveningness,MR Egger,156,-0.059434154,0.061989831,0.339176118,Replication
+ukb-b-4956,ukb-b-4062,Happiness,Eveningness,Weighted median,156,0.078506212,0.022546616,0.000497775,Replication
+ukb-b-4956,ukb-b-4062,Happiness,Eveningness,Inverse variance weighted,156,0.083408111,0.019833213,2.61E-05,Replication
+ukb-b-4956,ukb-b-4062,Happiness,Eveningness,Simple mode,156,0.15536218,0.079121606,0.051367208,Replication
+ukb-b-4956,ukb-b-4062,Happiness,Eveningness,Weighted mode,156,0.088366789,0.066802781,0.187849826,Replication
+ukb-b-4956,ukb-b-4710,Exercise,Eveningness,MR Egger intercept,156,-0.002601792,0.002099366,0.21711149,Network
+ukb-b-4956,ukb-b-4710,Exercise,Eveningness,MR Egger,156,0.199338866,0.150466046,0.187196768,Network
+ukb-b-4956,ukb-b-4710,Exercise,Eveningness,Weighted median,156,-0.089142232,0.050704516,0.078735119,Network
+ukb-b-4956,ukb-b-4710,Exercise,Eveningness,Inverse variance weighted,156,-0.110797536,0.047947521,0.020843438,Network
+ukb-b-4956,ukb-b-4710,Exercise,Eveningness,Simple mode,156,-0.362069784,0.146782634,0.014724864,Network
+ukb-b-4956,ukb-b-4710,Exercise,Eveningness,Weighted mode,156,-0.104624794,0.112792791,0.355065521,Network
+ukb-b-4956,ukb-b-5076,Not socialising,Eveningness,MR Egger intercept,156,0.001502132,0.001998168,0.453346105,Network
+ukb-b-4956,ukb-b-5076,Not socialising,Eveningness,MR Egger,156,0.007913073,0.027786673,0.776195728,Network
+ukb-b-4956,ukb-b-5076,Not socialising,Eveningness,Weighted median,156,0.004298346,0.009438695,0.648824211,Network
+ukb-b-4956,ukb-b-5076,Not socialising,Eveningness,Inverse variance weighted,156,-0.004582518,0.008726794,0.599507441,Network
+ukb-b-4956,ukb-b-5076,Not socialising,Eveningness,Simple mode,156,0.019309639,0.027936997,0.490483051,Network
+ukb-b-4956,ukb-b-5076,Not socialising,Eveningness,Weighted mode,156,0.014109245,0.023371273,0.546925401,Network
+ukb-b-4956,ieu-a-118,Neuroticism,Eveningness,MR Egger intercept,131,-0.00280906,0.002285817,0.2213431,Network
+ukb-b-4956,ieu-a-118,Neuroticism,Eveningness,MR Egger,131,0.025799252,0.157686276,0.870293226,Network
+ukb-b-4956,ieu-a-118,Neuroticism,Eveningness,Weighted median,131,0.024637546,0.055675723,0.658113927,Network
+ukb-b-4956,ieu-a-118,Neuroticism,Eveningness,Inverse variance weighted,131,0.057309474,0.040765721,0.159776067,Network
+ukb-b-4956,ieu-a-118,Neuroticism,Eveningness,Simple mode,131,-0.134949899,0.168200951,0.423835881,Network
+ukb-b-4956,ieu-a-118,Neuroticism,Eveningness,Weighted mode,131,-0.179491831,0.166876351,0.284099352,Network
+ukb-b-4956,ukb-b-5237,Coffee intake,Eveningness,MR Egger intercept,156,0.000491049,0.001776832,0.782640608,Network
+ukb-b-4956,ukb-b-5237,Coffee intake,Eveningness,MR Egger,156,-0.009108155,0.051569812,0.860040537,Network
+ukb-b-4956,ukb-b-5237,Coffee intake,Eveningness,Weighted median,156,0.001751421,0.015991611,0.912789095,Network
+ukb-b-4956,ukb-b-5237,Coffee intake,Eveningness,Inverse variance weighted,156,-0.011898919,0.016182809,0.462168128,Network
+ukb-b-4956,ukb-b-5237,Coffee intake,Eveningness,Simple mode,156,0.014312578,0.04665925,0.759447758,Network
+ukb-b-4956,ukb-b-5237,Coffee intake,Eveningness,Weighted mode,156,0.021400932,0.043152441,0.620640685,Network
+ukb-b-4956,ieu-a-24,Diabetes,Eveningness,MR Egger intercept,6,0.006738492,0.008188341,0.456774257,Network
+ukb-b-4956,ieu-a-24,Diabetes,Eveningness,MR Egger,6,-10.86174885,4.672447356,0.080725048,Network
+ukb-b-4956,ieu-a-24,Diabetes,Eveningness,Weighted median,6,0.120211428,0.55790874,0.829402532,Network
+ukb-b-4956,ieu-a-24,Diabetes,Eveningness,Inverse variance weighted,6,-1.670646883,1.31208187,0.202918896,Network
+ukb-b-4956,ieu-a-24,Diabetes,Eveningness,Simple mode,6,0.914241662,0.673465955,0.232672312,Network
+ukb-b-4956,ieu-a-24,Diabetes,Eveningness,Weighted mode,6,0.987096645,0.606536059,0.164573868,Network
+ukb-b-4956,ieu-a-7,CHD,Eveningness,MR Egger intercept,149,-0.000359749,0.002064657,0.861915406,Network
+ukb-b-4956,ieu-a-7,CHD,Eveningness,MR Egger,149,-0.069704229,0.199040647,0.726689154,Network
+ukb-b-4956,ieu-a-7,CHD,Eveningness,Weighted median,149,-0.032216457,0.085578211,0.706577695,Network
+ukb-b-4956,ieu-a-7,CHD,Eveningness,Inverse variance weighted,149,-0.051850239,0.065749498,0.430344188,Network
+ukb-b-4956,ieu-a-7,CHD,Eveningness,Simple mode,149,0.098000149,0.239545426,0.68305122,Network
+ukb-b-4956,ieu-a-7,CHD,Eveningness,Weighted mode,149,-0.00838909,0.183170292,0.963531873,Network
+ukb-b-4062,ukb-b-6519,Worry,Happiness,Wald ratio,1,0.33735499,0.067182898,5.13E-07,Network
+ukb-b-4062,ukb-b-5779,Alcohol,Happiness,Wald ratio,1,0.881277369,0.198281646,8.81E-06,Network
+ukb-b-4062,ieu-a-961,Smoking,Happiness,Wald ratio,1,0.825885426,5.595533816,0.882660622,Network
+ukb-b-4062,ukb-b-19953,BMI,Happiness,Wald ratio,1,0.502452047,0.12937015,0.000102823,Network
+ukb-b-4062,ukb-b-5238,Intelligence,Happiness,Wald ratio,1,-2.100546749,0.497347563,2.41E-05,Network
+ukb-b-4062,ukb-b-4424,Sleep duration,Happiness,Wald ratio,1,-0.013885823,0.104698584,0.894488651,Replication
+ukb-b-4062,ukb-b-8476,Loneliness,Happiness,Wald ratio,1,0.12777792,0.052617353,0.015164064,Network
+ukb-b-4062,ukb-b-3957,Sleeplessness,Happiness,Wald ratio,1,0.180456606,0.097247049,0.063503286,Replication
+ukb-b-4062,ukb-b-4956,Eveningness,Happiness,Wald ratio,1,0.315626521,0.133178186,0.017790174,Replication
+ukb-b-4062,ukb-d-SLEEP,ICD10 Insomni,Happiness,Wald ratio,1,0.000313699,0.013878716,0.981967055,Replication
+ukb-b-4062,ukb-b-4710,Exercise,Happiness,Wald ratio,1,0.830302953,0.325596686,0.010769312,Network
+ukb-b-4062,ukb-b-5076,Not socialising,Happiness,Wald ratio,1,0.256194141,0.062642385,4.32E-05,Network
+ukb-b-4062,ukb-b-5237,Coffee intake,Happiness,Wald ratio,1,-0.485572614,0.105689646,4.34E-06,Network
+ukb-b-4710,ukb-b-6519,Worry,Exercise,MR Egger intercept,24,-0.012986615,0.008540191,0.142591801,Network
+ukb-b-4710,ukb-b-6519,Worry,Exercise,MR Egger,24,0.321779002,0.074041665,0.000259173,Network
+ukb-b-4710,ukb-b-6519,Worry,Exercise,Weighted median,24,0.053162746,0.014694416,0.000297017,Network
+ukb-b-4710,ukb-b-6519,Worry,Exercise,Inverse variance weighted,24,0.073669434,0.017473272,2.49E-05,Network
+ukb-b-4710,ukb-b-6519,Worry,Exercise,Simple mode,24,0.083051317,0.047970219,0.096791169,Network
+ukb-b-4710,ukb-b-6519,Worry,Exercise,Weighted mode,24,0.052713894,0.037011826,0.167802839,Network
+ukb-b-4710,ukb-b-5779,Alcohol,Exercise,MR Egger intercept,24,-0.00204498,0.010250225,0.843699527,Network
+ukb-b-4710,ukb-b-5779,Alcohol,Exercise,MR Egger,24,-0.376411358,0.150585525,0.020382646,Network
+ukb-b-4710,ukb-b-5779,Alcohol,Exercise,Weighted median,24,0.115797477,0.032302593,0.000337371,Network
+ukb-b-4710,ukb-b-5779,Alcohol,Exercise,Inverse variance weighted,24,0.113177767,0.035173878,0.001292385,Network
+ukb-b-4710,ukb-b-5779,Alcohol,Exercise,Simple mode,24,0.119552543,0.064139555,0.075145004,Network
+ukb-b-4710,ukb-b-5779,Alcohol,Exercise,Weighted mode,24,0.11521703,0.059726753,0.066151346,Network
+ukb-b-4710,ieu-a-961,Smoking,Exercise,MR Egger intercept,13,0.020775852,0.043562437,0.642752265,Network
+ukb-b-4710,ieu-a-961,Smoking,Exercise,MR Egger,13,-7.732623794,4.842015305,0.138575269,Network
+ukb-b-4710,ieu-a-961,Smoking,Exercise,Weighted median,13,0.099607222,1.118745874,0.92905432,Network
+ukb-b-4710,ieu-a-961,Smoking,Exercise,Inverse variance weighted,13,-0.42602713,0.7954888,0.592266896,Network
+ukb-b-4710,ieu-a-961,Smoking,Exercise,Simple mode,13,0.826837253,2.07620773,0.697444817,Network
+ukb-b-4710,ieu-a-961,Smoking,Exercise,Weighted mode,13,1.032601868,1.912062043,0.599044598,Network
+ukb-b-4710,ieu-a-1239,Education,Exercise,MR Egger intercept,15,-0.005163745,0.013353076,0.705227976,Network
+ukb-b-4710,ieu-a-1239,Education,Exercise,MR Egger,15,0.683333606,0.488846719,0.185555087,Network
+ukb-b-4710,ieu-a-1239,Education,Exercise,Weighted median,15,-0.044958324,0.030999151,0.146972578,Network
+ukb-b-4710,ieu-a-1239,Education,Exercise,Inverse variance weighted,15,-0.101739153,0.058491062,0.081965033,Network
+ukb-b-4710,ieu-a-1239,Education,Exercise,Simple mode,15,-0.056217017,0.068713745,0.426987039,Network
+ukb-b-4710,ieu-a-1239,Education,Exercise,Weighted mode,15,-0.04754437,0.057450378,0.421795549,Network
+ukb-b-4710,ukb-b-19953,BMI,Exercise,MR Egger intercept,24,0.003793778,0.010260589,0.71510957,Network
+ukb-b-4710,ukb-b-19953,BMI,Exercise,MR Egger,24,-0.658933401,0.183531968,0.001629143,Network
+ukb-b-4710,ukb-b-19953,BMI,Exercise,Weighted median,24,-0.184589916,0.025549313,5.02E-13,Network
+ukb-b-4710,ukb-b-19953,BMI,Exercise,Inverse variance weighted,24,-0.181504929,0.040231672,6.44E-06,Network
+ukb-b-4710,ukb-b-19953,BMI,Exercise,Simple mode,24,-0.268506789,0.04173075,1.45E-06,Network
+ukb-b-4710,ukb-b-19953,BMI,Exercise,Weighted mode,24,-0.233019044,0.037638815,2.57E-06,Network
+ukb-b-4710,ukb-b-5238,Intelligence,Exercise,MR Egger intercept,24,-0.015522583,0.006948643,0.035974929,Network
+ukb-b-4710,ukb-b-5238,Intelligence,Exercise,MR Egger,24,-1.807118459,0.578443039,0.004938515,Network
+ukb-b-4710,ukb-b-5238,Intelligence,Exercise,Weighted median,24,-0.836939278,0.106459982,3.79E-15,Network
+ukb-b-4710,ukb-b-5238,Intelligence,Exercise,Inverse variance weighted,24,-0.87345342,0.116883954,7.85E-14,Network
+ukb-b-4710,ukb-b-5238,Intelligence,Exercise,Simple mode,24,-1.202430443,0.219305652,1.42E-05,Network
+ukb-b-4710,ukb-b-5238,Intelligence,Exercise,Weighted mode,24,-1.104063642,0.306739266,0.001512435,Network
+ukb-b-4710,ieu-a-1018,Wellbeing,Exercise,MR Egger intercept,11,0.027777219,0.015113818,0.099247173,Network
+ukb-b-4710,ieu-a-1018,Wellbeing,Exercise,MR Egger,11,-0.468564607,0.479655447,0.354155236,Network
+ukb-b-4710,ieu-a-1018,Wellbeing,Exercise,Weighted median,11,0.001724403,0.045938667,0.970056774,Network
+ukb-b-4710,ieu-a-1018,Wellbeing,Exercise,Inverse variance weighted,11,-0.026679522,0.033995352,0.432571353,Network
+ukb-b-4710,ieu-a-1018,Wellbeing,Exercise,Simple mode,11,0.019715473,0.072978034,0.792533459,Network
+ukb-b-4710,ieu-a-1018,Wellbeing,Exercise,Weighted mode,11,0.018156129,0.072007403,0.806037487,Network
+ukb-b-4710,ukb-b-4424,Sleep duration,Exercise,MR Egger intercept,24,0.006566968,0.010046282,0.52009791,Network
+ukb-b-4710,ukb-b-4424,Sleep duration,Exercise,MR Egger,24,0.185939932,0.130444593,0.168066891,Network
+ukb-b-4710,ukb-b-4424,Sleep duration,Exercise,Weighted median,24,0.08446025,0.020323519,3.24E-05,Network
+ukb-b-4710,ukb-b-4424,Sleep duration,Exercise,Inverse variance weighted,24,0.09307316,0.025178982,0.000218625,Network
+ukb-b-4710,ukb-b-4424,Sleep duration,Exercise,Simple mode,24,0.080263385,0.051685806,0.134097761,Network
+ukb-b-4710,ukb-b-4424,Sleep duration,Exercise,Weighted mode,24,0.075437879,0.038043363,0.059439999,Network
+ukb-b-4710,ukb-b-8476,Loneliness,Exercise,MR Egger intercept,24,0.007486067,0.00808307,0.364421348,Network
+ukb-b-4710,ukb-b-8476,Loneliness,Exercise,MR Egger,24,0.117360923,0.03497919,0.002861309,Network
+ukb-b-4710,ukb-b-8476,Loneliness,Exercise,Weighted median,24,0.027668726,0.007947459,0.000498696,Network
+ukb-b-4710,ukb-b-8476,Loneliness,Exercise,Inverse variance weighted,24,0.032015746,0.007552731,2.25E-05,Network
+ukb-b-4710,ukb-b-8476,Loneliness,Exercise,Simple mode,24,0.024532221,0.013477901,0.08177071,Network
+ukb-b-4710,ukb-b-8476,Loneliness,Exercise,Weighted mode,24,0.02676042,0.013172268,0.053906801,Network
+ukb-b-4710,ukb-b-3957,Sleeplessness,Exercise,MR Egger intercept,24,-0.001382563,0.010798389,0.899285061,Network
+ukb-b-4710,ukb-b-3957,Sleeplessness,Exercise,MR Egger,24,0.100435585,0.095340428,0.303571697,Network
+ukb-b-4710,ukb-b-3957,Sleeplessness,Exercise,Weighted median,24,-0.0040301,0.017181778,0.814552883,Network
+ukb-b-4710,ukb-b-3957,Sleeplessness,Exercise,Inverse variance weighted,24,-0.038670567,0.019079004,0.04267621,Network
+ukb-b-4710,ukb-b-3957,Sleeplessness,Exercise,Simple mode,24,0.015961377,0.030066882,0.600603323,Network
+ukb-b-4710,ukb-b-3957,Sleeplessness,Exercise,Weighted mode,24,0.022531439,0.026467178,0.403380776,Network
+ukb-b-4710,ukb-b-4956,Eveningness,Exercise,MR Egger intercept,24,-0.00624671,0.013179293,0.640185014,Network
+ukb-b-4710,ukb-b-4956,Eveningness,Exercise,MR Egger,24,0.435322085,0.176419895,0.021859863,Network
+ukb-b-4710,ukb-b-4956,Eveningness,Exercise,Weighted median,24,-0.030919252,0.027377498,0.258742917,Network
+ukb-b-4710,ukb-b-4956,Eveningness,Exercise,Inverse variance weighted,24,-0.006503351,0.038312795,0.865211796,Network
+ukb-b-4710,ukb-b-4956,Eveningness,Exercise,Simple mode,24,-0.04259291,0.057201132,0.464044451,Network
+ukb-b-4710,ukb-b-4956,Eveningness,Exercise,Weighted mode,24,-0.029903657,0.049509407,0.55175559,Network
+ukb-b-4710,ukb-d-SLEEP,ICD10 Insomni,Exercise,MR Egger intercept,24,-0.008669474,0.017827785,0.63157046,Network
+ukb-b-4710,ukb-d-SLEEP,ICD10 Insomni,Exercise,MR Egger,24,0.012010914,0.007863941,0.140926863,Network
+ukb-b-4710,ukb-d-SLEEP,ICD10 Insomni,Exercise,Weighted median,24,0.004566604,0.002032348,0.024642579,Network
+ukb-b-4710,ukb-d-SLEEP,ICD10 Insomni,Exercise,Inverse variance weighted,24,0.001747582,0.001561032,0.262925266,Network
+ukb-b-4710,ukb-d-SLEEP,ICD10 Insomni,Exercise,Simple mode,24,0.005515004,0.004472433,0.229989512,Network
+ukb-b-4710,ukb-d-SLEEP,ICD10 Insomni,Exercise,Weighted mode,24,0.005613757,0.004098596,0.184012556,Network
+ukb-b-4710,ukb-b-4062,Happiness,Exercise,MR Egger intercept,24,-0.014178723,0.009154667,0.13569685,Network
+ukb-b-4710,ukb-b-4062,Happiness,Exercise,MR Egger,24,0.821882036,0.135514783,4.19E-06,Network
+ukb-b-4710,ukb-b-4062,Happiness,Exercise,Weighted median,24,0.058889587,0.033405997,0.077926679,Network
+ukb-b-4710,ukb-b-4062,Happiness,Exercise,Inverse variance weighted,24,0.108651318,0.039254123,0.00564195,Network
+ukb-b-4710,ukb-b-4062,Happiness,Exercise,Simple mode,24,0.006676763,0.092692874,0.943199937,Network
+ukb-b-4710,ukb-b-4062,Happiness,Exercise,Weighted mode,24,0.008833605,0.062113677,0.888147262,Network
+ukb-b-4710,ukb-b-5076,Not socialising,Exercise,MR Egger intercept,24,0.014406093,0.010534754,0.185283442,Network
+ukb-b-4710,ukb-b-5076,Not socialising,Exercise,MR Egger,24,-0.113934323,0.050043271,0.032885203,Network
+ukb-b-4710,ukb-b-5076,Not socialising,Exercise,Weighted median,24,0.011713414,0.010298935,0.25539524,Network
+ukb-b-4710,ukb-b-5076,Not socialising,Exercise,Inverse variance weighted,24,0.005321142,0.010750278,0.62061621,Network
+ukb-b-4710,ukb-b-5076,Not socialising,Exercise,Simple mode,24,0.010019338,0.016818861,0.557179395,Network
+ukb-b-4710,ukb-b-5076,Not socialising,Exercise,Weighted mode,24,0.010019338,0.01529478,0.518913527,Network
+ukb-b-4710,ieu-a-118,Neuroticism,Exercise,MR Egger intercept,15,6.38E-05,0.019175248,0.997396281,Network
+ukb-b-4710,ieu-a-118,Neuroticism,Exercise,MR Egger,15,0.78360367,0.433442439,0.093810904,Network
+ukb-b-4710,ieu-a-118,Neuroticism,Exercise,Weighted median,15,0.070553948,0.075307631,0.348822104,Network
+ukb-b-4710,ieu-a-118,Neuroticism,Exercise,Inverse variance weighted,15,0.013741693,0.065970831,0.8349951,Network
+ukb-b-4710,ieu-a-118,Neuroticism,Exercise,Simple mode,15,0.171047072,0.154056027,0.285580003,Network
+ukb-b-4710,ieu-a-118,Neuroticism,Exercise,Weighted mode,15,0.190033354,0.157588838,0.247848599,Network
+ukb-b-4710,ukb-b-5237,Coffee intake,Exercise,MR Egger intercept,24,0.008222748,0.008327163,0.334153268,Network
+ukb-b-4710,ukb-b-5237,Coffee intake,Exercise,MR Egger,24,-0.26767314,0.098849553,0.012849133,Network
+ukb-b-4710,ukb-b-5237,Coffee intake,Exercise,Weighted median,24,-0.106885875,0.019111003,2.23E-08,Network
+ukb-b-4710,ukb-b-5237,Coffee intake,Exercise,Inverse variance weighted,24,-0.106484122,0.020007147,1.02E-07,Network
+ukb-b-4710,ukb-b-5237,Coffee intake,Exercise,Simple mode,24,-0.130562625,0.04253596,0.005425806,Network
+ukb-b-4710,ukb-b-5237,Coffee intake,Exercise,Weighted mode,24,-0.130562625,0.047811567,0.011915355,Network
+ukb-b-4710,ieu-a-24,Diabetes,Exercise,Wald ratio,1,-0.242710575,0.399102553,0.543094045,Network
+ukb-b-4710,ieu-a-7,CHD,Exercise,MR Egger intercept,15,-0.000857068,0.010860779,0.938302748,Network
+ukb-b-4710,ieu-a-7,CHD,Exercise,MR Egger,15,3.165433515,1.217897274,0.022043707,Network
+ukb-b-4710,ieu-a-7,CHD,Exercise,Weighted median,15,0.01952128,0.123021044,0.873919069,Network
+ukb-b-4710,ieu-a-7,CHD,Exercise,Inverse variance weighted,15,0.115913294,0.157345371,0.461316561,Network
+ukb-b-4710,ieu-a-7,CHD,Exercise,Simple mode,15,0.057838052,0.218957818,0.795511868,Network
+ukb-b-4710,ieu-a-7,CHD,Exercise,Weighted mode,15,-0.047204346,0.187599055,0.804988053,Network
+ukb-b-5076,ieu-a-1187,Depression,Not socialising,Wald ratio,1,-5.610728877,0.898535204,4.26E-10,Network
+ukb-b-5076,ukb-b-6519,Worry,Not socialising,MR Egger intercept,10,-0.000898613,0.003907621,0.82389071,Network
+ukb-b-5076,ukb-b-6519,Worry,Not socialising,MR Egger,10,0.810565079,0.688097946,0.272656003,Network
+ukb-b-5076,ukb-b-6519,Worry,Not socialising,Weighted median,10,-0.01945774,0.088510012,0.825998417,Network
+ukb-b-5076,ukb-b-6519,Worry,Not socialising,Inverse variance weighted,10,0.010560476,0.098225717,0.914382544,Network
+ukb-b-5076,ukb-b-6519,Worry,Not socialising,Simple mode,10,-0.209173267,0.17038418,0.250715758,Network
+ukb-b-5076,ukb-b-6519,Worry,Not socialising,Weighted mode,10,-0.197391346,0.16344069,0.257931626,Network
+ukb-b-5076,ukb-b-5779,Alcohol,Not socialising,MR Egger intercept,10,0.000922983,0.002156404,0.679926483,Network
+ukb-b-5076,ukb-b-5779,Alcohol,Not socialising,MR Egger,10,1.642864644,2.804373104,0.574145669,Network
+ukb-b-5076,ukb-b-5779,Alcohol,Not socialising,Weighted median,10,1.973801354,0.303687602,8.06E-11,Network
+ukb-b-5076,ukb-b-5779,Alcohol,Not socialising,Inverse variance weighted,10,1.998769904,0.370130936,6.66E-08,Network
+ukb-b-5076,ukb-b-5779,Alcohol,Not socialising,Simple mode,10,2.167449019,0.480766789,0.001471262,Network
+ukb-b-5076,ukb-b-5779,Alcohol,Not socialising,Weighted mode,10,2.054782066,0.456881674,0.001494514,Network
+ukb-b-5076,ieu-a-961,Smoking,Not socialising,MR Egger intercept,9,4.92E-06,0.055993594,0.999932343,Network
+ukb-b-5076,ieu-a-961,Smoking,Not socialising,MR Egger,9,-27.25060013,42.89035586,0.545398065,Network
+ukb-b-5076,ieu-a-961,Smoking,Not socialising,Weighted median,9,7.762817181,7.112121121,0.275056829,Network
+ukb-b-5076,ieu-a-961,Smoking,Not socialising,Inverse variance weighted,9,7.558387602,5.432777123,0.164147597,Network
+ukb-b-5076,ieu-a-961,Smoking,Not socialising,Simple mode,9,1.814374869,12.45144788,0.887750262,Network
+ukb-b-5076,ieu-a-961,Smoking,Not socialising,Weighted mode,9,-1.374969862,12.09485148,0.912290859,Network
+ukb-b-5076,ieu-a-1239,Education,Not socialising,MR Egger intercept,10,-0.005318654,0.00118815,0.002065582,Network
+ukb-b-5076,ieu-a-1239,Education,Not socialising,MR Egger,10,-4.212621638,2.46865825,0.126314857,Network
+ukb-b-5076,ieu-a-1239,Education,Not socialising,Weighted median,10,-1.30368296,0.235485302,3.09E-08,Network
+ukb-b-5076,ieu-a-1239,Education,Not socialising,Inverse variance weighted,10,-2.074179683,0.340962329,1.18E-09,Network
+ukb-b-5076,ieu-a-1239,Education,Not socialising,Simple mode,10,-1.248639288,0.290127845,0.001979722,Network
+ukb-b-5076,ieu-a-1239,Education,Not socialising,Weighted mode,10,-1.155099067,0.228960584,0.000695077,Network
+ukb-b-5076,ukb-b-19953,BMI,Not socialising,MR Egger intercept,10,0.000945567,0.002852835,0.74882168,Network
+ukb-b-5076,ukb-b-19953,BMI,Not socialising,MR Egger,10,6.607816243,2.486429195,0.028915033,Network
+ukb-b-5076,ukb-b-19953,BMI,Not socialising,Weighted median,10,0.994567329,0.235680501,2.44E-05,Network
+ukb-b-5076,ukb-b-19953,BMI,Not socialising,Inverse variance weighted,10,1.191677063,0.415499342,0.004129971,Network
+ukb-b-5076,ukb-b-19953,BMI,Not socialising,Simple mode,10,1.234292384,0.372114615,0.008983599,Network
+ukb-b-5076,ukb-b-19953,BMI,Not socialising,Weighted mode,10,1.028897735,0.343365739,0.015041331,Network
+ukb-b-5076,ukb-b-5238,Intelligence,Not socialising,MR Egger intercept,10,0.001875908,0.005029122,0.718831159,Network
+ukb-b-5076,ukb-b-5238,Intelligence,Not socialising,MR Egger,10,-8.481243992,7.931000778,0.31610036,Network
+ukb-b-5076,ukb-b-5238,Intelligence,Not socialising,Weighted median,10,-4.079340099,0.829852662,8.84E-07,Network
+ukb-b-5076,ukb-b-5238,Intelligence,Not socialising,Inverse variance weighted,10,-4.365432904,1.064621415,4.12E-05,Network
+ukb-b-5076,ukb-b-5238,Intelligence,Not socialising,Simple mode,10,-5.12239808,1.318074821,0.00369589,Network
+ukb-b-5076,ukb-b-5238,Intelligence,Not socialising,Weighted mode,10,-4.789169083,1.609837384,0.015577003,Network
+ukb-b-5076,ieu-a-1018,Wellbeing,Not socialising,MR Egger intercept,9,0.004257314,0.003810525,0.30076128,Network
+ukb-b-5076,ieu-a-1018,Wellbeing,Not socialising,MR Egger,9,0.750146932,1.496404547,0.631537856,Network
+ukb-b-5076,ieu-a-1018,Wellbeing,Not socialising,Weighted median,9,-0.168939796,0.250676844,0.500352899,Network
+ukb-b-5076,ieu-a-1018,Wellbeing,Not socialising,Inverse variance weighted,9,-0.190800404,0.191677597,0.319530283,Network
+ukb-b-5076,ieu-a-1018,Wellbeing,Not socialising,Simple mode,9,0.074554773,0.442516798,0.870388151,Network
+ukb-b-5076,ieu-a-1018,Wellbeing,Not socialising,Weighted mode,9,0.009191941,0.397176679,0.982102888,Network
+ukb-b-5076,ukb-b-4424,Sleep duration,Not socialising,MR Egger intercept,10,0.001803002,0.002641243,0.514115485,Network
+ukb-b-5076,ukb-b-4424,Sleep duration,Not socialising,MR Egger,10,-1.949703258,1.820718261,0.315480159,Network
+ukb-b-5076,ukb-b-4424,Sleep duration,Not socialising,Weighted median,10,-0.020245842,0.13511463,0.880889296,Network
+ukb-b-5076,ukb-b-4424,Sleep duration,Not socialising,Inverse variance weighted,10,-0.225883463,0.253388843,0.372687849,Network
+ukb-b-5076,ukb-b-4424,Sleep duration,Not socialising,Simple mode,10,0.016054294,0.162490263,0.92346142,Network
+ukb-b-5076,ukb-b-4424,Sleep duration,Not socialising,Weighted mode,10,0.008513057,0.146895746,0.955052339,Network
+ukb-b-5076,ukb-b-8476,Loneliness,Not socialising,MR Egger intercept,10,0.005845025,0.000542154,4.83E-06,Network
+ukb-b-5076,ukb-b-8476,Loneliness,Not socialising,MR Egger,10,0.226632633,0.402837592,0.589127007,Network
+ukb-b-5076,ukb-b-8476,Loneliness,Not socialising,Weighted median,10,0.185498232,0.064496238,0.004026102,Network
+ukb-b-5076,ukb-b-8476,Loneliness,Not socialising,Inverse variance weighted,10,0.248087175,0.053115656,3.00E-06,Network
+ukb-b-5076,ukb-b-8476,Loneliness,Not socialising,Simple mode,10,0.15637706,0.095789791,0.137008223,Network
+ukb-b-5076,ukb-b-8476,Loneliness,Not socialising,Weighted mode,10,0.15637706,0.095873187,0.137309806,Network
+ukb-b-5076,ukb-b-3957,Sleeplessness,Not socialising,MR Egger intercept,10,0.004188683,0.00291144,0.188185425,Network
+ukb-b-5076,ukb-b-3957,Sleeplessness,Not socialising,MR Egger,10,2.872088399,1.347234818,0.065604801,Network
+ukb-b-5076,ukb-b-3957,Sleeplessness,Not socialising,Weighted median,10,0.492344933,0.12622884,9.60E-05,Network
+ukb-b-5076,ukb-b-3957,Sleeplessness,Not socialising,Inverse variance weighted,10,0.31926463,0.214442918,0.136537569,Network
+ukb-b-5076,ukb-b-3957,Sleeplessness,Not socialising,Simple mode,10,0.532559401,0.164543175,0.010214213,Network
+ukb-b-5076,ukb-b-3957,Sleeplessness,Not socialising,Weighted mode,10,0.532559401,0.166186436,0.010751824,Network
+ukb-b-5076,ukb-b-4956,Eveningness,Not socialising,MR Egger intercept,10,0.004880358,0.003103808,0.154507214,Network
+ukb-b-5076,ukb-b-4956,Eveningness,Not socialising,MR Egger,10,-0.283937883,1.654576793,0.868007472,Network
+ukb-b-5076,ukb-b-4956,Eveningness,Not socialising,Weighted median,10,0.166429506,0.170905836,0.330151778,Network
+ukb-b-5076,ukb-b-4956,Eveningness,Not socialising,Inverse variance weighted,10,-0.075144918,0.218387736,0.730779009,Network
+ukb-b-5076,ukb-b-4956,Eveningness,Not socialising,Simple mode,10,0.327032651,0.260720114,0.24131409,Network
+ukb-b-5076,ukb-b-4956,Eveningness,Not socialising,Weighted mode,10,0.31066407,0.253261168,0.251074401,Network
+ukb-b-5076,ukb-d-SLEEP,ICD10 Insomni,Not socialising,MR Egger intercept,10,0.005474812,0.003432592,0.149389707,Network
+ukb-b-5076,ukb-d-SLEEP,ICD10 Insomni,Not socialising,MR Egger,10,-0.086244207,0.084892604,0.3394035,Network
+ukb-b-5076,ukb-d-SLEEP,ICD10 Insomni,Not socialising,Weighted median,10,0.007427616,0.015863343,0.63962358,Network
+ukb-b-5076,ukb-d-SLEEP,ICD10 Insomni,Not socialising,Inverse variance weighted,10,0.004424117,0.01196561,0.711579221,Network
+ukb-b-5076,ukb-d-SLEEP,ICD10 Insomni,Not socialising,Simple mode,10,0.013413239,0.027445757,0.636729044,Network
+ukb-b-5076,ukb-d-SLEEP,ICD10 Insomni,Not socialising,Weighted mode,10,0.010589222,0.024535598,0.676196464,Network
+ukb-b-5076,ukb-b-4062,Happiness,Not socialising,MR Egger intercept,10,-0.003623729,0.003966024,0.387585841,Network
+ukb-b-5076,ukb-b-4062,Happiness,Not socialising,MR Egger,10,-2.078735872,1.01466859,0.074660505,Network
+ukb-b-5076,ukb-b-4062,Happiness,Not socialising,Weighted median,10,-0.0393907,0.213728316,0.853776016,Network
+ukb-b-5076,ukb-b-4062,Happiness,Not socialising,Inverse variance weighted,10,0.084475593,0.1647763,0.608183334,Network
+ukb-b-5076,ukb-b-4062,Happiness,Not socialising,Simple mode,10,0.436855776,0.377182301,0.276588635,Network
+ukb-b-5076,ukb-b-4062,Happiness,Not socialising,Weighted mode,10,-0.179495593,0.380701364,0.648513446,Network
+ukb-b-5076,ukb-b-4710,Exercise,Not socialising,MR Egger intercept,10,0.001704808,0.002873626,0.569395278,Network
+ukb-b-5076,ukb-b-4710,Exercise,Not socialising,MR Egger,10,-6.22276511,3.80711639,0.140792425,Network
+ukb-b-5076,ukb-b-4710,Exercise,Not socialising,Weighted median,10,0.727905296,0.419873938,0.082984075,Network
+ukb-b-5076,ukb-b-4710,Exercise,Not socialising,Inverse variance weighted,10,0.688329046,0.598204516,0.2498728,Network
+ukb-b-5076,ukb-b-4710,Exercise,Not socialising,Simple mode,10,0.646234127,0.570768509,0.286805813,Network
+ukb-b-5076,ukb-b-4710,Exercise,Not socialising,Weighted mode,10,0.601940819,0.558842251,0.309449267,Network
+ukb-b-5076,ieu-a-118,Neuroticism,Not socialising,MR Egger intercept,9,0.006348085,0.004408693,0.193077784,Network
+ukb-b-5076,ieu-a-118,Neuroticism,Not socialising,MR Egger,9,1.812225915,3.558657693,0.626237226,Network
+ukb-b-5076,ieu-a-118,Neuroticism,Not socialising,Weighted median,9,0.635821215,0.505444864,0.208412095,Network
+ukb-b-5076,ieu-a-118,Neuroticism,Not socialising,Inverse variance weighted,9,0.19400353,0.488990222,0.691556863,Network
+ukb-b-5076,ieu-a-118,Neuroticism,Not socialising,Simple mode,9,0.782895229,0.892233311,0.405818006,Network
+ukb-b-5076,ieu-a-118,Neuroticism,Not socialising,Weighted mode,9,0.74249181,0.829621755,0.396927346,Network
+ukb-b-5076,ukb-b-5237,Coffee intake,Not socialising,MR Egger intercept,10,0.000517532,0.002585877,0.84636677,Network
+ukb-b-5076,ukb-b-5237,Coffee intake,Not socialising,MR Egger,10,-0.340397981,1.633135152,0.840100367,Network
+ukb-b-5076,ukb-b-5237,Coffee intake,Not socialising,Weighted median,10,-0.021469568,0.134852319,0.873505001,Network
+ukb-b-5076,ukb-b-5237,Coffee intake,Not socialising,Inverse variance weighted,10,-0.252150286,0.215333585,0.241608748,Network
+ukb-b-5076,ukb-b-5237,Coffee intake,Not socialising,Simple mode,10,0.008125833,0.155617709,0.959496696,Network
+ukb-b-5076,ukb-b-5237,Coffee intake,Not socialising,Weighted mode,10,0.001160865,0.152230484,0.994081981,Network
+ukb-b-5076,ieu-a-7,CHD,Not socialising,MR Egger intercept,10,0.000451131,0.005330071,0.934628237,Network
+ukb-b-5076,ieu-a-7,CHD,Not socialising,MR Egger,10,7.859982109,4.854073602,0.144052446,Network
+ukb-b-5076,ieu-a-7,CHD,Not socialising,Weighted median,10,1.64217628,0.769007208,0.032724288,Network
+ukb-b-5076,ieu-a-7,CHD,Not socialising,Inverse variance weighted,10,1.473373084,0.720706582,0.040919451,Network
+ukb-b-5076,ieu-a-7,CHD,Not socialising,Simple mode,10,1.618623747,1.313581906,0.24908664,Network
+ukb-b-5076,ieu-a-7,CHD,Not socialising,Weighted mode,10,1.697499657,1.193361235,0.188615165,Network
+ieu-a-118,ukb-b-6519,Worry,Neuroticism,Wald ratio,1,0.06293201,0.032456079,0.052502569,Network
+ieu-a-118,ukb-b-5779,Alcohol,Neuroticism,Wald ratio,1,0.030374194,0.095805459,0.751213007,Network
+ieu-a-118,ieu-a-1239,Education,Neuroticism,Wald ratio,1,-0.145409429,0.054094293,0.00718656,Network
+ieu-a-118,ukb-b-19953,BMI,Neuroticism,Wald ratio,1,0.090065261,0.062466005,0.149350786,Network
+ieu-a-118,ukb-b-5238,Intelligence,Neuroticism,Wald ratio,1,-0.378076923,0.238859305,0.113457116,Network
+ieu-a-118,ukb-b-4424,Sleep duration,Neuroticism,Wald ratio,1,-0.083180397,0.05059727,0.10018239,Network
+ieu-a-118,ukb-b-8476,Loneliness,Neuroticism,Wald ratio,1,0.034381638,0.02542928,0.176359583,Network
+ieu-a-118,ukb-b-3957,Sleeplessness,Neuroticism,Wald ratio,1,0.035864268,0.046988337,0.445308993,Network
+ieu-a-118,ukb-b-4956,Eveningness,Neuroticism,Wald ratio,1,0.012055881,0.064334491,0.851351931,Network
+ieu-a-118,ukb-d-SLEEP,ICD10 Insomni,Neuroticism,Wald ratio,1,-0.003571985,0.006706154,0.594280812,Network
+ieu-a-118,ukb-b-4062,Happiness,Neuroticism,Wald ratio,1,0.144740695,0.080209181,0.071146657,Network
+ieu-a-118,ukb-b-4710,Exercise,Neuroticism,Wald ratio,1,-0.242590571,0.157340199,0.123116868,Network
+ieu-a-118,ukb-b-5076,Not socialising,Neuroticism,Wald ratio,1,0.054816625,0.030271464,0.070166403,Network
+ieu-a-118,ukb-b-5237,Coffee intake,Neuroticism,Wald ratio,1,-0.048411911,0.051066253,0.343118461,Network
+ieu-a-118,ieu-a-7,CHD,Neuroticism,Wald ratio,1,0.063200993,0.326260546,0.846400412,Network
+ukb-b-5237,ieu-a-1187,Depression,Coffee intake,MR Egger intercept,3,0.012858031,0.038722848,0.795901188,Network
+ukb-b-5237,ieu-a-1187,Depression,Coffee intake,MR Egger,3,5.134846679,4.758196208,0.475774149,Network
+ukb-b-5237,ieu-a-1187,Depression,Coffee intake,Weighted median,3,0.856785421,0.25783967,0.000890745,Network
+ukb-b-5237,ieu-a-1187,Depression,Coffee intake,Inverse variance weighted,3,0.62650392,1.116901107,0.574844903,Network
+ukb-b-5237,ieu-a-1187,Depression,Coffee intake,Simple mode,3,1.379635007,0.35128439,0.059139225,Network
+ukb-b-5237,ieu-a-1187,Depression,Coffee intake,Weighted mode,3,0.945770391,0.289983303,0.082538003,Network
+ukb-b-5237,ukb-b-6519,Worry,Coffee intake,MR Egger intercept,39,-0.002328151,0.003968544,0.561000592,Network
+ukb-b-5237,ukb-b-6519,Worry,Coffee intake,MR Egger,39,0.014005931,0.04873487,0.775416964,Network
+ukb-b-5237,ukb-b-6519,Worry,Coffee intake,Weighted median,39,-0.04237138,0.022516627,0.059865642,Network
+ukb-b-5237,ukb-b-6519,Worry,Coffee intake,Inverse variance weighted,39,-0.045662388,0.024588244,0.063299473,Network
+ukb-b-5237,ukb-b-6519,Worry,Coffee intake,Simple mode,39,-0.091850233,0.042433213,0.03676804,Network
+ukb-b-5237,ukb-b-6519,Worry,Coffee intake,Weighted mode,39,-0.039001658,0.019445838,0.052051616,Network
+ukb-b-5237,ukb-b-5779,Alcohol,Coffee intake,MR Egger intercept,39,-0.007861318,0.003261854,0.021036775,Network
+ukb-b-5237,ukb-b-5779,Alcohol,Coffee intake,MR Egger,39,0.126602509,0.269307168,0.641039583,Network
+ukb-b-5237,ukb-b-5779,Alcohol,Coffee intake,Weighted median,39,-0.181858286,0.066915904,0.006573464,Network
+ukb-b-5237,ukb-b-5779,Alcohol,Coffee intake,Inverse variance weighted,39,-0.226609211,0.136372041,0.09657325,Network
+ukb-b-5237,ukb-b-5779,Alcohol,Coffee intake,Simple mode,39,-0.255380167,0.11560479,0.033271299,Network
+ukb-b-5237,ukb-b-5779,Alcohol,Coffee intake,Weighted mode,39,-0.175483223,0.050095459,0.001194936,Network
+ukb-b-5237,ieu-a-961,Smoking,Coffee intake,MR Egger intercept,32,-0.007196494,0.041347777,0.862996996,Network
+ukb-b-5237,ieu-a-961,Smoking,Coffee intake,MR Egger,32,-2.272560992,2.494922383,0.369622746,Network
+ukb-b-5237,ieu-a-961,Smoking,Coffee intake,Weighted median,32,-1.775101828,1.787106319,0.320572196,Network
+ukb-b-5237,ieu-a-961,Smoking,Coffee intake,Inverse variance weighted,32,0.08291512,1.208417071,0.945296354,Network
+ukb-b-5237,ieu-a-961,Smoking,Coffee intake,Simple mode,32,-5.282311579,3.975737266,0.193665762,Network
+ukb-b-5237,ieu-a-961,Smoking,Coffee intake,Weighted mode,32,-2.514599142,1.917973666,0.19946302,Network
+ukb-b-5237,ieu-a-1239,Education,Coffee intake,MR Egger intercept,37,-0.003509275,0.003687471,0.347787921,Network
+ukb-b-5237,ieu-a-1239,Education,Coffee intake,MR Egger,37,-0.125100812,0.130597227,0.344677098,Network
+ukb-b-5237,ieu-a-1239,Education,Coffee intake,Weighted median,37,-0.004216285,0.03508419,0.904343563,Network
+ukb-b-5237,ieu-a-1239,Education,Coffee intake,Inverse variance weighted,37,0.129772257,0.0689698,0.059892945,Network
+ukb-b-5237,ieu-a-1239,Education,Coffee intake,Simple mode,37,0.088242763,0.074379274,0.243239543,Network
+ukb-b-5237,ieu-a-1239,Education,Coffee intake,Weighted mode,37,-0.004091685,0.029806491,0.891578341,Network
+ukb-b-5237,ukb-b-19953,BMI,Coffee intake,MR Egger intercept,39,0.007764454,0.002528242,0.003984896,Network
+ukb-b-5237,ukb-b-19953,BMI,Coffee intake,MR Egger,39,0.434789713,0.356685069,0.230568913,Network
+ukb-b-5237,ukb-b-19953,BMI,Coffee intake,Weighted median,39,0.275597621,0.038143218,5.00E-13,Network
+ukb-b-5237,ukb-b-19953,BMI,Coffee intake,Inverse variance weighted,39,0.72378969,0.17726036,4.44E-05,Network
+ukb-b-5237,ukb-b-19953,BMI,Coffee intake,Simple mode,39,0.255755798,0.084086789,0.004250438,Network
+ukb-b-5237,ukb-b-19953,BMI,Coffee intake,Weighted mode,39,0.269440802,0.033523976,1.02E-09,Network
+ukb-b-5237,ukb-b-5238,Intelligence,Coffee intake,MR Egger intercept,39,0.002151489,0.003821652,0.576848702,Network
+ukb-b-5237,ukb-b-5238,Intelligence,Coffee intake,MR Egger,39,-0.390823531,0.414806672,0.352210763,Network
+ukb-b-5237,ukb-b-5238,Intelligence,Coffee intake,Weighted median,39,0.176090961,0.151840269,0.246166138,Network
+ukb-b-5237,ukb-b-5238,Intelligence,Coffee intake,Inverse variance weighted,39,0.559427834,0.221955943,0.011720642,Network
+ukb-b-5237,ukb-b-5238,Intelligence,Coffee intake,Simple mode,39,0.774115566,0.339620893,0.028349371,Network
+ukb-b-5237,ukb-b-5238,Intelligence,Coffee intake,Weighted mode,39,0.116712423,0.129099501,0.371664711,Network
+ukb-b-5237,ieu-a-1018,Wellbeing,Coffee intake,MR Egger intercept,30,0.011792168,0.004277375,0.010154284,Network
+ukb-b-5237,ieu-a-1018,Wellbeing,Coffee intake,MR Egger,30,-0.018381208,0.14179451,0.897783788,Network
+ukb-b-5237,ieu-a-1018,Wellbeing,Coffee intake,Weighted median,30,0.025657475,0.06096163,0.673843376,Network
+ukb-b-5237,ieu-a-1018,Wellbeing,Coffee intake,Inverse variance weighted,30,-0.0192213,0.069268276,0.781403373,Network
+ukb-b-5237,ieu-a-1018,Wellbeing,Coffee intake,Simple mode,30,0.096022562,0.119196474,0.42704012,Network
+ukb-b-5237,ieu-a-1018,Wellbeing,Coffee intake,Weighted mode,30,0.033991465,0.062130481,0.588497148,Network
+ukb-b-5237,ukb-b-4424,Sleep duration,Coffee intake,MR Egger intercept,39,0.002356166,0.003827569,0.541941557,Network
+ukb-b-5237,ukb-b-4424,Sleep duration,Coffee intake,MR Egger,39,-0.016515528,0.078253549,0.834005215,Network
+ukb-b-5237,ukb-b-4424,Sleep duration,Coffee intake,Weighted median,39,0.004422753,0.029042349,0.878961095,Network
+ukb-b-5237,ukb-b-4424,Sleep duration,Coffee intake,Inverse variance weighted,39,-0.012748343,0.038458331,0.7402785,Network
+ukb-b-5237,ukb-b-4424,Sleep duration,Coffee intake,Simple mode,39,0.013456245,0.051503125,0.795294826,Network
+ukb-b-5237,ukb-b-4424,Sleep duration,Coffee intake,Weighted mode,39,0.027610218,0.028180663,0.333402626,Network
+ukb-b-5237,ukb-b-8476,Loneliness,Coffee intake,MR Egger intercept,39,-0.007125848,0.00423177,0.100622045,Network
+ukb-b-5237,ukb-b-8476,Loneliness,Coffee intake,MR Egger,39,0.031508588,0.031171243,0.31866645,Network
+ukb-b-5237,ukb-b-8476,Loneliness,Coffee intake,Weighted median,39,-0.008711588,0.016665948,0.601170648,Network
+ukb-b-5237,ukb-b-8476,Loneliness,Coffee intake,Inverse variance weighted,39,-0.004738651,0.01568758,0.762603369,Network
+ukb-b-5237,ukb-b-8476,Loneliness,Coffee intake,Simple mode,39,-0.032957771,0.0432336,0.450576096,Network
+ukb-b-5237,ukb-b-8476,Loneliness,Coffee intake,Weighted mode,39,0.006735706,0.018333139,0.715354521,Network
+ukb-b-5237,ukb-b-3957,Sleeplessness,Coffee intake,MR Egger intercept,39,0.010570828,0.004141105,0.014949582,Network
+ukb-b-5237,ukb-b-3957,Sleeplessness,Coffee intake,MR Egger,39,0.015182074,0.059172982,0.798931232,Network
+ukb-b-5237,ukb-b-3957,Sleeplessness,Coffee intake,Weighted median,39,0.025795418,0.025813878,0.317656712,Network
+ukb-b-5237,ukb-b-3957,Sleeplessness,Coffee intake,Inverse variance weighted,39,0.003492717,0.029101299,0.904467876,Network
+ukb-b-5237,ukb-b-3957,Sleeplessness,Coffee intake,Simple mode,39,0.097551617,0.054377241,0.080776571,Network
+ukb-b-5237,ukb-b-3957,Sleeplessness,Coffee intake,Weighted mode,39,0.034080072,0.026753572,0.210452563,Network
+ukb-b-5237,ukb-b-4956,Eveningness,Coffee intake,MR Egger intercept,39,0.007480889,0.003677737,0.049157381,Network
+ukb-b-5237,ukb-b-4956,Eveningness,Coffee intake,MR Egger,39,-0.017199728,0.132940441,0.897758383,Network
+ukb-b-5237,ukb-b-4956,Eveningness,Coffee intake,Weighted median,39,0.058639351,0.035411134,0.097730321,Network
+ukb-b-5237,ukb-b-4956,Eveningness,Coffee intake,Inverse variance weighted,39,0.033483681,0.065497046,0.609194009,Network
+ukb-b-5237,ukb-b-4956,Eveningness,Coffee intake,Simple mode,39,0.343050764,0.098785792,0.00130176,Network
+ukb-b-5237,ukb-b-4956,Eveningness,Coffee intake,Weighted mode,39,0.051615021,0.033980421,0.137048817,Network
+ukb-b-5237,ukb-d-SLEEP,ICD10 Insomni,Coffee intake,MR Egger intercept,38,-0.002661422,0.004113112,0.521699152,Network
+ukb-b-5237,ukb-d-SLEEP,ICD10 Insomni,Coffee intake,MR Egger,38,-0.005534441,0.005754745,0.342606949,Network
+ukb-b-5237,ukb-d-SLEEP,ICD10 Insomni,Coffee intake,Weighted median,38,-0.000494235,0.00439212,0.910405054,Network
+ukb-b-5237,ukb-d-SLEEP,ICD10 Insomni,Coffee intake,Inverse variance weighted,38,0.003637534,0.002949516,0.21747692,Network
+ukb-b-5237,ukb-d-SLEEP,ICD10 Insomni,Coffee intake,Simple mode,38,0.001453824,0.009017973,0.872801925,Network
+ukb-b-5237,ukb-d-SLEEP,ICD10 Insomni,Coffee intake,Weighted mode,38,-0.003317777,0.004387225,0.454296022,Network
+ukb-b-5237,ukb-b-4062,Happiness,Coffee intake,MR Egger intercept,39,0.008826757,0.003900413,0.029591757,Network
+ukb-b-5237,ukb-b-4062,Happiness,Coffee intake,MR Egger,39,0.113884874,0.086166672,0.194388507,Network
+ukb-b-5237,ukb-b-4062,Happiness,Coffee intake,Weighted median,39,0.016980383,0.046505343,0.715016189,Network
+ukb-b-5237,ukb-b-4062,Happiness,Coffee intake,Inverse variance weighted,39,-0.004548667,0.043713065,0.917123821,Network
+ukb-b-5237,ukb-b-4062,Happiness,Coffee intake,Simple mode,39,-0.065264246,0.086695433,0.456209177,Network
+ukb-b-5237,ukb-b-4062,Happiness,Coffee intake,Weighted mode,39,0.061253102,0.04287459,0.161271526,Network
+ukb-b-5237,ukb-b-4710,Exercise,Coffee intake,MR Egger intercept,39,0.002476374,0.00377768,0.516183461,Network
+ukb-b-5237,ukb-b-4710,Exercise,Coffee intake,MR Egger,39,-0.090313135,0.171387247,0.601371142,Network
+ukb-b-5237,ukb-b-4710,Exercise,Coffee intake,Weighted median,39,-0.267783265,0.085961667,0.00183853,Network
+ukb-b-5237,ukb-b-4710,Exercise,Coffee intake,Inverse variance weighted,39,-0.369351482,0.088147252,2.79E-05,Network
+ukb-b-5237,ukb-b-4710,Exercise,Coffee intake,Simple mode,39,-0.137830772,0.183334151,0.456802279,Network
+ukb-b-5237,ukb-b-4710,Exercise,Coffee intake,Weighted mode,39,-0.24613509,0.093074916,0.011827643,Network
+ukb-b-5237,ukb-b-5076,Not socialising,Coffee intake,MR Egger intercept,39,0.002294289,0.004313101,0.59795086,Network
+ukb-b-5237,ukb-b-5076,Not socialising,Coffee intake,MR Egger,39,0.066604038,0.036953351,0.079636436,Network
+ukb-b-5237,ukb-b-5076,Not socialising,Coffee intake,Weighted median,39,0.009877594,0.017274014,0.567445219,Network
+ukb-b-5237,ukb-b-5076,Not socialising,Coffee intake,Inverse variance weighted,39,0.005797179,0.019024629,0.760579655,Network
+ukb-b-5237,ukb-b-5076,Not socialising,Coffee intake,Simple mode,39,0.016713658,0.038302849,0.665048098,Network
+ukb-b-5237,ukb-b-5076,Not socialising,Coffee intake,Weighted mode,39,0.03097333,0.016245352,0.064155468,Network
+ukb-b-5237,ieu-a-118,Neuroticism,Coffee intake,MR Egger intercept,32,0.003928625,0.00437853,0.376731192,Network
+ukb-b-5237,ieu-a-118,Neuroticism,Coffee intake,MR Egger,32,0.098493819,0.179892887,0.588076469,Network
+ukb-b-5237,ieu-a-118,Neuroticism,Coffee intake,Weighted median,32,0.015591509,0.100935645,0.877239319,Network
+ukb-b-5237,ieu-a-118,Neuroticism,Coffee intake,Inverse variance weighted,32,-0.120894873,0.089341919,0.176001082,Network
+ukb-b-5237,ieu-a-118,Neuroticism,Coffee intake,Simple mode,32,-0.002969821,0.21647741,0.989142197,Network
+ukb-b-5237,ieu-a-118,Neuroticism,Coffee intake,Weighted mode,32,-0.002969821,0.105677931,0.977760487,Network
+ukb-b-5237,ieu-a-24,Diabetes,Coffee intake,MR Egger intercept,8,0.014420571,0.009059988,0.162562986,Network
+ukb-b-5237,ieu-a-24,Diabetes,Coffee intake,MR Egger,8,-0.418544004,1.615399029,0.804220967,Network
+ukb-b-5237,ieu-a-24,Diabetes,Coffee intake,Weighted median,8,0.372697519,0.410771687,0.364242553,Network
+ukb-b-5237,ieu-a-24,Diabetes,Coffee intake,Inverse variance weighted,8,1.657393421,0.884228228,0.060875932,Network
+ukb-b-5237,ieu-a-24,Diabetes,Coffee intake,Simple mode,8,0.982149162,1.975006643,0.634222519,Network
+ukb-b-5237,ieu-a-24,Diabetes,Coffee intake,Weighted mode,8,0.087737308,0.319441438,0.791508062,Network
+ukb-b-5237,ieu-a-7,CHD,Coffee intake,MR Egger intercept,37,-0.000481261,0.003335905,0.886117144,Network
+ukb-b-5237,ieu-a-7,CHD,Coffee intake,MR Egger,37,0.515995905,0.315961861,0.111414316,Network
+ukb-b-5237,ieu-a-7,CHD,Coffee intake,Weighted median,37,0.428365137,0.190638583,0.024639946,Network
+ukb-b-5237,ieu-a-7,CHD,Coffee intake,Inverse variance weighted,37,0.491684554,0.150880466,0.001118968,Network
+ukb-b-5237,ieu-a-7,CHD,Coffee intake,Simple mode,37,0.279418566,0.371721662,0.457125378,Network
+ukb-b-5237,ieu-a-7,CHD,Coffee intake,Weighted mode,37,0.30918151,0.225229523,0.178324991,Network
+ieu-a-24,ukb-b-6519,Worry,Diabetes,MR Egger intercept,36,0.005704767,0.025848719,0.826647369,Network
+ieu-a-24,ukb-b-6519,Worry,Diabetes,MR Egger,36,-0.009000837,0.006492764,0.174683669,Network
+ieu-a-24,ukb-b-6519,Worry,Diabetes,Weighted median,36,-0.006769666,0.002615352,0.009641333,Network
+ieu-a-24,ukb-b-6519,Worry,Diabetes,Inverse variance weighted,36,-0.003075362,0.002703795,0.255360997,Network
+ieu-a-24,ukb-b-6519,Worry,Diabetes,Simple mode,36,-0.001197954,0.006233497,0.848711873,Network
+ieu-a-24,ukb-b-6519,Worry,Diabetes,Weighted mode,36,-0.008830855,0.003155075,0.008284502,Network
+ieu-a-24,ukb-b-5779,Alcohol,Diabetes,MR Egger intercept,36,-0.026291654,0.027167136,0.339991283,Network
+ieu-a-24,ukb-b-5779,Alcohol,Diabetes,MR Egger,36,-0.022678533,0.024090344,0.35314343,Network
+ieu-a-24,ukb-b-5779,Alcohol,Diabetes,Weighted median,36,-0.007125248,0.00854854,0.404560157,Network
+ieu-a-24,ukb-b-5779,Alcohol,Diabetes,Inverse variance weighted,36,0.027694527,0.010627622,0.009163303,Network
+ieu-a-24,ukb-b-5779,Alcohol,Diabetes,Simple mode,36,0.007976309,0.021718088,0.715632264,Network
+ieu-a-24,ukb-b-5779,Alcohol,Diabetes,Weighted mode,36,-0.006092085,0.009341497,0.518562749,Network
+ieu-a-24,ieu-a-961,Smoking,Diabetes,MR Egger intercept,35,0.024258848,0.028698413,0.404029233,Network
+ieu-a-24,ieu-a-961,Smoking,Diabetes,MR Egger,35,-0.072630795,0.333554475,0.82896636,Network
+ieu-a-24,ieu-a-961,Smoking,Diabetes,Weighted median,35,0.095786954,0.220887318,0.664545353,Network
+ieu-a-24,ieu-a-961,Smoking,Diabetes,Inverse variance weighted,35,0.022582729,0.142991518,0.874511523,Network
+ieu-a-24,ieu-a-961,Smoking,Diabetes,Simple mode,35,-0.079635971,0.391399319,0.839984649,Network
+ieu-a-24,ieu-a-961,Smoking,Diabetes,Weighted mode,35,0.11585136,0.231378017,0.619807106,Network
+ieu-a-24,ieu-a-1239,Education,Diabetes,MR Egger intercept,36,-0.008835278,0.025688272,0.733007923,Network
+ieu-a-24,ieu-a-1239,Education,Diabetes,MR Egger,36,-0.008595052,0.012332028,0.49056001,Network
+ieu-a-24,ieu-a-1239,Education,Diabetes,Weighted median,36,-0.006258559,0.004963692,0.207356536,Network
+ieu-a-24,ieu-a-1239,Education,Diabetes,Inverse variance weighted,36,-0.00248328,0.005076629,0.624728987,Network
+ieu-a-24,ieu-a-1239,Education,Diabetes,Simple mode,36,-0.000567461,0.010089708,0.955469238,Network
+ieu-a-24,ieu-a-1239,Education,Diabetes,Weighted mode,36,-0.004705952,0.004930052,0.346355031,Network
+ieu-a-24,ukb-b-19953,BMI,Diabetes,MR Egger intercept,36,-0.060362629,0.019526928,0.003962633,Network
+ieu-a-24,ukb-b-19953,BMI,Diabetes,MR Egger,36,-0.048866698,0.061171324,0.429922829,Network
+ieu-a-24,ukb-b-19953,BMI,Diabetes,Weighted median,36,-0.044333978,0.005853742,3.63E-14,Network
+ieu-a-24,ukb-b-19953,BMI,Diabetes,Inverse variance weighted,36,0.000834285,0.025391337,0.973788565,Network
+ieu-a-24,ukb-b-19953,BMI,Diabetes,Simple mode,36,-0.028812079,0.011188188,0.014402138,Network
+ieu-a-24,ukb-b-19953,BMI,Diabetes,Weighted mode,36,-0.041691802,0.00496631,6.68E-10,Network
+ieu-a-24,ukb-b-5238,Intelligence,Diabetes,MR Egger intercept,36,0.01224632,0.030909811,0.694436576,Network
+ieu-a-24,ukb-b-5238,Intelligence,Diabetes,MR Egger,36,-0.000857052,0.045973171,0.985235318,Network
+ieu-a-24,ukb-b-5238,Intelligence,Diabetes,Weighted median,36,0.011293389,0.021482266,0.599091429,Network
+ieu-a-24,ukb-b-5238,Intelligence,Diabetes,Inverse variance weighted,36,0.011461462,0.018871056,0.543614226,Network
+ieu-a-24,ukb-b-5238,Intelligence,Diabetes,Simple mode,36,-0.012184461,0.038712654,0.754827019,Network
+ieu-a-24,ukb-b-5238,Intelligence,Diabetes,Weighted mode,36,0.013447917,0.02243127,0.552690028,Network
+ieu-a-24,ieu-a-1018,Wellbeing,Diabetes,MR Egger intercept,35,-0.03806051,0.030963247,0.227683987,Network
+ieu-a-24,ieu-a-1018,Wellbeing,Diabetes,MR Egger,35,0.015766298,0.016287057,0.340072827,Network
+ieu-a-24,ieu-a-1018,Wellbeing,Diabetes,Weighted median,35,0.004471685,0.008815645,0.611983441,Network
+ieu-a-24,ieu-a-1018,Wellbeing,Diabetes,Inverse variance weighted,35,-0.000184071,0.006860909,0.978596158,Network
+ieu-a-24,ieu-a-1018,Wellbeing,Diabetes,Simple mode,35,-0.013868992,0.018124466,0.449426795,Network
+ieu-a-24,ieu-a-1018,Wellbeing,Diabetes,Weighted mode,35,0.010260759,0.010277884,0.325169997,Network
+ieu-a-24,ukb-b-4424,Sleep duration,Diabetes,MR Egger intercept,36,0.050055216,0.02653284,0.067786759,Network
+ieu-a-24,ukb-b-4424,Sleep duration,Diabetes,MR Egger,36,0.007687605,0.011256566,0.49926965,Network
+ieu-a-24,ukb-b-4424,Sleep duration,Diabetes,Weighted median,36,0.007717033,0.00446354,0.083826197,Network
+ieu-a-24,ukb-b-4424,Sleep duration,Diabetes,Inverse variance weighted,36,0.001986009,0.00464063,0.668679488,Network
+ieu-a-24,ukb-b-4424,Sleep duration,Diabetes,Simple mode,36,0.010526003,0.009368657,0.268858386,Network
+ieu-a-24,ukb-b-4424,Sleep duration,Diabetes,Weighted mode,36,0.008937016,0.005061441,0.086168412,Network
+ieu-a-24,ukb-b-8476,Loneliness,Diabetes,MR Egger intercept,36,0.001164581,0.028497219,0.967641387,Network
+ieu-a-24,ukb-b-8476,Loneliness,Diabetes,MR Egger,36,-0.000142147,0.003848644,0.970753384,Network
+ieu-a-24,ukb-b-8476,Loneliness,Diabetes,Weighted median,36,-0.003362379,0.002180125,0.123003839,Network
+ieu-a-24,ukb-b-8476,Loneliness,Diabetes,Inverse variance weighted,36,-0.001086638,0.001581146,0.491926966,Network
+ieu-a-24,ukb-b-8476,Loneliness,Diabetes,Simple mode,36,-0.0030611,0.003876262,0.435018193,Network
+ieu-a-24,ukb-b-8476,Loneliness,Diabetes,Weighted mode,36,-0.002881632,0.002414446,0.240702454,Network
+ieu-a-24,ukb-b-3957,Sleeplessness,Diabetes,MR Egger intercept,36,0.062024894,0.034183019,0.078433652,Network
+ieu-a-24,ukb-b-3957,Sleeplessness,Diabetes,MR Egger,36,0.006786721,0.008390267,0.424208355,Network
+ieu-a-24,ukb-b-3957,Sleeplessness,Diabetes,Weighted median,36,0.006063069,0.003805791,0.111134016,Network
+ieu-a-24,ukb-b-3957,Sleeplessness,Diabetes,Inverse variance weighted,36,0.002303326,0.003460946,0.505718397,Network
+ieu-a-24,ukb-b-3957,Sleeplessness,Diabetes,Simple mode,36,0.014088512,0.007651738,0.074078583,Network
+ieu-a-24,ukb-b-3957,Sleeplessness,Diabetes,Weighted mode,36,0.00753742,0.004642292,0.113426061,Network
+ieu-a-24,ukb-b-4956,Eveningness,Diabetes,MR Egger intercept,36,-0.030270826,0.022544562,0.18826178,Network
+ieu-a-24,ukb-b-4956,Eveningness,Diabetes,MR Egger,36,-0.027658607,0.017324833,0.119637667,Network
+ieu-a-24,ukb-b-4956,Eveningness,Diabetes,Weighted median,36,-0.015555186,0.005488839,0.004597419,Network
+ieu-a-24,ukb-b-4956,Eveningness,Diabetes,Inverse variance weighted,36,-0.018671168,0.007144108,0.008961854,Network
+ieu-a-24,ukb-b-4956,Eveningness,Diabetes,Simple mode,36,-0.008183108,0.010843831,0.45551739,Network
+ieu-a-24,ukb-b-4956,Eveningness,Diabetes,Weighted mode,36,-0.014280117,0.005653132,0.016213442,Network
+ieu-a-24,ukb-d-SLEEP,ICD10 Insomni,Diabetes,MR Egger intercept,36,-0.00381195,0.025381642,0.881505853,Network
+ieu-a-24,ukb-d-SLEEP,ICD10 Insomni,Diabetes,MR Egger,36,-0.001060664,0.000867729,0.229984052,Network
+ieu-a-24,ukb-d-SLEEP,ICD10 Insomni,Diabetes,Weighted median,36,-8.45E-05,0.000506226,0.867411758,Network
+ieu-a-24,ukb-d-SLEEP,ICD10 Insomni,Diabetes,Inverse variance weighted,36,0.000574196,0.000362459,0.113155196,Network
+ieu-a-24,ukb-d-SLEEP,ICD10 Insomni,Diabetes,Simple mode,36,0.001059034,0.001022175,0.307279842,Network
+ieu-a-24,ukb-d-SLEEP,ICD10 Insomni,Diabetes,Weighted mode,36,-0.000781845,0.000631079,0.223625674,Network
+ieu-a-24,ukb-b-4062,Happiness,Diabetes,MR Egger intercept,36,0.015969355,0.037378306,0.671901098,Network
+ieu-a-24,ukb-b-4062,Happiness,Diabetes,MR Egger,36,-0.006033385,0.011514317,0.603684928,Network
+ieu-a-24,ukb-b-4062,Happiness,Diabetes,Weighted median,36,-0.00307422,0.006968913,0.659116437,Network
+ieu-a-24,ukb-b-4062,Happiness,Diabetes,Inverse variance weighted,36,-0.001679379,0.00473371,0.722761725,Network
+ieu-a-24,ukb-b-4062,Happiness,Diabetes,Simple mode,36,0.013246915,0.014564857,0.369300799,Network
+ieu-a-24,ukb-b-4062,Happiness,Diabetes,Weighted mode,36,-0.000833416,0.007308477,0.909862312,Network
+ieu-a-24,ukb-b-4710,Exercise,Diabetes,MR Egger intercept,36,-0.009486104,0.028569195,0.74189769,Network
+ieu-a-24,ukb-b-4710,Exercise,Diabetes,MR Egger,36,-0.025440903,0.0230545,0.277554486,Network
+ieu-a-24,ukb-b-4710,Exercise,Diabetes,Weighted median,36,-0.020699274,0.012937436,0.109609259,Network
+ieu-a-24,ukb-b-4710,Exercise,Diabetes,Inverse variance weighted,36,-0.00262364,0.00962377,0.785144723,Network
+ieu-a-24,ukb-b-4710,Exercise,Diabetes,Simple mode,36,-0.006969718,0.025213837,0.783848001,Network
+ieu-a-24,ukb-b-4710,Exercise,Diabetes,Weighted mode,36,-0.012586814,0.013085639,0.342708571,Network
+ieu-a-24,ukb-b-5076,Not socialising,Diabetes,MR Egger intercept,36,-0.061180267,0.028505764,0.039076605,Network
+ieu-a-24,ukb-b-5076,Not socialising,Diabetes,MR Egger,36,-0.003884083,0.005101523,0.451692374,Network
+ieu-a-24,ukb-b-5076,Not socialising,Diabetes,Weighted median,36,0.000244743,0.002535032,0.923088349,Network
+ieu-a-24,ukb-b-5076,Not socialising,Diabetes,Inverse variance weighted,36,0.00331342,0.002166584,0.12618295,Network
+ieu-a-24,ukb-b-5076,Not socialising,Diabetes,Simple mode,36,-0.002105011,0.004765193,0.661389459,Network
+ieu-a-24,ukb-b-5076,Not socialising,Diabetes,Weighted mode,36,-0.000106167,0.002849184,0.970487538,Network
+ieu-a-24,ieu-a-118,Neuroticism,Diabetes,MR Egger intercept,36,-0.024234608,0.029577614,0.418289753,Network
+ieu-a-24,ieu-a-118,Neuroticism,Diabetes,MR Egger,36,-0.049410382,0.025214788,0.058284416,Network
+ieu-a-24,ieu-a-118,Neuroticism,Diabetes,Weighted median,36,-0.023615951,0.015317937,0.123141955,Network
+ieu-a-24,ieu-a-118,Neuroticism,Diabetes,Inverse variance weighted,36,-0.006191758,0.011069739,0.575929085,Network
+ieu-a-24,ieu-a-118,Neuroticism,Diabetes,Simple mode,36,-0.009861241,0.027881219,0.725694759,Network
+ieu-a-24,ieu-a-118,Neuroticism,Diabetes,Weighted mode,36,-0.027194037,0.016569617,0.10971341,Network
+ieu-a-24,ukb-b-5237,Coffee intake,Diabetes,MR Egger intercept,36,-0.033203416,0.023143468,0.160513961,Network
+ieu-a-24,ukb-b-5237,Coffee intake,Diabetes,MR Egger,36,-0.009509308,0.018838535,0.616969861,Network
+ieu-a-24,ukb-b-5237,Coffee intake,Diabetes,Weighted median,36,-0.007319343,0.004530314,0.10617279,Network
+ieu-a-24,ukb-b-5237,Coffee intake,Diabetes,Inverse variance weighted,36,0.000724422,0.007771953,0.92573688,Network
+ieu-a-24,ukb-b-5237,Coffee intake,Diabetes,Simple mode,36,-0.003415966,0.008205567,0.679733443,Network
+ieu-a-24,ukb-b-5237,Coffee intake,Diabetes,Weighted mode,36,-0.007565015,0.004698375,0.116352144,Network
+ieu-a-24,ieu-a-7,CHD,Diabetes,MR Egger intercept,36,0.025038902,0.023506225,0.29429049,Network
+ieu-a-24,ieu-a-7,CHD,Diabetes,MR Egger,36,0.064334404,0.066645613,0.341200464,Network
+ieu-a-24,ieu-a-7,CHD,Diabetes,Weighted median,36,0.101260543,0.026245112,0.000114196,Network
+ieu-a-24,ieu-a-7,CHD,Diabetes,Inverse variance weighted,36,0.107395794,0.027472875,9.26E-05,Network
+ieu-a-24,ieu-a-7,CHD,Diabetes,Simple mode,36,0.097598803,0.045553985,0.039188471,Network
+ieu-a-24,ieu-a-7,CHD,Diabetes,Weighted mode,36,0.103435493,0.027193527,0.00054869,Network
+ieu-a-7,ieu-a-1187,Depression,CHD,Wald ratio,1,-0.230359566,0.087481254,0.008457334,Network
+ieu-a-7,ukb-b-6519,Worry,CHD,MR Egger intercept,39,0.032347971,0.020115087,0.116304529,Network
+ieu-a-7,ukb-b-6519,Worry,CHD,MR Egger,39,0.007089982,0.009112606,0.441491873,Network
+ieu-a-7,ukb-b-6519,Worry,CHD,Weighted median,39,0.003397314,0.003202002,0.288691394,Network
+ieu-a-7,ukb-b-6519,Worry,CHD,Inverse variance weighted,39,0.000833819,0.003907903,0.831040451,Network
+ieu-a-7,ukb-b-6519,Worry,CHD,Simple mode,39,0.004424489,0.005887094,0.456947022,Network
+ieu-a-7,ukb-b-6519,Worry,CHD,Weighted mode,39,0.004424489,0.003638962,0.231535654,Network
+ieu-a-7,ukb-b-5779,Alcohol,CHD,MR Egger intercept,39,0.001578572,0.022292749,0.943929545,Network
+ieu-a-7,ukb-b-5779,Alcohol,CHD,MR Egger,39,-0.007210932,0.02860092,0.802341757,Network
+ieu-a-7,ukb-b-5779,Alcohol,CHD,Weighted median,39,-0.005312368,0.011161889,0.634118488,Network
+ieu-a-7,ukb-b-5779,Alcohol,CHD,Inverse variance weighted,39,-0.022342696,0.012227832,0.067669698,Network
+ieu-a-7,ukb-b-5779,Alcohol,CHD,Simple mode,39,-0.005419264,0.028439016,0.849886808,Network
+ieu-a-7,ukb-b-5779,Alcohol,CHD,Weighted mode,39,0.010058307,0.011810043,0.39973063,Network
+ieu-a-7,ieu-a-961,Smoking,CHD,MR Egger intercept,32,-0.007049595,0.029301775,0.811512614,Network
+ieu-a-7,ieu-a-961,Smoking,CHD,MR Egger,32,0.118658541,0.589147742,0.841739683,Network
+ieu-a-7,ieu-a-961,Smoking,CHD,Weighted median,32,-0.067498297,0.354410646,0.848954774,Network
+ieu-a-7,ieu-a-961,Smoking,CHD,Inverse variance weighted,32,-0.252656351,0.226339171,0.264305208,Network
+ieu-a-7,ieu-a-961,Smoking,CHD,Simple mode,32,-0.416591012,0.664169544,0.535097488,Network
+ieu-a-7,ieu-a-961,Smoking,CHD,Weighted mode,32,-0.119819006,0.398628066,0.765742636,Network
+ieu-a-7,ieu-a-1239,Education,CHD,MR Egger intercept,39,-0.042571564,0.025998367,0.110010494,Network
+ieu-a-7,ieu-a-1239,Education,CHD,MR Egger,39,0.006720958,0.01254787,0.595422743,Network
+ieu-a-7,ieu-a-1239,Education,CHD,Weighted median,39,-0.000424106,0.006017445,0.943812052,Network
+ieu-a-7,ieu-a-1239,Education,CHD,Inverse variance weighted,39,0.002150337,0.005287565,0.684244395,Network
+ieu-a-7,ieu-a-1239,Education,CHD,Simple mode,39,-0.001407669,0.013550883,0.917810749,Network
+ieu-a-7,ieu-a-1239,Education,CHD,Weighted mode,39,0.001832612,0.006716708,0.786450643,Network
+ieu-a-7,ukb-b-19953,BMI,CHD,MR Egger intercept,39,-0.013730748,0.019147104,0.477803748,Network
+ieu-a-7,ukb-b-19953,BMI,CHD,MR Egger,39,-0.057507605,0.044426195,0.203529906,Network
+ieu-a-7,ukb-b-19953,BMI,CHD,Weighted median,39,-0.015175939,0.007293332,0.037452539,Network
+ieu-a-7,ukb-b-19953,BMI,CHD,Inverse variance weighted,39,-0.013446705,0.019213413,0.484014561,Network
+ieu-a-7,ukb-b-19953,BMI,CHD,Simple mode,39,0.011594738,0.015209129,0.450555242,Network
+ieu-a-7,ukb-b-19953,BMI,CHD,Weighted mode,39,-0.013043101,0.007406423,0.086275338,Network
+ieu-a-7,ukb-b-5238,Intelligence,CHD,MR Egger intercept,39,-0.047851469,0.026640513,0.080633084,Network
+ieu-a-7,ukb-b-5238,Intelligence,CHD,MR Egger,39,-0.020217803,0.045088477,0.656477453,Network
+ieu-a-7,ukb-b-5238,Intelligence,CHD,Weighted median,39,-0.010113573,0.024191004,0.675894732,Network
+ieu-a-7,ukb-b-5238,Intelligence,CHD,Inverse variance weighted,39,0.000117314,0.0192484,0.995137126,Network
+ieu-a-7,ukb-b-5238,Intelligence,CHD,Simple mode,39,-0.027820717,0.041304513,0.5046729,Network
+ieu-a-7,ukb-b-5238,Intelligence,CHD,Weighted mode,39,-0.013891396,0.028070317,0.623535269,Network
+ieu-a-7,ieu-a-1018,Wellbeing,CHD,MR Egger intercept,31,-0.005752508,0.027484075,0.835674818,Network
+ieu-a-7,ieu-a-1018,Wellbeing,CHD,MR Egger,31,-0.003767661,0.020252122,0.853710313,Network
+ieu-a-7,ieu-a-1018,Wellbeing,CHD,Weighted median,31,-0.002329325,0.012536014,0.852593276,Network
+ieu-a-7,ieu-a-1018,Wellbeing,CHD,Inverse variance weighted,31,-0.000137281,0.008610675,0.987279726,Network
+ieu-a-7,ieu-a-1018,Wellbeing,CHD,Simple mode,31,-0.0085176,0.02558152,0.741480893,Network
+ieu-a-7,ieu-a-1018,Wellbeing,CHD,Weighted mode,31,0.022727031,0.034015472,0.509153706,Network
+ieu-a-7,ukb-b-4424,Sleep duration,CHD,MR Egger intercept,39,-0.07823224,0.020434268,0.000481416,Network
+ieu-a-7,ukb-b-4424,Sleep duration,CHD,MR Egger,39,0.009676399,0.010764504,0.374509726,Network
+ieu-a-7,ukb-b-4424,Sleep duration,CHD,Weighted median,39,-0.003107613,0.005451863,0.568671419,Network
+ieu-a-7,ukb-b-4424,Sleep duration,CHD,Inverse variance weighted,39,-0.00698537,0.004759712,0.142211958,Network
+ieu-a-7,ukb-b-4424,Sleep duration,CHD,Simple mode,39,-0.01916059,0.009829576,0.058671364,Network
+ieu-a-7,ukb-b-4424,Sleep duration,CHD,Weighted mode,39,-0.004950921,0.005595884,0.381859238,Network
+ieu-a-7,ukb-b-8476,Loneliness,CHD,MR Egger intercept,39,0.035931979,0.022541264,0.119431989,Network
+ieu-a-7,ukb-b-8476,Loneliness,CHD,MR Egger,39,0.001657189,0.005181953,0.750918738,Network
+ieu-a-7,ukb-b-8476,Loneliness,CHD,Weighted median,39,0.002997973,0.002667633,0.26108403,Network
+ieu-a-7,ukb-b-8476,Loneliness,CHD,Inverse variance weighted,39,-9.62E-05,0.002209393,0.965281933,Network
+ieu-a-7,ukb-b-8476,Loneliness,CHD,Simple mode,39,0.003617865,0.004478998,0.424268077,Network
+ieu-a-7,ukb-b-8476,Loneliness,CHD,Weighted mode,39,0.003617865,0.002829934,0.208852324,Network
+ieu-a-7,ukb-b-3957,Sleeplessness,CHD,MR Egger intercept,39,0.006461009,0.02273347,0.777836338,Network
+ieu-a-7,ukb-b-3957,Sleeplessness,CHD,MR Egger,39,-0.003697857,0.013223,0.78130086,Network
+ieu-a-7,ukb-b-3957,Sleeplessness,CHD,Weighted median,39,-0.000323983,0.005023357,0.948575875,Network
+ieu-a-7,ukb-b-3957,Sleeplessness,CHD,Inverse variance weighted,39,-0.001118376,0.005630699,0.842559034,Network
+ieu-a-7,ukb-b-3957,Sleeplessness,CHD,Simple mode,39,0.010779572,0.008904446,0.233531261,Network
+ieu-a-7,ukb-b-3957,Sleeplessness,CHD,Weighted mode,39,0.000373524,0.005182685,0.942923043,Network
+ieu-a-7,ukb-b-4956,Eveningness,CHD,MR Egger intercept,39,0.031962393,0.02561683,0.219976202,Network
+ieu-a-7,ukb-b-4956,Eveningness,CHD,MR Egger,39,-0.010473018,0.013138578,0.430467307,Network
+ieu-a-7,ukb-b-4956,Eveningness,CHD,Weighted median,39,-0.012449867,0.006920727,0.072030595,Network
+ieu-a-7,ukb-b-4956,Eveningness,CHD,Inverse variance weighted,39,-0.009543663,0.005591697,0.087867386,Network
+ieu-a-7,ukb-b-4956,Eveningness,CHD,Simple mode,39,-0.002006998,0.012902015,0.877205691,Network
+ieu-a-7,ukb-b-4956,Eveningness,CHD,Weighted mode,39,-0.012086505,0.0076022,0.12015068,Network
+ieu-a-7,ukb-d-SLEEP,ICD10 Insomni,CHD,MR Egger intercept,39,-0.033146778,0.027715331,0.239315649,Network
+ieu-a-7,ukb-d-SLEEP,ICD10 Insomni,CHD,MR Egger,39,0.001050616,0.001042974,0.320320449,Network
+ieu-a-7,ukb-d-SLEEP,ICD10 Insomni,CHD,Weighted median,39,-6.02E-05,0.000690771,0.930562517,Network
+ieu-a-7,ukb-d-SLEEP,ICD10 Insomni,CHD,Inverse variance weighted,39,-7.87E-05,0.000454017,0.862439401,Network
+ieu-a-7,ukb-d-SLEEP,ICD10 Insomni,CHD,Simple mode,39,0.00041722,0.001343581,0.757855966,Network
+ieu-a-7,ukb-d-SLEEP,ICD10 Insomni,CHD,Weighted mode,39,0.000373687,0.000763102,0.627165045,Network
+ieu-a-7,ukb-b-4062,Happiness,CHD,MR Egger intercept,39,-0.025406541,0.024241347,0.301406267,Network
+ieu-a-7,ukb-b-4062,Happiness,CHD,MR Egger,39,-0.00227027,0.01233254,0.854949845,Network
+ieu-a-7,ukb-b-4062,Happiness,CHD,Weighted median,39,-0.004936811,0.008213696,0.547809161,Network
+ieu-a-7,ukb-b-4062,Happiness,CHD,Inverse variance weighted,39,0.00361342,0.005317367,0.496789074,Network
+ieu-a-7,ukb-b-4062,Happiness,CHD,Simple mode,39,-0.004435238,0.015573123,0.777343165,Network
+ieu-a-7,ukb-b-4062,Happiness,CHD,Weighted mode,39,-0.005870257,0.012643435,0.645087027,Network
+ieu-a-7,ukb-b-4710,Exercise,CHD,MR Egger intercept,39,8.44E-05,0.023122059,0.997106839,Network
+ieu-a-7,ukb-b-4710,Exercise,CHD,MR Egger,39,-0.052415646,0.038476232,0.18134345,Network
+ieu-a-7,ukb-b-4710,Exercise,CHD,Weighted median,39,-0.017317472,0.017062776,0.310140629,Network
+ieu-a-7,ukb-b-4710,Exercise,CHD,Inverse variance weighted,39,-0.022288832,0.016536444,0.177703012,Network
+ieu-a-7,ukb-b-4710,Exercise,CHD,Simple mode,39,0.019952632,0.039046114,0.612306126,Network
+ieu-a-7,ukb-b-4710,Exercise,CHD,Weighted mode,39,-0.026468779,0.020857621,0.21215142,Network
+ieu-a-7,ukb-b-5076,Not socialising,CHD,MR Egger intercept,39,-0.011769835,0.025065254,0.6414195,Network
+ieu-a-7,ukb-b-5076,Not socialising,CHD,MR Egger,39,-0.006687337,0.005325561,0.217094832,Network
+ieu-a-7,ukb-b-5076,Not socialising,CHD,Weighted median,39,-0.000953353,0.003067218,0.755937352,Network
+ieu-a-7,ukb-b-5076,Not socialising,CHD,Inverse variance weighted,39,-0.000382277,0.002318467,0.86903557,Network
+ieu-a-7,ukb-b-5076,Not socialising,CHD,Simple mode,39,-0.001219891,0.005956526,0.838822136,Network
+ieu-a-7,ukb-b-5076,Not socialising,CHD,Weighted mode,39,-0.000432414,0.003801666,0.910040054,Network
+ieu-a-7,ieu-a-118,Neuroticism,CHD,MR Egger intercept,36,0.031927402,0.028583107,0.27182481,Network
+ieu-a-7,ieu-a-118,Neuroticism,CHD,MR Egger,36,-0.02268092,0.030631731,0.464116736,Network
+ieu-a-7,ieu-a-118,Neuroticism,CHD,Weighted median,36,0.00610797,0.020407933,0.764715797,Network
+ieu-a-7,ieu-a-118,Neuroticism,CHD,Inverse variance weighted,36,0.008990643,0.012462002,0.470636073,Network
+ieu-a-7,ieu-a-118,Neuroticism,CHD,Simple mode,36,0.019241919,0.034549459,0.581113785,Network
+ieu-a-7,ieu-a-118,Neuroticism,CHD,Weighted mode,36,0.00124603,0.021635596,0.954401444,Network
+ieu-a-7,ukb-b-5237,Coffee intake,CHD,MR Egger intercept,39,-0.026063307,0.019909302,0.198572007,Network
+ieu-a-7,ukb-b-5237,Coffee intake,CHD,MR Egger,39,-0.019559753,0.01470568,0.191632509,Network
+ieu-a-7,ukb-b-5237,Coffee intake,CHD,Weighted median,39,-0.005811784,0.004908062,0.236361543,Network
+ieu-a-7,ukb-b-5237,Coffee intake,CHD,Inverse variance weighted,39,-0.000991587,0.006422525,0.877300653,Network
+ieu-a-7,ukb-b-5237,Coffee intake,CHD,Simple mode,39,-0.002062595,0.010358082,0.843223485,Network
+ieu-a-7,ukb-b-5237,Coffee intake,CHD,Weighted mode,39,-0.006605014,0.005399427,0.228755638,Network
+ieu-a-7,ieu-a-24,Diabetes,CHD,MR Egger intercept,19,0.033804615,0.038413686,0.391122119,Network
+ieu-a-7,ieu-a-24,Diabetes,CHD,MR Egger,19,-0.081747304,0.202789338,0.691888638,Network
+ieu-a-7,ieu-a-24,Diabetes,CHD,Weighted median,19,0.105019883,0.059464113,0.077378193,Network
+ieu-a-7,ieu-a-24,Diabetes,CHD,Inverse variance weighted,19,0.054311728,0.077685077,0.484472719,Network
+ieu-a-7,ieu-a-24,Diabetes,CHD,Simple mode,19,0.051426325,0.146836221,0.730231613,Network
+ieu-a-7,ieu-a-24,Diabetes,CHD,Weighted mode,19,0.073283339,0.069061523,0.302661342,Network

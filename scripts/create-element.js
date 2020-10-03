@@ -15,9 +15,6 @@ Contents of this script:
     Functions designed to return elements, for use by other create
     element methods
 
-- HTML templates   
-    HTML templates for new elements and styles (e.g., badges and spacing)
-
 Encapsulation:
 - This is a collection of methods designed to be called from a master
 file. Functions with similar purposes are grouped together. These 
@@ -26,30 +23,43 @@ functions are designed to have no dependencies other than vanilla JS.
 */
 
 // Create div
-function createDiv(id, parent, className = null){
+function createDiv(id, parent, className = null, html = null){
 
     // Create div element
     var div = document.createElement("DIV");
         div.id = id;
-
         if (className){div.className = className;}
+        if (html){div.innerHTML = html;}
 
     // Append to parent on DOM
     document.getElementById(parent).appendChild(div);
 }
 
 // Create paragraph
-function createP(id, text, parent, className = null){
+function createP(id, html, parent, className = null){
 
     // Create button element
     var p = document.createElement("P");
         p.id = id;
-        p.innerHTML = text;
+        p.innerHTML = html;
 
         if (className){p.className = className;}
 
     // Append to parent on DOM
     document.getElementById(parent).appendChild(p);
+}
+
+// Create another element
+function createHeader(id, parent, html, className = null, size = 'H5'){
+
+    // Create button element
+    var obj = document.createElement(size);
+        obj.id = id;
+        obj.innerHTML = html;
+        if (className){obj.className = className;}
+
+    // Append to parent on DOM
+    document.getElementById(parent).appendChild(obj);
 }
 
 // Return font-awesome icon 
@@ -88,6 +98,3 @@ function createProgress(id, parent, templateId='progress_bar_template'){
     // Append to parent on DOM
     document.getElementById(parent).appendChild(clone);
 }
-
-/* HTML templates */
-//html = "<span class=\"badge badge-danger btnAlert\" id=\"" + id + "-alert\">" + text + "</span>"
