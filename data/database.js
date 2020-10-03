@@ -20,7 +20,7 @@ function createNewUser(username, callback = printToConsole){
                 callback(this.responseText);
             }
         };
-        xhttp.open("GET", `http://www.morenostok.io/game_newuser.php?usr=${username}`, true);
+        xhttp.open("GET", `https://www.morenostok.io/game_newuser.php?usr=${username}`, true);
         xhttp.send();
 
 }
@@ -37,7 +37,7 @@ function getPlayerData(username, callback = printToConsole){
                 callback(JSON.parse(this.responseText));
             }
         };
-        xhttp.open("GET", `http://www.morenostok.io/game_getPlayerProgress.php?usr=${username}`, true);
+        xhttp.open("GET", `https://www.morenostok.io/game_getPlayerProgress.php?usr=${username}`, true);
         xhttp.send();
 }
 
@@ -52,7 +52,7 @@ function getPlayerBadges(username, callback = printToConsole){
                 callback(JSON.parse(this.responseText));
             }
         };
-        xhttp.open("GET", `http://www.morenostok.io/game_getPlayerBadges.php?usr=${username}`, true);
+        xhttp.open("GET", `https://www.morenostok.io/game_getPlayerBadges.php?usr=${username}`, true);
 }
 
 // Update player progress
@@ -64,7 +64,7 @@ function updateProgress(username, currentLevel, currentProgress, callback = prin
                 callback(this.responseText);
             }
         };
-        xhttp.open("GET", `http://www.morenostok.io/game_userProgress.php?usr=${username}&lvl=${currentLevel}&prog=${currentProgress}`, true);
+        xhttp.open("GET", `https://www.morenostok.io/game_userProgress.php?usr=${username}&lvl=${currentLevel}&prog=${currentProgress}`, true);
         xhttp.send();
 
 }
@@ -78,7 +78,7 @@ function recordMove(username, target, effect, score, interventionLimit, callback
                 callback(this.responseText);
             }
         };
-        xhttp.open("GET", `http://www.morenostok.io/game_recordMove.php?usr=${username}&trgt=${target}&efct=${effect}&score=${score}&limit=${interventionLimit}`, true);
+        xhttp.open("GET", `https://www.morenostok.io/game_recordMove.php?usr=${username}&trgt=${target}&efct=${effect}&score=${score}&limit=${interventionLimit}`, true);
         xhttp.send();
 
 }
