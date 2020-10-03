@@ -1,11 +1,91 @@
 /* General styles */
 
 /* Colors */
-.root{
-    var(--col-primary : rgb(255, 0, 0));
+:root{
+    --col-primary: gold;
+    --col-pos: coral;
+    --col-neg: cornflowerblue;
+    --col-dark: rgb(1, 31, 66);
+    --col-light: ghostwhite;
+}
+.col-primary{
+    color: var(--col-primary);
+}
+.col-pos{
+    color: var(--col-pos);
+}
+.col-neg{
+    color: var(--col-neg);
+}
+.col-dark{
+    color: var(--col-dark);
+}
+.col-light{
+    color: var(--col-light);
+}
+.bg-primary{
+    background-color: var(--col-primary) !important;
+}
+.bg-light{
+    background-color: var(--col-light) !important;
+}
+.bg-dark{
+    background-color: var(--col-dark) !important;
+}
+.btn-custom{
+    font-family: 'Oxanium', cursive;
+        font-weight: 700;
+    background-color: var(--col-primary) !important;
+}
+.btn-custom:hover{
+    background-color: var(--col-light) !important;
 }
 
-/* Styles for game.html */
+/* Font */
+.fnt-safe{
+    font-family: Arial, Helvetica, sans-serif !important;
+}
+.fnt-bold{
+    font-weight: 400;
+}
+.fnt-light{
+    font-weight: 300;
+}
+
+/* Style for game GUI */
 .policy{
     margin-top: 10px;
 }
+#panel-policy-icon{
+    height: 100px;
+    width: auto;
+}
+.policy-container{
+    overflow: scroll;
+}
+.policyEffect-none{
+    color: grey;
+}
+#panel-left{
+    position: absolute; 
+    left: -400px; 
+    height: 79vh; 
+    width: 400px;
+    opacity: 0.9;
+}
+
+/* Style for visualisation */
+#svg-main{
+    height: var(--100pct-in-px);
+    width: var(--100pct-in-px);
+    opacity: 0;
+    z-index: 4;
+}
+
+.nodeLabel{
+    opacity: 0;
+}
+.nodeLabel_bg{
+    opacity: 0;
+}
+

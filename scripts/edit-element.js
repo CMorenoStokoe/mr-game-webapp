@@ -38,6 +38,14 @@ function setVisibility(id, visibility){
     
     document.getElementById(id).style.visibility = visibility;
 }
+function toggleVisibility(id){
+    currentState = document.getElementById(id).style.visibility;
+    if(currentState=='visible'){
+        document.getElementById(id).style.visibility = 'hidden';
+    } else {
+        document.getElementById(id).style.visibility = 'visible';
+    }
+}
 
 // Display
 function setDisplay(id, display){
@@ -46,23 +54,21 @@ function setDisplay(id, display){
 }
 
 // Progress bar attributes
-function setProgress(id, value, range = null){
+function setProgress(id, value, range = false){
     
     // Select child progress bar div from parent
     progress = document.getElementById(id).children[0];
     
-    // If min/max values are given set range of progress bar
+    // Set range of progress bar
     if(range){
         progress.ariaValueMin = range.min;
         progress.ariaValueMax = range.max;
     }
 
     // Set current value of progress bar and accompanying label
-    progress.ariaValueNow = value
-    progress.innerHTML = value
-
-    // Convert values to percentages for width
-    progress.style.width = value/progress.ariaValueMax*100+'%'
+    progress.ariaValueNow = value;
+        progress.innerHTML = `${value / progress.ariaValueMax * 100}%`;
+        progress.style.width = `${value / progress.ariaValueMax * 100}%`;
 }
 
 // Background color
@@ -110,37 +116,13 @@ class Panel {
         this.id = id;
         this.element = document.getElementById(id);
         this.side = side;
-        this.position = this.getPos(this.side);
-        this.width = this.element.style.width;
-        this.widthValue = this.getWidthValue(this.width);
-        this.widthUnits = this.getWidthUnits(this.width);
     }
-    
-    // Get units of width
-    getWidthUnits(width){
-        return(width.replace(/-|[0-9]/g, ''));
-    }
-
-    // Get numerical value of width
-    getWidthValue(width){
-        return(width.match(/-?\d+/g).map(Number)[0]);
-    }
-
-    // Add a method to get position of panel
-    getPos(side){
-        if (side=='left'){
-            return (this.element.style.left);
-        } else if (side=='right'){
-            return (this.element.style.right);
-        }
-    }
-
     // Adding methods to toggle the panel
     open(){
-        this.element.style[this.side] = 0;
+        $(`#${this.id}`).animate({left: 0});
     }
     close(){
-        this.element.style[this.side] = `${0 - this.widthValue}${this.widthUnits}`;
+        $(`#${this.id}`).animate({left: -400});
     }
     
 }

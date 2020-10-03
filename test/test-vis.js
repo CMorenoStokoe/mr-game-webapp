@@ -15,14 +15,19 @@ Designed to present the results of tests along with the node/edge and tree data.
 
 
 function setGDisplay(tremauxTrees){
-    
-    // Display current graph information
-    G = tremauxTrees[0].g// Get graph for tree
-    title = tremauxTrees[0].title // Get title for tree
-    label = tremauxTrees[0].label // Get label for tree
-    disabled = tremauxTrees[0].disabled // Get development stage; disabled or enabled
 
-    jsnx.draw(G, { // Draw tree on SVG
+    // Build network tree for current tremaux tree design
+    tremauxTrees[0].G = new jsnx.DiGraph();
+        for(const node of tremauxTrees[0].data.nodes){
+            tremauxTrees[0].G.addNode(node.id, node);
+        }
+        for(const edge of tremauxTrees[0].data.edges){
+            tremauxTrees[0].G.addEdge(edge.source, edge.target, edge);
+        } 
+    console.log(tremauxTrees[0].G);
+    
+    // Draw tree on SVG
+    jsnx.draw(tremauxTrees[0].G, { 
         element: '#GDisplay-svg', 
         withLabels: true, 
         labelStyle: {fill: 'black'},
@@ -34,11 +39,15 @@ function setGDisplay(tremauxTrees){
         }, 
     });
 
-    // Grayscale graph if disabled
-    if(disabled){ document.getElementById('GDisplay-svg').style.webkitFilter = "grayscale(100%) blur(1px)";console.log(disabled);} else {document.getElementById('GDisplay-svg').style.webkitFilter = ''}
+    tremauxTrees[0].G.removeEdgesFrom(removeLoops(tremauxTrees[0].G, 'A'));
+    console.log(tremauxTrees[0].G);
 
-    setHTML('GDisplay-title', title); // Set display title to label
-    setHTML('GDisplay-subtitle', label); // Set display title to label
+    // Grayscale graph if disabled
+    if(tremauxTrees[0].disabled){ document.getElementById('GDisplay-svg').style.webkitFilter = "grayscale(100%) blur(1px)";} else {document.getElementById('GDisplay-svg').style.webkitFilter = ''}
+
+    // Set title and display
+    setHTML('GDisplay-title', tremauxTrees[0].title); // Title
+    setHTML('GDisplay-subtitle', tremauxTrees[0].label); // Subtitle
 
     // Run testing
     testAlgorithm(tremauxTrees[0]); // Test algorithm on current tree
@@ -69,7 +78,6 @@ setGDisplay(tremauxTrees);
 
 /* Run tests and display results */
 
-
 function testAlgorithm(currentTree){
 
     /* Run tests */
@@ -78,14 +86,15 @@ function testAlgorithm(currentTree){
     const id = currentTree.id; // Get tree id
     const title = currentTree.title; // Get tree title
     const label = currentTree.label; // Get tree label
-    const tree = currentTree.g; // Get tree G object
+    const tree = currentTree.G; // Get tree G object
     const answers = currentTree.answers // Get correct solutions to tree
 
     // Run tests
     const result_selfloop = test_selfloop(tree); // Identify and remove self-loops
     const result_traversal = test_traversal(tree); // Search network and get path of order in which to search nodes
-    const result_propagation = test_propagation(result_traversal.path); // Use traversal path for propagation
-
+    const result_propagation = test_propagation(result_traversal.path, tree); // Use traversal path for propagation
+    console.log('Results. Selfloop: ', result_selfloop,' Traversal: ',result_traversal ,' Propagation: ', result_propagation)
+    
     // Test results against expected values
     tests = validate([
         {name: 'Self-loop test', expected: JSON.stringify(answers.selfloops), actual: JSON.stringify(result_selfloop.selfloops)},
@@ -93,10 +102,12 @@ function testAlgorithm(currentTree){
         {name: 'Propagation test', expected: JSON.stringify(answers.propagation), actual: JSON.stringify(result_propagation.info)},
     ])
     
-    document.getElementById("test_log").innerHTML = ''; // Reset result text on DOM
+    // Reset result text on DOM
+    document.getElementById("test_log").innerHTML = ''; 
     document.getElementById("badge-results").innerHTML='';
 
-    if (tests['failed'].length > 0) { // Write results
+    // Write results on DOM
+    if (tests['failed'].length > 0) { 
         // Set testing status to failing
         document.getElementById("badge-results").innerText = "Failing";
         document.getElementById("badge-results").className = "badge badge-warning";
@@ -132,7 +143,7 @@ function testAlgorithm(currentTree){
         const selfloops = result_selfloop.selfloops;
         for (const edge of result_selfloop.selfloops){
             const node = edge[0];
-            G_sl.addNode(node, {color: n[node][1].color});
+            G_sl.addNode(node, testDat.nodes[node]);
             G_sl.addEdge(node, node);
         }
     } catch(err) {;}
@@ -170,7 +181,6 @@ function testAlgorithm(currentTree){
     // Propagation results
 
     //  text
-    console.log(tests.values)
     setHTML('GDisplay-test3-status', tests.values['Propagation test'].status) // Write status to DOM
     if(tests.values['Propagation test'].status=='Pass'){setColor('GDisplay-test3-status', 'green')} else {setColor('GDisplay-test3-status', 'red')} // Color according to status
     setHTML('GDisplay-test3-result', tests.values['Propagation test'].actual) // Path result from test

@@ -32,125 +32,52 @@ This allows a propagation network to follow its path and accurately update value
 
 */
 
-// Run 'Two steps forward one step back" depth-first search variant
-function findPropagationPath (graph, root){
+// Run DFS
+function DFS(graph, root){
 
-    // Initialise queue, exhaustedNodes and path lists
-    const queue = [root]; // Add root node to search queue
-    const exhaustedNodes = {root : true}; // Memory of nodes already travelled exhaustively
-    const path = {}; // Path of suggested traversal for propagation
+    // Init search queue
+    const queue = [root];
+
+    // Path of traversal for propagation
+    const path = {};
         path.edges = []; // Path of edges arranged in order of suggested traversal
         path.nodes = []; // Path of nodes arranged in order of suggested traversal 
 
-    // Run DFS variant
+    // Run search with failsafes to avoid infinite loops
     for (i = 0; i < Math.pow(graph.nodes().length, 2); i++){ 
-        /* 
-        Failsafes
-            1. Maximum number of iterations (n nodes ^2) to avoid infinite loops (above)
-            2. Search while the queue is not empty  to avoid runtime error when queue is emptied (below)
-        */
-        if(queue[0] == undefined){break;}//console.log('DFS search finished.');
 
-        // 1. Get node n from queue 
-        const currentNode = queue[0];
-        // Skip node if already exhausted
-        if(exhaustedNodes[currentNode]==true){
+        if(queue[0] == undefined){break;}
 
-            // Remove node from queue and continue
-            console.log('skipping already exhausted node');
-            queue.shift();
-            continue;
+        // Add node to search path
+        if(!(path.nodes.includes(queue[0]))){path.nodes.push(queue[0])};
+
+        // Find successors of node
+        for(const successor of graph.successors(queue[0])){
+
+            // Get edge beta
+            const b = getEdgeBeta([queue[0], successor]);
+
+            // Add edge to search path
+            path.edges.push({source: queue[0], target: successor, b: b});
+
+            // Add to queue
+            queue.push(successor);
         }
-
-        // 2. Check if node is exhaustible (if all precursors are exhausted)
-        exhaustible = exhaustedPredecessors(currentNode);
         
-        // 3. If precursors are exhausted
-        if(exhaustible){
-            //console.log('exhaustible')
+        // Remove current item from queue
+        queue.shift();
 
-            // Set node exhausted
-            exhaustedNodes[currentNode] = true;
-
-            // Remove node from queue 
-            queue.shift();
-            
-            // Add exhausted node to path
-            path.nodes.push(currentNode) // Path of nodes
-
-            for (const predecessor of graph.predecessors(currentNode)){ // Path of edges
-                path.edges.push([predecessor, currentNode]);
-            } 
-
-            // Add successors of node n to queue
-            for (successor of unExhaustedSuccessors(currentNode)){ queue.unshift(successor); };
-        }
-
-        // 4. If node not exhaustible skip for now and come back to later when predecessors are exhausted
-        if(!(exhaustible)){
-            //console.log('unexhaustible')
-            
-            // Move node to back of queue 
-            queue.shift();
-            queue.push(currentNode);
-            
-            // Add unexhausted predecessors to front of queue
-            for (predecessor of unExhaustedPredecessors(currentNode)){ queue.unshift(predecessor); };
-
-        }
-
-        // 5. Continue until all nodes have been exhausted (predecessor nodes exhaustively searched)
-        continue;
     }
 
-    // 7. Return array of edges to traverse in an order which exhausts each node in series (i.e., propagation order)
-    return(path); // Array of arrays containing edges to follow in order ([[a,b],[b,c]])
+    return(path);
 
-    // Exhaustion control 
-    function exhaustedPredecessors(node){ 
-        
-        // Return false if any edge is in exhaustion exhaustedNodes stack
-        for (predecessor of graph.predecessors(node)){
-            if (predecessor in exhaustedNodes){continue;}else{return false;}
-        }; return true;
+    // Function to return edge beta weights
+    function getEdgeBeta(edge){
 
-    }
-    
-    // Return any unexhausted predecessors
-    function unExhaustedPredecessors(node){ 
-        unexhausted = [];
+        for([key, value] of jsnx.getEdgeAttributes(graph, 'b').entries()){
+            if(key[0] == edge[0] && key[1] == edge[1]){return(value)};
+        }
 
-        // Check whether each predecessor is exhausted
-        for (predecessor of graph.predecessors(node)){
-            if (predecessor in exhaustedNodes){
-                // Skip exhausted predecessors
-                continue;
-            }else{
-                // If not exhausted then add to list to return
-                unexhausted.push(predecessor);
-            }
-        }; 
-        
-        return unexhausted;
-    }
-
-    // Return any unexhausted successors
-    function unExhaustedSuccessors(node){ 
-        unexhausted = [];
-
-        // Check whether each predecessor is exhausted
-        for (successor of graph.successors(node)){
-            if (successor in exhaustedNodes){
-                // Skip exhausted successor
-                continue;
-            }else{
-                // If not exhausted then add to list to return
-                unexhausted.push(successor);
-            }
-        }; 
-        
-        return unexhausted;
     }
 
 }
-

@@ -6,90 +6,44 @@ The purpose of this script is to detect loops in a manner generalisable to many 
 
 */
 
-// Discover loops
-function findLoops(graph, root, recursionLimit = 10){
-    console.log('Starting Loop search, max recursions = ', recursionLimit, Math.pow(graph.numberOfNodes(), 2))
 
-    // Initialise search queue
-    const queue = [{source: 'start', target: root}];
-    const visits = {};
-    var loopHolder = null;
+// Find and remove loops from graph
+function removeLoops (graph, root){
+    const queue = [root];
+    const path = [];
+    const G = graph;
     const loops = [];
 
-    console.log(graph, root, queue)
-    console.log('gnodes',graph.numberOfNodes())
+    // Use colors to keep track of visited nodes (white = not visited, grey = visiting, black = visited)
+    const color = []; 
     
+    // Run traversal
+    search(queue[0]); 
 
-    for (i = 0; i < Math.pow(graph.nodes().length, 2); i++){ // failsafe
+    // Get successors of node
+    function search(node){ 
+
+        // Color node as visiting
+        color[node] = 'grey';
         
-        // Search network until queue empty
-        if(queue[0] == undefined){console.log('DFS search finished.');break;} // failsafe
-        //if(queue[0] == undefined){
+        for (successor of G.successors(node)){
 
-            // Current edge to search
-            const currentEdge = queue[0]; //.target node is the node currently being searched
-            
-            console.log('#### searching node: ', currentEdge.target);
-
-            // Shift item from queue
-            queue.shift();
-
-            console.log('queue: ', queue);
-
-            // Track and mark edge visits
-            switch(visits[currentEdge]){
-
-                case recursionLimit:// If edge at recursionLimit of visits
-                    
-                    loopHolder = currentEdge; // Store edge as previous loop in edge
-                    console.log('%cVisited 10, recording edge: [' + loopHolder.source + ',' + loopHolder.target  + ']', 'color:red');
-                    continue;
+            if(color[successor]=='grey'){ 
                 
-                case undefined: // If edge not visited before
-                    console.log('not visited, count=1', visits[currentEdge]);
-                    visits[currentEdge]=1; // Initialise visit count for this edge with 1
+                // If a loop is found, remove it from the Graph and continue
+                G.removeEdge(node, successor);
+                loops.push([node, successor])
+                
+            } else {
 
-                    findSuccessors();
-                    break;
-
-                default: // If edge visited before but not at recursionLimit
-                    console.log('visited but <10, count++', visits[currentEdge]);
-                    visits[currentEdge]++; // Increment edge visit count
-
-                    findSuccessors();
-                    break;
+                search(successor);
             }
 
-            // Discover if any loop edges are the terminus
-            if (loopHolder != null){ // If there is a currently held unrecorded loop edge
-                console.log('%cif (loopHolder)', 'color: purple')
-                if (loopHolder != currentEdge){ // If current edge is not the current loop edge under investigation
-                    if (currentEdge.source != loopHolder.target){ // If previous edge does not connect to current edge
-                        console.log('%cLoop terminus found: ', 'color:green', loopHolder.source);
-                        loops.push(loopHolder.source); // Add previous edge to list of edges in loops
-                        loopHolder = null; // Reset loop holder
-                    }
-                }
-            }
+        };
 
-            // Add successor nodes to search queue
-
-            function findSuccessors(){
-                for (successor of graph.successors(currentEdge.target)){ // Get all successor nodes of current node
-                    
-                    queue.unshift({ // Add dictionary entry for succeeding edge {source: current node, target: successor node}
-                        source : currentEdge.target, 
-                        target : successor
-                    }); 
-                };
-            }
-            // Add successors to front of queue
-
-
+        // Once done, color node as visited
+        color[node] = 'black';
     }
-    
-    console.log('Loop search finished.');
-    console.log('visits', visits);
-    console.log('loops', loops);
 
+    return(loops);
 }
