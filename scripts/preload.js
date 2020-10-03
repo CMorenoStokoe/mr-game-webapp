@@ -21,6 +21,12 @@ function preload(){
     // Load splash on clicking start button
     addOnclickEvent('screen-button', gamestates[0].action)
         
+    // Failsafe timeout
+    setTimeout(function(){
+        gamestates[0].action;
+        hideLoadScreen();
+    }, 5000)
+
     // Function to advance loading bar progress
     function advanceLoadingProgress(){
 
