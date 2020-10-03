@@ -136,7 +136,7 @@ const gamestates = { // Different gamestates within the game (player levelling s
             document.body.style.backgroundSize = `cover`;
             
             // Init game
-            initialise(pval=2.77e-5, maxInterventions=1, data=jsonData);
+            initialise(pval=5e-10, maxInterventions=1, data=jsonData);
 
         },
         leagueName: 'Eldred',
