@@ -32,7 +32,7 @@ var playerInterventionMax = 1; // Maximum number of interventions the player can
 window.onload = function(){
     
     // Option to skip preloading and intro
-    var skipPreloadingAndIntro = true;
+    var skipPreloadingAndIntro = false;
     if(skipPreloadingAndIntro){ 
         document.getElementById('loading-screen').style.display='none'; // Skip loading screen
         gamestates[gameState].action(); // Start game        
@@ -124,7 +124,7 @@ const gamestates = { // Different gamestates within the game (player levelling s
 
         },
         leagueName: 'Persephone',
-            leagueProgressMax: 20,
+            leagueProgressMax: 25,
             leagueMaxInterventions: 1,
     },
     5 : {
@@ -140,7 +140,7 @@ const gamestates = { // Different gamestates within the game (player levelling s
 
         },
         leagueName: 'Eldred',
-            leagueProgressMax: 30,
+            leagueProgressMax: 40,
             leagueMaxInterventions: 1,
     },
     6 : {
