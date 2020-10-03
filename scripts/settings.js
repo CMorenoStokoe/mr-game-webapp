@@ -86,7 +86,7 @@ var settings = defaultSettings;
     settings.links.outlineWidth = d => settings.links.scaleToBeta.calcScaledWidth(d.b_pct) + 2;
     
     // Modify edges for visibility
-    settings.links.opacity = 1;
+    settings.links.opacity = 0; // Implicit learning formulation hides edges
     settings.links.scaleToBeta.minWidth = 1;
     settings.links.scaleToBeta.scaleFactor = 5;
     settings.links.scaleToBeta.scaleFactor = 5;
