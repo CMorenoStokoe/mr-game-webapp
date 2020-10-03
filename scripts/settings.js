@@ -13,6 +13,13 @@ var settings = defaultSettings;
 
 // Customise MiRANA network visualisation settings for game 
 
+    // Hide links for implicit learning
+    
+    /* Gameplay */
+    // Implicit learning formulation hides edges
+    settings.links.opacity = 0; 
+    settings.arrows.enabled = false;
+
     /* Nodes */
 
     // New settings attributes for game
@@ -86,7 +93,7 @@ var settings = defaultSettings;
     settings.links.outlineWidth = d => settings.links.scaleToBeta.calcScaledWidth(d.b_pct) + 2;
     
     // Modify edges for visibility
-    settings.links.opacity = 0; // Implicit learning formulation hides edges
+    //settings.links.opacity = 1; disabled to hide links
     settings.links.scaleToBeta.minWidth = 1;
     settings.links.scaleToBeta.scaleFactor = 5;
     settings.links.scaleToBeta.scaleFactor = 5;
