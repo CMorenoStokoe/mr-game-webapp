@@ -22,7 +22,7 @@ collections of methods categorised by purpose.
 // Global game variables
 var gameData = null; // Game variables and public health data
 var leftPanel = null; // Important GUI window which displays information on nodes
-var gameState = 0; // State of the game
+var gameState = 3; // State of the game
 var currentSystemProgress = 0; // Player's progress in the current system league
 var playerUsername = null; // Player's username
 var playerInterventionCount = 0; // Number of interventions made by player, on 3 becomes a policy ad triggers an event
@@ -32,7 +32,7 @@ var playerInterventionMax = 1; // Maximum number of interventions the player can
 window.onload = function(){
     
     // Option to skip preloading and intro
-    var skipPreloadingAndIntro = false;
+    var skipPreloadingAndIntro = true;
     if(skipPreloadingAndIntro){ 
         document.getElementById('loading-screen').style.display='none'; // Skip loading screen
         gamestates[gameState].action(); // Start game        
@@ -104,7 +104,7 @@ const gamestates = { // Different gamestates within the game (player levelling s
             document.body.style.backgroundSize = `cover`;
             
             // Init game
-            initialise(pval=5e-25, maxInterventions=1, data=jsonData);
+            initialise(pval=2e-15, maxInterventions=1, data=jsonData);
 
         },
         leagueName: 'Aeries',
@@ -178,7 +178,7 @@ function initialise(pval, maxInterventions, data, tutorial=false){
         initialiseView(gameData, pval, gamestates[gameState], currentSystemProgress); 
         
         // Set node sizes
-        setNodeSizes(gameData);
+        //setNodeSizes(gameData);
 
     // Initialise controls
 
@@ -237,7 +237,7 @@ function incrementGamestate(){
 function updateTick(){
     
     // Update the GUI progress
-    setNodeSizes(gameData);
+    //setNodeSizes(gameData);
 
 }
 
@@ -258,12 +258,12 @@ function playerMadeIntervention(nodeId, direction){
         highlightEdges(propagation.path.edges); 
 
         // Show effects in list in GUI
-        showPolicyEffects(propagation.result); 
+        //showPolicyEffects(propagation.result); 
 
         // Update display
         updateTick();
     
-    // Score policy
+    /* Score policy
         // Score intervention
         const intervention = scoreInterventionSuccess(gameData);
         
@@ -287,6 +287,7 @@ function playerMadeIntervention(nodeId, direction){
                 gamestates[gameState].action();
             })
         }
+    */
 
     // Reset intervention count
     playerInterventionCount = 0;

@@ -53,27 +53,6 @@ function initialiseData(nodes, edges, pValueThreshold){
         gameData.nodes[key].edges = [];
         
     }
-  
-    /* Convert data to graph and remove loops */
-    
-        // Initialise graph object for algorithmic operation
-        gameData.G = gameData.toG();
-    
-        // Remove loops from data network
-        var loopsRemoved = 0;
-        for(const node of gameData.G.nodes()){
-            if(gameData.G.successors(node).length>0){
-                
-                // Find loops
-                const loops = removeLoops(gameData.G, node);
-
-                // Remove loops
-                loopsRemoved += loops.length;
-                gameData.G.removeEdgesFrom(loops);
-                gameData.updateEdges(loops);
-
-            }
-        }
 
     /* Configure edge data */
     for(const [key, value] of Object.entries(gameData.edges)){
@@ -104,6 +83,22 @@ function initialiseData(nodes, edges, pValueThreshold){
         
         // Update graph data
         gameData.G = gameData.toG();
+
+        // Remove loops from data network
+        var loopsRemoved = 0;
+        for(const node of gameData.G.nodes()){
+            if(gameData.G.successors(node).length>0){
+                
+                // Find loops
+                const loops = removeLoops(gameData.G, node);
+
+                // Remove loops
+                loopsRemoved += loops.length;
+                gameData.G.removeEdgesFrom(loops);
+                gameData.updateEdges(loops);
+
+            }
+        }
         
         // Return
         console.log('GAMEDATA: ', gameData, `${loopsRemoved} loops removed`);

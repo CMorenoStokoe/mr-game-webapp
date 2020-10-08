@@ -60,8 +60,27 @@ var settings = defaultSettings;
     settings.simulation.animation.hoverToEnlarge_opacity = true;
 
     /* Links */
+    
+    // Change color scheme
+    settings.links.colNeg = 'cornflowerblue';
+    settings.links.colPos = 'coral';
 
-    // Make link widths proportionate to their propagation effects
+    // Make overlapping edges more visible
+    settings.links.opacity = 0.8;
+    settings.arrows.opacity = 1;
+    
+    // Hide edge weights
+    settings.links.scaleToBeta.method = 'none'; 
+    settings.links.width = 3;
+    
+    /* Hide edge valence 
+    settings.links.colNeg = 'black';
+    settings.links.colPos = 'black'; */
+
+    /* Hide edge directionality
+    //settings.arrows.enabled = false; */
+
+    /* Make link widths proportionate to their propagation effects
     settings.links.scaleToBeta.maxWidth = settings.links.scaleToBeta.minWidth + (settings.links.scaleToBeta.scaleFactor * 5);
     settings.links.scaleToBeta.calcScaledWidth = function(b){
         const b_abs = Math.abs(b); // Make beta absolute
@@ -84,17 +103,11 @@ var settings = defaultSettings;
     ;},
     settings.links.width = d => settings.links.outlineCalcScaledWidth(d.b_pct);
     settings.links.outlineWidth = d => settings.links.scaleToBeta.calcScaledWidth(d.b_pct) + 2;
-    
+
+
     // Modify edges for visibility
     settings.links.opacity = 1;
     settings.links.scaleToBeta.minWidth = 1;
     settings.links.scaleToBeta.scaleFactor = 5;
     settings.links.scaleToBeta.scaleFactor = 5;
-    /*
-        // Edge outlines temporarily removed for performance
-        settings.links.outline = true;
     */
-
-    // Change color pallet
-    settings.links.colNeg = 'cornflowerblue';
-    settings.links.colPos = 'coral';

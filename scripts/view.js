@@ -86,56 +86,15 @@ function initialiseView(gameData, pValueThreshold, currentGameState, currentSyst
             planet.backgroundSize= '800px 800px';
 
     // Set node sizes
-    setNodeSizes(gameData);
+    for(const [key, node] of Object.entries(gameData.nodes)){setNodeSize(node)};
 
     // Function to generate random number (from: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random)
     function getRandomInt(max) {
         return Math.floor(Math.random() * Math.floor(max));
     }
 }
- 
-// Set node sizes
-function setNodeSizes(gameData){
 
-    for(const [key, value] of Object.entries(gameData.nodes)){
-
-        // Get previous circle radius
-        var previousRadius = value.circleRadius;
-
-        // Mark whether node is increased ot decreased
-
-        // Scale circle radius by how much this node's prevalence has changed
-        var circleRadius = settings.nodes.circleRadius + (value.change / 100);
-
-        // Clamp circle radius within minimum and maximum limits
-        circleRadius = Math.min(settings.nodes.circleRadius_max, circleRadius);
-        circleRadius = Math.max(settings.nodes.circleRadius_min, circleRadius);
-
-        // Exaggerate tiny effect visuals for player satisfaction
-        if(Math.abs((circleRadius += value.exaggeration) - previousRadius)<1){ // Add or remove node size to exaggerate small effects in either direction
-            if(circleRadius - previousRadius > 0){value.exaggeration ++;};
-            if(circleRadius - previousRadius < 0){value.exaggeration --;};
-            circleRadius += value.exaggeration; // Carry over exaggerated sizes between interventions
-        };
-
-        // Update node's circle radius value for access by other methods
-        value.circleRadius = circleRadius;
-
-        // Scale node circle and icon size to prevalence
-        d3.select(`#${key}`).select("circle").transition()
-            .duration(500)
-            .attr("r", circleRadius);
-            
-        d3.select(`#${key}`).select("image").transition()
-            .duration(500)
-            .attr("x", -circleRadius * 1)
-            .attr("y", -circleRadius * 1)
-            .attr("height", circleRadius * 2)
-            .attr("width", circleRadius * 2);
-    }
-};
-
-// Highlight edges in series
+// Feedback intervention effects
 function highlightEdges(paths){
     var count = 0; // Count of edges already displayed, increment ot increase delay between successive edges in path
 
@@ -157,38 +116,91 @@ function highlightEdges(paths){
                 .duration(2000)
                 .attr("stroke-width", Number(startingLineWidth));
         }, 2000 + (500*count));
+
+        // Show effects on nodes in path
+        const targetNode = gameData.nodes[path.target];
+        setTimeout(function(){ 
+
+            // Set size
+            setNodeSize(targetNode); 
+
+            // Set color
+            setNodeColor(targetNode); 
+            
+        }, 2000 + (500*count));
         
         // Increment path count to stagger highlights
         count++;
     }
 }
 
+/* Functions to feedback intervention effects on nodes and edges */
 
-// Highlight nodes in path
-function highlightPathTo(source, target){
-    const path = jsnx.bidirectionalShortestPath(gameData.G, source, target);    
+    // Set node sizes
+    function setNodeSize(node){
+        d3.selectAll("image").style('opacity', 0.3)// TEMP
 
-    for (i = 0; i < path.length; i++) {
-        if(i+1 == path.length){break;}
+        // Scale circle radius by how much this node's prevalence has changed
+        var circleRadius = settings.nodes.circleRadius / 100 * (100 + node.change);
 
-        // Construct edges from node path
-        const edge = gameData.edges[gameData.getEdgeId(path[i], path[i+1])];
-        const startingLineWidth = d3.select(`#edge_${edge.id}`).attr("stroke-width");
-        console.log(i)
-        // Animate edges in path
-        d3.select(`#edge_${edge.id}`)
-            .transition()
-            .delay(function(){return(1000*i)})
-            .duration(2000)
-            .attr("stroke-width", startingLineWidth*1 + 10);
-        setTimeout(function(){ 
+        // Clamp circle radius within minimum and maximum limits
+        circleRadius = Math.min(settings.nodes.circleRadius_max, circleRadius);
+        circleRadius = Math.max(settings.nodes.circleRadius_min, circleRadius);
+
+        // Update node's circle radius value for access by other methods
+        node.circleRadius = circleRadius;
+        
+        // Scale node circle and icon size to prevalence
+        
+        console.log('setting size of', circleRadius)
+        d3.select(`#${node.id}`).select("circle").transition()
+            .duration(500)
+            .attr("r", circleRadius);
+
+        d3.select(`#${node.id}`).select("image").transition()
+            .duration(500)
+            .attr("x", -circleRadius)
+            .attr("y", -circleRadius)
+            .attr("height", circleRadius * 2)
+            .attr("width", circleRadius * 2);
+    };
+
+    // Set node sizes
+    function setNodeColor(node){
+
+        // Determine whether a node is a good or bad trait
+        
+        // Color node changes according to whether they are good or bad effects
+        d3.select(`#${node.id}`).select('circle')
+            .transition().duration(2000)
+            .style("fill", d3.interpolateRdYlGn(node.change/100))
+    };
+
+    // Highlight nodes in path
+    function highlightPathTo(source, target){
+        const path = jsnx.bidirectionalShortestPath(gameData.G, source, target);    
+
+        for (i = 0; i < path.length; i++) {
+            if(i+1 == path.length){break;}
+
+            // Construct edges from node path
+            const edge = gameData.edges[gameData.getEdgeId(path[i], path[i+1])];
+            const startingLineWidth = d3.select(`#edge_${edge.id}`).attr("stroke-width");
+            console.log(i)
+            // Animate edges in path
             d3.select(`#edge_${edge.id}`)
                 .transition()
+                .delay(function(){return(1000*i)})
                 .duration(2000)
-                .attr("stroke-width", startingLineWidth);
-        }, 2000 + (1000*i));
+                .attr("stroke-width", startingLineWidth*1 + 10);
+            setTimeout(function(){ 
+                d3.select(`#edge_${edge.id}`)
+                    .transition()
+                    .duration(2000)
+                    .attr("stroke-width", startingLineWidth);
+            }, 2000 + (1000*i));
+        }
     }
-}
 
 // Function to display policy effects
 function showPolicyEffects(effects){

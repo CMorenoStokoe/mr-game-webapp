@@ -69,6 +69,7 @@ function propagate(graph, root, valueChange){
         queue.shift();
 
     }
+    if(i >= Math.pow(graph.nodes().length, 2)){console.log('ERR: PROPAGATION ENDED EARLY (failsafe limit reached)')}
 
     // Add up changes to nodes
     results = {};
