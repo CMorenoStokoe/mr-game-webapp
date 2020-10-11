@@ -47,7 +47,7 @@ function initialiseData(nodes, edges, pValueThreshold){
         gameData.nodes[key].exaggeration = 0;
 
         // Record whether the node is good or bad (i.e., wellbeing is good but diabetes is bad)
-        gameData.nodes[key].good = isGood[value.id];
+        gameData.nodes[key].isGood = isGood[value.id];
 
         // Reset edge list so we can update this after filtering
         gameData.nodes[key].edges = [];
@@ -123,13 +123,10 @@ function scoreInterventionSuccess(gameData){
 
         // If it has been changed, push to list of nodes changed by this policy
         if(node.change > 0){changedNodes.push(node)};
-        
-        // Check if node is a good trait
-        const nodeIsGood = isGood[id];
 
         // Score whether effect on node was good or bad
         var goodness = 0;
-        if(nodeIsGood){
+        if(node.isGood){
             goodness += node.change;
         }else{
             goodness -= node.change;
@@ -138,7 +135,7 @@ function scoreInterventionSuccess(gameData){
 
         // Score effect on the objective (if this node was the objective)
         if(id == gameData.objective.id){
-            if(nodeIsGood){
+            if(node.isGood){
                 objectiveScore += node.change;
             }else{
                 objectiveScore -= node.change;

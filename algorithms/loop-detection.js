@@ -27,7 +27,6 @@ function removeLoops (graph, root){
         color[node] = 'grey';
         
         for (successor of G.successors(node)){
-            console.log(node, successor)
 
             if(color[successor]=='grey'){ 
                 

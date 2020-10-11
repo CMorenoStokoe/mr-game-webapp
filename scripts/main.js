@@ -96,23 +96,23 @@ const gamestates = { // Different gamestates within the game (player levelling s
             leagueMaxInterventions: 1,
     },
     3 : {
-        name: 'game-lvl1',
+        name: 'interactiveVisualisation',
         action:  function(){
-
-            // Change skybox
-            document.body.style.background = `url("images/spaceboxes/5.jpg")`;
-            document.body.style.backgroundSize = `cover`;
             
             // Init game
-            initialise(pval=2e-15, maxInterventions=1, data=jsonData);
+            initialise(pval=0.05, maxInterventions=1, data=jsonData);
+
+            // Switch to interactive visualisation GUI
+            hideGameUI();
+            showInteractiveVisUI();
 
         },
-        leagueName: 'Aeries',
-            leagueProgressMax: 10,
-            leagueMaxInterventions: 1,
+        leagueName: 'interactive visualisation',
+            leagueProgressMax: 999,
+            leagueMaxInterventions: 3,
     },
     4 : {
-        name: 'game-lvl2',
+        name: 'game',
         action:  function(){
 
             // Change skybox
@@ -128,7 +128,7 @@ const gamestates = { // Different gamestates within the game (player levelling s
             leagueMaxInterventions: 1,
     },
     5 : {
-        name: 'game-lvl3',
+        name: 'visualisation',
         action:  function(){
 
             // Change skybox
@@ -144,7 +144,7 @@ const gamestates = { // Different gamestates within the game (player levelling s
             leagueMaxInterventions: 1,
     },
     6 : {
-        name: 'game-lvl4',
+        name: 'endScreen',
         action:  function(){
 
             // Redirect to feedback (adapted from: https://stackoverflow.com/questions/16973240/link-in-alert-boxes-javascript)
@@ -178,7 +178,7 @@ function initialise(pval, maxInterventions, data, tutorial=false){
         initialiseView(gameData, pval, gamestates[gameState], currentSystemProgress); 
         
         // Set node sizes
-        //setNodeSizes(gameData);
+        //formatNodes(gameData);
 
     // Initialise controls
 
@@ -221,32 +221,30 @@ function incrementGamestate(){
     gameState ++;
 
     // Intialise game appropriate to new gamestate
-    console.log(currentSystemProgress)
     currentSystemProgress = 0;
-    console.log(currentSystemProgress)
     gamestates[gameState].action();
 
     // Update online database
     updateProgress(playerUsername, gameState, currentSystemProgress);
         console.log('updating:', playerUsername, gameState, currentSystemProgress)
 
-    console.log(currentSystemProgress)
 }
 
 // Function to update game displays
 function updateTick(){
     
     // Update the GUI progress
-    //setNodeSizes(gameData);
+    //formatNodes(gameData);
 
 }
 
 // Function to configure what happens when players enact an intervention
-function playerMadeIntervention(nodeId, direction){
+function playerMadeIntervention(nodeId, direction='Increase'){
 
     // Make intervention
         // Set intervention value
         var interventionValue = gameData.nodes[nodeId].prevalenceIncrease;
+            if(!(gameData.nodes[nodeId].isGood)){interventionValue *= -1};
             if(direction == 'Decrease'){interventionValue *= -1;};
         
         // Run propagation using gameData Graph object, this node's ID, and increase
@@ -255,13 +253,13 @@ function playerMadeIntervention(nodeId, direction){
     // View intervention effects
     
         // Highlight paths in intervention
-        highlightEdges(propagation.path.edges); 
+        showInterventionEffects(propagation.path.edges); 
 
         // Show effects in list in GUI
         //showPolicyEffects(propagation.result); 
 
         // Update display
-        updateTick();
+        //updateTick();
     
     /* Score policy
         // Score intervention
@@ -290,5 +288,5 @@ function playerMadeIntervention(nodeId, direction){
     */
 
     // Reset intervention count
-    playerInterventionCount = 0;
+    //playerInterventionCount = 0;
 }

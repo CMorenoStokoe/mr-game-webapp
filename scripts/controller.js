@@ -47,7 +47,7 @@ function initialiseControls(gameData){
         )
 
         // Intervention button
-        $('#intervention-btn').one('click', function(){
+        $('#intervention-btn').on('click', function(){
 
             // Get intervention paramaters
             const direction = document.getElementById('intervention-direction-form').direction.value;
@@ -74,7 +74,10 @@ function addOnclickEventsToNodes(gameData){
                 // Select trait for intervention
                 document.getElementById('intervention-text').innerText = gameData.nodes[this.id].label;
                 document.getElementById('intervention-btn').setAttribute('data-nodeId', this.id);
-                $('#intervention-modal').modal('show');
+                
+                // Order intervention (direct instead of bringing up modal)
+                playerMadeIntervention(this.id);
+                //$('#intervention-modal').modal('show');
             }
         }
     })

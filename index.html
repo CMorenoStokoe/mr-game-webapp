@@ -89,6 +89,7 @@
 
             <!-- Current goal -->
             <div id='GUI-goal' class='p-2'>
+                <h5>Goal:</h5>
                 <p class='p-2' id='GUI-goal-p'>
                     <img id='goal-icon' src='images/epicons/sleep.png' class='m-2' style='height: 30px; width: auto;'>
                     <i class='' id='goal-indicator'></i>
@@ -96,6 +97,9 @@
                     <i class="fas fa-check-circle" id='goal-success'></i>
                 </p>
             </div> 
+            
+            <!-- Reset button -->
+            <button id='reset-button' class='btn btn-lrg btn-custom-outline' style='float:none; display:none;'>Reset <i class="fas fa-undo-alt"></i></button>
 
             <!-- Intervention effects -->
             <div id='GUI-policyEffects' class='p-2'>
@@ -428,10 +432,16 @@
     <!-- Game Visuals -->
     <script src="scripts/planet-names.js"></script>
 
-    <!-- Main -->
+    <!-- Game Database -->
     <script src="data/database.js"></script> 
+
+    <!-- Secondary scripts: Game modules --> 
+    <script src="scripts/effects-readout.js"></script> 
+    <script src="scripts/winscreen.js"></script>
     <script src="scripts/intro.js"></script> 
     <script src="scripts/tutorial.js"></script> 
+
+    <!-- Main scripts: MVC -->
     <script src="scripts/model.js"></script> 
     <script src="scripts/view.js"></script> 
     <script src="scripts/controller.js"></script> 
