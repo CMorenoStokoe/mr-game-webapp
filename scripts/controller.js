@@ -100,12 +100,8 @@ function initialiseTestControls(){
         if(this.id){ // Ignore anomalous behaviour where 'this' is window (ignores any element calling this without an ID)
             if(!(this.id == gameData.objective.id)){ // Disable intervening directly on the objective
 
-                // Choose choice in test
+                // Choose choice action in test
                 userChoseAnswer(this.id);
-
-                // MOVE TO MAIN=
-                highlightNode(this.id);
-                //IF ALL VHOICES MADE: gamestates[gameState].action();
             }
         }
     })

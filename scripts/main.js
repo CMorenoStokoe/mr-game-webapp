@@ -32,10 +32,18 @@ var playerInterventionMax = 1; // Maximum number of interventions the player can
 window.onload = function(){
     
     // Option to skip preloading and intro
-    var skipPreloadingAndIntro = true;
-    if(skipPreloadingAndIntro){ 
-        document.getElementById('loading-screen').style.display='none'; // Skip loading screen
-        gamestates[gameState].action(); // Start game        
+    var devMode = true;
+    if(devMode){ 
+        // Show dev console instead of loading screen
+        document.getElementById('loading-screen').style.display='none'; 
+        $('#dev-modal').modal('show')
+        
+        // Buttons to choose mode
+        $('#dev-btn-3').click(function(){gameState=3})
+        $('#dev-btn-5').click(function(){gameState=5})
+
+        // Start game in chosen mode
+        $('#dev-modal').on('hidden.bs.modal', function(){gamestates[gameState].action();})    
     } 
     // Otherwise load game normally
     else {preload();} // Preload assets and prepare splash
@@ -300,4 +308,21 @@ function playerMadeIntervention(nodeId, direction='Increase'){
 
     // Reset intervention count
     //playerInterventionCount = 0;
+}
+
+function userChoseAnswer(nodeId){
+    
+    // Highlight node
+    highlightNode(nodeId);
+
+    // Increment intervention count
+    playerInterventionCount ++;
+
+    // Once 3 choices made send answer
+    if(playerInterventionCount >= 3){
+        setTimeout(function(){
+            alert('Test answers recorded. You scored: $SCORE')
+            gamestates[gameState].action();
+        }, 2000)
+    }
 }
