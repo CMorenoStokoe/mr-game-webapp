@@ -37,7 +37,8 @@ function createBGAudio(id){
     var music = new Audio();
         music.id = 'soundtrack';
         music.addEventListener('ended', function(){playSoundtrack()});
-        music.volume = 0.6;
+        music.volume = 0.5;
+        document.body.appendChild(music);
 
     // Function to play songs from soundtrack
     function playSoundtrack(song = false){
@@ -72,6 +73,7 @@ function createBGAudio(id){
 
     // Create audio elements for sound
     var sound_ui = new Audio(); // Sound feedback for player actions in the UI
+        sound_ui.volume = 0.3;
 
     // Define sound effects
     const sounds_spaceTraffic = [
@@ -118,4 +120,14 @@ function addButtonPressSound(){
     $('button').click(function(){
         buttonPressSound.play();
     })
+}
+
+
+// Function to control volume
+var slider = document.getElementById("volume-slider");
+var output = document.getElementById("soundtrack");
+console.log(output)
+// Update the current slider value (each time you drag the slider handle)
+slider.oninput = function() {
+    output.volume = this.value/100;
 }
