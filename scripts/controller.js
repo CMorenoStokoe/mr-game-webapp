@@ -82,3 +82,32 @@ function addOnclickEventsToNodes(gameData){
         }
     })
 }
+
+// Function to add interactive visualisation controls
+function interactiveVisualisationControls(){
+    
+    // Reset button (shown on interactive visualisation)
+    addOnclickEvent('reset-button', function(){gamestates[gameState].action()});
+
+}
+
+// Function to add test controls
+function initialiseTestControls(){
+
+    d3.selectAll('g').on("click", function(){
+
+        // If this node is a valid intervention target
+        if(this.id){ // Ignore anomalous behaviour where 'this' is window (ignores any element calling this without an ID)
+            if(!(this.id == gameData.objective.id)){ // Disable intervening directly on the objective
+
+                // Choose choice in test
+                userChoseAnswer(this.id);
+
+                // MOVE TO MAIN=
+                highlightNode(this.id);
+                //IF ALL VHOICES MADE: gamestates[gameState].action();
+            }
+        }
+    })
+
+}

@@ -86,8 +86,9 @@ function initialiseView(gameData, pValueThreshold, currentGameState, currentSyst
             planet.backgroundSize= '800px 800px';
 
     // Set node sizes
-    for(const [key, node] of Object.entries(gameData.nodes)){formatNode(node)};
-
+    if(!(gameState==5)){
+        for(const [key, node] of Object.entries(gameData.nodes)){formatNode(node)};
+    }
     // Function to generate random number (from: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random)
     function getRandomInt(max) {
         return Math.floor(Math.random() * Math.floor(max));
@@ -99,56 +100,80 @@ function hideGameUI(){
     $('#GUI-currentPlanet').hide();
     $('#progress-goal-div').hide();
     $('#GUI-planet').hide();
-    document.getElementById('GUI-goal').style.color = 'black';
-    document.getElementById('GUI-goal').style.textShadow = 'none';
+    $('#GUI-goal').hide();
     document.body.style.background = `ghostwhite`;
 }
 // Show interactive visualisation GUI
 function showInteractiveVisUI(){
+
+    // Add reset button
     $('#reset-button').show();
+}
+// Show test GUI
+function showTestUI(){
+
+    // Modify goal display to set test targets
+    $('#GUI-goal').show();
+    document.getElementById('GUI-goal').style.color = 'black';
+    document.getElementById('GUI-goal').style.textShadow = 'none';
+    $('#GUI-goal-h').text('Target');
 }
 
 // Feedback intervention effects
 function showInterventionEffects(paths, interval = 500){
 
-    // Get edge from path array
-    const path = paths.shift();
+    // Filter paths to show unique edges only
+    var dictionaryFilter = {};
+        for(const edge of paths){dictionaryFilter[`${edge.source}${edge.target}`]=edge}
+    var uniqueEdges = [];
+        for(const [key, uniqueEdge] of Object.entries(dictionaryFilter)){uniqueEdges.push(uniqueEdge)}
+    paths = uniqueEdges;
 
-    /* Show intervention effect pathways */
+    // Show effects for each unique edge in the path
+    iteratePaths(paths);
 
-        // Get edge width
-        const edge = gameData.edges[gameData.getEdgeId(path.source, path.target)];
-            const startingLineWidth = d3.select(`#edge_${edge.id}`).attr("stroke-width");
+    // Iterate paths and show effects
+    function iteratePaths(edges){
 
-        // Grow edges to highlight them
-        d3.select(`#edge_${edge.id}`)
-            .transition()
-            .duration(interval)
-            .attr("stroke-width", (Number(startingLineWidth) * 2) + 2);
-        
-        // Shrink them back to normal
-        setTimeout(function(){ 
-        d3.select(`#edge_${edge.id}`)
-            .transition()
-            .duration(interval)
-            .attr("stroke-width", Number(startingLineWidth));
-        }, interval);
+        // Get edge from path array
+        const path = edges.shift();
 
-    /* Show intervention's effects on each nodes' prevalence */
+        /* Show intervention effect pathways */
 
-        // Get target node in this edge
-        const targetNode = gameData.nodes[path.target];
-        
-        // Set node size
-        formatNode(targetNode); 
+            // Get edge width
+            const edge = gameData.edges[gameData.getEdgeId(path.source, path.target)];
+                const startingLineWidth = d3.select(`#edge_${edge.id}`).attr("stroke-width");
 
-    // Self loop until all effects shown
-    if(paths.length>0){
-        // Show intervention effects on nodes and edges in simulation
-        setTimeout(function(){
-            showInterventionEffects(paths);
-        }, interval);
-    }
+            // Grow edges to highlight them
+            d3.select(`#edge_${edge.id}`)
+                .transition()
+                .duration(interval)
+                .attr("stroke-width", (Number(startingLineWidth) * 2) + 2);
+            
+            // Shrink them back to normal
+            setTimeout(function(){ 
+            d3.select(`#edge_${edge.id}`)
+                .transition()
+                .duration(interval)
+                .attr("stroke-width", Number(startingLineWidth));
+            }, interval);
+
+        /* Show intervention's effects on each nodes' prevalence */
+
+            // Get target node in this edge
+            const targetNode = gameData.nodes[path.target];
+            
+            // Set node size
+            formatNode(targetNode); 
+
+        // Self loop until all effects shown
+        if(edges.length>0){
+            // Show intervention effects on nodes and edges in simulation
+            setTimeout(function(){
+                iteratePaths(edges);
+            }, interval);
+        }
+    }    
 }
 
 /* Functions to feedback intervention effects on nodes and edges */
@@ -215,6 +240,22 @@ function showInterventionEffects(paths, interval = 500){
         }
     }
 
+// Function to highlight an indiviual node
+function highlightNode(nodeId){
+    
+    // Enlarge circle
+    d3.select(`#${nodeId}`).select("circle")
+        .attr("r", settings.nodes.circleRadius*2)
+        .style("fill", 'gold');
+    d3.select(`#${nodeId}`).select("image")
+        .attr("x", -settings.nodes.circleRadius*2)
+        .attr("y", -settings.nodes.circleRadius*2)
+        .attr("height", settings.nodes.circleRadius * 4)
+        .attr("width", settings.nodes.circleRadius * 4);
+
+    // Update circle radius in data
+    gameData.nodes[nodeId].circleRadius *= 2;
+}
 
 // Display numbers with a sensible amount of decimals
 function to4SF(number){

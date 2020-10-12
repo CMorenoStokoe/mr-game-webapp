@@ -13,6 +13,10 @@ var settings = defaultSettings;
 
 // Customise MiRANA network visualisation settings for game 
 
+    /* Simulation */
+    //settings.simulation.strength = -3000; // Spread out nodes in graph
+    settings.simulation.autoUpdate = true; // Enable force-tick auto updating of graph to and ensure it stays updated as nodes are changed
+
     /* Nodes */
 
     // New settings attributes for game
@@ -20,7 +24,7 @@ var settings = defaultSettings;
     settings.nodes.circleRadius_max = 50;
 
     // Enlarge circles to fit icons
-    settings.nodes.circleRadius = 30; 
+    settings.nodes.circleRadius = 30;
 
     // Enable icons
     settings.nodes.icons.enabled = true; 
@@ -63,15 +67,15 @@ var settings = defaultSettings;
     
     // Change color scheme
     settings.links.colNeg = 'cornflowerblue';
-    settings.links.colPos = 'coral';
+    settings.links.colPos = 'orangered';
 
     // Make overlapping edges more visible
-    settings.links.opacity = 0.8;
+    settings.links.opacity = 0.5;
     settings.arrows.opacity = 1;
     
     // Hide edge weights
     settings.links.scaleToBeta.method = 'none'; 
-    settings.links.width = 3;
+    settings.links.width = 2;
     
     /* Hide edge valence 
     settings.links.colNeg = 'black';

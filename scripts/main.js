@@ -22,7 +22,7 @@ collections of methods categorised by purpose.
 // Global game variables
 var gameData = null; // Game variables and public health data
 var leftPanel = null; // Important GUI window which displays information on nodes
-var gameState = 3; // State of the game
+var gameState = 5; // State of the game
 var currentSystemProgress = 0; // Player's progress in the current system league
 var playerUsername = null; // Player's username
 var playerInterventionCount = 0; // Number of interventions made by player, on 3 becomes a policy ad triggers an event
@@ -100,11 +100,14 @@ const gamestates = { // Different gamestates within the game (player levelling s
         action:  function(){
             
             // Init game
-            initialise(pval=0.05, maxInterventions=1, data=jsonData);
+            initialise(pval=7.25e-4, maxInterventions=1, data=jsonData);
 
-            // Switch to interactive visualisation GUI
+            // Switch view
             hideGameUI();
             showInteractiveVisUI();
+
+            // Switch controls
+            interactiveVisualisationControls();
 
         },
         leagueName: 'interactive visualisation',
@@ -120,7 +123,7 @@ const gamestates = { // Different gamestates within the game (player levelling s
             document.body.style.backgroundSize = `cover`;
             
             // Init game
-            initialise(pval=5e-17, maxInterventions=1, data=jsonData);
+            initialise(pval=7.25e-4, maxInterventions=1, data=jsonData);
 
         },
         leagueName: 'Persephone',
@@ -131,17 +134,20 @@ const gamestates = { // Different gamestates within the game (player levelling s
         name: 'visualisation',
         action:  function(){
 
-            // Change skybox
-            document.body.style.background = `url("images/spaceboxes/7.jpg")`;
-            document.body.style.backgroundSize = `cover`;
-            
             // Init game
-            initialise(pval=5e-10, maxInterventions=1, data=jsonData);
+            initialise(pval=7.25e-4, maxInterventions=0, data=jsonData);
+
+            // Switch view
+            hideGameUI();
+            showTestUI();
+
+            // Switch controls
+            initialiseTestControls();
 
         },
-        leagueName: 'Eldred',
-            leagueProgressMax: 40,
-            leagueMaxInterventions: 1,
+        leagueName: 'visualisation',
+            leagueProgressMax: 999,
+            leagueMaxInterventions: 3,
     },
     6 : {
         name: 'endScreen',
@@ -181,12 +187,17 @@ function initialise(pval, maxInterventions, data, tutorial=false){
         //formatNodes(gameData);
 
     // Initialise controls
+        
+        // Allow users to make interventions (if enabled)
+        if(maxInterventions>0){
+            
+            // Set limit on number of interventions a player can combine into a policy
+            playerInterventionMax = maxInterventions;
 
-        // Set limit on number of interventions a player can combine into a policy
-        playerInterventionMax = maxInterventions;
+            // Create ability for players to click on nodes in visualisation
+            initialiseControls(gameData); 
 
-        // Create ability for players to click on nodes in visualisation
-        initialiseControls(gameData); 
+        }
     
 }
 
