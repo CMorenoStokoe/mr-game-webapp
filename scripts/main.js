@@ -31,9 +31,14 @@ var playerInterventionMax = 1; // Maximum number of interventions the player can
 // Developer controls for disabling preloading and loading game state directly for testing
 window.onload = function(){
     
-    // Option to skip preloading and intro
-    var devMode = true;
-    if(devMode){ 
+    // Developer modes
+    const developerMode = true;
+    if(developerMode){
+        gameState = 3;
+        gamestates[gameState].action(); document.getElementById('loading-screen').style.display='none'; return;
+    }
+    var previewMode = true;
+    if(previewMode){ 
         // Show dev console instead of loading screen
         document.getElementById('loading-screen').style.display='none'; 
         $('#dev-modal').modal('show')

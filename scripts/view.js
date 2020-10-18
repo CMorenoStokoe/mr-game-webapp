@@ -19,6 +19,9 @@ svgContainerWidth = document.getElementById('svg-container').offsetWidth;
 // Function to set view of game
 function initialiseView(gameData, pValueThreshold, currentGameState, currentSystemProgress=0){
     
+    // Add extra node information
+    addExtraNodeInformation();
+
     // Reset and clear intervention effects
     $('#GUI-policyEffects').hide();
     document.getElementById('GUI-goal-p').style.background = 'none';
@@ -120,7 +123,7 @@ function showTestUI(){
 }
 
 // Feedback intervention effects
-function showInterventionEffects(paths, interval = 500){
+function showInterventionEffects(paths, interval = 2000){
 
     // Filter paths to show unique edges only
     var dictionaryFilter = {};
@@ -158,6 +161,13 @@ function showInterventionEffects(paths, interval = 500){
                 .attr("stroke-width", Number(startingLineWidth));
             }, interval);
 
+            // Animate labels to pop up
+            showLabel(path.target); showLabel(path.source);
+            setTimeout(function(){
+                hideLabel(path.target); hideLabel(path.source);
+            },interval-50)
+            
+
         /* Show intervention's effects on each nodes' prevalence */
 
             // Get target node in this edge
@@ -165,6 +175,10 @@ function showInterventionEffects(paths, interval = 500){
             
             // Set node size
             formatNode(targetNode); 
+
+            // Update node information labels
+            updateLabel(targetNode, interval/2)
+
 
         // Self loop until all effects shown
         if(edges.length>0){
@@ -185,7 +199,12 @@ function showInterventionEffects(paths, interval = 500){
         var circleRadius = settings.nodes.circleRadius / 100 * (100 + node.change);
             circleRadius = Math.min(settings.nodes.circleRadius_max, circleRadius);
             circleRadius = Math.max(settings.nodes.circleRadius_min, circleRadius);
-            node.circleRadius = circleRadius; // Record value for access by other methods
+            
+            // Scale by area instead of radius
+            circleRadius = Math.sqrt(circleRadius*100 / 3.14);
+            
+            // Record value for access by other methods
+            node.circleRadius = circleRadius; 
         
         // Calculate node color
         var color = null;
@@ -210,9 +229,81 @@ function showInterventionEffects(paths, interval = 500){
             .attr("y", -circleRadius)
             .attr("height", circleRadius * 2)
             .attr("width", circleRadius * 2);
+
+        // Fix label positions
+        d3.select(`#${node.id}`).select("text").attr("y", circleRadius+20);
+        d3.select(`#${node.id}`).select("rect").attr("y", circleRadius);
+        d3.select(`#${node.id}`).select("g").select("g")
+            .attr('transform', `translate(
+                ${0},
+                ${settings.nodes.labels.backgroundHeight + circleRadius})`
+            );
+        d3.select(`#badge_${node.id}`)
+            .attr('x', circleRadius * Math.cos(45))
+            .attr('y', - circleRadius * Math.sin(45))
+        
     };
 
-    // Highlight nodes in path
+    // Show node labels
+    function showLabel(nodeId){
+
+        // Show labels
+        d3.select(`#${nodeId}`).select("g").transition() // Label animation
+            .duration(300)
+            .style("opacity", 1);
+    }
+
+    // Hide labels
+    function hideLabel(nodeId){
+
+        // Make labels transparent
+        d3.select(`#${nodeId}`).select("g").transition() // Label animation
+            .duration(300)
+            .style("opacity", 0);
+    }
+
+    // Update label position and text
+    function updateLabel(node, duration = 500){
+
+        // Update prevalence information
+        d3.select(`#prevTxt_${node.id}`)
+            .text(`${to4SF(node.prevalence)} ${node.units}`);
+        d3.select(`#prevBar_${node.id}`)
+            .transition()
+            .duration(duration)    
+            .attr("width", Math.max(settings.nodes.labels.backgroundWidth()/2 + node.change, 0));
+
+        // Set change indicator
+        d3.select(`#badge_${node.id}`)
+            .text(function(d) { 
+                if(node.change<0){return '\uf13a' }
+                else if(node.change>0){return '\uf139' }
+                else{return ''}
+            })
+            .attr('fill', function(d) { 
+                if(node.change<0){return settings.links.colNeg}
+                else{return settings.links.colPos};
+            }); 
+    }
+
+    // Highlight an indiviual node
+    function highlightNode(nodeId){
+        
+        // Enlarge circle
+        d3.select(`#${nodeId}`).select("circle")
+            .attr("r", settings.nodes.circleRadius*2)
+            .style("fill", 'gold');
+        d3.select(`#${nodeId}`).select("image")
+            .attr("x", -settings.nodes.circleRadius*2)
+            .attr("y", -settings.nodes.circleRadius*2)
+            .attr("height", settings.nodes.circleRadius * 4)
+            .attr("width", settings.nodes.circleRadius * 4);
+
+        // Update circle radius in data
+        gameData.nodes[nodeId].circleRadius *= 2;
+    }
+
+    /* Highlight nodes in path
     function highlightPathTo(source, target, interval = 500){
 
         // Calculate path from source node to target
@@ -238,24 +329,7 @@ function showInterventionEffects(paths, interval = 500){
                     .attr("stroke", startingLineWidth);
             },interval*i);
         }
-    }
-
-// Function to highlight an indiviual node
-function highlightNode(nodeId){
-    
-    // Enlarge circle
-    d3.select(`#${nodeId}`).select("circle")
-        .attr("r", settings.nodes.circleRadius*2)
-        .style("fill", 'gold');
-    d3.select(`#${nodeId}`).select("image")
-        .attr("x", -settings.nodes.circleRadius*2)
-        .attr("y", -settings.nodes.circleRadius*2)
-        .attr("height", settings.nodes.circleRadius * 4)
-        .attr("width", settings.nodes.circleRadius * 4);
-
-    // Update circle radius in data
-    gameData.nodes[nodeId].circleRadius *= 2;
-}
+    }*/
 
 // Display numbers with a sensible amount of decimals
 function to4SF(number){
@@ -268,15 +342,15 @@ function to4SF(number){
     } else if(absoluteValue < 0.001){
         return number.toFixed(4)
     } else if(absoluteValue < 0.01){
-        return number.toFixed(3)
+        return number.toFixed(4)
     } else if(absoluteValue < 0.1){
-        return number.toFixed(2)
+        return number.toFixed(3)
     } else if(absoluteValue < 1){
-        return number.toFixed(1)
+        return number.toFixed(2)
     } else if(absoluteValue < 10){
-        return number.toFixed(1)
+        return number.toFixed(2)
     } else if(absoluteValue < 100){
-        return number.toFixed(0)
+        return number.toFixed(1)
     } else {
         return number.toFixed(0)
     }
