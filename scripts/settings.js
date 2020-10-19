@@ -14,79 +14,79 @@ var settings = defaultSettings;
 // Customise MiRANA network visualisation settings for game 
 
     /* Simulation */
-    //settings.simulation.strength = -3000; // Spread out nodes in graph
-    settings.simulation.autoUpdate = true; // Enable force-tick auto updating of graph to and ensure it stays updated as nodes are changed
+
+        //settings.simulation.strength = -3000; // Spread out nodes in graph
+        settings.simulation.autoUpdate = true; // Enable force-tick auto updating of graph to and ensure it stays updated as nodes are changed
+
+    /* Animation */
+        
+        // Set animation settings
+        settings.simulation.animation.enabled = true;
+        settings.simulation.animation.hoverToEnlarge_opacity = true;
+        settings.simulation.animation.listenForMouseEventsOn = 'image'; // Show on hover effects on icon instead of circle (icon covers node circle)
+
+        // Specify animations
+        settings.nodes.onHover.enter.calcCircleRadius = function(){
+            return gameData.nodes[this.parentNode.id].circleRadius * 2};
+
+        settings.nodes.onHover.enter.calcIconSize = function(){
+            return gameData.nodes[this.parentNode.id].circleRadius * 4};
+
+        settings.nodes.onHover.enter.calcIconPosition = function(){
+            return -gameData.nodes[this.parentNode.id].circleRadius * 2};
+
+        settings.nodes.onHover.exit.calcCircleRadius = function(){
+            return gameData.nodes[this.parentNode.id].circleRadius};
+
+        settings.nodes.onHover.exit.calcIconSize = function(){
+            return gameData.nodes[this.parentNode.id].circleRadius * 2};
+
+        settings.nodes.onHover.exit.calcIconPosition = function(){
+            return -gameData.nodes[this.parentNode.id].circleRadius};
 
     /* Nodes */
 
-    // New settings attributes for game
-    settings.nodes.circleRadius_min = 10;
-    settings.nodes.circleRadius_max = 50;
+        // New settings attributes for game
+        settings.nodes.circleRadius_min = 10;
+        settings.nodes.circleRadius_max = 50;
 
-    // Enlarge circles to fit icons
-    settings.nodes.circleRadius = 30;
+        // Enlarge circles to fit icons
+        settings.nodes.circleRadius = 30;
 
-    // Enable icons
-    settings.nodes.icons.enabled = true; 
+        // Enable icons
+        settings.nodes.icons.enabled = true; 
 
-    // Custom node width function
-    settings.nodes.onHover.enter.calcCircleRadius = function(){
-        return gameData.nodes[this.parentNode.id].circleRadius * 2};
+        // Change text labels since we have icons for labels
+        settings.nodes.labels.posX = 0; // Center node labels 
+            settings.nodes.labels.anchor = 'middle';
+            settings.nodes.labels.class = 'nodeLabel'; // Start hidden
+            settings.nodes.labels.color = 'white'; // Label text color
+            settings.nodes.labels.posY = settings.nodes.circleRadius + 20; // Appear below nodes
+        settings.nodes.labels.background = 'black'; // Label bg color
+            settings.nodes.labels.backgroundPosY = settings.nodes.labels.posY - 20; // Label bg poisition
 
-    settings.nodes.onHover.enter.calcIconSize = function(){
-        return gameData.nodes[this.parentNode.id].circleRadius * 4};
+        // Add extra information to labels
+            // [setting changed in: extra-node-info.js]
 
-    settings.nodes.onHover.enter.calcIconPosition = function(){
-        return -gameData.nodes[this.parentNode.id].circleRadius * 2};
-
-    settings.nodes.onHover.exit.calcCircleRadius = function(){
-        return gameData.nodes[this.parentNode.id].circleRadius};
-
-    settings.nodes.onHover.exit.calcIconSize = function(){
-        return gameData.nodes[this.parentNode.id].circleRadius * 2};
-
-    settings.nodes.onHover.exit.calcIconPosition = function(){
-        return -gameData.nodes[this.parentNode.id].circleRadius};
-
-    // Change text labels since we have icons for labels
-    settings.nodes.labels.posX = 0; // Center node labels 
-        settings.nodes.labels.anchor = 'middle';
-        settings.nodes.labels.class = 'nodeLabel'; // Start hidden
-        settings.nodes.labels.color = 'white'; // Label text color
-        settings.nodes.labels.posY = settings.nodes.circleRadius + 20; // Appear below nodes
-    settings.nodes.labels.background = 'black'; // Label bg color
-        settings.nodes.labels.backgroundPosY = settings.nodes.labels.posY - 20; // Label bg poisition
-
-    // Add extra information to labels
-        // [setting changed in: extra-node-info.js]
-
-    // Give custom class to nodes for on.hover decoration
-    settings.nodes.class = 'nodeCircle';
-
-    // Animate nodes
-    settings.simulation.animation.enabled = true;
-    settings.simulation.animation.hoverToEnlarge_opacity = true;
+        // Give custom class to nodes for on.hover decoration
+        settings.nodes.class = 'nodeCircle';
 
     /* Links */
     
-    // Change color scheme
-    settings.links.colNeg = 'cornflowerblue';
-    settings.links.colPos = 'orangered';
+        // Change color scheme
+        settings.links.colNeg = 'cornflowerblue';
+        settings.links.colPos = 'orangered';
 
-    // Make overlapping edges more visible
-    settings.links.opacity = 0.5;
-    settings.arrows.opacity = 1;
-    
-    // Hide edge weights
-    settings.links.scaleToBeta.method = 'none'; 
-    settings.links.width = 2;
-    
-    /* Hide edge valence 
-    settings.links.colNeg = 'black';
-    settings.links.colPos = 'black'; */
+        // Make overlapping edges more visible
+        settings.links.opacity = 0.5;
+        settings.arrows.opacity = 1;
+        
+        // Hide edge weights
+        settings.links.scaleToBeta.method = 'none'; 
+        settings.links.width = 2;
+        
 
-    /* Hide edge directionality
-    //settings.arrows.enabled = false; */
+/* Old settings (to show edge widths)
 
     /* Make link widths proportionate to their propagation effects
     settings.links.scaleToBeta.maxWidth = settings.links.scaleToBeta.minWidth + (settings.links.scaleToBeta.scaleFactor * 5);
@@ -118,4 +118,4 @@ var settings = defaultSettings;
     settings.links.scaleToBeta.minWidth = 1;
     settings.links.scaleToBeta.scaleFactor = 5;
     settings.links.scaleToBeta.scaleFactor = 5;
-    */
+*/
