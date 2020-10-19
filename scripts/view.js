@@ -123,7 +123,7 @@ function showTestUI(){
 }
 
 // Feedback intervention effects
-function showInterventionEffects(paths, interval = 2000){
+function showInterventionEffects(paths, interval = 2500){
 
     // Filter paths to show unique edges only
     var dictionaryFilter = {};
@@ -150,16 +150,16 @@ function showInterventionEffects(paths, interval = 2000){
             // Grow edges to highlight them
             d3.select(`#edge_${edge.id}`)
                 .transition()
-                .duration(interval)
+                .duration(interval/2)
                 .attr("stroke-width", (Number(startingLineWidth) * 2) + 2);
             
             // Shrink them back to normal
             setTimeout(function(){ 
             d3.select(`#edge_${edge.id}`)
                 .transition()
-                .duration(interval)
+                .duration(interval/2)
                 .attr("stroke-width", Number(startingLineWidth));
-            }, interval);
+            }, interval/2);
 
             // Animate labels to pop up
             showLabel(path.target); showLabel(path.source);
@@ -271,7 +271,9 @@ function showInterventionEffects(paths, interval = 2000){
         d3.select(`#prevBar_${node.id}`)
             .transition()
             .duration(duration)    
-            .attr("width", Math.max(settings.nodes.labels.backgroundWidth()/2 + node.change, 0));
+            .attr("width", Math.min(100, Math.max(0, // Min 0% width, max 100% width
+                settings.nodes.labels.backgroundWidth()/2 + node.change
+            )));
 
         // Set change indicator
         d3.select(`#badge_${node.id}`)

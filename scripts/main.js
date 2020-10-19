@@ -32,7 +32,7 @@ var playerInterventionMax = 1; // Maximum number of interventions the player can
 window.onload = function(){
     
     // Developer modes
-    const developerMode = true;
+    const developerMode = false;
     if(developerMode){
         gameState = 3;
         gamestates[gameState].action(); document.getElementById('loading-screen').style.display='none'; return;

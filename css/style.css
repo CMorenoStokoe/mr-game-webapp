@@ -81,7 +81,9 @@
     opacity: 0;
     z-index: 4;
 }
-
+.label{
+    opacity: 0;
+}
 .nodeLabel{
     opacity: 0;
 }
