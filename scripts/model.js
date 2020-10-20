@@ -25,7 +25,7 @@ function initialiseData(nodes, edges, pValueThreshold){
 
     /* Configure node data */
     for(const [key, value] of Object.entries(gameData.nodes)){
-
+        console.log(key)
         // Give node values
         gameData.nodes[key].average = nodeValues[key].prevalence;
         gameData.nodes[key].range = nodeValues[key].max - nodeValues[key].min;

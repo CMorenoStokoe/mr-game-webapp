@@ -113,7 +113,7 @@ const gamestates = { // Different gamestates within the game (player levelling s
         action:  function(){
             
             // Init game
-            initialise(pval=7.25e-4, maxInterventions=1, data=jsonData);
+            initialise(pval=1, maxInterventions=1, data=jsonData);
 
             // Switch view
             hideGameUI();
@@ -136,7 +136,7 @@ const gamestates = { // Different gamestates within the game (player levelling s
             document.body.style.backgroundSize = `cover`;
             
             // Init game
-            initialise(pval=7.25e-4, maxInterventions=1, data=jsonData);
+            initialise(pval=1, maxInterventions=1, data=jsonData);
 
         },
         leagueName: 'Persephone',
@@ -148,7 +148,7 @@ const gamestates = { // Different gamestates within the game (player levelling s
         action:  function(){
 
             // Init game
-            initialise(pval=7.25e-4, maxInterventions=0, data=jsonData);
+            initialise(pval=1, maxInterventions=0, data=jsonData);
 
             // Switch view
             hideGameUI();
@@ -178,10 +178,10 @@ const gamestates = { // Different gamestates within the game (player levelling s
 function initialise(pval, maxInterventions, data, tutorial=false){
 
     // Initialise gameData
-
+    
         // Set game data to given dataset and filter by given pvalue
         gameData = initialiseData(data.nodes, data.links, pval);
-    
+        
     // Initialise gameplay    
     
         // Set value by which an intervention changes a trait
