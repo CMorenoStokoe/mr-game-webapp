@@ -82,7 +82,7 @@
     z-index: 4;
 }
 .label{
-    opacity: 0;
+    opacity: 1;
 }
 .nodeLabel{
     opacity: 0;

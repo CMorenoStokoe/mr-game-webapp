@@ -84,38 +84,3 @@ var settings = defaultSettings;
         // Hide edge weights
         settings.links.scaleToBeta.method = 'none'; 
         settings.links.width = 2;
-        
-
-/* Old settings (to show edge widths)
-
-    /* Make link widths proportionate to their propagation effects
-    settings.links.scaleToBeta.maxWidth = settings.links.scaleToBeta.minWidth + (settings.links.scaleToBeta.scaleFactor * 5);
-    settings.links.scaleToBeta.calcScaledWidth = function(b){
-        const b_abs = Math.abs(b); // Make beta absolute
-        const width = b_abs/100*settings.links.scaleToBeta.scaleFactor; // Calculate relative width
-        return( 
-            Math.min( // Scale edge width by beta within min and max limits for visibility
-                settings.links.scaleToBeta.minWidth + width, 
-                settings.links.scaleToBeta.maxWidth
-            )
-        )
-    ;},settings.links.outlineCalcScaledWidth = function(b){
-        const b_abs = Math.abs(b); // Make beta absolute
-        const width = b_abs/100*settings.links.scaleToBeta.scaleFactor; // Calculate relative width
-        return( 
-            Math.min( // Scale edge width by beta within min and max limits for visibility
-                settings.links.scaleToBeta.minWidth + width, 
-                settings.links.scaleToBeta.maxWidth + 2
-            )
-        )
-    ;},
-    settings.links.width = d => settings.links.outlineCalcScaledWidth(d.b_pct);
-    settings.links.outlineWidth = d => settings.links.scaleToBeta.calcScaledWidth(d.b_pct) + 2;
-
-
-    // Modify edges for visibility
-    settings.links.opacity = 1;
-    settings.links.scaleToBeta.minWidth = 1;
-    settings.links.scaleToBeta.scaleFactor = 5;
-    settings.links.scaleToBeta.scaleFactor = 5;
-*/

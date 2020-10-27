@@ -25,7 +25,7 @@ function initialiseData(nodes, edges, pValueThreshold){
 
     /* Configure node data */
     for(const [key, value] of Object.entries(gameData.nodes)){
-        console.log(key)
+
         // Give node values
         gameData.nodes[key].average = nodeValues[key].prevalence;
         gameData.nodes[key].range = nodeValues[key].max - nodeValues[key].min;
@@ -56,12 +56,17 @@ function initialiseData(nodes, edges, pValueThreshold){
 
     /* Configure edge data */
     for(const [key, value] of Object.entries(gameData.edges)){
-        
+
         // Convert beta effect estimate to a % change in the outcome as a result of intervention
         const exposure = gameData.nodes[value['id.exposure']];
         const outcome = gameData.nodes[value['id.outcome']];
 
-        value.b_pct = (exposure.prevalenceIncrease * value.b) / outcome.range * 100;
+        // Calculate percent change in outcome relative to its prevalence value
+        value.b_pct = (exposure.prevalenceIncrease * value.b) / outcome.prevalence;
+
+        // Calculate percent change in outcome relative to its min-max value range
+        value.b_pctOfRange = (exposure.prevalenceIncrease * value.b) / outcome.range * 100;
+        
 
         // Update nodes' edge lists
         exposure.edges.push(value);

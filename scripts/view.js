@@ -212,7 +212,8 @@ function showInterventionEffects(paths, interval = 2500){
                 case true: color = d3.interpolateRdYlGn(0.5 + (node.change / 100)); break;
                 case false: color = d3.interpolateRdYlGn(0.5 - (node.change / 100)); break;
                 default: color = 'LEMONCHIFFON'; break;
-            }        
+            }
+            if(node.change==0){color='white'}; // Color no change white
 
         // Format node to scale with prevalence
         d3.select(`#${node.id}`).select("circle").transition()
@@ -332,6 +333,45 @@ function showInterventionEffects(paths, interval = 2500){
             },interval*i);
         }
     }*/
+
+// Modify mirana settings to show beta weights for effects 
+function showBetaWeights(){
+    
+    // Enable scale edge width to beta weight
+    settings.links.scaleToBeta.method = 'percentChangeInExposure';
+    settings.links.width = function(d) {return settings.links.scaleToBeta.calcScaledWidth(d.b_pct)};
+
+    // Make edges more visible
+    settings.links.opacity = 1;
+    settings.links.scaleToBeta.minWidth = 1;
+    settings.links.scaleToBeta.scaleFactor = 5;
+    settings.links.scaleToBeta.scaleFactor = 5;
+
+    // Scale more accurately to their standardised effects in propagation
+    settings.links.scaleToBeta.maxWidth = settings.links.scaleToBeta.minWidth + (settings.links.scaleToBeta.scaleFactor * 5);
+    settings.links.scaleToBeta.calcScaledWidth = function(b){
+        const b_abs = Math.abs(b); // Make beta absolute
+        const width = b_abs/100*settings.links.scaleToBeta.scaleFactor; // Calculate relative width
+        return( 
+            Math.min( // Scale edge width by beta within min and max limits for visibility
+                settings.links.scaleToBeta.minWidth + width, 
+                settings.links.scaleToBeta.maxWidth
+            )
+        )
+    ;},settings.links.outlineCalcScaledWidth = function(b){
+        const b_abs = Math.abs(b); // Make beta absolute
+        const width = b_abs/100*settings.links.scaleToBeta.scaleFactor; // Calculate relative width
+        return( 
+            Math.min( // Scale edge width by beta within min and max limits for visibility
+                settings.links.scaleToBeta.minWidth + width, 
+                settings.links.scaleToBeta.maxWidth + 2
+            )
+        )
+    ;},
+    settings.links.width = d => settings.links.outlineCalcScaledWidth(d.b_pct);
+    settings.links.outlineWidth = d => settings.links.scaleToBeta.calcScaledWidth(d.b_pct) + 2;
+
+}
 
 // Display numbers with a sensible amount of decimals
 function to4SF(number){

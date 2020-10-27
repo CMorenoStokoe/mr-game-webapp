@@ -46,6 +46,7 @@ window.onload = function(){
         // Buttons to choose mode
         $('#dev-btn-3').click(function(){gameState=3})
         $('#dev-btn-5').click(function(){gameState=5})
+        $('#dev-btn-6').click(function(){gameState=6})
 
         // Start game in chosen mode
         $('#dev-modal').on('hidden.bs.modal', function(){gamestates[gameState].action();})    
@@ -144,10 +145,12 @@ const gamestates = { // Different gamestates within the game (player levelling s
             leagueMaxInterventions: 1,
     },
     5 : {
-        name: 'visualisation',
+        name: 'visualisation for test',
         action:  function(){
 
-            // Init game
+            // Format nodes for visibility
+
+            // Init vis
             initialise(pval=1, maxInterventions=0, data=jsonData);
 
             // Switch view
@@ -163,6 +166,25 @@ const gamestates = { // Different gamestates within the game (player levelling s
             leagueMaxInterventions: 3,
     },
     6 : {
+        name: 'visualisation of data',
+        action:  function(){
+
+            // Configure visualisation to show beta weights
+            showBetaWeights(); 
+
+            // Init vis
+            settings.nodes.fill='white';
+            initialise(pval=1, maxInterventions=0, data=jsonData);
+
+            // Switch view
+            hideGameUI();
+
+        },
+        leagueName: 'visualisation',
+            leagueProgressMax: 999,
+            leagueMaxInterventions: 3,
+    },
+    7 : {
         name: 'endScreen',
         action:  function(){
 
