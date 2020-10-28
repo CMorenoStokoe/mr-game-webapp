@@ -42,3 +42,9 @@ function to4SF(number){
 function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
+
+
+// Function to bound scores within min & max
+function boundToRange(num, min=0, max=5){
+    return(Math.min(Math.max(min, num), max))
+}

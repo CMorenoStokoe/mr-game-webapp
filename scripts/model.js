@@ -124,6 +124,7 @@ function initialiseData(nodes, edges, pValueThreshold){
         return(gameData);
 }
 
+
 // Remove double negatives for clarity
 function negateTrait(traitId, newName, newIcon, nodes, edges){
 
@@ -149,90 +150,4 @@ function negateTrait(traitId, newName, newIcon, nodes, edges){
     icons[traitId] = newIcon; // Update icon;
     isGood[traitId]= !isGood[traitId]; // Record trait as good
 
-}
-
-
-/* Scoring intervention effectiveness */
-
-
-// Function to get score for policy
-function scoreInterventionSuccess(gameData){
-    var changedNodes = [];
-    var mostIncreased = {id:null, b:0};
-    var mostDecreased = {id:null, b:0};
-    var mostGood = {id:null, b:0, goodness:0};
-    var mostBad = {id:null, b:0, goodness:0};
-
-    var objectiveScore = 0;
-    var goodnessScore = 0;
-    var timeScore = 0;
-
-    // Iterate over nodes and detect changes
-    for(const [id, node] of Object.entries(gameData.nodes)){
-
-        // If it has been changed, push to list of nodes changed by this policy
-        if(node.change > 0){changedNodes.push(node)};
-
-        // Score whether effect on node was good or bad
-        var goodness = 0;
-        if(node.isGood){
-            goodness += node.change;
-        }else{
-            goodness -= node.change;
-        }
-        goodnessScore += goodness;
-
-        // Score effect on the objective (if this node was the objective)
-        if(id == gameData.objective.id){
-            if(node.isGood){
-                objectiveScore += node.change;
-            }else{
-                objectiveScore -= node.change;
-            }
-        }
-
-        // Check awards
-        if(node.change > mostIncreased.b){mostIncreased = {id: id, b: node.change}} // ? Most increased trait
-        if(node.change < mostDecreased.b){mostDecreased = {id: id, b: node.change}} // ? Most decreased trait
-        if(goodness > mostGood.goodness){mostGood = {id: id, b: node.change, goodness: goodness,}} // ? Most good done
-        if(goodness < mostBad.goodness){mostBad = {id: id, b: node.change, goodness: goodness}} // ? Most bad done
-    
-    }
-    
-    // Calculate award score
-    var awardScore = 0;
-        if(mostIncreased.id){awardScore+=0.25};
-        if(mostDecreased.id){awardScore+=0.25};
-        if(mostGood.id){awardScore+=0.5};
-        if(mostBad.id){awardScore-=0.25};
-
-    // Final weighting of scores
-    objectiveScore = boundScoreToRange(objectiveScore);
-    goodnessScore = boundScoreToRange(goodnessScore / 4);
-    timeScore = boundScoreToRange(timeScore);
-    awardScore = boundScoreToRange(awardScore);
-    const totalScore = objectiveScore + goodnessScore + timeScore + awardScore;
-
-    // Return scores
-    return({
-        scores: {
-            objective: objectiveScore, 
-            goodness: goodnessScore,
-            time: timeScore,
-            awards: awardScore,
-            total: totalScore,
-        },
-        effects: changedNodes,
-        awards: {
-            mostGood: mostGood,
-            mostBad: mostBad,
-            mostDecreased: mostDecreased,
-            mostIncreased: mostIncreased,
-        }
-    })
-
-    // Function to bound scores within min & max
-    function boundScoreToRange(score, min=0, max=5){
-        return(Math.min(Math.max(min, score), max))
-    }
 }

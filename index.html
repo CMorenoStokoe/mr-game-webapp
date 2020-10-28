@@ -98,9 +98,6 @@
                 </p>
             </div> 
             
-            <!-- Reset button -->
-            <button id='reset-button' class='btn btn-lrg btn-custom' style='float:none; display:none;'>Reset <i class="fas fa-undo-alt"></i></button>
-
             <!-- Intervention effects -->
             <div id='GUI-policyEffects' class='p-2'>
 
@@ -382,7 +379,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Developer mode</h5>
+              <h5 class="modal-title">Developer preview mode</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -390,9 +387,9 @@
             <div class="modal-body">
               <p>Choose a mode to preview:</p>
               <button type="button" class="btn btn-custom m-2" data-dismiss="modal" id='dev-btn-3'>Interactive visualisation</button><br>
-              <button type="button" class="btn btn-custom m-2" data-dismiss="modal" id='dev-btn-5'>Visualisation (for test, without weights)</button><br>
-              <button type="button" class="btn btn-custom m-2" data-dismiss="modal" id='dev-btn-6'>Explore data with visualisation (with weights)</button><br>
-              <a type="button" class="btn btn-custom m-2" href='https://www.morenostok.io/mendel' id='dev-btn-4' target='_blank'>Gameplay prototype (redirect)</a><br>
+              <button type="button" class="btn btn-custom m-2" data-dismiss="modal" id='dev-btn-5'>Test interventions</button><br>
+              <button type="button" class="btn btn-custom m-2" data-dismiss="modal" id='dev-btn-6'>Visualisation (with ß weights)</button><br>
+              <a type="button" class="btn btn-custom m-2" href='https://www.morenostok.io/mendel' id='dev-btn-4' target='_blank'>Game (redirect)</a><br>
             </div>
             <div class="modal-footer">
                 <small class='text-muted'>Preview build prototypes v1.1 (12/10/20)</small>
@@ -400,6 +397,53 @@
           </div>
         </div>
       </div>
+
+    <!-- Test interface -->
+    <div id='test_settings' style='position: absolute; top:0; left:0; display: none; z-index: 99;'>
+
+        <!-- Input form for setting objective and interventions --> 
+        <h3>Settings</h3>
+        <em>Set an objective and intervention settings</em><br><br>
+        <form >
+            <label for="objective">Objective ID:</label>
+        <input type="text" id="objective" name="objective" onchange="gameData.setObjective(this.value);highlightNode(this.value, fill='coral')" value="set objective trait"><br><br>
+            <label for="interventions">Max number of interventions:</label>
+            <input type="text" id="interventions" name="interventions" value="1"><br><br>
+        </form>
+        <hr>
+
+        <!-- Interventions -->
+        <h3>Active interventions:</h3>
+        <div id='test_interventions'></div><br><br>
+        <em>Click a trait to intervene on it</em><br>
+        <hr>
+
+        <!-- Output display for results of intervention --> 
+        <h3>Results</h3>
+        <em>View the effects of interventions here.</em><br><br>
+
+        <h5>Objective score 
+            <a data-content="% change in objective trait's prevalence" data-toggle="popover" title="Objective score calculation" class="btn btn-sm btn-info">
+                <i class="fas fa-question"></i>
+            </a>:
+        </h5>
+        <span id='test_score_objective'>-</span><br>
+
+        <h5>Side-effect score 
+            <a data-content="% increase to the prevalence of good traits, and decrease to bad traits in the network" data-toggle="popover" title="Side-effect score calculation" class="btn btn-sm btn-info">
+                <i class="fas fa-question"></i>
+            </a>:
+        </h5>
+        </h5><span id='test_score_goodness'>-</span><br><br>
+
+        <h5>Intervention effects:</h5> <div id='test_allEffects' style='height: 200px; overflow: scroll;'></div><br>
+
+        <!-- Reset button -->
+        <button id='test_reset' class='btn btn-lrg btn-custom' onclick="gamestates[gameState].action(); playerInterventionCount = 0;">Reset <i class="fas fa-undo-alt"></i></button>
+
+
+    </div>
+    
 
     <!--[if lt IE 7]>
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
@@ -467,6 +511,7 @@
     <script src="scripts/winscreen.js"></script>
     <script src="scripts/intro.js"></script> 
     <script src="scripts/tutorial.js"></script> 
+    <script src="scripts/scoring.js"></script> 
 
     <!-- Main scripts: MVC -->
     <script src="scripts/model.js"></script> 

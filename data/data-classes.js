@@ -125,8 +125,8 @@ class DataClass {
 
         // Set extra data variables for showing prevalence changes
         this.nodes[nodeId].prevalence = prevalence;
-        this.nodes[nodeId].change = (prevalence - this.nodes[nodeId].average) / this.nodes[nodeId].average * 100;
-        this.nodes[nodeId].change_bar = (this.nodes[nodeId].change / 2) + 50;
+        this.nodes[nodeId].change = (prevalence - this.nodes[nodeId].average) / this.nodes[nodeId].average * 100; // Percentage change
+        this.nodes[nodeId].change_bar = (this.nodes[nodeId].change / 2) + 50; // Percentage expressed as deviation from 50% starting point in a bar
     }
 
     // Remove edges

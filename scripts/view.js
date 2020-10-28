@@ -23,6 +23,9 @@ svgContainerHeight = document.getElementById('svg-container').offsetHeight;
 svgContainerWidth = document.getElementById('svg-container').offsetWidth;
     document.getElementById('svg-main').setAttribute('width', svgContainerWidth);
 
+// Enable popovers
+$(function () {$('[data-toggle="popover"]').popover()})
+
 // Initialise visualisation and UI
 function initialiseView(
         profile,
@@ -316,12 +319,12 @@ function updateLabel(node, duration = 500){
 }
 
 // Highlight an indiviual node
-function highlightNode(nodeId){
+function highlightNode(nodeId, fill='gold'){
     
     // Enlarge circle
     d3.select(`#${nodeId}`).select("circle")
         .attr("r", settings.nodes.circleRadius*2)
-        .style("fill", 'gold');
+        .style("fill", fill);
     d3.select(`#${nodeId}`).select("image")
         .attr("x", -settings.nodes.circleRadius*2)
         .attr("y", -settings.nodes.circleRadius*2)
@@ -385,9 +388,18 @@ function showInteractiveVisUI(){
 // Show test GUI
 function showTestUI(){
 
+    // Reset UI
+    document.getElementById('test_score_objective').innerText = '-';
+    document.getElementById('test_score_goodness').innerText = '-';
+    document.getElementById('test_allEffects').innerHTML = '';
+    document.getElementById('test_interventions').innerHTML = '';
+
     // Modify goal display to set test targets
     $('#GUI-goal').show();
     document.getElementById('GUI-goal').style.color = 'black';
     document.getElementById('GUI-goal').style.textShadow = 'none';
     $('#GUI-goal-h').text('Target');
+
+    // Show options form
+    $('#test_settings').show();
 }

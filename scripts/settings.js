@@ -28,12 +28,16 @@ function setMiranaSettings(profile){
             settingsProfile_PrevalenceLabels();
             break;
 
+        case 'test':
+            settingsProfile_showIDs();
+            break;
+
         case 'game':
             settingsProfile_Default();
             settingsProfile_PrevalenceLabels();
             break;
 
-        default: console.log(`ERR: Unknown settings profile (${profile})`); break;
+        default: console.log(`ERROR (#2): Unknown settings profile (${profile})`); break;
     }
 }
 
@@ -246,4 +250,15 @@ function settingsProfile_PrevalenceLabels(){
             .attr('y', settings.nodes.labels.backgroundHeight/2);
 
     }
+}
+
+// Settings profile to add IDs to labels
+function settingsProfile_showIDs(){
+
+    // Show IDs alongside labels
+    settings.nodes.labels.content = function(d){return `${d.label} (${d.id})`};
+    settings.nodes.labels.fontSize = 14;
+
+    // Enable auto-update from defaults
+    settings.simulation.autoUpdate = true; // Enable force-tick auto updating of graph to and ensure it stays updated as nodes are changed
 }

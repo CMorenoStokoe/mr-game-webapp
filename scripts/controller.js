@@ -10,6 +10,10 @@ It is called by the main script and calls other secondary functions.
 
 */
 
+
+/* Initialise controls */
+
+
 // Function to intialise login
 function initialiseLogin(){
     
@@ -60,6 +64,10 @@ function initialiseControls(gameData){
     // Wins screen dismiss button
     $('#win-screen-btn').one('click', function(){$('#win-screen').css('opacity', 0).hide()})
 }
+
+
+/* Add controls to elements */
+
 
 // Function to build clickable nodes
 function addOnclickEventsToNodes(gameData){

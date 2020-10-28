@@ -10,21 +10,24 @@ This file invokes the propagation and traversal algorithms to produce propagatio
 
 */
 
+// Simulate the effects of an intervention
 function runPropagation(gameData, originNode, valueChange){
     
     // Get data network graph object to search
     var network = gameData.G;
 
-    // Find traversal path
-    const path = DFS(network, originNode);
+    // Apply algorithms
 
-    // Follow traversal path in propagation
-    const result = propagate(network, originNode, valueChange);
+        // Find traversal path
+        const path = DFS(network, originNode);
 
-    // Update values with propagation effects
-    gameData.update(result);
+        // Follow traversal path in propagation
+        const result = propagate(network, originNode, valueChange);
 
-    // Return the result of nodes to change
+    // Update values
+    gameData.update(result); // data-classes.js
+
+    // Return results
     console.log(`Propagated the effect of changing ${originNode} by ${valueChange} with results: `, result)
     return({path: path, result: result});
 }

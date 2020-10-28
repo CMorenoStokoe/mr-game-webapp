@@ -1,17 +1,32 @@
 /*
+
 Main script
----------------
+===========
 
 Intended purpose of this script:
 - Build the graphical user interface (GUI)
 - Facilitate gameplay controls and amend gameData as required
 
-Contents of this script:
-- Initialisation
+Contents
+--------
+- Game variables ('Global game variables')
+    Variables used to set important game settings
+
+- Start-up modes
+    Load the game in developer or normal mode
+
+- Gamestates
+    Settings for loading the game variations with specific MCV components
+
+- Initialisation ('Initialise MCV')
     Functions which only run once at the start to initialise the GUI and gameplay
 
-- Interactive gameplay functions
+- Game state and game data functions ('Alter game state')
+    Functions which are used to alter the game state and player data after or before initialisation
+
+- Interactive gameplay functions ('Events on user interaction')
     Functions which run multiple times, triggered on player interactions (e.g., enacting policies)
+
 
 Encapsulation:
 - This master file runs functions found in other script files containing 
@@ -19,45 +34,69 @@ collections of methods categorised by purpose.
 
 */
 
-// Global game variables
+
+/*  Global game variables */
+
+
+// Game data
 var gameData = null; // Game variables and public health data
-var leftPanel = null; // Important GUI window which displays information on nodes
 var gameState = 5; // State of the game
+//var leftPanel = null; // Important GUI window which displays information on nodes
+
+// Player information
 var currentSystemProgress = 0; // Player's progress in the current system league
 var playerUsername = null; // Player's username
 var playerInterventionCount = 0; // Number of interventions made by player, on 3 becomes a policy ad triggers an event
 var playerInterventionMax = 1; // Maximum number of interventions the player can make per policy
 
-// Developer controls for disabling preloading and loading game state directly for testing
+
+/* Start-up modes */
+
+
+// Loading settings
 window.onload = function(){
+    developerMode = false;
+    previewMode = true;
+
+    // Developer mode 
+    if(developerMode){ // Automatically start-up in specific mode for testing
+        
+        // Specify game state to load immediately
+        gameState = 5;
+
+        // Dismiss loading screen and load specified game state immediately
+        document.getElementById('loading-screen').style.display='none'; 
+        gamestates[gameState].action(); 
     
-    // Developer modes
-    const developerMode = false;
-    if(developerMode){
-        gameState = 3;
-        gamestates[gameState].action(); document.getElementById('loading-screen').style.display='none'; return;
     }
-    var previewMode = true;
-    if(previewMode){ 
-        // Show dev console instead of loading screen
+
+    // Preview mode
+    else if(previewMode){ // GUI to select mode to start-up for demonstration
+        
+        // Dismiss loading screen and show preview console
         document.getElementById('loading-screen').style.display='none'; 
         $('#dev-modal').modal('show')
         
-        // Buttons to choose mode
-        $('#dev-btn-3').click(function(){gameState=3})
-        $('#dev-btn-5').click(function(){gameState=5})
-        $('#dev-btn-6').click(function(){gameState=6})
+            // Give users buttons to choose game state to preview
+            $('#dev-btn-3').click(function(){gameState=3})
+            $('#dev-btn-5').click(function(){gameState=5})
+            $('#dev-btn-6').click(function(){gameState=6})
 
-        // Start game in chosen mode
-        $('#dev-modal').on('hidden.bs.modal', function(){gamestates[gameState].action();})    
+            // On dismiss load the chosen game state
+            $('#dev-modal').on('hidden.bs.modal', function(){gamestates[gameState].action();})    
     } 
+
     // Otherwise load game normally
-    else {preload();} // Preload assets and prepare splash
+    else {
+        preload(); // Preload assets and prepare splash
+        addButtonPressSound(); // Add sounds to button presses
+    } 
     
-    // Add sounds to all button presses
-    addButtonPressSound()
 }
-//window.onload = function(){gamestates[gameState].action()};
+
+
+/* Game states */
+
 
 // Data for the different gamestates in the game
 const gamestates = { // Different gamestates within the game (player levelling system)
@@ -212,6 +251,10 @@ const gamestates = { // Different gamestates within the game (player levelling s
     },
 }
 
+
+/* Initialise MCV */
+
+
 // Function to initialise the game data, view and controllers
 function initialise(profile, pval, maxInterventions, data, tutorial=false){
 
@@ -252,6 +295,10 @@ function initialise(profile, pval, maxInterventions, data, tutorial=false){
     
 }
 
+
+/* Change game state */
+
+
 // Function to load player data
 function loadPlayerData(username){
     
@@ -275,7 +322,6 @@ function loadPlayerData(username){
     }
 }
 
-
 // Function to increment the game state
 function incrementGamestate(){
 
@@ -292,15 +338,11 @@ function incrementGamestate(){
 
 }
 
-// Function to update game displays
-function updateTick(){
-    
-    // Update the GUI progress
-    //formatNodes(gameData);
 
-}
+/* Events on user interaction */
 
-// Function to configure what happens when players enact an intervention
+
+// Effect of players enacting an intervention
 function playerMadeIntervention(nodeId, direction='Increase'){
 
     // Make intervention
@@ -325,7 +367,7 @@ function playerMadeIntervention(nodeId, direction='Increase'){
     
     /* Score policy
         // Score intervention
-        const intervention = scoreInterventionSuccess(gameData);
+        const intervention = scoreIntervention(gameData);
         
         // Show score and progress
         showScoreScreen(gameData, intervention); // Show win score screen
@@ -353,19 +395,34 @@ function playerMadeIntervention(nodeId, direction='Increase'){
     //playerInterventionCount = 0;
 }
 
+// Effects on user choosing an answer
 function userChoseAnswer(nodeId){
+    playerInterventionCount ++; if(playerInterventionCount <= document.getElementById("interventions").value){
     
-    // Highlight node
-    highlightNode(nodeId);
+        // Highlight node
+        highlightNode(nodeId);
 
-    // Increment intervention count
-    playerInterventionCount ++;
+        // Make intervention
 
-    // Once 3 choices made send answer
-    if(playerInterventionCount >= 3){
-        setTimeout(function(){
-            alert('Test answers recorded. You scored: $SCORE')
-            gamestates[gameState].action();
-        }, 2000)
+            // Record intervention target
+            document.getElementById('test_interventions').innerHTML += `${gameData.nodes[nodeId].label} `;
+
+            // Infer intervention value and valence
+            var interventionValue = gameData.nodes[nodeId].prevalenceIncrease;
+                if(!(gameData.nodes[nodeId].isGood)){interventionValue *= -1};
+
+            // Calculate effects
+            const results = runPropagation(gameData, nodeId, interventionValue);
+        
+        // Score intervention
+        const score  = scoreIntervention(gameData, method='test');
+            document.getElementById('test_score_objective').innerText = to4SF(score.scores.objective);
+            document.getElementById('test_score_goodness').innerText = to4SF(score.scores.goodness);
+    
+        // Record effects
+        document.getElementById('test_allEffects').innerHTML += `<hr> Intervention on ${gameData.nodes[nodeId].label} <hr>`;
+        for(const [nodeId, prevalenceChange] of Object.entries(results.result)){
+            document.getElementById('test_allEffects').innerHTML += `${gameData.nodes[nodeId].label} changed by ${to4SF(prevalenceChange)} <br>`;
+        };    
     }
 }
