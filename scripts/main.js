@@ -76,11 +76,9 @@ const gamestates = { // Different gamestates within the game (player levelling s
             // Remove login screen
             dismissSplash();
 
-            // Play intro (no intro currently)
-            //playIntro();
-
-            // Play soundtrack
+            // Play introduction
             playSoundtrack();
+            //playIntro(); // Play intro (no intro currently)
 
             // Continue to tutorial
             setTimeout(function(){
@@ -91,18 +89,24 @@ const gamestates = { // Different gamestates within the game (player levelling s
     2 : {
         name: 'tutorial',
         action: function(){
+
+            // Configure view
+            setMiranaSettings('game'); 
             
             // Start tutorial
             initialiseTutorial();
 
-            // Change skybox
+            // Initialise model, view, and controller
+            initialise(
+                profile='game',
+                pval=1, 
+                maxInterventions=1, 
+                data=tutorialData, 
+                tutorial=true);
+
+            // Set background
             document.body.style.background = `url("images/spaceboxes/3.jpg")`;
             document.body.style.backgroundSize = `cover`;
-
-            // Init game
-            initialise(pval=1, maxInterventions=1, data=tutorialData, tutorial=true);
-
-            // Set planet name
             setText('GUI-currentPlanet', `Aeries-IV`);
         },
         leagueName: 'Tutorial',
@@ -112,16 +116,19 @@ const gamestates = { // Different gamestates within the game (player levelling s
     3 : {
         name: 'interactiveVisualisation',
         action:  function(){
+
+            // Configure view
+            setMiranaSettings('interactiveVisualisation'); 
             
-            // Init game
-            initialise(pval=1, maxInterventions=1, data=jsonData);
-
-            // Switch view
-            hideGameUI();
-            showInteractiveVisUI();
-
-            // Switch controls
-            interactiveVisualisationControls();
+            // Initialise model, view, and controller
+            initialise(
+                profile='interactiveVisualisation',
+                pval=1,
+                maxInterventions=1, 
+                data=jsonData);
+            hideGameUI(); // Hide game UI
+            showInteractiveVisUI(); // Show interactive vis UI
+            interactiveVisualisationControls(); // Controls for interactive vis
 
         },
         leagueName: 'interactive visualisation',
@@ -132,12 +139,19 @@ const gamestates = { // Different gamestates within the game (player levelling s
         name: 'game',
         action:  function(){
 
+            // Configure view
+            setMiranaSettings('game'); 
+
             // Change skybox
             document.body.style.background = `url("images/spaceboxes/6.jpg")`;
             document.body.style.backgroundSize = `cover`;
             
-            // Init game
-            initialise(pval=1, maxInterventions=1, data=jsonData);
+            // Initialise model, view, and controller
+            initialise(
+                profile='game',
+                pval=1, 
+                maxInterventions=1, 
+                data=jsonData);
 
         },
         leagueName: 'Persephone',
@@ -148,17 +162,18 @@ const gamestates = { // Different gamestates within the game (player levelling s
         name: 'visualisation for test',
         action:  function(){
 
-            // Format nodes for visibility
+            // Configure view
+            setMiranaSettings('test'); 
 
-            // Init vis
-            initialise(pval=1, maxInterventions=0, data=jsonData);
-
-            // Switch view
-            hideGameUI();
-            showTestUI();
-
-            // Switch controls
-            initialiseTestControls();
+            // Initialise model, view, and controller
+            initialise(
+                profile='visualisation', 
+                pval=1, 
+                maxInterventions=0, 
+                data=jsonData);
+            hideGameUI(); // Remove game UI
+            showTestUI(); // Add test UI
+            initialiseTestControls(); // Controls for test
 
         },
         leagueName: 'visualisation',
@@ -169,15 +184,16 @@ const gamestates = { // Different gamestates within the game (player levelling s
         name: 'visualisation of data',
         action:  function(){
 
-            // Configure visualisation to show beta weights
-            showBetaWeights(); 
+            // Configure view
+            setMiranaSettings('visualisation'); 
 
-            // Init vis
-            settings.nodes.fill='white';
-            initialise(pval=1, maxInterventions=0, data=jsonData);
-
-            // Switch view
-            hideGameUI();
+            // Initialise model, view, and controller
+            initialise(
+                profile='visualisation',
+                pval=1, 
+                maxInterventions=0, 
+                data=jsonData);
+            hideGameUI(); // Remove game UI
 
         },
         leagueName: 'visualisation',
@@ -197,7 +213,7 @@ const gamestates = { // Different gamestates within the game (player levelling s
 }
 
 // Function to initialise the game data, view and controllers
-function initialise(pval, maxInterventions, data, tutorial=false){
+function initialise(profile, pval, maxInterventions, data, tutorial=false){
 
     // Initialise gameData
     
@@ -216,7 +232,7 @@ function initialise(pval, maxInterventions, data, tutorial=false){
     // Initialise GUI
 
         // Network visualisation
-        initialiseView(gameData, pval, gamestates[gameState], currentSystemProgress); 
+        initialiseView(profile, gameData, pval, gamestates[gameState], currentSystemProgress); 
         
         // Set node sizes
         //formatNodes(gameData);

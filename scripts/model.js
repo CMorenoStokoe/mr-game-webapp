@@ -10,17 +10,29 @@ This function is called by the main script, and calls functions in lower order f
 
 */
 
+
+/* Initialise data */
+
+
 // Function to create data for the game
 function initialiseData(nodes, edges, pValueThreshold){
 
 
-    /* Filter data */
+    /* Filter and patch data */
         
         // Filter out edges above p value threshold
         var filteredEdges = filterByPval(edges, pValueThreshold);
 
-        // Initialise DataClass 
-        var gameData = new DataClass(nodes, filteredEdges); // Populate DataClass with gameData
+        // Remove double negatives
+        negateTrait(
+            traitId='ukb_b_5076',
+            newName='Socialisation',
+            newIcon='social_chatBubble_alt', 
+            nodes=nodes, edges=filteredEdges);
+        
+
+    /* Initialise DataClass */
+    var gameData = new DataClass(nodes, filteredEdges); // Populate DataClass with gameData
 
 
     /* Configure node data */
@@ -54,6 +66,7 @@ function initialiseData(nodes, edges, pValueThreshold){
         
     }
 
+
     /* Configure edge data */
     for(const [key, value] of Object.entries(gameData.edges)){
 
@@ -67,13 +80,13 @@ function initialiseData(nodes, edges, pValueThreshold){
         // Calculate percent change in outcome relative to its min-max value range
         value.b_pctOfRange = (exposure.prevalenceIncrease * value.b) / outcome.range * 100;
         
-
         // Update nodes' edge lists
         exposure.edges.push(value);
             exposure.edgeCount =  exposure.edges.length;
         outcome.edges.push(value);
             outcome.edgeCount =  outcome.edges.length;
     }    
+
 
     /* Simplify and validate data view */
 
@@ -84,6 +97,7 @@ function initialiseData(nodes, edges, pValueThreshold){
             };
         }
 
+        
     /* Return final gameData */
         
         // Update graph data
@@ -109,6 +123,36 @@ function initialiseData(nodes, edges, pValueThreshold){
         console.log('GAMEDATA: ', gameData, `${loopsRemoved} loops removed`);
         return(gameData);
 }
+
+// Remove double negatives for clarity
+function negateTrait(traitId, newName, newIcon, nodes, edges){
+
+    // Update nodes
+    for(const node of nodes){
+        if(node.id==traitId){
+            node['label'] = newName; // Change name
+        }
+    }
+
+    // Update edges
+    for(const edge of edges){
+        if(edge['id.exposure']==traitId){
+            edge.b*=-1; // Flip betas
+            edge['exposure'] = newName; // Change name
+        }else if(edge['id.outcome']==traitId){
+            edge.b*=-1; // Flip betas
+            edge['outcome'] = newName; // Change name
+        }
+    }; 
+
+    // Update icon and goodness records
+    icons[traitId] = newIcon; // Update icon;
+    isGood[traitId]= !isGood[traitId]; // Record trait as good
+
+}
+
+
+/* Scoring intervention effectiveness */
 
 
 // Function to get score for policy
