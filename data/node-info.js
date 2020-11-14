@@ -68,11 +68,11 @@ const isGood = {
     'ieu_a_1239': true, //Education, 
     'ukb_b_19953': false, //BMI, 
     'ukb_b_5238': true, //Intelligence, 
-    'ukb_b_4956': 'neutral', //Eveningness, 
+    'ukb_b_4956': false, //Eveningness, 
     'ukb_b_5076': false, //Not socialising, 
     'ieu_a_961': false, //Smoking, 
     'ukb_b_4710': true, //Exercise, 
-    'ukb_b_5237': 'neutral', //Coffee intake, 
+    'ukb_b_5237': false, //Coffee intake, 
     'ieu_a_7': false, //CHD, 
     'ukb_b_4424': true, //Sleep duration, 
     'ieu_a_24': false, //Diabetes

@@ -441,9 +441,10 @@
         <!-- Reset button -->
         <button id='test_reset' class='btn btn-lrg btn-custom' onclick="gamestates[gameState].action(); playerInterventionCount = 0;">Reset <i class="fas fa-undo-alt"></i></button>
 
-
     </div>
-    
+
+    <!-- Modals -->
+    <div id='modals'></div>    
 
     <!--[if lt IE 7]>
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
@@ -507,11 +508,15 @@
     <script src="data/database.js"></script> 
 
     <!-- Secondary scripts: Game modules --> 
+    <script src="scripts/notifications.js"></script> 
     <script src="scripts/effects-readout.js"></script> 
     <script src="scripts/winscreen.js"></script>
     <script src="scripts/intro.js"></script> 
     <script src="scripts/tutorial.js"></script> 
     <script src="scripts/scoring.js"></script> 
+    <script src="scripts/map.js"></script> 
+    <script src="scripts/log.js"></script> 
+    <script src="scripts/menu.js"></script> 
 
     <!-- Main scripts: MVC -->
     <script src="scripts/model.js"></script> 

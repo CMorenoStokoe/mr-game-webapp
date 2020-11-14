@@ -40,7 +40,7 @@ collections of methods categorised by purpose.
 
 // Game data
 var gameData = null; // Game variables and public health data
-var gameState = 5; // State of the game
+var gameState = 0; // State of the game
 //var leftPanel = null; // Important GUI window which displays information on nodes
 
 // Player information
@@ -55,14 +55,14 @@ var playerInterventionMax = 1; // Maximum number of interventions the player can
 
 // Loading settings
 window.onload = function(){
-    developerMode = false;
+    developerMode = true;
     previewMode = true;
 
     // Developer mode 
     if(developerMode){ // Automatically start-up in specific mode for testing
         
         // Specify game state to load immediately
-        gameState = 5;
+        gameState = 1;
 
         // Dismiss loading screen and load specified game state immediately
         document.getElementById('loading-screen').style.display='none'; 
@@ -78,9 +78,9 @@ window.onload = function(){
         $('#dev-modal').modal('show')
         
             // Give users buttons to choose game state to preview
-            $('#dev-btn-3').click(function(){gameState=3})
-            $('#dev-btn-5').click(function(){gameState=5})
-            $('#dev-btn-6').click(function(){gameState=6})
+            $('#dev-btn-3').click(function(){gameState='iv'})
+            $('#dev-btn-5').click(function(){gameState='vis'})
+            $('#dev-btn-6').click(function(){gameState='vis2'})
 
             // On dismiss load the chosen game state
             $('#dev-modal').on('hidden.bs.modal', function(){gamestates[gameState].action();})    
@@ -153,28 +153,6 @@ const gamestates = { // Different gamestates within the game (player levelling s
             leagueMaxInterventions: 1,
     },
     3 : {
-        name: 'interactiveVisualisation',
-        action:  function(){
-
-            // Configure view
-            setMiranaSettings('interactiveVisualisation'); 
-            
-            // Initialise model, view, and controller
-            initialise(
-                profile='interactiveVisualisation',
-                pval=1,
-                maxInterventions=1, 
-                data=jsonData);
-            hideGameUI(); // Hide game UI
-            showInteractiveVisUI(); // Show interactive vis UI
-            interactiveVisualisationControls(); // Controls for interactive vis
-
-        },
-        leagueName: 'interactive visualisation',
-            leagueProgressMax: 999,
-            leagueMaxInterventions: 3,
-    },
-    4 : {
         name: 'game',
         action:  function(){
 
@@ -197,7 +175,39 @@ const gamestates = { // Different gamestates within the game (player levelling s
             leagueProgressMax: 25,
             leagueMaxInterventions: 1,
     },
-    5 : {
+    4 : {
+        name: 'endScreen',
+        action:  function(){
+
+            // Redirect to feedback (adapted from: https://stackoverflow.com/questions/16973240/link-in-alert-boxes-javascript)
+            if (window.confirm(' You win! Thank you for playing this gameplay slice, please give us your thoughts (click ok to be redirected)!')){
+                window.location.href='https://bristolexppsych.eu.qualtrics.com/jfe/form/SV_3QWmGYxIG6WLHmd';
+            };
+        },
+    },
+    iv : {
+        name: 'interactiveVisualisation',
+        action:  function(){
+
+            // Configure view
+            setMiranaSettings('interactiveVisualisation'); 
+            
+            // Initialise model, view, and controller
+            initialise(
+                profile='interactiveVisualisation',
+                pval=1,
+                maxInterventions=1, 
+                data=jsonData);
+            hideGameUI(); // Hide game UI
+            showInteractiveVisUI(); // Show interactive vis UI
+            interactiveVisualisationControls(); // Controls for interactive vis
+
+        },
+        leagueName: 'interactive visualisation',
+            leagueProgressMax: 999,
+            leagueMaxInterventions: 3,
+    },
+    vis : {
         name: 'visualisation for test',
         action:  function(){
 
@@ -219,7 +229,7 @@ const gamestates = { // Different gamestates within the game (player levelling s
             leagueProgressMax: 999,
             leagueMaxInterventions: 3,
     },
-    6 : {
+    vis2 : {
         name: 'visualisation of data',
         action:  function(){
 
@@ -238,16 +248,6 @@ const gamestates = { // Different gamestates within the game (player levelling s
         leagueName: 'visualisation',
             leagueProgressMax: 999,
             leagueMaxInterventions: 3,
-    },
-    7 : {
-        name: 'endScreen',
-        action:  function(){
-
-            // Redirect to feedback (adapted from: https://stackoverflow.com/questions/16973240/link-in-alert-boxes-javascript)
-            if (window.confirm(' You win! Thank you for playing this gameplay slice, please give us your thoughts (click ok to be redirected)!')){
-                window.location.href='https://bristolexppsych.eu.qualtrics.com/jfe/form/SV_3QWmGYxIG6WLHmd';
-            };
-        },
     },
 }
 
@@ -360,12 +360,9 @@ function playerMadeIntervention(nodeId, direction='Increase'){
         showInterventionEffects(propagation.path.edges); 
 
         // Show effects in list in GUI
-        //showPolicyEffects(propagation.result); 
-
-        // Update display
-        //updateTick();
+        showPolicyEffects(propagation.result); 
     
-    /* Score policy
+    // Score policy
         // Score intervention
         const intervention = scoreIntervention(gameData);
         
@@ -389,7 +386,6 @@ function playerMadeIntervention(nodeId, direction='Increase'){
                 gamestates[gameState].action();
             })
         }
-    */
 
     // Reset intervention count
     //playerInterventionCount = 0;

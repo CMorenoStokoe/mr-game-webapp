@@ -88,7 +88,6 @@ function settingsProfile_Default(){
         // Change text labels since we have icons for labels
         settings.nodes.labels.posX = 0; // Center node labels 
             settings.nodes.labels.anchor = 'middle';
-            settings.nodes.labels.class = 'nodeLabel'; // Start hidden
             settings.nodes.labels.color = 'white'; // Label text color
             settings.nodes.labels.posY = settings.nodes.circleRadius + 20; // Appear below nodes
         settings.nodes.labels.background = 'black'; // Label bg color

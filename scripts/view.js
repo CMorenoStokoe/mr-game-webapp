@@ -44,7 +44,7 @@ function initialiseView(
 
             // Configure view
             fadeIn_SVG();
-            setUI_objective();
+            setUI_objective(); // Show objective
 
             break;
 
@@ -57,7 +57,7 @@ function initialiseView(
             generateGraphFromJSON(gameData.toD3().nodes, gameData.toD3().links, '#svg-main', settings, pValueThreshold); 
 
             // Configure view
-            setUI_objective();
+            setUI_objective(); // Show objective
             fadeIn_SVG();
 
             break;
@@ -72,10 +72,14 @@ function initialiseView(
             generateGraphFromJSON(gameData.toD3().nodes, gameData.toD3().links, '#svg-main', settings, pValueThreshold); 
 
             // Configure view
-            setUI_objective();
-            setUI_planetInfo();
+            setUI_objective(); // Show objective
+            setUI_planetInfo(); // Show planet
             fadeIn_SVG();
             fadeIn_planetInfo();
+            $('.label').css('opacity', 0); // Start node labels hidden
+            
+            // Create game menu bar
+            createMenu(); // menu.js
 
             break;
 
@@ -238,9 +242,9 @@ function formatNode(node, interval = 500){
     // Calculate node color
     var color = null;
         switch(isGood[node.id]){ // Scale color to show whether changes are good or bad
-            case true: color = d3.interpolateRdYlGn(0.5 + (node.change / 100)); break;
-            case false: color = d3.interpolateRdYlGn(0.5 - (node.change / 100)); break;
-            default: color = 'LEMONCHIFFON'; break;
+            case true: color = settings.nodes.colorSchemeForInterpolation(0.5 + (node.change / 100)); break;
+            case false: color = settings.nodes.colorSchemeForInterpolation(0.5 - (node.change / 100)); break;
+            default: color = 'white'; break;
         }
         if(node.change==0){color='white'}; // Color no change white
 
