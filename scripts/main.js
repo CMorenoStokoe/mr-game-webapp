@@ -62,7 +62,7 @@ window.onload = function(){
     if(developerMode){ // Automatically start-up in specific mode for testing
         
         // Specify game state to load immediately
-        gameState = 1;
+        gameState = 'iv';
 
         // Dismiss loading screen and load specified game state immediately
         document.getElementById('loading-screen').style.display='none'; 
@@ -201,7 +201,7 @@ const gamestates = { // Different gamestates within the game (player levelling s
             hideGameUI(); // Hide game UI
             showInteractiveVisUI(); // Show interactive vis UI
             interactiveVisualisationControls(); // Controls for interactive vis
-
+            hideAllLabels(gameData.nodes);
         },
         leagueName: 'interactive visualisation',
             leagueProgressMax: 999,
@@ -344,6 +344,9 @@ function incrementGamestate(){
 
 // Effect of players enacting an intervention
 function playerMadeIntervention(nodeId, direction='Increase'){
+
+    // Increment player intervention count
+    playerInterventionCount ++;
 
     // Make intervention
         // Set intervention value

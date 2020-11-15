@@ -217,7 +217,7 @@ function settingsProfile_PrevalenceLabels(){
 			.attr("x", -settings.nodes.labels.backgroundWidth()/2)
 			.attr("y", 0)
 			.attr("width", settings.nodes.labels.backgroundWidth)
-			.attr("height", settings.nodes.labels.backgroundHeight)
+			.attr("height", settings.nodes.labels.backgroundHeight * 0.6)
 			.attr("stroke", 'none')
 			.attr("stroke-width", '1px')
             .attr("fill", 'ghostwhite');

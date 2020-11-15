@@ -95,7 +95,8 @@ function addOnclickEventsToNodes(gameData){
 function interactiveVisualisationControls(){
     
     // Reset button (shown on interactive visualisation)
-    addOnclickEvent('reset-button', function(){gamestates[gameState].action()});
+    // [on DOM]
+    //addOnclickEvent('iv_reset', function(){gamestates[gameState].action()});
 
 }
 
