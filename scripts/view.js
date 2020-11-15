@@ -112,14 +112,18 @@ function initialiseView(
     // Set objective text, progress and icon    
     function setUI_objective(){
         
-        // Set objective indicator
-        document.getElementById('goal-icon').src = gameData.objective.icon; // Set icon 
-        if(gameData.objective.isGood){
-            setText('goal', `Raise ${gameData.objective.label}`);
-            document.getElementById('goal-indicator').className = 'fas fa-chevron-up chevron-pos';
-        } else {
-            setText('goal', `Lower ${gameData.objective.label}`);
-            document.getElementById('goal-indicator').className = 'fas fa-chevron-down chevron-neg';
+        // If an objective has been set
+        if(gameData.objective){
+
+            // Set objective indicator
+            document.getElementById('goal-icon').src = gameData.objective.icon; // Set icon 
+            if(gameData.objective.isGood){
+                setText('goal', `Raise ${gameData.objective.label}`);
+                document.getElementById('goal-indicator').className = 'fas fa-chevron-up chevron-pos';
+            } else {
+                setText('goal', `Lower ${gameData.objective.label}`);
+                document.getElementById('goal-indicator').className = 'fas fa-chevron-down chevron-neg';
+            }
         }
     }   
 
@@ -156,8 +160,8 @@ function initialiseView(
 function showInterventionEffects(paths, interval = 2500){
     
     // Focus on effects by making other nodes transparent
-    const transparency = 0.2;
-    setNodeAndEdgeOpacity(transparency);
+    const transparency = 0.3;
+    setNodeOpacity(transparency);
 
     // Filter paths to show unique edges only
     var dictionaryFilter = {};
@@ -245,7 +249,7 @@ function showInterventionEffects(paths, interval = 2500){
         // Once all effects have been shown
         else { 
             setTimeout(function(){
-                setNodeAndEdgeOpacity(1); // Return to normal transparency
+                setNodeOpacity(1); // Return to normal transparency
             }, interval);
         }
     }    
@@ -377,17 +381,10 @@ function hideAllLabels(nodes){
 }
 
 // Set opacity of nodes and edges
-function setNodeAndEdgeOpacity(value){
+function setNodeOpacity(value){
     
     d3.selectAll('circle').style('opacity', value);
     d3.selectAll('image').style('opacity', value);
-    
-    /* Edge opacity not currently working
-    for(const [id, edge] of Object.entries(gameData.edges)){
-        
-        d3.select(`#edge_${id}`)
-            .style('opacity', 1);
-    }*/
     
 }
 

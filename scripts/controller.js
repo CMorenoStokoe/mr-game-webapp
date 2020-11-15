@@ -75,18 +75,26 @@ function addOnclickEventsToNodes(gameData){
     // Add onclick function to nodes
     d3.selectAll('g').on("click", function(){
 
-        // If this node is a valid intervention target
-        if(this.id){ // Ignore anomalous behaviour where 'this' is window (ignores any element calling this without an ID)
-            if(!(this.id == gameData.objective.id)){ // Disable intervening directly on the objective
-
-                // Select trait for intervention
-                document.getElementById('intervention-text').innerText = gameData.nodes[this.id].label;
-                document.getElementById('intervention-btn').setAttribute('data-nodeId', this.id);
-                
-                // Order intervention (direct instead of bringing up modal)
-                playerMadeIntervention(this.id);
-                //$('#intervention-modal').modal('show');
+        // Intervene on node if it is a valid  target  
+        if(this.id){ // Ignore anomalous behaviour (where 'this' is window since this ignores any element calling this without an ID)
+            // Disable intervening directly on the objective
+            if(gameData.objective == undefined){
+                interveneOnTrait(this.id);
+            } else if(!(this.id == gameData.objective.id)){ 
+                interveneOnTrait(this.id);
             }
+        }
+
+        // Intervention function
+        function interveneOnTrait(id){
+            
+            // Select trait for intervention
+            document.getElementById('intervention-text').innerText = gameData.nodes[id].label;
+            document.getElementById('intervention-btn').setAttribute('data-nodeId', id);
+
+            // Order intervention
+            playerMadeIntervention(id);
+            //$('#intervention-modal').modal('show'); // Disabled: Brings up modal to select intervention direction)
         }
     })
 }

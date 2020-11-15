@@ -141,7 +141,7 @@ const gamestates = { // Different gamestates within the game (player levelling s
                 pval=1, 
                 maxInterventions=1, 
                 data=tutorialData, 
-                tutorial=true);
+                objective='ukb_b_5238');
 
             // Set background
             document.body.style.background = `url("images/spaceboxes/3.jpg")`;
@@ -197,11 +197,13 @@ const gamestates = { // Different gamestates within the game (player levelling s
                 profile='interactiveVisualisation',
                 pval=1,
                 maxInterventions=1, 
-                data=jsonData);
+                data=jsonData,
+                objective = 'none');
             hideGameUI(); // Hide game UI
             showInteractiveVisUI(); // Show interactive vis UI
             interactiveVisualisationControls(); // Controls for interactive vis
             hideAllLabels(gameData.nodes);
+            
         },
         leagueName: 'interactive visualisation',
             leagueProgressMax: 999,
@@ -219,7 +221,8 @@ const gamestates = { // Different gamestates within the game (player levelling s
                 profile='visualisation', 
                 pval=1, 
                 maxInterventions=0, 
-                data=jsonData);
+                data=jsonData,
+                objective = 'none');
             hideGameUI(); // Remove game UI
             showTestUI(); // Add test UI
             initialiseTestControls(); // Controls for test
@@ -241,7 +244,8 @@ const gamestates = { // Different gamestates within the game (player levelling s
                 profile='visualisation',
                 pval=1, 
                 maxInterventions=0, 
-                data=jsonData);
+                data=jsonData,
+                objective = 'none');
             hideGameUI(); // Remove game UI
 
         },
@@ -256,7 +260,7 @@ const gamestates = { // Different gamestates within the game (player levelling s
 
 
 // Function to initialise the game data, view and controllers
-function initialise(profile, pval, maxInterventions, data, tutorial=false){
+function initialise(profile, pval, maxInterventions, data, objective='random'){
 
     // Initialise gameData
     
@@ -269,8 +273,17 @@ function initialise(profile, pval, maxInterventions, data, tutorial=false){
         //gameData.interventionStrength = 0.05; 
             
         // Choose an objective target
-        gameData.setObjective();
-            if(tutorial){gameData.setObjective('ukb_b_5238');}
+        switch(objective){
+            case 'random':
+                gameData.setObjective();
+                break;
+            case 'none':
+                break;
+            default:
+                gameData.setObjective(objective);
+                break;
+        }
+            
 
     // Initialise GUI
 
@@ -367,27 +380,52 @@ function playerMadeIntervention(nodeId, direction='Increase'){
     
     // Score policy
         // Score intervention
-        const intervention = scoreIntervention(gameData);
-        
-        // Show score and progress
-        showScoreScreen(gameData, intervention); // Show win score screen
-        currentSystemProgress += intervention.scores.total;  // Update system progress
-        console.log(`Intervention scored and added to current sys progress ${currentSystemProgress}: `, intervention)
+        var intervention = null;
+        switch(gameState){
+            case 'vis':
+                // Score intervention
+                intervention  = scoreIntervention(gameData, method='test');
+                                
+                // Convey results
+                document.getElementById('test_score_objective').innerText = to4SF(score.scores.objective);
+                document.getElementById('test_score_goodness').innerText = to4SF(score.scores.goodness);
+                document.getElementById('test_allEffects').innerHTML += `<hr> Intervention on ${gameData.nodes[nodeId].label} <hr>`;
+                for(const [nodeId, prevalenceChange] of Object.entries(results.result)){
+                    document.getElementById('test_allEffects').innerHTML += `${gameData.nodes[nodeId].label} changed by ${to4SF(prevalenceChange)} <br>`;
+                };    
+                break;
 
-        // If the player has scored high enough to complete the system
-        if(currentSystemProgress >= gamestates[gameState].leagueProgressMax){
+            case 'game':
+                // Score intervention
+                intervention  = scoreIntervention(gameData, method='game');
+                
+                // Show score and progress
+                showScoreScreen(gameData, intervention); // Show win score screen
+                currentSystemProgress += intervention.scores.total;  // Update system progress
+                console.log(`Intervention scored and added to current sys progress ${currentSystemProgress}: `, intervention)
 
-            // Allow player to advance to next system
-            $('#policyEffects-button').one('click', function(){
-                incrementGamestate();
-            })
+                // If the player has scored high enough to complete the system
+                if(currentSystemProgress >= gamestates[gameState].leagueProgressMax){
 
-        } else { // Else if the player has not scored high enough to complete the system
+                    // Allow player to advance to next system
+                    $('#policyEffects-button').one('click', function(){
+                        incrementGamestate();
+                    })
 
-            // Allow the player to continue in a new planet within the system
-            $('#policyEffects-button').one('click', function(){
-                gamestates[gameState].action();
-            })
+                } else { // Else if the player has not scored high enough to complete the system
+
+                    // Allow the player to continue in a new planet within the system
+                    $('#policyEffects-button').one('click', function(){
+                        gamestates[gameState].action();
+                    })
+                }
+                
+                break;
+
+            default:
+                // Score intervention
+                intervention  = scoreIntervention(gameData, method='none');
+                break;
         }
 
     // Reset intervention count

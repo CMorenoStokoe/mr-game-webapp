@@ -107,7 +107,7 @@ function settingsProfile_Default(){
 
         // Make overlapping edges more visible
         settings.links.opacity = 0.5;
-        settings.arrows.opacity = 1;
+        settings.arrows.opacity = 0.5;
         
         // Hide edge weights
         settings.links.scaleToBeta.method = 'none'; 

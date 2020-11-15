@@ -27,17 +27,23 @@ function showPolicyEffects(effects){
     // Show side-effects
     for(const [key, value] of Object.entries(effects)){
 
-        // Show the main objective differently
-        if(key == gameData.objective.id){
-            document.getElementById('GUI-goal-p').style.background = 'green';
-            $('#goal-success').show();
-            continue;
-        } 
+        // Show the main objective differently (if enabled)
+        if(gameData.objective){
+            if(key == gameData.objective.id){
+
+                // Change color of progress
+                document.getElementById('GUI-goal-p').style.background = 'green';
+                
+            } 
+        }
 
         // Create trait effect bubble showing trait effect
         constructTraitEffectBubble(key, value, `policyEffect-${count}`, 'policyEffects-sideeffects');
         
-        // Fade in
+        // Show success modal
+        $('#goal-success').show();
+
+        // Fade in effects
         $(`#policyEffect-${count}`).animate({opacity: 1}, 500 + (500*count));
 
         // Increment count

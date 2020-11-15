@@ -23,6 +23,9 @@ function scoreIntervention(data, method='game'){
         
         case 'test':
             return scoringMethod_test(data);
+
+        case 'none':
+            return null;
         
         default: console.log(`ERROR #01: Scoring could not be done (method ${method} not recognised)`);
     }
