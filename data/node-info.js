@@ -33,26 +33,27 @@ const icons = {
 }
 
 const nodeValues = {
-    'ukb_b_4424': {'prevalence': 7.15, 'min': 1, 'max': 23, 'units':'Hrs/d'},
-    'ukb_b_4956': {'prevalence': 2.19, 'min': 1, 'max': 4, 'units':'Category'},
-    'ukb_d_SLEEP': {'prevalence': 0.022, 'min': 0, 'max': 1, 'units':'Odds (%)'},
-    'ukb_b_4062': {'prevalence': 4.95, 'min': 1, 'max': 6, 'units':'Category'},
-    'ieu_a_1187': {'prevalence': 0.04, 'min': 0, 'max': 1, 'units':'Odds (%)'},
-    'ukb_b_6519': {'prevalence': 0.75, 'min': 0, 'max': 1, 'units':'Odds (%)'},
-    'ukb_b_5779': {'prevalence': 3.56, 'min': 1, 'max': 6, 'units':'Category'},
-    'ieu_a_961': {'prevalence': 0.018, 'min': 0, 'max': 145, 'units':'Cigs/day'},
-    'ieu_a_1239': {'prevalence': 16.8, 'min': 4.4, 'max': 29.4, 'units':'Years'},
-    'ukb_b_19953': {'prevalence': 27, 'min': 10, 'max': 70, 'units':'Units'},
-    'ukb_b_5238': {'prevalence': 6, 'min': 0, 'max': 13, 'units':'Test score'},
-    'ukb_b_8476': {'prevalence': 0.18, 'min': 0, 'max': 1, 'units':'Odds (%)'},
-    'ukb_b_4710': {'prevalence': 3.66, 'min': 0, 'max': 7, 'units':'Days/wk'},
-    'ukb_b_5076': {'prevalence': 0.25, 'min': 0, 'max': 1, 'units':'Odds (%)'},
-    'ieu_a_118': {'prevalence': 1.482, 'min': 0, 'max': 3, 'units':'Arbitrary score'},
-    'ukb_b_5237': {'prevalence': 2.1377, 'min': 0, 'max': 5, 'units':'Cups/wk'},
-    'ieu_a_24': {'prevalence': 0.056, 'min': 0, 'max': 1, 'units':'Odds (%)'},
-    'ieu_a_7': {'prevalence': 0.014, 'min': 0, 'max': 1, 'units':'Odds(%)'},
-    'ieu_a_1018': {'prevalence': 1, 'min': 0, 'max': 2, 'units':'SD score'},
-    'ukb_b_3957': {'prevalence': 2.05, 'min': 1, 'max': 3, 'units':'Category'},
+    'ukb_b_8476': {'prevalence': 3, 'min': 0, 'max': 6, 'units':'SD', 'SD':1},
+    'ukb_b_6519': {'prevalence': 3, 'min': 0, 'max': 6, 'units':'SD', 'SD':1},
+    'ukb_b_5779': {'prevalence': 3, 'min': 0, 'max': 6, 'units':'SD', 'SD':1},
+    'ukb_b_5238': {'prevalence': 3, 'min': 0, 'max': 6, 'units':'SD', 'SD':1},
+    'ukb_b_5237': {'prevalence': 3, 'min': 0, 'max': 6, 'units':'SD', 'SD':1},
+    'ukb_b_5076': {'prevalence': 3, 'min': 0, 'max': 6, 'units':'SD', 'SD':1},
+    'ukb_b_4956': {'prevalence': 3, 'min': 0, 'max': 6, 'units':'SD', 'SD':1},
+    'ukb_b_4710': {'prevalence': 3, 'min': 0, 'max': 6, 'units':'SD', 'SD':1},
+    'ukb_b_3957': {'prevalence': 3, 'min': 0, 'max': 6, 'units':'SD', 'SD':1},
+    'ukb_b_19953': {'prevalence': 3, 'min': 0, 'max': 6, 'units':'SD', 'SD':1},
+    'ieu_a_961': {'prevalence': 0.018, 'min': 0, 'max': 35, 'units':'Cigs/day', 'SD':11.7},
+    'ieu_a_7': {'prevalence': 0.014, 'min': 0, 'max': 1, 'units':'Odds (%)', 'SD':null},
+    'ieu_a_24': {'prevalence': 0.056, 'min': 0, 'max': 1, 'units':'Odds (%)', 'SD':null},
+    'ieu_a_1187': {'prevalence': 0.04, 'min': 0, 'max': 1, 'units':'Odds (%)', 'SD':null},
+    'ieu_a_118': {'prevalence': 1.05, 'min': 0, 'max': 2.1, 'units':'Arbitrary score', 'SD':0.35},
+    'ieu_a_1018': {'prevalence': 3, 'min': 0, 'max': 6, 'units':'SD', 'SD':1},
+    'ieu_a_1239': {'prevalence': 16.8, 'min': 4.4, 'max': 28.4, 'units':'Years', 'SD':4.2},
+
+    // Unused traits
+    'ukb_b_4424': {'prevalence': 7.15, 'min': 1, 'max': 23, 'units':'Hrs/d', 'SD':1},
+    'ukb_d_SLEEP': {'prevalence': 0.022, 'min': 0, 'max': 1, 'units':'Odds (%)', 'SD':1},
 }
 
 const isGood = {

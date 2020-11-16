@@ -38,6 +38,7 @@ function setMiranaSettings(profile){
             settingsProfile_Default();
             settingsProfile_BetaWeights();
             settingsProfile_PrevalenceLabels();
+            settingsProfile_enableOutlines();
             break;
 
         default: console.log(`ERROR (#2): Unknown settings profile (${profile})`); break;
@@ -111,6 +112,10 @@ function settingsProfile_Default(){
         // Make overlapping edges more visible
         settings.links.opacity = 1;
         settings.arrows.opacity = 1;
+
+        // Make arrows smaller
+        settings.arrows.size = 7;
+        settings.links.outlineArrowWeight = 7;
         
         // Hide edge weights
         settings.links.scaleToBeta.method = 'none'; 
@@ -126,32 +131,41 @@ function settingsProfile_BetaWeights(){
 
     // Make edges more visible
     settings.links.scaleToBeta.minWidth = 1;
-    settings.links.scaleToBeta.scaleFactor = 5;
-    settings.links.scaleToBeta.scaleFactor = 5;
+    settings.links.scaleToBeta.scaleFactor = 3;
 
     // Scale more accurately to their standardised effects in propagation
-    settings.links.scaleToBeta.maxWidth = settings.links.scaleToBeta.minWidth + (settings.links.scaleToBeta.scaleFactor * 5);
+    settings.links.scaleToBeta.maxWidth = settings.links.scaleToBeta.minWidth + (settings.links.scaleToBeta.scaleFactor * 2);
     settings.links.scaleToBeta.calcScaledWidth = function(b){
-        const b_abs = Math.abs(b); // Make beta absolute
-        const width = b_abs/100*settings.links.scaleToBeta.scaleFactor; // Calculate relative width
-        return( 
-            Math.min( // Scale edge width by beta within min and max limits for visibility
-                settings.links.scaleToBeta.minWidth + width, 
-                settings.links.scaleToBeta.maxWidth
+
+        // Calculate relative width (in categories for easier viewing)
+        /*var width = 1; 
+            if(Math.abs(b) <= 10){width = 0.1*settings.links.scaleToBeta.maxWidth}
+            else if(Math.abs(b) <= 25){width = 0.3*settings.links.scaleToBeta.maxWidth}
+            else if(Math.abs(b) <= 40){width = 0.5*settings.links.scaleToBeta.maxWidth}
+            else{width = 1*settings.links.scaleToBeta.maxWidth}
+        console.log(Math.abs(b),width)  */
+        return(
+            Math.max( // Start with minimum width
+                settings.links.scaleToBeta.minWidth,
+                ( // Scale up to maximum width
+                    Math.min(100, Math.max(5, Math.abs(b))) 
+                    / 100 
+                    * settings.links.scaleToBeta.maxWidth
+                )
             )
         )
-    ;},settings.links.outlineCalcScaledWidth = function(b){
-        const b_abs = Math.abs(b); // Make beta absolute
-        const width = b_abs/100*settings.links.scaleToBeta.scaleFactor; // Calculate relative width
-        return( 
-            Math.min( // Scale edge width by beta within min and max limits for visibility
-                settings.links.scaleToBeta.minWidth + width, 
-                settings.links.scaleToBeta.maxWidth + 2
-            )
-        )
-    ;},
-    settings.links.width = d => settings.links.outlineCalcScaledWidth(d.b_pct);
-    settings.links.outlineWidth = d => settings.links.scaleToBeta.calcScaledWidth(d.b_pct) + 2;
+    ;}
+}
+
+function settingsProfile_enableOutlines(){
+    
+    // Show outlines
+    settings.links.outline = true;
+
+    // Scale lines to beta
+    settings.links.outlineWidth = d => 
+        settings.links.scaleToBeta.calcScaledWidth(d.b_pct) * 1.25 + 2;
+    ;
 
 }
 
@@ -238,7 +252,7 @@ function settingsProfile_PrevalenceLabels(){
 
         var prevalenceText = prevalence.append("text")
             .attr('id', d=>`prevTxt_${d.id}`)
-            .text(d=>`${d.prevalence} ${d.units}`)
+            .text('0% change')
             .style("font-size", settings.nodes.labels.fontSize * 0.6)
             .style("font-family", settings.nodes.labels.font)
             .style("cursor", 'default')

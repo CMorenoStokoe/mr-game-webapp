@@ -125,8 +125,14 @@ class DataClass {
 
         // Set extra data variables for showing prevalence changes
         this.nodes[nodeId].prevalence = prevalence;
-        this.nodes[nodeId].change = (prevalence - this.nodes[nodeId].average) / this.nodes[nodeId].average * 100; // Percentage change
-        this.nodes[nodeId].change_bar = (this.nodes[nodeId].change / 2) + 50; // Percentage expressed as deviation from 50% starting point in a bar
+
+        // Calculate change in prevalence as 0-100% scale
+        this.nodes[nodeId].change = standardise(this.nodes[nodeId]).prevalenceChange;
+
+        // Calculate how to display this on a progress bar
+        this.nodes[nodeId].change_bar = Math.min(100, Math.max(0,
+            this.nodes[nodeId].change + 50 // Percentage expressed as deviation from 50% starting point in a bar 
+        ))
     }
 
     // Remove edges

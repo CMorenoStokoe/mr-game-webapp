@@ -55,14 +55,14 @@ var playerInterventionMax = 1; // Maximum number of interventions the player can
 
 // Loading settings
 window.onload = function(){
-    developerMode = false;
+    developerMode = true;
     previewMode = true;
 
     // Developer mode 
     if(developerMode){ // Automatically start-up in specific mode for testing
         
         // Specify game state to load immediately
-        gameState = 'iv';
+        gameState = 3;
 
         // Dismiss loading screen and load specified game state immediately
         document.getElementById('loading-screen').style.display='none'; 

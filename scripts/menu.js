@@ -21,26 +21,12 @@ function createMenu(){
     // Create menu buttons
 
         // Create elements
-        createButton('menu-map-btn', `Star map <i class="fas fa-globe-africa"></i>`, 'menu', 'btn btn-lg btn-custom m-1');
-        createButton('menu-log-btn', `Log <i class="fas fa-book"></i>`, 'menu', 'btn btn-lg btn-custom m-1');
         createButton('menu-settings-btn', `<i class="fas fa-cogs"></i>`, 'menu', 'btn btn-lg btn-custom m-1');
 
         // Assign function to buttons
-        $(`#menu-map-btn`).click(function(){$(`#menu-map`).modal('show')});
-        $(`#menu-log-btn`).click(function(){$(`#menu-log`).modal('show')});
         $(`#menu-settings-btn`).click(function(){$(`#menu-settings`).modal('show')});
         
     // Create menu items
-
-        // Create map
-        createModal('menu-map', 'modals', title='Map', body='');
-        // init from map.js
-
-        // Create log
-        createModal('menu-log', 'modals', title='Log', body='');
-        initLog();
-        
-        notify(title='title', body='body', width = '600px', position = {x:'45vw', y:'45vh'}, contextIndicator = 'arrow-up')
 
         // Create settings
         createModal('menu-settings', 'modals', title='Settings', body=``, className='modal');
@@ -97,3 +83,25 @@ function createMenu(){
                     div.appendChild(volumeLabel);
                     div.appendChild(btn);
 }
+
+/* Cut features
+
+    // Create buttons
+    createButton('menu-map-btn', `Star map <i class="fas fa-globe-africa"></i>`, 'menu', 'btn btn-lg btn-custom m-1');
+    createButton('menu-log-btn', `Log <i class="fas fa-book"></i>`, 'menu', 'btn btn-lg btn-custom m-1');
+    
+    $(`#menu-map-btn`).click(function(){$(`#menu-map`).modal('show')});
+    $(`#menu-log-btn`).click(function(){$(`#menu-log`).modal('show')});
+
+    
+    // Create map
+    createModal('menu-map', 'modals', title='Map', body='');
+    // init from map.js
+
+    // Create log
+    createModal('menu-log', 'modals', title='Log', body='');
+    initLog();
+    
+    notify(title='title', body='body', width = '600px', position = {x:'45vw', y:'45vh'}, contextIndicator = 'arrow-up')
+    
+*/

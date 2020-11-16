@@ -44,10 +44,11 @@ function initialiseData(nodes, edges, pValueThreshold){
         gameData.nodes[key].min = nodeValues[key].min;
         gameData.nodes[key].max = nodeValues[key].max;
         gameData.nodes[key].units = nodeValues[key].units;
+        gameData.nodes[key].sd = nodeValues[key].SD;
         gameData.setPrevalenceValues(key, nodeValues[key].prevalence); // In data-classes
 
-        // Calculate how much this node should increase as a result of a 5% increase intervention
-        gameData.nodes[key].prevalenceIncrease = gameData.nodes[key].average * 0.05;
+        // Calculate how much this node should increase as a result of an intervention
+        gameData.nodes[key].prevalenceIncrease = standardise(gameData.nodes[key]).interventionUnitChange;
 
         // Give icon
         gameData.nodes[key].icon = `images/epicons/${icons[gameData.nodes[key].id]}.png`; // Icon assignment in gameData/icons.js
@@ -75,7 +76,7 @@ function initialiseData(nodes, edges, pValueThreshold){
         const outcome = gameData.nodes[value['id.outcome']];
 
         // Calculate percent change in outcome relative to its prevalence value
-        value.b_pct = (exposure.prevalenceIncrease * value.b) / outcome.prevalence;
+        value.b_pct = exposure.prevalenceIncrease * value.b * standardise(outcome).prevalenceChangePerUnit;
 
         // Calculate percent change in outcome relative to its min-max value range
         value.b_pctOfRange = (exposure.prevalenceIncrease * value.b) / outcome.range * 100;

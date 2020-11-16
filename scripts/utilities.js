@@ -37,14 +37,32 @@ function to4SF(number){
         return number.toFixed(0)
     }
 }
+
+// Display numbers without decimals
+function to0SF(number){
+    const absoluteValue = Math.abs(number); // Get the absolute value
+
+    if (absoluteValue == 0){
+        return number.toFixed(0)
+    } else if(absoluteValue < 0.05){
+        return 0.1
+    } else if(absoluteValue < 0.99){
+        return number.toFixed(1)
+    } else {
+        return number.toFixed(0)
+    }
+}
+
   
 // Function to generate random number (from: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random)
 function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
 
-
 // Function to bound scores within min & max
 function boundToRange(num, min=0, max=5){
     return(Math.min(Math.max(min, num), max))
 }
+
+// Function to indicate sign
+function indicateSign(b){ if(b>0){return '+'} else {return ''}; }

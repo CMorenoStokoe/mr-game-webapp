@@ -157,47 +157,53 @@ function initialiseView(
 /* Show intervention effects */
 
 // Show intervention propagating through network
-function showInterventionEffects(paths, interval = 2500){
+function showInterventionEffects(paths, interval = 2500){console.log('Propagating: ', paths)
     
-    // Focus on effects by making other nodes transparent
-    const transparency = 0.3;
-    setNodeOpacity(transparency);
+    // Fade out nodes not in focus
 
-    // Filter paths to show unique edges only
-    var dictionaryFilter = {};
-        for(const edge of paths){dictionaryFilter[`${edge.source}${edge.target}`]=edge}
-    var uniqueEdges = [];
-        for(const [key, uniqueEdge] of Object.entries(dictionaryFilter)){uniqueEdges.push(uniqueEdge)}
-    paths = uniqueEdges;
+        // Focus on effects by making other nodes transparent
+        const transparency = 0.3;
+        
 
-    // Show effects for each unique edge in the path
-    iteratePaths(paths);
+    // Prepare path for visualisation
+
+        // Filter paths to show unique edges only
+        var dictionaryFilter = {};
+            for(const edge of paths){dictionaryFilter[`${edge.source}${edge.target}`]=edge}
+        var uniqueEdges = [];
+            for(const [key, uniqueEdge] of Object.entries(dictionaryFilter)){uniqueEdges.push(uniqueEdge)}
+        paths = uniqueEdges;
+
+    // Show intervention effects
+   
+        // Intervention effect on origin node
+        const originNode = gameData.nodes[Object.entries(dictionaryFilter)[0][1].source];
+            formatNode(originNode); // Set node size
+            updateLabel(originNode, interval/2); // Update node labels
+
+        // Intervention effects propagated through network   
+        setTimeout(function(){
+            iteratePaths(paths);
+        }, interval/2)
 
     // Iterate paths and show effects
     function iteratePaths(edges){
+
+        // Fade out nodes not in focus
+        setNodeOpacity(transparency);
+        setEdgeOpacity(transparency);
 
         // Get edge from path array
         const path = edges.shift();
 
         /* Show intervention effect pathways */
 
-            // Get edge width
+            // Get edge
             const edge = gameData.edges[gameData.getEdgeId(path.source, path.target)];
-                const startingLineWidth = d3.select(`#edge_${edge.id}`).attr("stroke-width");
 
-            // Grow edges to highlight them
-            d3.select(`#edge_${edge.id}`)
-                .transition()
-                .duration(interval/2)
-                .attr("stroke-width", (Number(startingLineWidth) * 2) + 2);
-            
-            // Shrink them back to normal
-            setTimeout(function(){ 
-                d3.select(`#edge_${edge.id}`)
-                    .transition()
-                    .duration(interval/2)
-                    .attr("stroke-width", Number(startingLineWidth))
-            }, interval/2);
+            // Highlight edges (and outlines if enabled)
+            highlightEdge(`#edge_${edge.id}`, interval);
+            if(settings.links.outline){ highlightEdge(`#edge_${edge.id}_outline`, interval);}
 
             // Animate labels to pop up
             showLabel(path.target); 
@@ -249,7 +255,11 @@ function showInterventionEffects(paths, interval = 2500){
         // Once all effects have been shown
         else { 
             setTimeout(function(){
-                setNodeOpacity(1); // Return to normal transparency
+
+                // Restore visualisation opacity
+                setNodeOpacity(1); // Return nodes to normal transparency
+                setEdgeOpacity(1); // Return edges to normal transparency
+
             }, interval);
         }
     }    
@@ -335,13 +345,11 @@ function updateLabel(node, duration = 500){
 
     // Update prevalence information
     d3.select(`#prevTxt_${node.id}`)
-        .text(`${to4SF(node.prevalence)} ${node.units}`);
+        .text(`${indicateSign(node.change)}${to0SF(node.change)}%`);
     d3.select(`#prevBar_${node.id}`)
         .transition()
         .duration(duration)    
-        .attr("width", Math.min(100, Math.max(0, // Min 0% width, max 100% width
-            settings.nodes.labels.backgroundWidth()/2 + node.change
-        )));
+        .attr("width", `${node.change_bar * settings.nodes.labels.backgroundWidth() / 100}`);
 
     // Set change indicator
     d3.select(`#badge_${node.id}`)
@@ -373,6 +381,31 @@ function highlightNode(nodeId, fill='gold'){
     gameData.nodes[nodeId].circleRadius *= 2;
 }
 
+// Highlight edge
+function highlightEdge(id, interval = 2500){
+
+    // Get edge by id
+    var edge = d3.select(id);
+
+    // Get initial edge width
+    const startingLineWidth = d3.select(id).attr("stroke-width");
+
+    // Grow edges to highlight them
+    edge
+        .style('opacity', 1)
+        .transition()
+        .duration(interval/2)
+        .attr("stroke-width", (Number(startingLineWidth) * 2) + 2);
+
+    // Shrink them back to normal
+    setTimeout(function(){ 
+        edge
+            .transition()
+            .duration(interval/2)
+            .attr("stroke-width", Number(startingLineWidth))
+    }, interval/2);
+}
+
 // Hide all labels
 function hideAllLabels(nodes){
     for(const [id, node] of Object.entries(nodes)){
@@ -380,12 +413,21 @@ function hideAllLabels(nodes){
     }
 }
 
-// Set opacity of nodes and edges
+// Set opacity of nodes
 function setNodeOpacity(value){
     
     d3.selectAll('circle').style('opacity', value);
     d3.selectAll('image').style('opacity', value);
+
+}
+
+// Set opacity of edges
+function setEdgeOpacity(value){
     
+    for(const [id, edge] of Object.entries(gameData.edges)){
+        d3.select(`#edge_${id}`).style('opacity', value);
+        d3.select(`#edge_${id}_outline`).style('opacity', value);
+    }
 }
 
 /* Highlight nodes in path
@@ -435,7 +477,7 @@ function hideGameUI(){
 function showInteractiveVisUI(){
 
     // Add reset button
-    $('#reset-button').show();
+    $('#iv_reset').show();
 }
 
 // Show test GUI
