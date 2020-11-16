@@ -25,15 +25,18 @@ function setMiranaSettings(profile){
 
         case 'interactiveVisualisation':
             settingsProfile_Default();
+            settingsProfile_BetaWeights();
             settingsProfile_PrevalenceLabels();
             break;
 
         case 'test':
+            settingsProfile_BetaWeights();
             settingsProfile_showIDs();
             break;
 
         case 'game':
             settingsProfile_Default();
+            settingsProfile_BetaWeights();
             settingsProfile_PrevalenceLabels();
             break;
 
@@ -106,8 +109,8 @@ function settingsProfile_Default(){
         settings.links.colPos = 'orangered';
 
         // Make overlapping edges more visible
-        settings.links.opacity = 0.5;
-        settings.arrows.opacity = 0.5;
+        settings.links.opacity = 1;
+        settings.arrows.opacity = 1;
         
         // Hide edge weights
         settings.links.scaleToBeta.method = 'none'; 
@@ -122,7 +125,6 @@ function settingsProfile_BetaWeights(){
     settings.links.width = function(d) {return settings.links.scaleToBeta.calcScaledWidth(d.b_pct)};
 
     // Make edges more visible
-    settings.links.opacity = 1;
     settings.links.scaleToBeta.minWidth = 1;
     settings.links.scaleToBeta.scaleFactor = 5;
     settings.links.scaleToBeta.scaleFactor = 5;

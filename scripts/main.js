@@ -55,7 +55,7 @@ var playerInterventionMax = 1; // Maximum number of interventions the player can
 
 // Loading settings
 window.onload = function(){
-    developerMode = true;
+    developerMode = false;
     previewMode = true;
 
     // Developer mode 
@@ -79,6 +79,7 @@ window.onload = function(){
         
             // Give users buttons to choose game state to preview
             $('#dev-btn-3').click(function(){gameState='iv'})
+            $('#dev-btn-4').click(function(){gameState=3})
             $('#dev-btn-5').click(function(){gameState='vis'})
             $('#dev-btn-6').click(function(){gameState='vis2'})
 
