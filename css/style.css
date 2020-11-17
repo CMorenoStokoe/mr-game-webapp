@@ -90,3 +90,6 @@
 .nodeLabel_bg{
     opacity: 0;
 }
+.shadow{
+    text-shadow: 0 0 3px black;
+}

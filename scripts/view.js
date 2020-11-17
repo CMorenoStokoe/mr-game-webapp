@@ -101,7 +101,7 @@ function initialiseView(
     // Fade in SVG
     function fadeIn_SVG(){
         setDisplay('svg-main', 'inline-block'); // edit-elements.js
-        $('#svg-main').delay(1000).animate({opacity: 1}, 500);
+        $('#svg-main').delay(750).animate({opacity: 1}, 500); // Fade in to hide force directed graph jiggling on creation
     }
 
     // Fade in text
@@ -130,26 +130,21 @@ function initialiseView(
     // Set system planet image and name
     function setUI_planetInfo(){
 
-        // Set system name
-        setHTML('GUI-currentSystem', `${currentGameState.leagueName} system`);
-
-        // Set system progress
-        setProgress('progress-goal-div', currentSystemProgress, {min:0, max: currentGameState.leagueProgressMax});
-        document.getElementById('progress-goal').className = 'progress-bar progress-bar-striped progress-bar bg-primary';
-        console.log('set progress:', currentSystemProgress, {min:0, max: currentGameState.leagueProgressMax})
-
-        // Randomly select a planet
-        const planetName = planetNames[getRandomInt(planetNames.length)];
-        const planetGraphic = planetGraphics[getRandomInt(planetGraphics.length)];
-
-        // Set planet name
-        setText('GUI-currentPlanet', `${planetName}`);
-
-        // Set planet image
+        // Randomly generate planet in background
         var planet = document.getElementById('GUI-planet').style;
-            planet.background = `url("images/planets/${planetGraphic}.png") no-repeat`;
+            planet.background = `url("images/planets/${planetGraphics[getRandomInt(planetGraphics.length)]}.png") no-repeat`;
             planet.backgroundPosition = '150px 0px';
             planet.backgroundSize= '800px 800px';
+        
+        // Set system information
+        //setProgress('progress-goal-div', currentSystemProgress, {min:0, max: currentGameState.leagueProgressMax});
+        //document.getElementById('progress-goal').className = 'progress-bar progress-bar-striped progress-bar bg-primary';
+        //setHTML('GUI-currentSystem', `${currentGameState.leagueName} system`);
+
+        // Set planet name
+        //const planetName = planetNames[getRandomInt(planetNames.length)];
+        //setText('GUI-currentPlanet', `${planetName}`);
+
     }
 }
 
@@ -158,13 +153,123 @@ function initialiseView(
 
 // Show intervention propagating through network
 function showInterventionEffects(paths, interval = 2500){console.log('Propagating: ', paths)
-    
+    if(paths.length <= 0){console.log('No intervention effects', paths); return}
+
+    // Select and run animation
+    animation1();
+    //animation2();
+
+
+    /* Animation style 2 */
+
+
+    function animation2(){
+
+    // Initialise queue of nodes to highlight with intervention source
+    var queue = [{node: gameData.nodes[paths[0].source], precursorNode: null, precursorEdge: null}];
+
+    // Highlight intervention effects
+    highlightNodes(queue);
+
+    // Highlight node and add next node to queue
+    function highlightNodes(queue){
+
+        // Get node
+        const nextInQueue = queue.shift()
+            const node = nextInQueue.node;
+            const precursorNode = nextInQueue.precursorNode;
+            const precursorEdge = nextInQueue.precursorEdge;
+
+        // Fade nodes not in focus   
+
+            // Define transparency 
+            const transparency = 0.3;
+
+            // Apply transparency
+            setNodeOpacity(transparency);
+            setEdgeOpacity(transparency);
+            
+        // Animate intervention effects
+
+            // Nodes
+
+                // Current node
+                animateNode(node);
+
+                // Precursor node
+                if(precursorNode){animateNode(precursorNode)}
+            
+            // Edges
+            
+                // Precursor edge
+                if(precursorEdge){animateEdge(precursorEdge)}
+                
+                // All outgoing edges
+                for(const edge of node.edges){ 
+                    if(node.id == edge['id.exposure']){
+                        
+                        
+                        setTimeout(function(){
+                            // Animate edge
+                            animateEdge(edge);
+                            // Animate target node
+                            animateNode(gameData.nodes[edge['id.outcome']]);
+                        }, 250)
+
+
+                        // Push node to queue
+                        queue.unshift({
+                            node: gameData.nodes[edge['id.outcome']],
+                            precursorNode: node,
+                            precursorEdge: edge,
+                        })
+                    }
+                };
+
+        // Node animation
+        function animateNode(node){
+
+            // Circle
+            formatNode(node); // Set node size
+            focusOnNode(node.id, transparency, interval);
+
+            // Label
+            updateLabel(node, interval/2); // Update node labels
+            showLabel(node.id); // Show labels
+                setTimeout(function(){ // Hide labels again after
+                    hideLabel(node.id); 
+                }, interval-50)
+        }
+
+        // Edge animation
+        function animateEdge(edge){
+
+            // Highlight edge
+            highlightEdge(`#edge_${edge.id}`, interval);
+            highlightEdge(`#edge_${edge.id}_outline`, interval);
+        }
+
+        // Iterate until all animations shown
+        if(queue.length>0 && !(skipAnimations)){setTimeout(function(){ if(!(skipAnimations)){
+            highlightNodes(queue); 
+        }}, interval);} 
+    }
+    }
+
+
+    /* Animation style 1 */
+
+    function animation1(){
+        
     // Fade out nodes not in focus
 
-        // Focus on effects by making other nodes transparent
-        const transparency = 0.3;
-        
+            // Define transparency 
+            const transparency = 0.3;
 
+            // Apply transparency
+            setNodeOpacity(transparency);
+            setEdgeOpacity(transparency);
+        
     // Prepare path for visualisation
 
         // Filter paths to show unique edges only
@@ -175,18 +280,24 @@ function showInterventionEffects(paths, interval = 2500){console.log('Propagatin
         paths = uniqueEdges;
 
     // Show intervention effects
+    console.log(paths)
    
         // Intervention effect on origin node
         const originNode = gameData.nodes[Object.entries(dictionaryFilter)[0][1].source];
             formatNode(originNode); // Set node size
             updateLabel(originNode, interval/2); // Update node labels
 
-        // Intervention effects propagated through network   
-        setTimeout(function(){
-            iteratePaths(paths);
-        }, interval/2)
+        // Intervention effects propagated through network  
+        if(!(skipAnimations)){
+            setTimeout(function(){
+                if(!(skipAnimations)){
+                    iteratePaths(paths);
+                }
+            }, interval/2)
+        }
 
     // Iterate paths and show effects
+    var previousNode = null;
     function iteratePaths(edges){
 
         // Fade out nodes not in focus
@@ -198,71 +309,91 @@ function showInterventionEffects(paths, interval = 2500){console.log('Propagatin
 
         /* Show intervention effect pathways */
 
-            // Get edge
-            const edge = gameData.edges[gameData.getEdgeId(path.source, path.target)];
-
-            // Highlight edges (and outlines if enabled)
-            highlightEdge(`#edge_${edge.id}`, interval);
-            if(settings.links.outline){ highlightEdge(`#edge_${edge.id}_outline`, interval);}
-
             // Animate labels to pop up
-            showLabel(path.target); 
             showLabel(path.source);
             setTimeout(function(){ // Hide labels again after
-                hideLabel(path.target); 
                 hideLabel(path.source);
             },interval-50)
-            
 
         /* Show intervention's effects on each nodes' prevalence */
 
             // Focus on these nodes
-            const sourceNodeG = d3.select(`#${gameData.nodes[path.source].id}`);
-                sourceNodeG.select("circle").style('opacity', 1);
-                sourceNodeG.select("image").style('opacity', 1);
-                setTimeout(function(){ 
-                    sourceNodeG.select("circle").style('opacity', transparency);
-                    sourceNodeG.select("image").style('opacity', transparency);
-                }, interval);
-
-            const targetNodeG = d3.select(`#${gameData.nodes[path.target].id}`);
-                targetNodeG.select("circle").style('opacity', 1);
-                targetNodeG.select("image").style('opacity', 1);
-                setTimeout(function(){ 
-                    targetNodeG.select("circle").style('opacity', transparency);
-                    targetNodeG.select("image").style('opacity', transparency);
-                }, interval);
             
             // Update node display
-            const targetNode = gameData.nodes[path.target];
-                formatNode(targetNode); // Set node size
-                updateLabel(targetNode, interval/2); // Update node labels
+                
+                // Update source node
+                const sourceNode = gameData.nodes[path.source];
+                    focusOnNode(sourceNode.id, transparency, interval);
+                    formatNode(sourceNode); // Set node size
+                    
+                    if(!(sourceNode.id==previousNode)){
+                        
+                        updateLabel(sourceNode, interval/2); // Update node labels
+                    }previousNode = sourceNode.id
 
-        // Self loop until all effects shown
-        if(edges.length>0){
-            // Show intervention effects on nodes and edges in simulation
-            setTimeout(function(){
+                // Update target node (after short delay to show cause and effect)
+                    
+                    // Compensate time interval
+                    const fullTimeInterval = interval;
+                        const delay = 750;
+                        const delayedInterval = fullTimeInterval-delay;
 
-                // Stop looping on reset
-                if(playerInterventionCount>0){
+                    // Update target node
+                    setTimeout(function(){
 
-                    iteratePaths(edges); // Self-loop
-                }
+                        // Highlight edge
+                        const edge = gameData.edges[gameData.getEdgeId(path.source, path.target)];
+                            highlightEdge(`#edge_${edge.id}`, delayedInterval);
+                            if(settings.links.outline){ highlightEdge(`#edge_${edge.id}_outline`, delayedInterval);}
+                        
+                        // Show label
+                        showLabel(path.target); 
+                        setTimeout(function(){ // Hide labels again after
+                            hideLabel(path.target); 
+                        },delayedInterval-100)
 
-            }, interval);
-        } 
+                        // Highlight node
+                        const targetNode = gameData.nodes[path.target];
+                            focusOnNode(targetNode.id, transparency, delayedInterval);
+                            formatNode(targetNode); // Set node size
+                            updateLabel(targetNode, delayedInterval/2); // Update node label
 
-        // Once all effects have been shown
-        else { 
-            setTimeout(function(){
+                    }, delay);
 
-                // Restore visualisation opacity
-                setNodeOpacity(1); // Return nodes to normal transparency
-                setEdgeOpacity(1); // Return edges to normal transparency
+        // Show intervention effects until all effects shown
 
-            }, interval);
+            // While there are effects left to show AND the option to skip animations is not selected
+            if(edges.length>0 && !(skipAnimations)){
+                
+                // Separate out each animation with delay   
+                setTimeout(function(){     
+                    
+                    if(!(skipAnimations)){
+                        iteratePaths(edges); // Self-loop
+                    }
+
+                }, interval);
+            } 
+
+            // Once all effects have been shown
+            else { 
+
+                // Delay until after the last animation will have concluded
+                setTimeout(function(){
+
+                    // Restore visualisation opacity
+                    setNodeOpacity(1); // Return nodes to normal transparency
+                    setEdgeOpacity(1); // Return edges to normal transparency
+
+                }, interval);
+            }
         }
     }    
+}
+
+// Show player exp effects
+function showExpFx(){
+    return
 }
 
 
@@ -270,27 +401,18 @@ function showInterventionEffects(paths, interval = 2500){console.log('Propagatin
 
 
 // Format nodes so they scale with their prevalence values
-function formatNode(node, interval = 500){
+function formatNode(node, interval = 500, scaleTo = 'final'){
 
     // Calculate node size
-    var circleRadius = settings.nodes.circleRadius / 100 * (100 + node.change);
-        circleRadius = Math.min(settings.nodes.circleRadius_max, circleRadius);
-        circleRadius = Math.max(settings.nodes.circleRadius_min, circleRadius);
-        
-        // Scale by area instead of radius
-        circleRadius = Math.sqrt(circleRadius*100 / 3.14);
+
+        // Scale node size to trait prevalence
+        var circleRadius = settings.nodes.scaleCircleArea(node.change);
         
         // Record value for access by other methods
         node.circleRadius = circleRadius; 
     
     // Calculate node color
-    var color = null;
-        switch(isGood[node.id]){ // Scale color to show whether changes are good or bad
-            case true: color = settings.nodes.colorSchemeForInterpolation(0.5 + (node.change / 100)); break;
-            case false: color = settings.nodes.colorSchemeForInterpolation(0.5 - (node.change / 100)); break;
-            default: color = 'white'; break;
-        }
-        if(node.change==0){color='white'}; // Color no change white
+    var color = settings.nodes.colorSchemeForInterpolation(node);
 
     // Format node to scale with prevalence
     d3.select(`#${node.id}`).select("circle").transition()
@@ -349,19 +471,18 @@ function updateLabel(node, duration = 500){
     d3.select(`#prevBar_${node.id}`)
         .transition()
         .duration(duration)    
-        .attr("width", `${node.change_bar * settings.nodes.labels.backgroundWidth() / 100}`);
+        .attr("width", `${node.change_bar * settings.nodes.labels.backgroundWidth() / 100}`)
+        .style("fill", d=>settings.nodes.labels.prevalenceBarColorScheme(d));
 
     // Set change indicator
     d3.select(`#badge_${node.id}`)
-        .text(function(d) { 
-            if(node.change<0){return '\uf13a' }
-            else if(node.change>0){return '\uf139' }
-            else{return ''}
-        })
-        .attr('fill', function(d) { 
-            if(node.change<0){return settings.links.colNeg}
-            else{return settings.links.colPos};
-        }); 
+        .text(settings.nodes.labels.indicatorUnicode(node)) // Indicator unicode symbol (arrow)
+        .style('fill', settings.nodes.labels.indicatorColor(node)) // Indicator fill color
+        .attr("dy", settings.nodes.labels.indicatorPos(node).y) // Indicator position
+        .attr("dx", function(){return node.change<0 ? settings.nodes.labels.indicatorPos(node).x + settings.nodes.labels.backgroundWidth()*0.2 : settings.nodes.labels.indicatorPos(node).x - settings.nodes.labels.backgroundWidth()*0.2}) 
+        .transition()
+        .duration(duration)
+        .attr("dx", settings.nodes.labels.indicatorPos(node).x) // Indicator position
 }
 
 // Highlight an indiviual node
@@ -428,6 +549,18 @@ function setEdgeOpacity(value){
         d3.select(`#edge_${id}`).style('opacity', value);
         d3.select(`#edge_${id}_outline`).style('opacity', value);
     }
+}
+
+// Highlight node
+function focusOnNode(id, transparency = 0.3, interval = 2500){
+
+    const sourceNodeG = d3.select(`#${id}`);
+    sourceNodeG.select("circle").style('opacity', 1);
+    sourceNodeG.select("image").style('opacity', 1);
+    setTimeout(function(){ 
+        sourceNodeG.select("circle").style('opacity', transparency);
+        sourceNodeG.select("image").style('opacity', transparency);
+    }, interval);
 }
 
 /* Highlight nodes in path
@@ -497,4 +630,15 @@ function showTestUI(){
 
     // Show options form
     $('#test_settings').show();
+}
+
+// Convey vis results
+function conveyVisResults(){
+    // Convey results
+    document.getElementById('test_score_objective').innerText = to4SF(score.scores.objective);
+    document.getElementById('test_score_goodness').innerText = to4SF(score.scores.goodness);
+    document.getElementById('test_allEffects').innerHTML += `<hr> Intervention on ${gameData.nodes[nodeId].label} <hr>`;
+    for(const [nodeId, prevalenceChange] of Object.entries(results.result)){
+        document.getElementById('test_allEffects').innerHTML += `${gameData.nodes[nodeId].label} changed by ${to4SF(prevalenceChange)} <br>`;
+    };   
 }

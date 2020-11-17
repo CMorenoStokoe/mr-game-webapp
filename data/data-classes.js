@@ -12,6 +12,28 @@ Contents of this script:
 
 */
 
+// Pseudo data class for results of all possible interventions
+class EvEData {
+
+    constructor() {
+
+        // Make resource access points
+        this.data = null;
+        this.initialised = false;
+
+    }
+
+    // Initialise EvE
+    init(gameData){
+
+        // Run propagation EvE
+        this.data = initialiseEvE(gameData);
+
+        // Flag as initialised
+        this.initialised = true;
+
+    }
+}
 
 // Pseudo data class containing network MR data
 class DataClass {
@@ -124,15 +146,20 @@ class DataClass {
     setPrevalenceValues(nodeId, prevalence){
 
         // Set extra data variables for showing prevalence changes
-        this.nodes[nodeId].prevalence = prevalence;
 
-        // Calculate change in prevalence as 0-100% scale
-        this.nodes[nodeId].change = standardise(this.nodes[nodeId]).prevalenceChange;
+            // Absolute current prevalence
+            this.nodes[nodeId].prevalence = prevalence;
+        
+            // Prevalence change in native units
+            this.nodes[nodeId].change_raw = prevalence - this.nodes[nodeId].average;
 
-        // Calculate how to display this on a progress bar
-        this.nodes[nodeId].change_bar = Math.min(100, Math.max(0,
-            this.nodes[nodeId].change + 50 // Percentage expressed as deviation from 50% starting point in a bar 
-        ))
+            // Prevalence change converted to 0-100% scale
+            this.nodes[nodeId].change = standardise(this.nodes[nodeId]).prevalenceChange;
+
+            // Prevalence change converted to % change from midpoint (for display on a progress bar)
+            this.nodes[nodeId].change_bar = Math.min(100, Math.max(0,
+                this.nodes[nodeId].change/2 + 50 // Percentage expressed as deviation from 50% starting point in a bar 
+            ))
     }
 
     // Remove edges

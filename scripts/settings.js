@@ -103,11 +103,22 @@ function settingsProfile_Default(){
         // Give custom class to nodes for on.hover decoration
         settings.nodes.class = 'nodeCircle';
 
+        // Scale node area by prevalence instead of radius
+        settings.nodes.scaleCircleArea = function(d){ 
+            var circleRadius = settings.nodes.circleRadius / 100 * (100 + d); // Calculate circle scale constant
+                circleRadius = Math.min(settings.nodes.circleRadius_max, circleRadius); // Clamp to min/max range
+                circleRadius = Math.max(settings.nodes.circleRadius_min, circleRadius);
+                circleRadius = Math.sqrt(circleRadius*100 / 3.14); // Scale by area instead of radius
+            return circleRadius;
+        }
+        
+    
+
     /* Links */
     
         // Change color scheme
-        settings.links.colNeg = 'cornflowerblue';
-        settings.links.colPos = 'orangered';
+        settings.links.colNeg = d3.interpolateGnBu(0.75);
+        settings.links.colPos = d3.interpolateOrRd(0.75);
 
         // Make overlapping edges more visible
         settings.links.opacity = 1;
@@ -130,7 +141,7 @@ function settingsProfile_BetaWeights(){
     settings.links.width = function(d) {return settings.links.scaleToBeta.calcScaledWidth(d.b_pct)};
 
     // Make edges more visible
-    settings.links.scaleToBeta.minWidth = 1;
+    settings.links.scaleToBeta.minWidth = 0.5;
     settings.links.scaleToBeta.scaleFactor = 3;
 
     // Scale more accurately to their standardised effects in propagation
@@ -192,77 +203,84 @@ function settingsProfile_PermanentLabels(){
 
 // Settings profile to add prevalence information labels
 function settingsProfile_PrevalenceLabels(){
-    
+
+    // Add function to assign change indicator
+    settings.nodes.labels.indicatorUnicode = d => d.change==0 ? '' : (d.change<0 ? '\uf053' : '\uf054');
+    settings.nodes.labels.indicatorColor = d => d.change<0 ? settings.links.colNeg : settings.links.colPos;
+    settings.nodes.labels.indicatorPos = function(d) { return {
+        x: (d.change<0 ? -settings.nodes.labels.backgroundWidth()/2.5 - 17: settings.nodes.labels.backgroundWidth()/2.25  - 17),
+        y: d.circleRadius + settings.nodes.labels.backgroundHeight/2.75,
+    }};
+
+    // Add function to color prevalence bar
+    settings.nodes.labels.prevalenceBarColorScheme = d => d.change<0 ? d3.interpolateGnBu(1-1*d.change_bar/100) : d3.interpolateOrRd(1*d.change_bar/100);
+
+    // Add extra information on prevalence
     settings.nodes.labels.extras=function(node){
         
-        // Badge to indicate increase or decrease in value
-        var badgeText = node.append("text")
-            .attr("id", d=>`badge_${d.id}`)
-            .attr('x', settings.nodes.circleRadius * Math.cos(45))
-            .attr('y', - settings.nodes.circleRadius * Math.sin(45))
-            .text(function(d) { 
-                if(d.change<0){return '\uf13a' }
-                else if(d.change>0){return '\uf139' }
-                else{return ''}
-            })
-            .style("fill", function(d) { 
-                if(d.change<0){return settings.links.colNeg}
-                else{return settings.links.colPos};
-            })
-            .attr('font-family', 'Font Awesome 5 Free')
-            .attr('font-weight', 900)
-            .attr('class', 'fa')
-            .style("font-size", settings.nodes.labels.fontSize)
-            .style("cursor", 'default')
-            .style("user-select", 'none')
-            .attr('text-anchor', 'middle');
-        
         // Prevalence information to indicate current prevalence and units
-
         const prevalence = node.append("g")
             .attr('class', 'extras_prevalence')
             .attr('transform', `translate(
                 ${0},
                 ${settings.nodes.labels.backgroundPosY + settings.nodes.labels.backgroundHeight + 1})`
             );
-
-		const prevalenceBG = prevalence.append("rect")
-            .attr('id', d=>`prevBG_${d.id}`)
-			.attr("rx", 12)
-			.attr("ry", 12)
-			.attr("x", -settings.nodes.labels.backgroundWidth()/2)
-			.attr("y", 0)
-			.attr("width", settings.nodes.labels.backgroundWidth)
-			.attr("height", settings.nodes.labels.backgroundHeight * 0.6)
-			.attr("stroke", 'none')
-			.attr("stroke-width", '1px')
-            .attr("fill", 'ghostwhite');
         
-		const prevalenceBar = prevalence.append("rect")
-            .attr('id', d=>`prevBar_${d.id}`)
-            .attr("rx", 6)
-            .attr("ry", 6)
-            .attr("x", -settings.nodes.labels.backgroundWidth()/2)
-            .attr("y", 0)
-            .attr("width", d=>Math.max(settings.nodes.labels.backgroundWidth()/2 + d.change, 0))
-            .attr("height", settings.nodes.labels.backgroundHeight * 0.6)
-            .attr("stroke", 'none')
-            .attr("stroke-width", '1px')
-            .attr("fill", 'gold');
+            // Prevalence bar 
+            prevalence.append("rect") // Bar background
+                .attr('id', d=>`prevBG_${d.id}`)
+                .attr("rx", 6)
+                .attr("ry", 6)
+                .attr("x", -settings.nodes.labels.backgroundWidth()/2)
+                .attr("y", 0)
+                .attr("width", settings.nodes.labels.backgroundWidth)
+                .attr("height", settings.nodes.labels.backgroundHeight * 0.6)
+                .attr("stroke", 'none')
+                .attr("stroke-width", '1px')
+                .attr("fill", 'ghostwhite');
+            
+            prevalence.append("rect") // Progress bar
+                .attr('id', d=>`prevBar_${d.id}`)
+                .attr("rx", 6)
+                .attr("ry", 6)
+                .attr("x", -settings.nodes.labels.backgroundWidth()/2)
+                .attr("y", 0)
+                .attr("width", d=>Math.max(settings.nodes.labels.backgroundWidth()/2 + d.change, 0))
+                .attr("height", settings.nodes.labels.backgroundHeight * 0.6)
+                .attr("stroke", 'none')
+                .attr("stroke-width", '1px')
+                .style("fill", d=>settings.nodes.labels.prevalenceBarColorScheme(d));
 
-        var prevalenceText = prevalence.append("text")
-            .attr('id', d=>`prevTxt_${d.id}`)
-            .text('0% change')
-            .style("font-size", settings.nodes.labels.fontSize * 0.6)
-            .style("font-family", settings.nodes.labels.font)
-            .style("cursor", 'default')
-            .style("user-select", 'none')
-            .style("fill", 'black')
-            .style("stroke", settings.nodes.labels.outlineColor)
-            .style("stroke-width", settings.nodes.labels.outlineWidth)
-            .attr('text-anchor', settings.nodes.labels.anchor)
-            .attr('x', 0) // Offset from node by radius with padding
-            .attr('y', settings.nodes.labels.backgroundHeight/2);
+            prevalence.append("text") // Bar text
+                .attr('id', d=>`prevTxt_${d.id}`)
+                .text('0% change')
+                .style("font-size", settings.nodes.labels.fontSize * 0.6)
+                .style("font-family", settings.nodes.labels.font)
+                .style("cursor", 'default')
+                .style("user-select", 'none')
+                .style("fill", 'black')
+                .style("stroke", settings.nodes.labels.outlineColor)
+                .style("stroke-width", settings.nodes.labels.outlineWidth)
+                .attr('text-anchor', settings.nodes.labels.anchor)
+                .attr('x', 0) // Offset from node by radius with padding
+                .attr('y', settings.nodes.labels.backgroundHeight/2);
+
+            
+            // Badge to indicate increase or decrease in value
+            prevalence.append("text")
+                .attr("id", d=>`badge_${d.id}`)
+                .text(d=>settings.nodes.labels.indicatorUnicode(d))
+                .style("fill", d=>settings.nodes.labels.indicatorColor(d))
+                .attr("dx", d=>settings.nodes.labels.indicatorPos(d).x)
+                .attr("dy", d=>settings.nodes.labels.indicatorPos(d).y)
+                .attr('font-family', 'Font Awesome 5 Free')
+                .attr('font-weight', 900)
+                .attr('class', 'fa shadow')
+                .attr('text-anchor', 'middle')
+                .style("font-size", settings.nodes.labels.fontSize*0.75)
+                .style("cursor", 'default')
+                .style("user-select", 'none')
+                .attr('text-anchor', 'middle'); 
 
     }
 }

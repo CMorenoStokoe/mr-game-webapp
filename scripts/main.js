@@ -38,19 +38,30 @@ collections of methods categorised by purpose.
 /*  Global game variables */
 
 
-// Game data
-var gameData = null; // Game variables and public health data
-var gameState = 0; // State of the game
-//var leftPanel = null; // Important GUI window which displays information on nodes
+// Game and player variables
 
-// Player information
-var currentSystemProgress = 0; // Player's progress in the current system league
-var playerUsername = null; // Player's username
-var playerInterventionCount = 0; // Number of interventions made by player, on 3 becomes a policy ad triggers an event
-var playerInterventionMax = 1; // Maximum number of interventions the player can make per policy
+    // Game data
+    var gameData = null; // Game variables and public health data
+    var gameState = 0; // State of the game
+    const EvE = createEvE(); // Results of all possible interventions
+
+    // Player information
+    var currentSystemProgress = 0; // Player's progress in the current system league
+    var playerUsername = null; // Player's username
+
+    // Player actions
+    var playerInterventionCount = 0; // Number of interventions made by player, on 3 becomes a policy ad triggers an event
+    var playerInterventionMax = 1; // Maximum number of interventions the player can make per policy
+    var playerInterventionHistory = [];
+
+    // Player level
+    var playerExp = 0; // Player experience points
+
+    // User interface
+    var skipAnimations = false;
 
 
-/* Start-up modes */
+/* Start-up configuration */
 
 
 // Loading settings
@@ -267,6 +278,9 @@ function initialise(profile, pval, maxInterventions, data, objective='random'){
     
         // Set game data to given dataset and filter by given pvalue
         gameData = initialiseData(data.nodes, data.links, pval);
+
+        // Initialise EvE (if not already done)
+        if(!(EvE.initialised)){EvE.init(gameData)} // Calculate results of every possible intervention 
         
     // Initialise gameplay    
     
@@ -352,115 +366,81 @@ function incrementGamestate(){
 
 }
 
+// Function to reset
+function reset(){
+
+    // Try to stop any current animations without impacting future animations
+    skipAnimations = true; 
+    setTimeout(function(){skipAnimations = false;}, 2000);
+
+}
+
 
 /* Events on user interaction */
 
 
 // Effect of players enacting an intervention
-function playerMadeIntervention(nodeId, direction='Increase'){
+function playerMadeIntervention(nodeId){
 
     // Increment player intervention count
     playerInterventionCount ++;
 
     // Make intervention
-        // Set intervention value
+
+        // Get intervention value
         var interventionValue = gameData.nodes[nodeId].prevalenceIncrease;
             if(!(gameData.nodes[nodeId].isGood)){interventionValue *= -1};
-            if(direction == 'Decrease'){interventionValue *= -1;};
         
-        // Run propagation using gameData Graph object, this node's ID, and increase
+        // Make intervention
         const propagation = runPropagation(gameData, nodeId,  interventionValue);
+
+        // Log intervention
+        playerInterventionHistory.unshift(propagation);
+            console.log(playerInterventionHistory)
 
     // View intervention effects
     
         // Highlight paths in intervention
         showInterventionEffects(propagation.path.edges); 
-
-        // Show effects in list in GUI
-        showPolicyEffects(propagation.result); 
+            //showPolicyEffects(propagation.result); // Show effects in list in GUI
     
-    // Score policy
-        // Score intervention
-        var intervention = null;
-        switch(gameState){
-            case 'vis':
-                // Score intervention
-                intervention  = scoreIntervention(gameData, method='test');
-                                
-                // Convey results
-                document.getElementById('test_score_objective').innerText = to4SF(score.scores.objective);
-                document.getElementById('test_score_goodness').innerText = to4SF(score.scores.goodness);
-                document.getElementById('test_allEffects').innerHTML += `<hr> Intervention on ${gameData.nodes[nodeId].label} <hr>`;
-                for(const [nodeId, prevalenceChange] of Object.entries(results.result)){
-                    document.getElementById('test_allEffects').innerHTML += `${gameData.nodes[nodeId].label} changed by ${to4SF(prevalenceChange)} <br>`;
-                };    
-                break;
+    // Score intervention 
 
-            case 'game':
-                // Score intervention
-                intervention  = scoreIntervention(gameData, method='game');
-                
-                // Show score and progress
-                showScoreScreen(gameData, intervention); // Show win score screen
-                currentSystemProgress += intervention.scores.total;  // Update system progress
-                console.log(`Intervention scored and added to current sys progress ${currentSystemProgress}: `, intervention)
+        // Calculate score
+        var intervention = scoreIntervention(gameData, method='game');
+            console.log(`${intervention.scores.efficiency}% effeciency (Best: ${gameData.nodes[intervention.efficiency.optimalInterventions[0].id].label} [${intervention.efficiency.optimalInterventions[0].objectiveEffect}])`)
+            if(gameState == 'vis'){ intervention  = scoreIntervention(gameData, method='test'); conveyVisResults(); }; // Score differently if in vis; conveyVisResults is in view.js}
+         
+    // Player exp levelling
 
-                // If the player has scored high enough to complete the system
-                if(currentSystemProgress >= gamestates[gameState].leagueProgressMax){
+        // Calculate player exp
+        for(const [scoreType, score] of Object.entries(intervention.scores)){
+            
+            // Increase player exp
+            playerExp += score;
 
-                    // Allow player to advance to next system
-                    $('#policyEffects-button').one('click', function(){
-                        incrementGamestate();
-                    })
+            // Show player exp effects
+            showExpFx(scoreType, score);
 
-                } else { // Else if the player has not scored high enough to complete the system
+            // Advance level if reached
+            //if(playerExp > 0.1){alert('Level up! Level 2. Exp:', playerExp)}
 
-                    // Allow the player to continue in a new planet within the system
-                    $('#policyEffects-button').one('click', function(){
-                        gamestates[gameState].action();
-                    })
-                }
-                
-                break;
-
-            default:
-                // Score intervention
-                intervention  = scoreIntervention(gameData, method='none');
-                break;
         }
 
-    // Reset intervention count
-    //playerInterventionCount = 0;
+    // Trigger event on player reaching intervention maximum (if triggered)
+    if(playerInterventionCount >= playerInterventionMax){playerReachedInterventionMax()};
 }
 
-// Effects on user choosing an answer
-function userChoseAnswer(nodeId){
-    playerInterventionCount ++; if(playerInterventionCount <= document.getElementById("interventions").value){
-    
-        // Highlight node
-        highlightNode(nodeId);
+// Effects of player enacting interventions up to their maximum allowance of concurrent interventions
+function playerReachedInterventionMax(){
 
-        // Make intervention
+    // Reset player intervention count
+    playerInterventionCount = 0
 
-            // Record intervention target
-            document.getElementById('test_interventions').innerHTML += `${gameData.nodes[nodeId].label} `;
+    // Reset player intervention history
+    playerInterventionHistory = [];
 
-            // Infer intervention value and valence
-            var interventionValue = gameData.nodes[nodeId].prevalenceIncrease;
-                if(!(gameData.nodes[nodeId].isGood)){interventionValue *= -1};
+    // Reset game
+    //reset();
 
-            // Calculate effects
-            const results = runPropagation(gameData, nodeId, interventionValue);
-        
-        // Score intervention
-        const score  = scoreIntervention(gameData, method='test');
-            document.getElementById('test_score_objective').innerText = to4SF(score.scores.objective);
-            document.getElementById('test_score_goodness').innerText = to4SF(score.scores.goodness);
-    
-        // Record effects
-        document.getElementById('test_allEffects').innerHTML += `<hr> Intervention on ${gameData.nodes[nodeId].label} <hr>`;
-        for(const [nodeId, prevalenceChange] of Object.entries(results.result)){
-            document.getElementById('test_allEffects').innerHTML += `${gameData.nodes[nodeId].label} changed by ${to4SF(prevalenceChange)} <br>`;
-        };    
-    }
 }

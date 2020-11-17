@@ -53,6 +53,10 @@ function to0SF(number){
     }
 }
 
+// Round number to 2 DP without storing as string
+function to2DP(number){
+    return Math.round((number + Number.EPSILON) * 100) / 100
+}
   
 // Function to generate random number (from: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random)
 function getRandomInt(max) {
@@ -60,7 +64,7 @@ function getRandomInt(max) {
 }
 
 // Function to bound scores within min & max
-function boundToRange(num, min=0, max=5){
+function boundToRange(num, min, max){
     return(Math.min(Math.max(min, num), max))
 }
 

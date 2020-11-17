@@ -13,13 +13,13 @@ It can also be called individually as a tool to score interventions on request.
 
 
 // Function to get score for policy
-function scoreIntervention(data, method='game'){
+function scoreIntervention(data, method='game', gameData=null, playerInterventionMax=null, EvE=null){
 
     // Score intervention results by data type and method
     switch(method){
 
         case 'game':
-            return scoringMethod_game(data);
+            return scoringMethod_game(data, gameData, playerInterventionMax, EvE);
         
         case 'test':
             return scoringMethod_test(data);
@@ -78,16 +78,74 @@ function scoringMethod_test(gameData){
 
 // Scoring system for the game: Score current node prevalence changes in game data (i.e., overall changes not specific to one intervention)
 function scoringMethod_game(gameData){
-    var changedNodes = [];
-    var mostIncreased = {id:null, b:0};
-    var mostDecreased = {id:null, b:0};
-    var mostGood = {id:null, b:0, goodness:0};
-    var mostBad = {id:null, b:0, goodness:0};
-
     var objectiveScore = 0;
     var goodnessScore = 0;
     var timeScore = 0;
+    var efficiencyScore = 0;
 
+    // Calculate goodness score
+    var goodEffects = [];
+    var badEffects = [];
+    for(const [id, node] of Object.entries(gameData.nodes)){
+
+        // Score whether effect on node was good or bad
+        var goodness = 0;
+        if(node.isGood){
+            goodEffects.push();
+        }else{
+            goodness -= node.change;
+        }
+        goodnessScore += goodness;
+    
+    }
+
+    // Calculate efficiency score compared to best intervention possible
+    const efficiency = calcInterventionEfficiency(gameData, EvE);
+        efficiencyScore = efficiency.score; // % of best intervention
+
+    // Calculate objective score
+    objectiveScore = gameData.objective.change; // % change in objective
+
+    // Return scores
+    return({
+        scores: {
+            objective: objectiveScore, 
+            goodness: goodnessScore,
+            time: timeScore,
+            efficiency: efficiencyScore,
+        },
+        weighting: {  // Weighting of scores for exp levelling
+            objective: 1, 
+            goodness: 1,
+            time: 1,
+            efficiency: 1,
+        },
+        efficiency: {
+            score: efficiency.score, 
+            optimalInterventions: efficiency.optimalInterventions, 
+        }
+    })
+}
+
+// Calculate intervention efficiency
+function calcInterventionEfficiency(gameData, EvE){
+
+    // Calculate best possible interventions
+    const optimalInterventions = calcOptimalIntervention(gameData.objective.id, gameData.nodes, 5, EvE.data); // Get top 5 interventions
+    
+    // Compare player efficiency to most optimal intervention
+    const optimalIntervention = optimalInterventions[0]; // Single best intervention
+        const bestEffect = optimalIntervention.objectiveEffect;
+        const playerEffect = gameData.objective.change_raw;
+
+    const efficiency = to2DP(playerEffect / bestEffect * 100);
+    
+    return({score: efficiency, optimalInterventions: optimalInterventions})
+};
+
+// Calculate awards
+function calculateAwards(){
+  
     // Iterate over nodes and detect changes
     for(const [id, node] of Object.entries(gameData.nodes)){
 
@@ -103,15 +161,6 @@ function scoringMethod_game(gameData){
         }
         goodnessScore += goodness;
 
-        // Score effect on the objective (if this node was the objective)
-        if(id == gameData.objective.id){
-            if(node.isGood){
-                objectiveScore += node.change;
-            }else{
-                objectiveScore -= node.change;
-            }
-        }
-
         // Check awards
         if(node.change > mostIncreased.b){mostIncreased = {id: id, b: node.change}} // ? Most increased trait
         if(node.change < mostDecreased.b){mostDecreased = {id: id, b: node.change}} // ? Most decreased trait
@@ -126,29 +175,4 @@ function scoringMethod_game(gameData){
         if(mostDecreased.id){awardScore+=0.25};
         if(mostGood.id){awardScore+=0.5};
         if(mostBad.id){awardScore-=0.25};
-
-    // Final weighting of scores
-    objectiveScore = boundToRange(objectiveScore);
-    goodnessScore = boundToRange(goodnessScore / 4);
-    timeScore = boundToRange(timeScore);
-    awardScore = boundToRange(awardScore);
-    const totalScore = objectiveScore + goodnessScore + timeScore + awardScore;
-
-    // Return scores
-    return({
-        scores: {
-            objective: objectiveScore, 
-            goodness: goodnessScore,
-            time: timeScore,
-            awards: awardScore,
-            total: totalScore,
-        },
-        effects: changedNodes,
-        awards: {
-            mostGood: mostGood,
-            mostBad: mostBad,
-            mostDecreased: mostDecreased,
-            mostIncreased: mostIncreased,
-        }
-    })
-}
+};
