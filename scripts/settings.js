@@ -183,7 +183,7 @@ function settingsProfile_enableOutlines(){
 // Settings profile to improve the visibility of static visualisation
 function settingsProfile_PermanentLabels(){
     
-    // Make labels permanently visible
+    // Remove class
     settings.nodes.labels.class = '';
 
     // Position closer to node for display compatibility

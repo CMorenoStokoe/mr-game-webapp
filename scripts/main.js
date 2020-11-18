@@ -182,6 +182,8 @@ const gamestates = { // Different gamestates within the game (player levelling s
                 maxInterventions=1, 
                 data=jsonData);
 
+            gameData.setObjective("ukb_b_4956")
+
         },
         leagueName: 'Persephone',
             leagueProgressMax: 25,
@@ -396,36 +398,31 @@ function playerMadeIntervention(nodeId){
 
         // Log intervention
         playerInterventionHistory.unshift(propagation);
-            console.log(playerInterventionHistory)
 
-    // View intervention effects
+    // Intervention effects
     
-        // Highlight paths in intervention
-        showInterventionEffects(propagation.path.edges); 
-            //showPolicyEffects(propagation.result); // Show effects in list in GUI
-    
-    // Score intervention 
-
         // Calculate score
-        var intervention = scoreIntervention(gameData, method='game');
-            console.log(`${intervention.scores.efficiency}% effeciency (Best: ${gameData.nodes[intervention.efficiency.optimalInterventions[0].id].label} [${intervention.efficiency.optimalInterventions[0].objectiveEffect}])`)
+            var intervention = scoreIntervention(gameData, method='game');
+            if(intervention.efficiency){console.log(`${intervention.scores.efficiency}% effeciency (Best: ${gameData.nodes[intervention.efficiency.optimalInterventions[0].id].label} [${intervention.efficiency.optimalInterventions[0].objectiveEffect}])`)}
+            else{'No possible intervention would have beneficial effects'}
             if(gameState == 'vis'){ intervention  = scoreIntervention(gameData, method='test'); conveyVisResults(); }; // Score differently if in vis; conveyVisResults is in view.js}
-         
-    // Player exp levelling
 
-        // Calculate player exp
-        for(const [scoreType, score] of Object.entries(intervention.scores)){
+        // Update view
+        animatePropagation(propagation.path.edges, dataCallback); //animation2();
+            //showPolicyEffects(propagation.result); // Show effects in list in GUI
+
+        // Update model
+        function dataCallback(node){
+
+            // Calculate exp
+            const score = node.isGood ? propagation.result[node.id] : -propagation.result[node.id];
             
-            // Increase player exp
             playerExp += score;
-
-            // Show player exp effects
-            showExpFx(scoreType, score);
-
-            // Advance level if reached
-            //if(playerExp > 0.1){alert('Level up! Level 2. Exp:', playerExp)}
-
+                console.log(node, node.isGood, score, playerExp);
         }
+        
+        // Advance level if reached
+        //if(playerExp > 0.1){alert('Level up! Level 2. Exp:', playerExp)}
 
     // Trigger event on player reaching intervention maximum (if triggered)
     if(playerInterventionCount >= playerInterventionMax){playerReachedInterventionMax()};
@@ -443,4 +440,33 @@ function playerReachedInterventionMax(){
     // Reset game
     //reset();
 
+}
+
+// Effect if player selects invalid target
+function playerSelectedInvalidTarget(nodeId, reason){
+
+    // Get node
+    const node = gameData.nodes[nodeId];
+
+    // Assemble message
+    var message = 'Error processing intervention (code #3). Please try making another intervention.';
+    switch(reason){
+        case 'node is objective': 
+            message = 'the node you selected is the objective';
+            break;
+        case 'node has no outgoing effects': 
+            message = 'the node you selected would have no effects if it was intervened on';
+            break;
+        case 'err':
+            return;
+    }
+
+    // Display message
+    alert(`
+        Invalid target
+
+        You can't intervene on ${node.label} because ${reason}. 
+        
+        Please select another trait to intervene on.
+    `)
 }

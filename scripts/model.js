@@ -62,8 +62,12 @@ function initialiseData(nodes, edges, pValueThreshold){
         // Record whether the node is good or bad (i.e., wellbeing is good but diabetes is bad)
         gameData.nodes[key].isGood = isGood[value.id];
 
-        // Reset edge list so we can update this after filtering
-        gameData.nodes[key].edges = [];
+        // Edges per node
+        gameData.nodes[key].edges = []; // Init and fill from final data after filtering 
+        
+        // Utilities for categorising edges
+        gameData.nodes[key].getOutgoingEffects = function(){return categoriseEdges(key, this.edges).outgoing};
+        gameData.nodes[key].getIncomingEffects = function(){return categoriseEdges(key, this.edges).incoming};  
         
     }
 
@@ -151,4 +155,19 @@ function negateTrait(traitId, newName, newIcon, nodes, edges){
     icons[traitId] = newIcon; // Update icon;
     isGood[traitId]= !isGood[traitId]; // Record trait as good
 
+}
+
+// Categorise edges into outgoing and incoming
+function categoriseEdges(nodeId, edges){
+    var incoming = [];
+    var outgoing = [];
+
+    // Categorise edges
+    for(const edge of edges){
+        if(nodeId == edge['id.outcome']){incoming.push(edge)}
+        if(nodeId == edge['id.exposure']){outgoing.push(edge)}
+    }
+
+    // Return categorised edges
+    return{incoming: incoming, outgoing: outgoing}
 }

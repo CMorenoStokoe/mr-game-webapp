@@ -68,11 +68,10 @@
         
         <!-- Planet image -->
         <div id='GUI-planet'></div>
-
         <p id='progress-helpText' style='display: none; position: absolute; top:0; left: 45%;'><i class="far fa-hand-pointer col-primary"></i>  Enact policies to make progress.</p>
         
         <!-- Current planet, system and goal information -->
-        <div id='GUI-planetInfo'>
+        <div id='GUI-planetInfo' class='d-flex flex-column justify-content-center'>
 
             <!-- Current planet-->
             <h1 id='GUI-currentPlanet' class='display-4'>
@@ -396,7 +395,7 @@
             </div>
           </div>
         </div>
-      </div>
+    </div>
 
     <!-- Test interface -->
     <div id='test_settings' style='position: absolute; top:0; left:0; display: none; z-index: 99;'>
@@ -406,7 +405,7 @@
         <em>Set an objective and intervention settings</em><br><br>
         <form >
             <label for="objective">Objective ID:</label>
-        <input type="text" id="objective" name="objective" onchange="gameData.setObjective(this.value);highlightNode(this.value, fill='coral')" value="set objective trait"><br><br>
+            <input type="text" id="objective" name="objective" onchange="gameData.setObjective(this.value);highlightNode(this.value, fill='coral')" value="set objective trait"><br><br>
             <label for="interventions">Max number of interventions:</label>
             <input type="text" id="interventions" name="interventions" value="1"><br><br>
         </form>
@@ -508,6 +507,7 @@
 
     <!-- Game Visuals -->
     <script src="scripts/planet-names.js"></script>
+    <script src="scripts/animate-propagation.js"></script>
 
     <!-- Game Database -->
     <script src="data/database.js"></script> 

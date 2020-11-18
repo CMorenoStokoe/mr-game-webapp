@@ -36,7 +36,6 @@ function calcOptimalIntervention(objectiveId, nodes, maxInterventions, EvE){ // 
 
     // Run calculation
     calculate(); 
-    console.log(topInterventions);
     return topInterventions;
 
     // Begin series of intervention calculations (using callbacks to  prevent pileup errors)
@@ -73,7 +72,7 @@ function identifyOptimalIntervention(objectiveId, nodes, EvE, topInterventions){
             if(id == objectiveId){skip = true;}
 
             // Is already in the list
-            for(const intervention of topInterventions){ if (id == intervention.id){skip = true }; };
+            for(const intervention of topInterventions){ if (id == intervention.id){ skip = true }; };
 
         if(skip){continue;}
 

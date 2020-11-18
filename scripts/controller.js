@@ -73,17 +73,25 @@ function initialiseControls(gameData){
 function addOnclickEventsToNodes(gameData){
     
     // Add onclick function to nodes
-    d3.selectAll('g').on("click", function(){
+    d3.selectAll('image').on("click", function(){
+
+        // Get node ID
+        const node = d3.select(this.parentNode); // From parent node of icon
+        const id = node.attr('id'); 
 
         // Intervene on node if it is a valid  target  
-        if(this.id){ // Ignore anomalous behaviour (where 'this' is window since this ignores any element calling this without an ID)
-            // Disable intervening directly on the objective
-            if(gameData.objective == undefined){
-                interveneOnTrait(this.id);
-            } else if(!(this.id == gameData.objective.id)){ 
-                interveneOnTrait(this.id);
+
+            // Check exclusion criteria
+            function invalidTarget(){
+                if(!(id)){return 'err'} // If anomalous behavior (where 'this' is window since this ignores any element calling this without an ID)
+                if(id == gameData.objective.id){return 'node is objective'} // If node is the objective
+                if(gameData.nodes[id].getOutgoingEffects().length === 0){return 'node has no outgoing effects'} // If node has no outgoing effects
+                else return false;
             }
-        }
+            if(invalidTarget()){return playerSelectedInvalidTarget(id, invalidTarget())} // If invalid ignore and alert player
+
+            // Intervene on target
+            interveneOnTrait(id);
 
         // Intervention function
         function interveneOnTrait(id){

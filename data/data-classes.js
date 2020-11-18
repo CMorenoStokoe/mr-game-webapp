@@ -163,7 +163,7 @@ class DataClass {
     }
 
     // Remove edges
-    updateEdges(newEdges){ console.log(`Deleting ${newEdges.length} edges from DataFrame`, newEdges);
+    updateEdges(newEdges){ //console.log(`Deleting ${newEdges.length} edges from DataFrame`, newEdges);
 
         for(const edge of newEdges){
             const edgeId = this.getEdgeId(edge[0],edge[1]);

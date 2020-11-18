@@ -86,6 +86,7 @@ function scoringMethod_game(gameData){
     // Calculate goodness score
     var goodEffects = [];
     var badEffects = [];
+
     for(const [id, node] of Object.entries(gameData.nodes)){
 
         // Score whether effect on node was good or bad
@@ -101,7 +102,10 @@ function scoringMethod_game(gameData){
 
     // Calculate efficiency score compared to best intervention possible
     const efficiency = calcInterventionEfficiency(gameData, EvE);
-        efficiencyScore = efficiency.score; // % of best intervention
+    
+        // If there was a possible better intervention
+        if(efficiency){ efficiencyScore = efficiency.score; } // % of best intervention
+        else{ efficiencyScore = 100 }
 
     // Calculate objective score
     objectiveScore = gameData.objective.change; // % change in objective
@@ -120,10 +124,7 @@ function scoringMethod_game(gameData){
             time: 1,
             efficiency: 1,
         },
-        efficiency: {
-            score: efficiency.score, 
-            optimalInterventions: efficiency.optimalInterventions, 
-        }
+        efficiency: efficiency,
     })
 }
 
@@ -133,14 +134,25 @@ function calcInterventionEfficiency(gameData, EvE){
     // Calculate best possible interventions
     const optimalInterventions = calcOptimalIntervention(gameData.objective.id, gameData.nodes, 5, EvE.data); // Get top 5 interventions
     
-    // Compare player efficiency to most optimal intervention
-    const optimalIntervention = optimalInterventions[0]; // Single best intervention
-        const bestEffect = optimalIntervention.objectiveEffect;
-        const playerEffect = gameData.objective.change_raw;
+    // Return most effective possible intervention (if any)
+    if(optimalInterventions.length > 0){
 
-    const efficiency = to2DP(playerEffect / bestEffect * 100);
+        // Compare player efficiency to most optimal intervention
+        const optimalIntervention = optimalInterventions[0]; // Single best intervention
+            const bestEffect = optimalIntervention.objectiveEffect;
+            const playerEffect = gameData.objective.change_raw;
+
+        const efficiency = to2DP(playerEffect / bestEffect * 100);
+        
+        return({score: efficiency, optimalInterventions: optimalInterventions})
+
+    } 
     
-    return({score: efficiency, optimalInterventions: optimalInterventions})
+    // Else if no possible intervention
+    else {
+        return false
+    };
+
 };
 
 // Calculate awards
