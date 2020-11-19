@@ -213,7 +213,7 @@ function settingsProfile_PrevalenceLabels(){
     }};
 
     // Add function to color prevalence bar
-    settings.nodes.labels.prevalenceBarColorScheme = d => d.change<0 ? d3.interpolateGnBu(1-1*d.change_bar/100) : d3.interpolateOrRd(1*d.change_bar/100);
+    settings.nodes.labels.prevalenceBarColorScheme = d => d.change<0 ? d3.interpolateGnBu(1-d.change_bar/100) : d3.interpolateOrRd(d.change_bar/100);
 
     // Add extra information on prevalence
     settings.nodes.labels.extras=function(node){

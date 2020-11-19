@@ -56,6 +56,7 @@ collections of methods categorised by purpose.
 
     // Player level
     var playerExp = 0; // Player experience points
+    var playerLvl = 1; // Player level
 
     // User interface
     var skipAnimations = false;
@@ -109,6 +110,16 @@ window.onload = function(){
 
 /* Game states */
 
+
+// Levels
+const levels = {
+    1: {id: 1, max: 100},
+    2: {id: 2, max: 200},
+    3: {id: 3, max: 300},
+    4: {id: 4, max: 400},
+    5: {id: 5, max: 500},
+    6: {id: 'End of game', max:1},
+}
 
 // Data for the different gamestates in the game
 const gamestates = { // Different gamestates within the game (player levelling system)
@@ -179,10 +190,8 @@ const gamestates = { // Different gamestates within the game (player levelling s
             initialise(
                 profile='game',
                 pval=1, 
-                maxInterventions=1, 
+                maxInterventions=playerLvl, 
                 data=jsonData);
-
-            gameData.setObjective("ukb_b_4956")
 
         },
         leagueName: 'Persephone',
@@ -269,7 +278,6 @@ const gamestates = { // Different gamestates within the game (player levelling s
     },
 }
 
-
 /* Initialise MCV */
 
 
@@ -299,13 +307,20 @@ function initialise(profile, pval, maxInterventions, data, objective='random'){
             default:
                 gameData.setObjective(objective);
                 break;
-        }
-            
+        } 
 
     // Initialise GUI
 
         // Network visualisation
-        initialiseView(profile, gameData, pval, gamestates[gameState], currentSystemProgress); 
+        initialiseView(
+            profile, 
+            gameData,
+            pval, 
+            gamestates[gameState], 
+            playerExp,
+            levels,
+            playerLvl,
+        ); 
         
         // Set node sizes
         //formatNodes(gameData);
@@ -322,7 +337,6 @@ function initialise(profile, pval, maxInterventions, data, objective='random'){
             initialiseControls(gameData); 
 
         }
-    
 }
 
 
@@ -373,8 +387,10 @@ function reset(){
 
     // Try to stop any current animations without impacting future animations
     skipAnimations = true; 
-    setTimeout(function(){skipAnimations = false;}, 2000);
+    setTimeout(function(){skipAnimations = false;}, 3000);
 
+    // Reset game
+    gamestates[gameState].action();
 }
 
 
@@ -397,48 +413,96 @@ function playerMadeIntervention(nodeId){
         const propagation = runPropagation(gameData, nodeId,  interventionValue);
 
         // Log intervention
-        playerInterventionHistory.unshift(propagation);
+        playerInterventionHistory.unshift(nodeId);
 
-    // Intervention effects
+    // Calculate intervention effects
     
-        // Calculate score
-            var intervention = scoreIntervention(gameData, method='game');
-            if(intervention.efficiency){console.log(`${intervention.scores.efficiency}% effeciency (Best: ${gameData.nodes[intervention.efficiency.optimalInterventions[0].id].label} [${intervention.efficiency.optimalInterventions[0].objectiveEffect}])`)}
-            else{'No possible intervention would have beneficial effects'}
+        // Score
+        var intervention = scoreIntervention(gameData, method='game', propagation);
+            if(intervention.efficiency){console.log(`${intervention.scores.efficiency}% effeciency (Best: ${gameData.nodes[intervention.efficiency.optimalInterventions[0].id].label} [${intervention.efficiency.optimalInterventions[0].objectiveEffect}])`)
+            }else{'No possible intervention would have beneficial effects'}
             if(gameState == 'vis'){ intervention  = scoreIntervention(gameData, method='test'); conveyVisResults(); }; // Score differently if in vis; conveyVisResults is in view.js}
 
-        // Update view
-        animatePropagation(propagation.path.edges, dataCallback); //animation2();
-            //showPolicyEffects(propagation.result); // Show effects in list in GUI
-
-        // Update model
-        function dataCallback(node){
-
-            // Calculate exp
-            const score = node.isGood ? propagation.result[node.id] : -propagation.result[node.id];
-            
-            playerExp += score;
-                console.log(node, node.isGood, score, playerExp);
+        // Exp
+        //const exp = calculateExp(node, effect=propagation.result[node.id], efficiency); // scoring.js
+        if(Number.isNaN(intervention.scores.efficiency)){
+            console.log('NAN issue', nodeId, gameData.objective.id, propagation, intervention)
+        } else {
+            playerExp += intervention.scores.efficiency;
         }
-        
-        // Advance level if reached
-        //if(playerExp > 0.1){alert('Level up! Level 2. Exp:', playerExp)}
 
-    // Trigger event on player reaching intervention maximum (if triggered)
-    if(playerInterventionCount >= playerInterventionMax){playerReachedInterventionMax()};
+        // Level
+        const lvl = calculateLevel(playerExp, levels);
+
+    // Show intervention effects
+
+        // Propagation
+        animatePropagation(propagation.path.edges, dataCallback); //animation2();
+            function dataCallback(node){return} //efficiency = {score: intervention.scores.efficiency, efficiency: intervention.efficiency}
+            //dataCallback(gameData.nodes[nodeId], propagation.result[gameData.nodes[nodeId].id]); // Intervention origin  
+
+        // Exp
+        showExpFx(playerExp, 100, intervention.scores.efficiency);
+        //showPolicyEffects(propagation.result); // Show effects in list in GUI
+        
+    // Check for triggers
+
+        // Level-up
+        if(lvl > playerLvl){ 
+            playerLevelledUp();
+        }
+
+        // Intervention max reached
+        if(playerInterventionCount >= playerInterventionMax){
+            playerReachedInterventionMax(intervention)
+        };
 }
 
 // Effects of player enacting interventions up to their maximum allowance of concurrent interventions
-function playerReachedInterventionMax(){
+function playerReachedInterventionMax(intervention){
 
-    // Reset player intervention count
-    playerInterventionCount = 0
+    // Format progress bar
+    styleProgressBar('intervention-max'); // view.js
 
-    // Reset player intervention history
-    playerInterventionHistory = [];
+    // Enable continue button action
+    enableProgressBarAction(); // controller.js
 
-    // Reset game
-    //reset();
+    // Show intervention effects
+    showScoreScreen(gameData, intervention);
+}
+
+// Event on player level up
+function playerLevelledUp(){
+
+    // Raise player level
+
+        // Increment player level
+        playerLvl++;
+
+        // Increase number of possible interventions
+        playerInterventionMax = playerLvl;
+    
+        // Reset player exp
+        playerExp = 0;
+
+    // Show new level to player
+
+        // Advance and then reset progress bar
+        setProgress('progress-goal-div', levels[playerLvl].max); // Progress bar    
+
+        // Set level on progress bar
+        setHTML('GUI-currentPlanet' , `Level ${playerLvl}`); // Text
+
+        // Style progress bar
+        styleProgressBar('lvl-up', playerLvl); // view.js
+
+        // Enable progress bar press
+        enableProgressBarAction(); // controller.js
+    
+    // If end of game
+    if(playerLvl>5){
+        alert('You win! Thank you for playing.')
+    }
 
 }
 
@@ -450,12 +514,19 @@ function playerSelectedInvalidTarget(nodeId, reason){
 
     // Assemble message
     var message = 'Error processing intervention (code #3). Please try making another intervention.';
+    
     switch(reason){
-        case 'node is objective': 
-            message = 'the node you selected is the objective';
+        case 1: //'node is objective' 
+            message = 'the trait you selected is the objective. Please select another trait to intervene on';
             break;
-        case 'node has no outgoing effects': 
-            message = 'the node you selected would have no effects if it was intervened on';
+        case 2: //'node has no outgoing effects'
+            message = 'the trait you selected would have no effects if it was intervened on. Please select another trait to intervene on';
+            break;
+        case 3: //'intervention max reached'
+            message = 'you have reached the maximum number of interventions you can make. Please continue with the game';
+            break;
+        case 4: //'trait already intervened on'
+            message = 'you have already intervened on this trait. Please select another trait to intervene on';
             break;
         case 'err':
             return;
@@ -465,8 +536,6 @@ function playerSelectedInvalidTarget(nodeId, reason){
     alert(`
         Invalid target
 
-        You can't intervene on ${node.label} because ${reason}. 
-        
-        Please select another trait to intervene on.
+        You can't intervene on ${node.label} because ${message}.
     `)
 }

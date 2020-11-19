@@ -31,7 +31,7 @@ function initialiseEvE(gameData){
 }
 
 // Calculate optimal intervention
-function calcOptimalIntervention(objectiveId, nodes, maxInterventions, EvE){ // EvE = results from all possible interventions
+function calcOptimalIntervention(gameData, EvE, n=5){ // EvE = results from all possible interventions
     var topInterventions = [];
 
     // Run calculation
@@ -42,15 +42,15 @@ function calcOptimalIntervention(objectiveId, nodes, maxInterventions, EvE){ // 
     function calculate(){ 
 
         // Identify most effective intervention
-        const optimalIntervention = identifyOptimalIntervention(objectiveId, nodes, EvE, topInterventions);
+        const optimalIntervention = identifyOptimalIntervention(gameData, topInterventions, EvE);
             if(optimalIntervention.id == null){return}
 
         // Add to list of results
         topInterventions.push(optimalIntervention)
 
         // Increment count and callback if not yet complete
-        maxInterventions --;
-        if(maxInterventions > 0){calculate()}
+        n --;
+        if(n > 0){calculate()}
     }    
 }
 
@@ -59,8 +59,12 @@ function calcOptimalIntervention(objectiveId, nodes, maxInterventions, EvE){ // 
 
 
 // Identify most effective intervention(s) to most beneficially affect objective trait
-function identifyOptimalIntervention(objectiveId, nodes, EvE, topInterventions){
+function identifyOptimalIntervention(gameData, topInterventions, EvE){
     var optimalIntervention = {id: null, objectiveEffect: 0};
+
+    // Get variables
+    const objectiveId = gameData.objective.id;
+    const nodes = gameData.nodes;
     
     // Get most effective interventions
     for(const [id, effects] of Object.entries(EvE)){

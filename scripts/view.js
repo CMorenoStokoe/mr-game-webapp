@@ -32,7 +32,9 @@ function initialiseView(
         gameData, 
         pValueThreshold, 
         currentGameState, 
-        currentSystemProgress=0
+        playerExp,
+        levels,
+        playerLvl
     ){
 
     switch(profile){
@@ -77,7 +79,9 @@ function initialiseView(
             fadeIn_SVG();
             fadeIn_planetInfo();
             $('.label').css('opacity', 0); // Start node labels hidden
-            
+            setExpIndicators(playerExp); // Set exp bar
+            styleProgressBar('default'); // Set progress bar style
+
             // Create game menu bar
             createMenu(); // menu.js
 
@@ -146,14 +150,23 @@ function initialiseView(
         //setText('GUI-currentPlanet', `${planetName}`);
 
     }
+
+    // Set exp and level indicators
+    function setExpIndicators(playerExp, max=levels[playerLvl].max){
+        showExpFx(playerExp);
+    }
 }
 
 
 /* Update visualisation */
 
 // Show player exp effects
-function showExpFx(){
-    return
+function showExpFx(playerExp, max=100){
+
+    // Set exp bar
+    setProgress('progress-goal-div', playerExp, range = {min: 0, max: max,}); // Progress bar    
+    setHTML('GUI-currentSystem', `${Math.min(100, to0SF(playerExp / levels[playerLvl].max * 100))}`); // Text
+
 }
 
 // Format nodes so they scale with their prevalence values
@@ -397,4 +410,32 @@ function conveyVisResults(){
     for(const [nodeId, prevalenceChange] of Object.entries(results.result)){
         document.getElementById('test_allEffects').innerHTML += `${gameData.nodes[nodeId].label} changed by ${to4SF(prevalenceChange)} <br>`;
     };   
+}
+
+// Style progress bar
+function styleProgressBar(style='default'){
+
+    switch(style){
+
+        case 'lvl-up':
+
+            // Format progress to level up
+            setHTML('GUI-currentSystem', `Level up! &nbsp <i class="fas fa-fire"></i>`)
+            document.getElementById('progress-goal').className = 'progress-bar progress-bar-striped progress-bar-animated bg-primary';
+            
+            break;
+
+        case 'intervention-max':
+
+            // Format progress to continue
+            setHTML('GUI-currentSystem', `Continue &nbsp <i class="fas fa-chevron-right"></i>`)
+            document.getElementById('progress-goal').className = 'progress-bar progress-bar-striped progress-bar-animated bg-success';
+            break;
+        
+        default:
+
+            // Format progress default 
+            document.getElementById('progress-goal').className = 'progress-bar progress-bar-striped progress-bar-animated bg-info';
+            break;
+    }
 }

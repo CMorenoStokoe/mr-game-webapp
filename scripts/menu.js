@@ -12,8 +12,12 @@ script.
 
 */
 
+// Track whether menu has already been generated
+var menuGenerated = false;
+
 // Create menu
 function createMenu(){
+    if(menuGenerated){return}
 
     // Create menu div
     createDiv(id='menu', parent='body', className='menu');
@@ -55,7 +59,7 @@ function createMenu(){
                 // Add volume change functionality
                 addVolumeSlider();
 
-            // Color blind
+            /* Color blind
             
                 // Create toggle
                 var div = document.createElement('DIV');
@@ -82,6 +86,11 @@ function createMenu(){
                 document.getElementById('menu-settings-body').appendChild(div);
                     div.appendChild(volumeLabel);
                     div.appendChild(btn);
+                
+                */
+
+    // Record menu as generated
+    menuGenerated = true;
 }
 
 /* Cut features

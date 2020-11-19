@@ -59,6 +59,7 @@ function showScoreScreen(gameData, intervention){
             var elementId = null; // Id of element containing score text
             switch(score.score){
                 case 'objective': elementId = 'score-goal'; break;
+                case 'efficiency': elementId = 'score-efficiency'; break;
                 case 'goodness': elementId = 'score-goodness'; break;
                 case 'time': elementId = 'score-time'; break;
                 case 'awards': elementId = 'score-award'; break;

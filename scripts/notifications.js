@@ -19,7 +19,7 @@ function notify(title, body, width = '600px', position = {x:'45vw', y:'45vh'}, c
     constructMessage(title, body, width, position, contextIndicator);
 
     // Log message
-    writeToLog(`${title}<br>${body}`);
+    //writeToLog(`${title}<br>${body}`);
     
 }
 

@@ -82,10 +82,13 @@ function addOnclickEventsToNodes(gameData){
         // Intervene on node if it is a valid  target  
 
             // Check exclusion criteria
+            console.log(playerInterventionCount, playerInterventionMax)
             function invalidTarget(){
                 if(!(id)){return 'err'} // If anomalous behavior (where 'this' is window since this ignores any element calling this without an ID)
-                if(id == gameData.objective.id){return 'node is objective'} // If node is the objective
-                if(gameData.nodes[id].getOutgoingEffects().length === 0){return 'node has no outgoing effects'} // If node has no outgoing effects
+                if(id == gameData.objective.id){return 1} // If node is the objective
+                if(gameData.nodes[id].getOutgoingEffects().length === 0){return 2} // If node has no outgoing effects
+                if(playerInterventionCount >= playerInterventionMax){return 3}
+                if(playerInterventionHistory.includes(id)){return 4}
                 else return false;
             }
             if(invalidTarget()){return playerSelectedInvalidTarget(id, invalidTarget())} // If invalid ignore and alert player
@@ -131,4 +134,22 @@ function initialiseTestControls(){
         }
     })
 
+}
+
+// Enable progress bar on click action
+function enableProgressBarAction(levelup=false){
+    $('#progress-goal-div').one('click', function(levelup){
+
+        // Reset player intervention count
+        playerInterventionCount = 0;
+
+        // Reset player intervention history
+        playerInterventionHistory = [];
+
+        // If level up event show modal
+        //if(levelup){modal.modal('show')}
+
+        // Reset game
+        reset();
+    })
 }
