@@ -8,6 +8,24 @@ This file contains code to show the win score screen
 
 */
 
+
+// Show win score screen
+function showScoreScreen(gameData, score){
+
+    // Populate win screen
+
+        console.log(score)
+    
+        // Show scores        
+        setText('score-goal', intervention.scores.objective);
+        setText('score-efficiency', intervention.scores.efficiency);
+    
+    // Open win screen
+    $('#win-screen').show().animate({opacity: 1}, 500); // Show modal
+    progressSound.play(); // Play sound
+}
+
+/* Legacy screen
 // Show win score screen
 function showScoreScreen(gameData, intervention){
 
@@ -177,3 +195,4 @@ function showScoreScreen(gameData, intervention){
             }
         }
 }
+*/

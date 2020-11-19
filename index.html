@@ -176,7 +176,6 @@
         </div> 
 
         <!-- Intervention dialogue -->
-
         <div class="modal" tabindex="-1" role="dialog" id='intervention-modal'>
             <div class="modal-dialog modal-sm" role="document">
               <div class="modal-content">
@@ -256,6 +255,7 @@
                     <h5 class='mt-2 fnt-bold'>Your score:</h5>
                     <ul style='list-style-type: none; margin-bottom: 5px;'>
                         <li>Goal score: <span id='score-goal'>12523</span></li>
+                        <li>Efficiency score: <span id='score-efficiency'>12523</span></li>
                         <li>Side-effect score: <span id='score-goodness'>54326</span></li>
                         <li>Time score: <span id='score-time'>3326</span></li>
                         <li>Award score: <span id='score-award'>36</span></li>
@@ -282,6 +282,113 @@
                 </div>
             </div>
 
+        </div>
+
+        <!-- Level up modal -->
+        <div class="modal" tabindex="-1" role="dialog" id='modal-lvlup'>
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header" style='border: none;'>
+                  <div class="modal-title">
+                      <h1><i class="fas fa-fire"></i> Unlockable abilities</h1>                  
+                      <p class='text-muted'>Every time you level up you can unlock an ability to power up your interventions.</p>
+                  </div>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+
+                        <form id='unlocks'>
+                            <div class='d-flex flex-column justify-content-around'>
+                            
+                            <div>
+                                <h4>Number of interventions</h4>
+                                <p class='text-muted'>Increase the number of interventions that you can make at the same time.</p>
+                            </div>
+
+                            <div class='d-flex flex-row align-items-center justify-content-center'>
+
+
+                                <label class='unlock'>
+                                    <input type="radio" name="max" value=1 checked>
+                                    <i class="fas fa-plus"></i>
+                                    <br>
+                                    1
+                                </label>
+                                
+                                <label class='unlock'>
+                                    <input type="radio" name="max" value=2>
+                                    <i class="fas fa-plus"></i>
+                                    <br>
+                                    2
+                                </label>
+                                
+                                <label class='unlock'>
+                                    <input type="radio" name="max" value=3>
+                                    <i class="fas fa-plus"></i>
+                                    <br>
+                                    3
+                                </label>
+
+                                
+                                <label class='unlock'>
+                                    <input type="radio" name="max" value=4>
+                                    <i class="fas fa-plus"></i>
+                                    <br>
+                                    4
+                                </label>
+
+                            </div>
+
+                            <div>
+                                <h4>Strength of interventions</h4>
+                                <p class='text-muted'>Increase the amount that your interventions change a trait.</p>
+                            </div>
+
+                            <div class='d-flex flex-row align-items-center justify-content-center'>
+
+                                <label class='unlock'>
+                                    <input type="radio" name="strength" value=1 checked>
+                                    <i class="fas fa-times"></i>
+                                    <br>
+                                    30%
+                                </label>
+                                
+                                <label class='unlock'>
+                                    <input type="radio" name="strength" value=1.5>
+                                    <i class="fas fa-times"></i>
+                                    <br>
+                                    50%
+                                </label>
+                                
+                                <label class='unlock'>
+                                    <input type="radio" name="strength" value=2>
+                                    <i class="fas fa-times"></i>
+                                    <br>
+                                    70%
+                                </label>
+
+                                <label class='unlock'>
+                                    <input type="radio" name="strength" value=2.5>
+                                    <i class="fas fa-times"></i>
+                                    <br>
+                                    100%
+                                </label>
+
+                            </div>
+    
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer" style='border: none;'>
+                    <button id='modal-lvlup-btn' type="button" class="w-100 btn btn-lrg btn-custom" data-dismiss="modal">Continue</button>
+                </div>
+              </div>
+            </div>
+            <div class='d-flex flex-row justify-content-center align-items-center'>
+                <!-- Space for tutorial dialog -->
+            </div>
         </div>
 
         <!-- Tutorial -->

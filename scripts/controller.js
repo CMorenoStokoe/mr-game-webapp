@@ -39,29 +39,18 @@ function initialiseControls(gameData){
     // Intervention controls
 
         // Radio buttons for selecting direction for intervention
-        document.getElementById('intervention-direction-form').addEventListener('change',
+        document.getElementById('unlocks').addEventListener('change',
             function(){
-                
-                // Get direction value on radio change
-                const direction = document.getElementById('intervention-direction-form').direction.value;
-                
-                // Update text with current intervention direction
-                document.getElementById('intervention-direction').innerText = direction;
+
+                // Trigger event on player unlocking ability
+                playerUnlockedAbility(
+                    interventionMax = document.getElementById('unlocks').max.value,
+                    interventionStrength = document.getElementById('unlocks').strength.value,
+                );
             }
         )
 
-        // Intervention button
-        $('#intervention-btn').on('click', function(){
-
-            // Get intervention paramaters
-            const direction = document.getElementById('intervention-direction-form').direction.value;
-            const targetNodeId = this.getAttribute('data-nodeId');
-
-            // Order intervention
-            playerMadeIntervention(targetNodeId, direction)
-        })
-
-    // Wins screen dismiss button
+    // Win screen dismiss button
     $('#win-screen-btn').one('click', function(){$('#win-screen').css('opacity', 0).hide()})
 }
 
@@ -134,22 +123,4 @@ function initialiseTestControls(){
         }
     })
 
-}
-
-// Enable progress bar on click action
-function enableProgressBarAction(levelup=false){
-    $('#progress-goal-div').one('click', function(levelup){
-
-        // Reset player intervention count
-        playerInterventionCount = 0;
-
-        // Reset player intervention history
-        playerInterventionHistory = [];
-
-        // If level up event show modal
-        //if(levelup){modal.modal('show')}
-
-        // Reset game
-        reset();
-    })
 }

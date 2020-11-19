@@ -13,13 +13,13 @@ It can also be called individually as a tool to score interventions on request.
 
 
 // Function to get score for policy
-function scoreIntervention(data, method='game', interventionEffects=null){
+function scoreIntervention(data, method='game', interventionEffects=null, numberOfInterventions=1){
 
     // Score intervention results by data type and method
     switch(method){
 
         case 'game':
-            return scoringMethod_game(interventionEffects);
+            return scoringMethod_game(interventionEffects, numberOfInterventions);
         
         case 'test':
             return scoringMethod_test(data);
@@ -77,13 +77,10 @@ function scoringMethod_test(gameData){
 }
 
 // Scoring system for the game: Score current node prevalence changes in game data (i.e., overall changes not specific to one intervention)
-function scoringMethod_game(interventionEffects){
+function scoringMethod_game(interventionEffects, numberOfInterventions){
     var objectiveScore = 0;
     var timeScore = 0;
     var efficiencyScore = 0;
-
-    // Calculate effect on objective
-    const effectOnObjective = interventionEffects.result[gameData.objective.id];
 
     // Calculate goodness score
     
@@ -92,7 +89,7 @@ function scoringMethod_game(interventionEffects){
         var badEffects = [];
 
         // Populate lists with good/bad effects
-        for(const [id, effect] of Object.entries(interventionEffects.result)){
+        for(const [id, effect] of Object.entries(interventionEffects)){
 
             // Score whether effect on node was good or bad
             if(gameData.nodes[id].isGood){
@@ -104,7 +101,7 @@ function scoringMethod_game(interventionEffects){
         }
 
     // Calculate efficiency score compared to best intervention possible
-    const efficiency = calcInterventionEfficiency(interventionEffects.result, EvE);
+    const efficiency = calcInterventionEfficiency(interventionEffects, numberOfInterventions);
     
         // Check if there was a possible better intervention
         if(efficiency){ efficiencyScore = Math.abs(efficiency.score); } // % of best intervention
@@ -132,27 +129,40 @@ function scoringMethod_game(interventionEffects){
 }
 
 // Calculate intervention efficiency
-function calcInterventionEfficiency(interventionEffects){
+function calcInterventionEfficiency(interventionEffects, numberOfInterventions=1){
 
     // Calculate best possible interventions
     const optimalInterventions = calcOptimalIntervention(gameData, EvE.data); // Get top 5 interventions
     
+    // Get player effect(s)
+    const playerEffect = interventionEffects[gameData.objective.id];
+
     // Return most effective possible intervention (if any)
     if(optimalInterventions.length > 0){
+        var bestEffect = 0;
 
-        // Compare player efficiency to most optimal intervention
-        const optimalIntervention = optimalInterventions[0]; // Single best intervention
-            const bestEffect = optimalIntervention.objectiveEffect;
-            const playerEffect = interventionEffects[gameData.objective.id];
+        // Get optimal effect(s)
+        for (i = 0; i < numberOfInterventions; i++) {
+
+            // Get ith most optimal intervention
+            const optimalIntervention = optimalInterventions[i]; // Single best intervention
+
+            // Add effect to optimal effect(s)
+            bestEffect += optimalIntervention.objectiveEffect;
+        }
             
+        console.log(bestEffect);
         // Calculate efficiency
+        console.log(playerEffect, bestEffect, playerEffect / bestEffect * 100)
         var efficiency = to2DP(playerEffect / bestEffect * 100);
             if(playerEffect == undefined){efficiency = 0;} // Avoid divide by 0 issue
+
+            console.log(efficiency);
         
         return({score: efficiency, optimalInterventions: optimalInterventions})
 
     } 
-    
+
     // Else if no possible intervention
     else {
         return false

@@ -160,15 +160,6 @@ function initialiseView(
 
 /* Update visualisation */
 
-// Show player exp effects
-function showExpFx(playerExp, max=100){
-
-    // Set exp bar
-    setProgress('progress-goal-div', playerExp, range = {min: 0, max: max,}); // Progress bar    
-    setHTML('GUI-currentSystem', `${Math.min(100, to0SF(playerExp / levels[playerLvl].max * 100))}`); // Text
-
-}
-
 // Format nodes so they scale with their prevalence values
 function formatNode(node, interval = 500, scaleTo = 'final'){
 
@@ -410,6 +401,19 @@ function conveyVisResults(){
     for(const [nodeId, prevalenceChange] of Object.entries(results.result)){
         document.getElementById('test_allEffects').innerHTML += `${gameData.nodes[nodeId].label} changed by ${to4SF(prevalenceChange)} <br>`;
     };   
+}
+
+
+/* level and exp */
+
+
+// Show player exp effects
+function showExpFx(playerExp, max=100){
+
+    // Set exp bar
+    setProgress('progress-goal-div', playerExp, range = {min: 0, max: max,}); // Progress bar    
+    setHTML('GUI-currentSystem', `${Math.min(100, to0SF(playerExp / levels[playerLvl].max * 100))}%`); // Text
+
 }
 
 // Style progress bar

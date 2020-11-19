@@ -178,13 +178,15 @@ body{
     height: 0;
   }
   [type=radio] + i {
-    cursor: pointer;
-    color: lightgrey;
-    font-size: 6em;
+    font-size: 2em;
+    color: var(--col-primary)
   }
   [type=radio]:checked + i {
-    color: var(--col-dark);
+    color: black;
   }
+.unlock{
+    padding: 2rem;
+}
 
 /* GUI below planet info showing effects of policies */
 #GUI-policyEffects{

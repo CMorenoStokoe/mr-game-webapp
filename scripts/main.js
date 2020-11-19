@@ -53,6 +53,7 @@ collections of methods categorised by purpose.
     var playerInterventionCount = 0; // Number of interventions made by player, on 3 becomes a policy ad triggers an event
     var playerInterventionMax = 1; // Maximum number of interventions the player can make per policy
     var playerInterventionHistory = [];
+    var playerInterventionStrength = 1; // Modifier for intervention strength
 
     // Player level
     var playerExp = 0; // Player experience points
@@ -407,7 +408,12 @@ function playerMadeIntervention(nodeId){
 
         // Get intervention value
         var interventionValue = gameData.nodes[nodeId].prevalenceIncrease;
+        
+            // Only allow good effects
             if(!(gameData.nodes[nodeId].isGood)){interventionValue *= -1};
+
+            // Modify by player unlockable intervention strength modifier
+            interventionValue *= playerInterventionStrength;
         
         // Make intervention
         const propagation = runPropagation(gameData, nodeId,  interventionValue);
@@ -418,7 +424,7 @@ function playerMadeIntervention(nodeId){
     // Calculate intervention effects
     
         // Score
-        var intervention = scoreIntervention(gameData, method='game', propagation);
+        var intervention = scoreIntervention(gameData, method='game', interventionEffects = propagation.result);
             if(intervention.efficiency){console.log(`${intervention.scores.efficiency}% effeciency (Best: ${gameData.nodes[intervention.efficiency.optimalInterventions[0].id].label} [${intervention.efficiency.optimalInterventions[0].objectiveEffect}])`)
             }else{'No possible intervention would have beneficial effects'}
             if(gameState == 'vis'){ intervention  = scoreIntervention(gameData, method='test'); conveyVisResults(); }; // Score differently if in vis; conveyVisResults is in view.js}
@@ -449,7 +455,7 @@ function playerMadeIntervention(nodeId){
 
         // Level-up
         if(lvl > playerLvl){ 
-            playerLevelledUp();
+            playerLevelledUp(intervention);
         }
 
         // Intervention max reached
@@ -465,22 +471,31 @@ function playerReachedInterventionMax(intervention){
     styleProgressBar('intervention-max'); // view.js
 
     // Enable continue button action
-    enableProgressBarAction(); // controller.js
+    $('#progress-goal-div').one('click', function(intervention){
 
-    // Show intervention effects
-    showScoreScreen(gameData, intervention);
+        // Show intervention effects
+        const score = scoreIntervention(gameData, method='game', gameData.nodes, playerInterventionCount);
+            showScoreScreen(gameData, score);
+        
+        // Reset player intervention count
+        playerInterventionCount = 0;
+
+        // Reset player intervention history
+        playerInterventionHistory = [];
+
+        // Reset game
+        reset();
+
+    })
 }
 
 // Event on player level up
-function playerLevelledUp(){
+function playerLevelledUp(intervention){
 
     // Raise player level
 
         // Increment player level
         playerLvl++;
-
-        // Increase number of possible interventions
-        playerInterventionMax = playerLvl;
     
         // Reset player exp
         playerExp = 0;
@@ -497,13 +512,42 @@ function playerLevelledUp(){
         styleProgressBar('lvl-up', playerLvl); // view.js
 
         // Enable progress bar press
-        enableProgressBarAction(); // controller.js
+        $('#progress-goal-div').one('click', function(intervention){
+    
+            // Set unlocks to enabled
+            $("#unlocks :input").prop('disabled', false);
+            $("#unlocks .unlock").css('cursor', 'pointer');
+            $("#unlocks :checked").css('color', 'gold');
+
+            // Show level-up modal
+            $('#modal-lvlup').modal('show');
+    
+        })
+
+        // If player also triggered playerReachedInterventionMax, run this next
+        $('#modal-lvlup').one('hidden.bs.modal', function (intervention) {
+            playerReachedInterventionMax(intervention);
+        })
+
     
     // If end of game
     if(playerLvl>5){
         alert('You win! Thank you for playing.')
     }
 
+}
+
+// Effect on player making unlocks
+function playerUnlockedAbility(interventionMax, interventionStrength){
+    
+    // Update game data with player unlocks
+    playerInterventionMax = interventionMax;
+    playerInterventionStrength = interventionStrength;
+
+    // Disable options again until level up
+    $("#unlocks :input").prop('disabled', true);
+    $("#unlocks .unlock").css('cursor', 'default');
+    $("#unlocks").css('filter', 'grayscale(100%)');
 }
 
 // Effect if player selects invalid target
