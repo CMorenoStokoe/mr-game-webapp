@@ -24,7 +24,7 @@ function initialiseLogin(){
         const username = document.getElementById('splash-form').value;
             
         // Set player username
-        playerUsername = playerData.username;
+        playerUsername = username;
 
         // Register user with DB
         if(username){

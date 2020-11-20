@@ -215,8 +215,12 @@ const gamestates = { // Different gamestates within the game (player levelling s
     iv : {
         name: 'interactiveVisualisation',
         action:  function(){
-            
-            $('#tutorial-0-modal').modal('show'); // Auto-show initial intro modal 
+
+            // Disable game effects on first load
+            firstLoad = false;
+
+            // Auto-show initial intro modal 
+            $('#tutorial-0-modal').modal('show');
 
             // Configure view
             setMiranaSettings('interactiveVisualisation'); 
