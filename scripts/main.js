@@ -70,6 +70,7 @@ collections of methods categorised by purpose.
 // Loading settings
 window.onload = function(){
 
+    console.log(previewMode)
     // Developer mode 
     if(developerMode){ // Automatically start-up in specific mode for testing
         
@@ -81,7 +82,6 @@ window.onload = function(){
         gamestates[gameState].action(); 
     
     }
-
     // Preview mode
     else if(previewMode){ // GUI to select mode to start-up for demonstration
         
