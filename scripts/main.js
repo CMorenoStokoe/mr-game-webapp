@@ -150,6 +150,7 @@ const gamestates = { // Different gamestates within the game (player levelling s
         name: 'tutorial',
         action: function(){
 
+            $('#tutorial-0-modal').modal('show'); // Auto-show initial intro modal 
             return  incrementGamestate();
 
             // Configure view
@@ -180,7 +181,6 @@ const gamestates = { // Different gamestates within the game (player levelling s
 
             // Configure view            
             $('#legend_key').show();
-            $('#tutorial-0-modal').modal('show'); // Auto-show initial intro modal 
             setMiranaSettings('game'); 
 
             // Change skybox
@@ -202,19 +202,15 @@ const gamestates = { // Different gamestates within the game (player levelling s
     4 : {
         name: 'endScreen',
         action:  function(){
-
-            // Redirect to feedback (adapted from: https://stackoverflow.com/questions/16973240/link-in-alert-boxes-javascript)
-            if (window.confirm(' You win! Thank you for playing this gameplay slice, please give us your thoughts (click ok to be redirected)!')){
-                window.location.href='https://bristolexppsych.eu.qualtrics.com/jfe/form/SV_3QWmGYxIG6WLHmd';
-            };
+            alert('You win! Thank you for playing this mini-game!')
         },
     },
     iv : {
         name: 'interactiveVisualisation',
         action:  function(){
-
-            $('#tutorial-0-modal').modal('show'); // Auto-show initial intro modal 
             
+            $('#tutorial-0-modal').modal('show'); // Auto-show initial intro modal 
+
             // Configure view
             setMiranaSettings('interactiveVisualisation'); 
             
