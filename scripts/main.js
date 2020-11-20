@@ -69,14 +69,14 @@ collections of methods categorised by purpose.
 
 // Loading settings
 window.onload = function(){
-    developerMode = true;
+    developerMode = false;
     previewMode = true;
 
     // Developer mode 
     if(developerMode){ // Automatically start-up in specific mode for testing
         
         // Specify game state to load immediately
-        gameState = 3;
+        gameState = 'iv';
 
         // Dismiss loading screen and load specified game state immediately
         document.getElementById('loading-screen').style.display='none'; 
@@ -94,8 +94,6 @@ window.onload = function(){
             // Give users buttons to choose game state to preview
             $('#dev-btn-3').click(function(){gameState='iv'})
             $('#dev-btn-4').click(function(){gameState=3})
-            $('#dev-btn-5').click(function(){gameState='vis'})
-            $('#dev-btn-6').click(function(){gameState='vis2'})
 
             // On dismiss load the chosen game state
             $('#dev-modal').on('hidden.bs.modal', function(){gamestates[gameState].action();})    
@@ -385,24 +383,25 @@ function incrementGamestate(){
 
 // Function to reset
 function reset(){
-
     // Interrupt animations
     skipAnimations = true;
     setTimeout(function(){
         setNodeOpacity(1);
         setEdgeOpacity(1);
-    }, 750);
+    }, 2500);
 
     // Reset game
     gamestates[gameState].action();
 }
-
 
 /* Events on user interaction */
 
 
 // Effect of players enacting an intervention
 function playerMadeIntervention(nodeId){
+    
+    // Treat IV users differently
+    if(gameState == 'iv'){return playerInteractedWithIV(nodeId)};
 
     // Apply intervention strength unlock (now so it does not affect scoring by error)
     if(playerSelectedStrUpgrade){
@@ -579,6 +578,32 @@ function playerUnlockedAbility(interventionMax, interventionStrength){
     $("#unlocks :input").prop('disabled', true);
     $("#unlocks .unlock").css('cursor', 'default');
     $("#unlocks").css('filter', 'grayscale(100%)');
+}
+
+// For IV
+function playerInteractedWithIV(nodeId){
+
+    // Make intervention
+
+        // Get intervention value
+        var interventionValue = gameData.nodes[nodeId].prevalenceIncrease;
+        
+            // Only allow good effects
+            if(!(gameData.nodes[nodeId].isGood)){interventionValue *= -1};
+
+            // Modify by player unlockable intervention strength modifier
+            interventionValue *= playerInterventionStrength;
+        
+        // Make intervention
+        const propagation = runPropagation(gameData, nodeId,  interventionValue);
+
+    // Show intervention effects
+
+        // Propagation
+        skipAnimations = false; // Enable animations
+        animatePropagation(propagation.path.edges, dataCallback); //animation2();
+            function dataCallback(node){return} //efficiency = {score: intervention.scores.efficiency, efficiency: intervention.efficiency}
+            //dataCallback(gameData.nodes[nodeId], propagation.result[gameData.nodes[nodeId].id]); // Intervention origin  
 }
 
 // Effect if player selects invalid target

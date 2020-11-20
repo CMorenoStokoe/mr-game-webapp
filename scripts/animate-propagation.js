@@ -165,7 +165,9 @@ function animation1(paths, dataCallback, interval=2500){
         // Animate labels to pop up
         showLabel(path.source);
         setTimeout(function(){ // Hide labels again after
-            hideLabel(path.source);
+            if(!(skipAnimations)){
+                hideLabel(path.source);
+            }
         },interval-50)
 
     /* Show intervention's effects on each nodes' prevalence */
@@ -176,8 +178,9 @@ function animation1(paths, dataCallback, interval=2500){
         formatNode(sourceNode); // Set node size
         
         if(!(sourceNode.id==previousNode)){
-            
-            updateLabel(sourceNode, interval/2); // Update node labels
+            if(!(skipAnimations)){
+                updateLabel(sourceNode, interval/2); // Update node labels
+            }
         }previousNode = sourceNode.id
 
     // Update target node (after short delay to show cause and effect)

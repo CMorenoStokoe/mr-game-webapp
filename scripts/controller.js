@@ -74,8 +74,10 @@ function addOnclickEventsToNodes(gameData){
             console.log(playerInterventionCount, playerInterventionMax)
             function invalidTarget(){
                 if(!(id)){return 'err'} // If anomalous behavior (where 'this' is window since this ignores any element calling this without an ID)
-                if(id == gameData.objective.id){return 1} // If node is the objective
-                if(gameData.nodes[id].getOutgoingEffects().length === 0){return 2} // If node has no outgoing effects
+                if(gameData.objective){
+                    if(id == gameData.objective.id){return 1} // If node is the objective
+                    if(gameData.nodes[id].getOutgoingEffects().length === 0){return 2} // If node has no outgoing effects
+                }
                 if(playerInterventionCount >= playerInterventionMax){return 3}
                 if(playerInterventionHistory.includes(id)){return 4}
                 else return false;
