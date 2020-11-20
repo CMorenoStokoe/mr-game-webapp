@@ -70,7 +70,6 @@ collections of methods categorised by purpose.
 // Loading settings
 window.onload = function(){
 
-    console.log(previewMode)
     // Developer mode 
     if(developerMode){ // Automatically start-up in specific mode for testing
         
@@ -142,7 +141,7 @@ const gamestates = { // Different gamestates within the game (player levelling s
 
             // Continue to tutorial
             setTimeout(function(){
-                incrementGamestate()
+                incrementGamestate();
             }, 2000)
         },
     },
