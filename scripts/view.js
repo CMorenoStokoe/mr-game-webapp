@@ -3,456 +3,442 @@
 View
 ====
 Description: 
-This file contains the scripts to produce the view for the game.
+This file contains the scripts to:
+- Initialise visualisation and UI
+- Update the visualisation
+- Change UI elements
 
 Use: 
-This file is called by the main script and calls other functions in other secondary files.
+This file is called by the main script and calls other 
+functions in other secondary files.
 
 */
 
-// On start set visualisation SVG to scale dynamically to the window height and width
+
+/* Initialise view */
+
+// Scale SVG to window
 svgContainerHeight = document.getElementById('svg-container').offsetHeight;
     document.getElementById('svg-main').setAttribute('height', svgContainerHeight);
 svgContainerWidth = document.getElementById('svg-container').offsetWidth;
     document.getElementById('svg-main').setAttribute('width', svgContainerWidth);
 
-// Function to set view of game
-function initialiseView(gameData, pValueThreshold, currentGameState, currentSystemProgress=0){
-    
-    // Reset and clear intervention effects
-    $('#GUI-policyEffects').hide();
-    document.getElementById('GUI-goal-p').style.background = 'none';
-    $('#goal-success').hide();
+// Enable popovers
+$(function () {$('[data-toggle="popover"]').popover()})
 
-    // Fade in SVG
-    setDisplay('svg-main', 'inline-block');
-    $('#svg-main')
-        .delay(1000)
-        .animate({opacity: 1}, 500);
+// Initialise visualisation and UI
+function initialiseView(
+        profile,
+        gameData, 
+        pValueThreshold, 
+        currentGameState, 
+        playerExp,
+        levels,
+        playerLvl
+    ){
 
-    // Fade in text
-    $('#GUI-planetInfo')
-        .delay(1000)
-        .animate({opacity: 1}, 500);
+    switch(profile){
+
+        case 'visualisation':
+
+            // Generate visualisation
+            generateGraphFromJSON(gameData.toD3().nodes, gameData.toD3().links, '#svg-main', settings, pValueThreshold); 
+
+            // Configure view
+            fadeIn_SVG();
+            setUI_objective(); // Show objective
+
+            break;
+
+        case 'interactiveVisualisation':
+
+            // Reset view
+            reset_SVG();
+
+            // Generate visualisation
+            generateGraphFromJSON(gameData.toD3().nodes, gameData.toD3().links, '#svg-main', settings, pValueThreshold); 
+
+            // Configure view
+            setUI_objective(); // Show objective
+            fadeIn_SVG();
+
+            break;
+
+        case 'game':
+
+            // Reset view
+            reset_effectsPanel();
+            reset_SVG();
+
+            // Generate visualisation
+            generateGraphFromJSON(gameData.toD3().nodes, gameData.toD3().links, '#svg-main', settings, pValueThreshold); 
+
+            // Configure view
+            setUI_objective(); // Show objective
+            setUI_planetInfo(); // Show planet
+            fadeIn_SVG();
+            fadeIn_planetInfo();
+            $('.label').css('opacity', 0); // Start node labels hidden
+            setExpIndicators(playerExp, levels[playerLvl].max); // Set exp bar
+            styleProgressBar('default'); // Set progress bar style
+
+            // Create game menu bar
+            createMenu(); // menu.js
+
+            break;
+
+        default: console.log(`ERR: Unknown settings profile (${profile})`); break;
+    }
+
+    // Reset intervention effects read-out panel
+    function reset_effectsPanel(){
+        $('#GUI-policyEffects').hide();
+        document.getElementById('GUI-goal-p').style.background = 'none';
+        $('#goal-success').hide();
+    }
 
     // Reset network visualisation
-    clearFDG('#svg-main');
+    function reset_SVG(){
+        clearFDG('#svg-main'); // edit-element.js
+    }
 
-    // Initialise graph with pval = bonferroni, settings = mirana + settings.js modifications
-    generateGraphFromJSON(gameData.toD3().nodes, gameData.toD3().links, '#svg-main', settings, pValueThreshold); 
+    // Fade in SVG
+    function fadeIn_SVG(){
+        setDisplay('svg-main', 'inline-block'); // edit-elements.js
+        $('#svg-main').delay(750).animate({opacity: 1}, 500); // Fade in to hide force directed graph jiggling on creation
+    }
 
-    // Set objective text, progress and icon       
-        if(gameData.objective.good){ // If objective is to increase a good trait
+    // Fade in text
+    function fadeIn_planetInfo(){
+        $('#GUI-planetInfo').delay(1000).animate({opacity: 1}, 500);
+    }
 
-            // Set objective text
-            setText('goal', `Raise ${gameData.objective.label}`);
+    // Set objective text, progress and icon    
+    function setUI_objective(){
+        
+        // If an objective has been set
+        if(gameData.objective){
 
-            // Set direction indicating arrow
-            document.getElementById('goal-indicator').className = 'fas fa-chevron-up chevron-pos';
-
-        } else { // If objective is to reduce a bad trait
-
-            // Set objective text
-            setText('goal', `Lower ${gameData.objective.label}`);
-
-            // Set direction indicating arrow
-            document.getElementById('goal-indicator').className = 'fas fa-chevron-down chevron-neg';
-        }    
-
-        // Set objective icon
-        document.getElementById('goal-icon').src = gameData.objective.icon;
+            // Set objective indicator
+            document.getElementById('goal-icon').src = gameData.objective.icon; // Set icon 
+            if(gameData.objective.isGood){
+                setText('goal', `Raise ${gameData.objective.label}`);
+                document.getElementById('goal-indicator').className = 'fas fa-chevron-up chevron-pos';
+            } else {
+                setText('goal', `Lower ${gameData.objective.label}`);
+                document.getElementById('goal-indicator').className = 'fas fa-chevron-down chevron-neg';
+            }
+        }
+    }   
 
     // Set system planet image and name
-    
-        // Set system name
-        setHTML('GUI-currentSystem', `${currentGameState.leagueName} system`);
+    function setUI_planetInfo(){
 
-        // Set system progress
-        setProgress('progress-goal-div', currentSystemProgress, {min:0, max: currentGameState.leagueProgressMax});
-        document.getElementById('progress-goal').className = 'progress-bar progress-bar-striped progress-bar bg-primary';
-        console.log('set progress:', currentSystemProgress, {min:0, max: currentGameState.leagueProgressMax})
-
-        // Randomly select a planet
-        const planetName = planetNames[getRandomInt(planetNames.length)];
-        const planetGraphic = planetGraphics[getRandomInt(planetGraphics.length)];
-
-        // Set planet name
-        setText('GUI-currentPlanet', `${planetName}`);
-
-        // Set planet image
+        // Randomly generate planet in background
         var planet = document.getElementById('GUI-planet').style;
-            planet.background = `url("images/planets/${planetGraphic}.png") no-repeat`;
+            planet.background = `url("images/planets/${planetGraphics[getRandomInt(planetGraphics.length)]}.png") no-repeat`;
             planet.backgroundPosition = '150px 0px';
             planet.backgroundSize= '800px 800px';
+        
+        // Set system information
+        //setProgress('progress-goal-div', currentSystemProgress, {min:0, max: currentGameState.leagueProgressMax});
+        //document.getElementById('progress-goal').className = 'progress-bar progress-bar-striped progress-bar bg-primary';
+        //setHTML('GUI-currentSystem', `${currentGameState.leagueName} system`);
 
-    // Set node sizes
-    setNodeSizes(gameData);
+        // Set planet name
+        //const planetName = planetNames[getRandomInt(planetNames.length)];
+        //setText('GUI-currentPlanet', `${planetName}`);
 
-    // Function to generate random number (from: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random)
-    function getRandomInt(max) {
-        return Math.floor(Math.random() * Math.floor(max));
+    }
+
+    // Set exp and level indicators
+    function setExpIndicators(playerExp, max=levels[playerLvl].max){
+        showExpFx(playerExp, max);
     }
 }
- 
-// Set node sizes
-function setNodeSizes(gameData){
 
-    for(const [key, value] of Object.entries(gameData.nodes)){
 
-        // Get previous circle radius
-        var previousRadius = value.circleRadius;
+/* Update visualisation */
 
-        // Mark whether node is increased ot decreased
+// Format nodes so they scale with their prevalence values
+function formatNode(node, interval = 500, scaleTo = 'final'){
 
-        // Scale circle radius by how much this node's prevalence has changed
-        var circleRadius = settings.nodes.circleRadius + (value.change / 100);
+    // Calculate node size
 
-        // Clamp circle radius within minimum and maximum limits
-        circleRadius = Math.min(settings.nodes.circleRadius_max, circleRadius);
-        circleRadius = Math.max(settings.nodes.circleRadius_min, circleRadius);
+        // Scale node size to trait prevalence
+        var circleRadius = settings.nodes.scaleCircleArea(node.change);
+        
+        // Record value for access by other methods
+        node.circleRadius = circleRadius; 
+    
+    // Calculate node color
+    var color = settings.nodes.colorSchemeForInterpolation(node);
 
-        // Exaggerate tiny effect visuals for player satisfaction
-        if(Math.abs((circleRadius += value.exaggeration) - previousRadius)<1){ // Add or remove node size to exaggerate small effects in either direction
-            if(circleRadius - previousRadius > 0){value.exaggeration ++;};
-            if(circleRadius - previousRadius < 0){value.exaggeration --;};
-            circleRadius += value.exaggeration; // Carry over exaggerated sizes between interventions
-        };
+    // Format node to scale with prevalence
+    d3.select(`#${node.id}`).select("circle").transition()
+        .duration(interval)
+        // Set node radius to prevalence
+        .attr("r", circleRadius)
+        // Set node color to prevalence
+        .style("fill", color);
 
-        // Update node's circle radius value for access by other methods
-        value.circleRadius = circleRadius;
+    d3.select(`#${node.id}`).select("image").transition()
+        .duration(interval)
+        // Set node image size to prevalence
+        .attr("x", -circleRadius)
+        .attr("y", -circleRadius)
+        .attr("height", circleRadius * 2)
+        .attr("width", circleRadius * 2);
 
-        // Scale node circle and icon size to prevalence
-        d3.select(`#${key}`).select("circle").transition()
-            .duration(500)
-            .attr("r", circleRadius);
-            
-        d3.select(`#${key}`).select("image").transition()
-            .duration(500)
-            .attr("x", -circleRadius * 1)
-            .attr("y", -circleRadius * 1)
-            .attr("height", circleRadius * 2)
-            .attr("width", circleRadius * 2);
-    }
+    // Fix label positions
+    d3.select(`#${node.id}`).select("text").attr("y", circleRadius+20);
+    d3.select(`#${node.id}`).select("rect").attr("y", circleRadius);
+    d3.select(`#${node.id}`).select("g").select("g")
+        .attr('transform', `translate(
+            ${0},
+            ${settings.nodes.labels.backgroundHeight + circleRadius})`
+        );
+    d3.select(`#badge_${node.id}`)
+        .attr('x', circleRadius * Math.cos(45))
+        .attr('y', - circleRadius * Math.sin(45))
+
 };
 
-// Highlight edges in series
-function highlightEdges(paths){
-    var count = 0; // Count of edges already displayed, increment ot increase delay between successive edges in path
+// Show node labels
+function showLabel(nodeId){
 
-    for (const path of paths) {
+    // Show labels
+    d3.select(`#${nodeId}`).select("g").transition() // Label animation
+        .duration(300)
+        .style("opacity", 1);
+}
 
-        // Construct edges from node path
-        const edge = gameData.edges[gameData.getEdgeId(path.source, path.target)];
-            const startingLineWidth = d3.select(`#edge_${edge.id}`).attr("stroke-width");
+// Hide labels
+function hideLabel(nodeId){
 
-        // Animate edges in path
-        d3.select(`#edge_${edge.id}`)
+    // Make labels transparent
+    d3.select(`#${nodeId}`).select("g").transition() // Label animation
+        .duration(300)
+        .style("opacity", 0);
+}
+
+// Update label position and text
+function updateLabel(node, duration = 500){
+
+    // Update prevalence information
+    d3.select(`#prevTxt_${node.id}`)
+        .text(`${indicateSign(node.change)}${to0SF(node.change)}%`);
+    d3.select(`#prevBar_${node.id}`)
+        .transition()
+        .duration(duration)    
+        .attr("width", `${node.change_bar * settings.nodes.labels.backgroundWidth() / 100}`)
+        .style("fill", d=>settings.nodes.labels.prevalenceBarColorScheme(d));
+
+    // Set change indicator
+    d3.select(`#badge_${node.id}`)
+        .text(settings.nodes.labels.indicatorUnicode(node)) // Indicator unicode symbol (arrow)
+        .style('fill', settings.nodes.labels.indicatorColor(node)) // Indicator fill color
+        .attr("dy", settings.nodes.labels.indicatorPos(node).y) // Indicator position
+        .attr("dx", function(){return node.change<0 ? settings.nodes.labels.indicatorPos(node).x + settings.nodes.labels.backgroundWidth()*0.2 : settings.nodes.labels.indicatorPos(node).x - settings.nodes.labels.backgroundWidth()*0.2}) 
+        .transition()
+        .duration(duration)
+        .attr("dx", settings.nodes.labels.indicatorPos(node).x) // Indicator position
+}
+
+// Highlight an indiviual node
+function highlightNode(nodeId, fill='gold'){
+    
+    // Enlarge circle
+    d3.select(`#${nodeId}`).select("circle")
+        .attr("r", settings.nodes.circleRadius*2)
+        .style("fill", fill);
+    d3.select(`#${nodeId}`).select("image")
+        .attr("x", -settings.nodes.circleRadius*2)
+        .attr("y", -settings.nodes.circleRadius*2)
+        .attr("height", settings.nodes.circleRadius * 4)
+        .attr("width", settings.nodes.circleRadius * 4);
+
+    // Update circle radius in data
+    gameData.nodes[nodeId].circleRadius *= 2;
+}
+
+// Highlight edge
+function highlightEdge(id, interval = 2500){
+
+    // Get edge by id
+    var edge = d3.select(id);
+
+    // Get initial edge width
+    const startingLineWidth = d3.select(id).attr("stroke-width");
+
+    // Grow edges to highlight them
+    edge
+        .style('opacity', 1)
+        .transition()
+        .duration(interval/2)
+        .attr("stroke-width", (Number(startingLineWidth) * 2) + 2);
+
+    // Shrink them back to normal
+    setTimeout(function(){ 
+        edge
             .transition()
-            .delay(function(){return(500*count)})
-            .duration(2000)
-            .attr("stroke-width", Number(startingLineWidth) + 10);
-        setTimeout(function(){ 
-            d3.select(`#edge_${edge.id}`)
-                .transition()
-                .duration(2000)
-                .attr("stroke-width", Number(startingLineWidth));
-        }, 2000 + (500*count));
-        
-        // Increment path count to stagger highlights
-        count++;
+            .duration(interval/2)
+            .attr("stroke-width", Number(startingLineWidth))
+    }, interval/2);
+}
+
+// Hide all labels
+function hideAllLabels(nodes){
+    for(const [id, node] of Object.entries(nodes)){
+        hideLabel(id);
     }
 }
 
+// Set opacity of nodes
+function setNodeOpacity(value){
+    
+    d3.selectAll('circle').style('opacity', value);
+    d3.selectAll('image').style('opacity', value);
 
-// Highlight nodes in path
-function highlightPathTo(source, target){
+}
+
+// Set opacity of edges
+function setEdgeOpacity(value){
+    
+    for(const [id, edge] of Object.entries(gameData.edges)){
+        d3.select(`#edge_${id}`).style('opacity', value);
+        d3.select(`#edge_${id}_outline`).style('opacity', value);
+    }
+}
+
+// Highlight node
+function focusOnNode(id, transparency = 0.3, interval = 2500){
+
+    const sourceNodeG = d3.select(`#${id}`);
+    sourceNodeG.select("circle").style('opacity', 1);
+    sourceNodeG.select("image").style('opacity', 1);
+    setTimeout(function(){ 
+        sourceNodeG.select("circle").style('opacity', transparency);
+        sourceNodeG.select("image").style('opacity', transparency);
+    }, interval);
+}
+
+/* Highlight nodes in path
+function highlightPathTo(source, target, interval = 500){
+
+    // Calculate path from source node to target
     const path = jsnx.bidirectionalShortestPath(gameData.G, source, target);    
 
+    // Highlight each edge in the path
     for (i = 0; i < path.length; i++) {
         if(i+1 == path.length){break;}
 
         // Construct edges from node path
         const edge = gameData.edges[gameData.getEdgeId(path[i], path[i+1])];
         const startingLineWidth = d3.select(`#edge_${edge.id}`).attr("stroke-width");
-        console.log(i)
+        
         // Animate edges in path
         d3.select(`#edge_${edge.id}`)
             .transition()
-            .delay(function(){return(1000*i)})
-            .duration(2000)
-            .attr("stroke-width", startingLineWidth*1 + 10);
+            .duration(interval)
+            .attr("stroke", startingLineWidth*1 + 10);
         setTimeout(function(){ 
             d3.select(`#edge_${edge.id}`)
                 .transition()
-                .duration(2000)
-                .attr("stroke-width", startingLineWidth);
-        }, 2000 + (1000*i));
+                .duration(interval)
+                .attr("stroke", startingLineWidth);
+        },interval*i);
     }
+}*/
+
+
+/* Change UI display */
+
+
+// Hide game UI elements
+function hideGameUI(){
+
+    // Hide planet information
+    $('#GUI-currentPlanet').hide();
+    $('#progress-goal-div').hide();
+    $('#GUI-planet').hide();
+    $('#GUI-goal').hide();
+    document.body.style.background = `ghostwhite`;
 }
 
-// Function to display policy effects
-function showPolicyEffects(effects){
+// Show interactive visualisation GUI
+function showInteractiveVisUI(){
 
-    // Clear previous effects
-    document.getElementById('policyEffects-sideeffects').innerHTML = '';
-
-    // Show effects
-    $('#GUI-policyEffects').show();
-
-    var count = 0;
-    // Show side-effects
-    for(const [key, value] of Object.entries(effects)){
-
-        // Show the main objective differently
-        if(key == gameData.objective.id){
-            document.getElementById('GUI-goal-p').style.background = 'green';
-            $('#goal-success').show();
-            continue;
-        } 
-
-        // Create trait effect bubble showing trait effect
-        constructTraitEffectBubble(key, value, `policyEffect-${count}`, 'policyEffects-sideeffects');
-        
-        // Fade in
-        $(`#policyEffect-${count}`).animate({opacity: 1}, 500 + (500*count));
-
-        // Increment count
-        count++;
-    }  
+    // Add reset button
+    $('#iv_reset').show();
 }
 
-// Function to construct a trait effect bubble
-function constructTraitEffectBubble(nodeId, b, bubbleId, parentId, tense='past'){
+// Show test GUI
+function showTestUI(){
 
-    // Get node information
-    const node = gameData.nodes[nodeId];
-    
-    // Div containing effect information
-    var div = document.createElement('DIV');
-        div.className = 'policyEffect m-2';
-        div.id = bubbleId;
-    document.getElementById(parentId).appendChild(div);
-    
-    // Trait icon
-    var img = document.createElement('IMG');
-        img.src = node.icon;
-        img.className = 'policyEffect-img'
-    div.appendChild(img);
+    // Reset UI
+    document.getElementById('test_score_objective').innerText = '-';
+    document.getElementById('test_score_goodness').innerText = '-';
+    document.getElementById('test_allEffects').innerHTML = '';
+    document.getElementById('test_interventions').innerHTML = '';
 
-    // Determine effect direction
-    var effectDirection = 'Raised'; 
-    var effectDirectionIcon = `fas fa-angle-up col-pos m-1`; 
-        if(b<0){
-            effectDirection = 'Lowered';
-            effectDirectionIcon = 'fas fa-angle-down col-neg m-1'
-        };
-        if(tense=='future'){
-            if(b<0){effectDirection = 'Lower'}
-            else {effectDirection = 'Raise'};
-        }
-        
-        // Effect direction indicator
-        var i = document.createElement('I');
-            i.className = effectDirectionIcon;
-        div.appendChild(i);
-    
-        // Trait name
-        var span = document.createElement('SPAN');
-            span.innerText = ` ${effectDirection} ${node.label}`;
-        div.appendChild(span);
+    // Modify goal display to set test targets
+    $('#GUI-goal').show();
+    document.getElementById('GUI-goal').style.color = 'black';
+    document.getElementById('GUI-goal').style.textShadow = 'none';
+    $('#GUI-goal-h').text('Target');
+
+    // Show options form
+    $('#test_settings').show();
+}
+
+// Convey vis results
+function conveyVisResults(){
+    // Convey results
+    document.getElementById('test_score_objective').innerText = to4SF(score.scores.objective);
+    document.getElementById('test_score_goodness').innerText = to4SF(score.scores.goodness);
+    document.getElementById('test_allEffects').innerHTML += `<hr> Intervention on ${gameData.nodes[nodeId].label} <hr>`;
+    for(const [nodeId, prevalenceChange] of Object.entries(results.result)){
+        document.getElementById('test_allEffects').innerHTML += `${gameData.nodes[nodeId].label} changed by ${to4SF(prevalenceChange)} <br>`;
+    };   
+}
+
+
+/* level and exp */
+
+// Show player exp effects
+function showExpFx(playerExp, max=100){
+
+    // Set exp bar
+    setProgress('progress-goal-div', playerExp, range = {min: 0, max: max,}); // Progress bar    
+    setHTML('GUI-currentSystem', `${Math.min(100, to0SF(playerExp / levels[playerLvl].max * 100))}%`); // Text
 
 }
 
-// Show win score screen
-function showScoreScreen(gameData, intervention){
+// Style progress bar
+function styleProgressBar(style='default'){
 
-    // Reset score screen
-        // Reset progress bar
-        setHTML('win-screen-systemProgress', '');
-    
-        // Reset score values
-        setText('score-goal', '');
-        setText('score-goodness', '');
-        setText('score-time', '');
-        setText('score-award', '');
-        setText('score-total', '');
+    switch(style){
 
-        // Reset awards
-        setHTML('score-awards', '');
+        case 'lvl-up':
 
-    // Show win screen
-    $('#win-screen').show().animate({opacity: 1}, 500);
-
-    // Play win screen sound
-    progressSound.play();
-
-    // Populate win screen
-
-        // Create progress
-        createProgress('win-screen-progress-div', 'win-screen-systemProgress', 'progress-goal-div');
-    
-        // Show scores
-        setTimeout(function(){
-            showScore();
-        }, 1000);
-
-        // Show all awards (awards: strongest effects the intervention had)
-        setTimeout(function(){
-            showAwards();
-        }, 4500);
-
-        // Function to iterate through and show scores
-        var scores = [];
-            for(const [score, value] of Object.entries(intervention.scores)){
-                scores.push({score: score, value: value});
-            };
-        function showScore(){
-
-            const score = scores.shift();
-
-            // Get element to write score to
-            var elementId = null; // Id of element containing score text
-            switch(score.score){
-                case 'objective': elementId = 'score-goal'; break;
-                case 'goodness': elementId = 'score-goodness'; break;
-                case 'time': elementId = 'score-time'; break;
-                case 'awards': elementId = 'score-award'; break;
-                case 'total': elementId = 'score-total'; break;
-            }
-
-            // Set score
-            setText(elementId, to4SF(score.value));
-
-            // Update progress bars
-            if(!(elementId == 'score-award') && !(elementId == 'score-total')){ // Skip award bar since this is added seperately after
-                updateProgress(score.value);
-            }
-
-            // Loop through all scores to set
-            if(scores.length>0){
-                setTimeout(function(){
-                    showScore(scores);
-                }, 850);
-            }
-        }
-        
-        // Iterate through and show awards
-        var awards = [];
-            for(const [award, winner] of Object.entries(intervention.awards)){
-                if(winner.id){awards.push({award: award, winner: winner})}
-            };
-
-        function showAwards(){
-            const award = awards.shift();
+            // Format progress to level up
+            setHTML('GUI-currentSystem', `Level up! &nbsp <i class="fas fa-fire"></i>`)
+            document.getElementById('progress-goal').className = 'progress-bar progress-bar-striped progress-bar-animated bg-primary';
             
-            // Construct award
+            break;
 
-                // Create div to hold award
-                var div = document.createElement('DIV');
-                    div.id = `score-award-${award.award}`;
-                    div.opacity = 0;
-                    div.className = 'card award m-1';
-                document.getElementById('score-awards').appendChild(div);
+        case 'intervention-max':
 
-                var header = document.createElement('DIV');
-                    header.className='card-header fnt-bold p-1 col-light bg-dark text-center';
-                    // Title div with award name
-                    switch(award.award){
-                        case 'mostIncreased': header.innerText = 'Most increased'; break;
-                        case 'mostDecreased': header.innerText = 'Most decreased'; break;
-                        case 'mostGood': header.innerText = 'Best effect'; break;
-                        case 'mostBad': header.innerText = 'Worst effect'; break;
-                        default: break;
-                    };
-                div.appendChild(header);
+            // Format progress to continue
+            setHTML('GUI-currentSystem', `Enact policy &nbsp <i class="fas fa-calendar-check"></i>`)
+            document.getElementById('progress-goal').className = 'progress-bar progress-bar-striped progress-bar-animated bg-success';
+            break;
+        
+        default:
 
-                var body = document.createElement('DIV');
-                    body.className='card-body p-1';
-                    body.id=`score-award-body-${award.award}`;
-                div.appendChild(body);
-
-                var footer = document.createElement('DIV');
-                    footer.className='card-footer text-muted p-1';
-                    footer.style.borderTop = 'none';
-                    // End award with effect on score
-                    switch(award.award){
-                        case 'mostIncreased': footer.innerHTML = `Score <i class="fas fa-chevron-up" style='color: green'></i>`; break;
-                        case 'mostDecreased': footer.innerHTML = `Score <i class="fas fa-chevron-up" style='color: green'></i>`; break;
-                        case 'mostGood': footer.innerHTML = `Score <i class="fas fa-chevron-up" style='color: green'></i><i class="fas fa-chevron-up" style='color: green'></i>`; break;
-                        case 'mostBad': footer.innerHTML = `Score <i class="fas fa-chevron-down" style='color: red'></i>`; break;
-                        default: break;
-                    };
-                div.appendChild(footer);
-
-                // Add award winning effect bubble
-                constructTraitEffectBubble(award.winner.id, award.winner.b, `score-award-bubble-${award.award}`, `score-award-body-${award.award}`);
-                $(`#score-award-bubble-${award.award}`)
-                    .css('opacity', 1);
-
-            // Fade in award 
-            $(`#score-award-${award.award}`)
-                .animate({opacity: 1}, 850);
-
-            // Award system progress value   
-            switch(award.award){
-                case 'mostIncreased': updateProgress(0.25); break;
-                case 'mostDecreased': updateProgress(0.25); break;
-                case 'mostGood': updateProgress(0.5); break;
-                case 'mostBad': updateProgress(-0.25); break;
-                default: break;
-            };
-
-            // Loop if there are awards left
-            setTimeout(function(){
-                if(awards.length > 0){
-                    showAwards(awards);
-                }
-            }, 1000)
-        }
-
-        // Function to advance progress bars
-        function updateProgress(value){
-
-            // Get current value
-            var progress = Number(document.getElementById('progress-goal').getAttribute('aria-valuenow'));
-
-            // Update progress bar values
-            setProgress('progress-goal-div', progress + value);
-            setProgress('win-screen-progress-div', progress + value);
-            
-            // Update score remaining text
-            const scoreToNextSystem = to4SF(Math.max(gamestates[gameState].leagueProgressMax - (progress + value), 0));
-            setText('win-screen-progress-text', scoreToNextSystem);
-            
-            // If system complete, alter progress to show this
-            if(scoreToNextSystem <= 0){
-                setHTML('GUI-currentSystem', `System complete &nbsp;<i class="fas fa-check-circle"></i>`)
-                document.getElementById('progress-goal').className = 'progress-bar progress-bar-striped progress-bar-animated bg-success';
-            }
-        }
-}
-
-// Significant figures function
-function to4SF(number){
-    const absoluteValue = Math.abs(number); // Get the absolute value
-
-    if (absoluteValue == 0){
-        return number.toFixed(0)
-    } else if (absoluteValue < 0.0001){
-        return number.toFixed(5)
-    } else if(absoluteValue < 0.001){
-        return number.toFixed(4)
-    } else if(absoluteValue < 0.01){
-        return number.toFixed(3)
-    } else if(absoluteValue < 0.1){
-        return number.toFixed(2)
-    } else if(absoluteValue < 1){
-        return number.toFixed(1)
-    } else if(absoluteValue < 10){
-        return number.toFixed(1)
-    } else if(absoluteValue < 100){
-        return number.toFixed(0)
-    } else {
-        return number.toFixed(0)
+            // Format progress default 
+            document.getElementById('progress-goal').className = 'progress-bar progress-bar-striped progress-bar-animated bg-info';
+            break;
     }
 }

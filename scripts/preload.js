@@ -16,7 +16,7 @@ function preload(){
 
     // Initialise loading bar
     const progressBar = document.getElementById('loading-progress')
-        progressBar.ariaValueMax = imagesToPreload.length + audioToPreload.length; // Set max value to number of assets to load
+        progressBar.ariaValueMax = imagesToPreload.length + audioToPreload.length; // Set max value to number of assets to load + any data tasks
 
     // Load splash on clicking start button
     addOnclickEvent('screen-button', gamestates[0].action)
@@ -61,6 +61,14 @@ function preload(){
                 audio.src = audioURL;
                 audio.oncanplaythrough = function(){advanceLoadingProgress()};
         }
+
+        /* Preload data
+        preloadData(advanceLoadingProgress);
+        function preloadData(callback){
+            EvE.init(gameData)
+            
+            callback();
+        } */
 }
 
 // Function to hide loading screen

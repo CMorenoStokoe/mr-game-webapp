@@ -10,17 +10,29 @@ This function is called by the main script, and calls functions in lower order f
 
 */
 
+
+/* Initialise data */
+
+
 // Function to create data for the game
 function initialiseData(nodes, edges, pValueThreshold){
 
 
-    /* Filter data */
+    /* Filter and patch data */
         
         // Filter out edges above p value threshold
         var filteredEdges = filterByPval(edges, pValueThreshold);
 
-        // Initialise DataClass 
-        var gameData = new DataClass(nodes, filteredEdges); // Populate DataClass with gameData
+        // Remove double negatives
+        negateTrait(
+            traitId='ukb_b_5076',
+            newName='Socialisation',
+            newIcon='social_chatBubble_alt', 
+            nodes=nodes, edges=filteredEdges);
+        
+
+    /* Initialise DataClass */
+    var gameData = new DataClass(nodes, filteredEdges); // Populate DataClass with gameData
 
 
     /* Configure node data */
@@ -32,10 +44,12 @@ function initialiseData(nodes, edges, pValueThreshold){
         gameData.nodes[key].min = nodeValues[key].min;
         gameData.nodes[key].max = nodeValues[key].max;
         gameData.nodes[key].units = nodeValues[key].units;
+        gameData.nodes[key].sd = nodeValues[key].SD;
+        gameData.nodes[key].prevalenceUnlimited = nodeValues[key].prevalence;
         gameData.setPrevalenceValues(key, nodeValues[key].prevalence); // In data-classes
 
-        // Calculate how much this node should increase as a result of a 5% increase intervention
-        gameData.nodes[key].prevalenceIncrease = gameData.nodes[key].average * 0.05;
+        // Calculate how much this node should increase as a result of an intervention
+        gameData.nodes[key].prevalenceIncrease = standardise(gameData.nodes[key]).interventionUnitChange;
 
         // Give icon
         gameData.nodes[key].icon = `images/epicons/${icons[gameData.nodes[key].id]}.png`; // Icon assignment in gameData/icons.js
@@ -47,18 +61,54 @@ function initialiseData(nodes, edges, pValueThreshold){
         gameData.nodes[key].exaggeration = 0;
 
         // Record whether the node is good or bad (i.e., wellbeing is good but diabetes is bad)
-        gameData.nodes[key].good = isGood[value.id];
+        gameData.nodes[key].isGood = isGood[value.id];
 
-        // Reset edge list so we can update this after filtering
-        gameData.nodes[key].edges = [];
+        // Edges per node
+        gameData.nodes[key].edges = []; // Init and fill from final data after filtering 
+        
+        // Utilities for categorising edges
+        gameData.nodes[key].getOutgoingEffects = function(){return categoriseEdges(key, this.edges).outgoing};
+        gameData.nodes[key].getIncomingEffects = function(){return categoriseEdges(key, this.edges).incoming};  
         
     }
-  
-    /* Convert data to graph and remove loops */
-    
-        // Initialise graph object for algorithmic operation
+
+
+    /* Configure edge data */
+    for(const [key, value] of Object.entries(gameData.edges)){
+
+        // Convert beta effect estimate to a % change in the outcome as a result of intervention
+        const exposure = gameData.nodes[value['id.exposure']];
+        const outcome = gameData.nodes[value['id.outcome']];
+
+        // Calculate percent change in outcome relative to its prevalence value
+        value.b_pct = exposure.prevalenceIncrease * value.b * standardise(outcome).prevalenceChangePerUnit;
+
+        // Calculate percent change in outcome relative to its min-max value range
+        value.b_pctOfRange = (exposure.prevalenceIncrease * value.b) / outcome.range * 100;
+        
+        // Update nodes' edge lists
+        exposure.edges.push(value);
+            exposure.edgeCount =  exposure.edges.length;
+        outcome.edges.push(value);
+            outcome.edgeCount =  outcome.edges.length;
+    }    
+
+
+    /* Simplify and validate data view */
+
+        // Remove unused nodes from data
+        for(const [key, value] of Object.entries(gameData.nodes)){
+            if(!(value.edges.length>0)){
+                delete gameData.nodes[key]; continue;
+            };
+        }
+
+        
+    /* Return final gameData */
+        
+        // Update graph data
         gameData.G = gameData.toG();
-    
+
         // Remove loops from data network
         var loopsRemoved = 0;
         for(const node of gameData.G.nodes()){
@@ -74,36 +124,6 @@ function initialiseData(nodes, edges, pValueThreshold){
 
             }
         }
-
-    /* Configure edge data */
-    for(const [key, value] of Object.entries(gameData.edges)){
-        
-        // Convert beta effect estimate to a % change in the outcome as a result of intervention
-        const exposure = gameData.nodes[value['id.exposure']];
-        const outcome = gameData.nodes[value['id.outcome']];
-
-        value.b_pct = (exposure.prevalenceIncrease * value.b) / outcome.range * 100;
-
-        // Update nodes' edge lists
-        exposure.edges.push(value);
-            exposure.edgeCount =  exposure.edges.length;
-        outcome.edges.push(value);
-            outcome.edgeCount =  outcome.edges.length;
-    }    
-
-    /* Simplify and validate data view */
-
-        // Remove unused nodes from data
-        for(const [key, value] of Object.entries(gameData.nodes)){
-            if(!(value.edges.length>0)){
-                delete gameData.nodes[key]; continue;
-            };
-        }
-
-    /* Return final gameData */
-        
-        // Update graph data
-        gameData.G = gameData.toG();
         
         // Return
         console.log('GAMEDATA: ', gameData, `${loopsRemoved} loops removed`);
@@ -111,87 +131,44 @@ function initialiseData(nodes, edges, pValueThreshold){
 }
 
 
-// Function to get score for policy
-function scoreInterventionSuccess(gameData){
-    var changedNodes = [];
-    var mostIncreased = {id:null, b:0};
-    var mostDecreased = {id:null, b:0};
-    var mostGood = {id:null, b:0, goodness:0};
-    var mostBad = {id:null, b:0, goodness:0};
+// Remove double negatives for clarity
+function negateTrait(traitId, newName, newIcon, nodes, edges){
 
-    var objectiveScore = 0;
-    var goodnessScore = 0;
-    var timeScore = 0;
-
-    // Iterate over nodes and detect changes
-    for(const [id, node] of Object.entries(gameData.nodes)){
-
-        // If it has been changed, push to list of nodes changed by this policy
-        if(node.change > 0){changedNodes.push(node)};
-        
-        // Check if node is a good trait
-        const nodeIsGood = isGood[id];
-
-        // Score whether effect on node was good or bad
-        var goodness = 0;
-        if(nodeIsGood){
-            goodness += node.change;
-        }else{
-            goodness -= node.change;
+    // Update nodes
+    for(const node of nodes){
+        if(node.id==traitId){
+            node['label'] = newName; // Change name
         }
-        goodnessScore += goodness;
-
-        // Score effect on the objective (if this node was the objective)
-        if(id == gameData.objective.id){
-            if(nodeIsGood){
-                objectiveScore += node.change;
-            }else{
-                objectiveScore -= node.change;
-            }
-        }
-
-        // Check awards
-        if(node.change > mostIncreased.b){mostIncreased = {id: id, b: node.change}} // ? Most increased trait
-        if(node.change < mostDecreased.b){mostDecreased = {id: id, b: node.change}} // ? Most decreased trait
-        if(goodness > mostGood.goodness){mostGood = {id: id, b: node.change, goodness: goodness,}} // ? Most good done
-        if(goodness < mostBad.goodness){mostBad = {id: id, b: node.change, goodness: goodness}} // ? Most bad done
-    
     }
-    
-    // Calculate award score
-    var awardScore = 0;
-        if(mostIncreased.id){awardScore+=0.25};
-        if(mostDecreased.id){awardScore+=0.25};
-        if(mostGood.id){awardScore+=0.5};
-        if(mostBad.id){awardScore-=0.25};
 
-    // Final weighting of scores
-    objectiveScore = boundScoreToRange(objectiveScore);
-    goodnessScore = boundScoreToRange(goodnessScore / 4);
-    timeScore = boundScoreToRange(timeScore);
-    awardScore = boundScoreToRange(awardScore);
-    const totalScore = objectiveScore + goodnessScore + timeScore + awardScore;
-
-    // Return scores
-    return({
-        scores: {
-            objective: objectiveScore, 
-            goodness: goodnessScore,
-            time: timeScore,
-            awards: awardScore,
-            total: totalScore,
-        },
-        effects: changedNodes,
-        awards: {
-            mostGood: mostGood,
-            mostBad: mostBad,
-            mostDecreased: mostDecreased,
-            mostIncreased: mostIncreased,
+    // Update edges
+    for(const edge of edges){
+        if(edge['id.exposure']==traitId){
+            edge.b*=-1; // Flip betas
+            edge['exposure'] = newName; // Change name
+        }else if(edge['id.outcome']==traitId){
+            edge.b*=-1; // Flip betas
+            edge['outcome'] = newName; // Change name
         }
-    })
+    }; 
 
-    // Function to bound scores within min & max
-    function boundScoreToRange(score, min=0, max=5){
-        return(Math.min(Math.max(min, score), max))
+    // Update icon and goodness records
+    icons[traitId] = newIcon; // Update icon;
+    isGood[traitId]= !isGood[traitId]; // Record trait as good
+
+}
+
+// Categorise edges into outgoing and incoming
+function categoriseEdges(nodeId, edges){
+    var incoming = [];
+    var outgoing = [];
+
+    // Categorise edges
+    for(const edge of edges){
+        if(nodeId == edge['id.outcome']){incoming.push(edge)}
+        if(nodeId == edge['id.exposure']){outgoing.push(edge)}
     }
+
+    // Return categorised edges
+    return{incoming: incoming, outgoing: outgoing}
 }

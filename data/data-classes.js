@@ -12,6 +12,28 @@ Contents of this script:
 
 */
 
+// Pseudo data class for results of all possible interventions
+class EvEData {
+
+    constructor() {
+
+        // Make resource access points
+        this.data = null;
+        this.initialised = false;
+
+    }
+
+    // Initialise EvE
+    init(gameData){
+
+        // Run propagation EvE
+        this.data = initialiseEvE(gameData);
+
+        // Flag as initialised
+        this.initialised = true;
+
+    }
+}
 
 // Pseudo data class containing network MR data
 class DataClass {
@@ -111,6 +133,9 @@ class DataClass {
             // Get new prevalence value
             var newNodePrevalence = this.nodes[key].prevalence += value;
 
+                // Save unlimited prevalence
+                this.nodes[key].prevalenceUnlimited = newNodePrevalence;
+
                 // Clip prevalence to within min/max limits
                 newNodePrevalence = Math.min(this.nodes[key].max, newNodePrevalence);
                 newNodePrevalence = Math.max(this.nodes[key].min, newNodePrevalence);
@@ -124,13 +149,27 @@ class DataClass {
     setPrevalenceValues(nodeId, prevalence){
 
         // Set extra data variables for showing prevalence changes
-        this.nodes[nodeId].prevalence = prevalence;
-        this.nodes[nodeId].change = (prevalence - this.nodes[nodeId].average) / this.nodes[nodeId].average * 100;
-        this.nodes[nodeId].change_bar = (this.nodes[nodeId].change / 2) + 50;
+
+            // Absolute current prevalence
+            this.nodes[nodeId].prevalence = prevalence;
+        
+            // Prevalence change in native units
+            this.nodes[nodeId].change_raw = prevalence - this.nodes[nodeId].average;
+
+            // Prevalence change unlimited by range
+            this.nodes[nodeId].change_unlimited = this.nodes[nodeId].prevalenceUnlimited - this.nodes[nodeId].average;
+
+            // Prevalence change converted to 0-100% scale
+            this.nodes[nodeId].change = standardise(this.nodes[nodeId]).prevalenceChange;
+
+            // Prevalence change converted to % change from midpoint (for display on a progress bar)
+            this.nodes[nodeId].change_bar = Math.min(100, Math.max(0,
+                this.nodes[nodeId].change/2 + 50 // Percentage expressed as deviation from 50% starting point in a bar 
+            ))
     }
 
     // Remove edges
-    updateEdges(newEdges){ console.log(`Deleting ${newEdges.length} edges from DataFrame`, newEdges);
+    updateEdges(newEdges){ //console.log(`Deleting ${newEdges.length} edges from DataFrame`, newEdges);
 
         for(const edge of newEdges){
             const edgeId = this.getEdgeId(edge[0],edge[1]);

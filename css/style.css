@@ -81,11 +81,15 @@
     opacity: 0;
     z-index: 4;
 }
-
+.label{
+    opacity: 1;
+}
 .nodeLabel{
     opacity: 0;
 }
 .nodeLabel_bg{
     opacity: 0;
 }
-
+.shadow{
+    text-shadow: 0 0 3px black;
+}

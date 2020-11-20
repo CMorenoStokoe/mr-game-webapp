@@ -38,9 +38,9 @@ function propagate(graph, root, valueChange){
         for(const node of graph.nodes()){prevalence[node] = {}}; // Init all node values with 0 at start
         prevalence[root] = {root: valueChange}; // Set origin node value to be the value change to propagate through network
 
-    // Run search with failsafes to avoid infinite loops
+    // Run search 
     for (i = 0; i < Math.pow(graph.nodes().length, 2); i++){ 
-        if(queue[0] == undefined){break;}
+        if(queue[0] == undefined){break;} // Failsafes
 
         // Add successors of current node to queue
         for(const successor of graph.successors(queue[0])){queue.push(successor)};
@@ -69,6 +69,7 @@ function propagate(graph, root, valueChange){
         queue.shift();
 
     }
+    if(i >= Math.pow(graph.nodes().length, 2)){console.log('ERR: PROPAGATION ENDED EARLY (failsafe limit reached)')}
 
     // Add up changes to nodes
     results = {};
