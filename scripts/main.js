@@ -69,14 +69,12 @@ collections of methods categorised by purpose.
 
 // Loading settings
 window.onload = function(){
-    developerMode = false;
-    previewMode = true;
 
     // Developer mode 
     if(developerMode){ // Automatically start-up in specific mode for testing
         
         // Specify game state to load immediately
-        gameState = 'iv';
+        gameState = developerMode;
 
         // Dismiss loading screen and load specified game state immediately
         document.getElementById('loading-screen').style.display='none'; 
