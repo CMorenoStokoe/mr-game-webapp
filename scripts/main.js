@@ -81,7 +81,6 @@ window.onload = function(){
         gamestates[gameState].action(); 
     
     }
-
     // Preview mode
     else if(previewMode){ // GUI to select mode to start-up for demonstration
         
@@ -142,7 +141,7 @@ const gamestates = { // Different gamestates within the game (player levelling s
 
             // Continue to tutorial
             setTimeout(function(){
-                incrementGamestate()
+                incrementGamestate();
             }, 2000)
         },
     },

@@ -23,6 +23,7 @@ function initialiseLogin(){
         if(username){
             createNewUser(
                 username,
+                function(){incrementGamestate();}
                 //function(){loadPlayerData(username)}
             );
             dismissSplash();
