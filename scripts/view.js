@@ -18,10 +18,10 @@ functions in other secondary files.
 /* Initialise view */
 
 // Scale SVG to window
-svgContainerHeight = document.getElementById('svg-container').offsetHeight;
-    document.getElementById('svg-main').setAttribute('height', svgContainerHeight);
-svgContainerWidth = document.getElementById('svg-container').offsetWidth;
-    document.getElementById('svg-main').setAttribute('width', svgContainerWidth);
+const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+    document.getElementById('svg-main').setAttribute('width', vw);  
+const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+    document.getElementById('svg-main').setAttribute('height', vh);
 
 // Enable popovers
 $(function () {$('[data-toggle="popover"]').popover()})
@@ -403,6 +403,16 @@ function conveyVisResults(){
     };   
 }
 
+// Set background
+function setBG(value=null){
+    if(value){
+        document.getElementById('container-4-bg').style.background = `url("images/spaceboxes/${value}.jpg") no-repeat center center fixed`;
+        document.getElementById('container-4-bg').style.backgroundSize = 'cover';
+    }else{
+        document.getElementById('container-4-bg').style.background = `url("images/spaceboxes/${getRandomInt(8)}.jpg") no-repeat center center fixed`;
+        document.getElementById('container-4-bg').style.backgroundSize = 'cover';
+    }
+}
 
 /* level and exp */
 

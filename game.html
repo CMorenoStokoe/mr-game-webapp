@@ -28,8 +28,11 @@
 
 </head>
 <body style='overflow: hidden !important;'>
+    <div id='container-4-bg' style='height: 100vh; width: 100vw;'>
+        <div id='preload-images'></div>
 
-    <div class='container'>
+        <!-- Graph area -->
+        <svg width="1000" height="700" id="svg-main" style='display: none; position: absolute; top:0; left:0;'></svg>
         
         <!-- Loading screen -->
         <div id='loading-screen'>
@@ -162,18 +165,6 @@
             </div>
 
         </div>  
-
-        <!-- Main content area --> 
-        <div class="row text-center" style='height: 100vh; width: 100vw;' >
-
-            <!-- Graph area -->
-            <div class="d-flex w-100 justify-content-center align-item-center" style='height: 100%' id='svg-container'>
-                
-                <svg width="1000" height="700" id="svg-main" style='display: none;'></svg>
-            
-            </div>
-            
-        </div> 
 
         <!-- Intervention dialogue -->
         <div class="modal" tabindex="-1" role="dialog" id='intervention-modal'>

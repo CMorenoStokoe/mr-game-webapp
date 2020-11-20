@@ -86,11 +86,11 @@ window.onload = function(){
         
         // Dismiss loading screen and show preview console
         document.getElementById('loading-screen').style.display='none'; 
-        $('#dev-modal').modal('show')
+        $('#dev-modal').modal('show');
         
             // Give users buttons to choose game state to preview
-            $('#dev-btn-3').click(function(){gameState='iv'})
-            $('#dev-btn-4').click(function(){gameState=3})
+            $('#dev-btn-3').click(function(){gameState='iv'});
+            $('#dev-btn-4').click(function(){gameState=3});
 
             // On dismiss load the chosen game state
             $('#dev-modal').on('hidden.bs.modal', function(){gamestates[gameState].action();})    
@@ -123,6 +123,10 @@ const gamestates = { // Different gamestates within the game (player levelling s
     0 : {
         name: 'splash',
         action: function(){
+
+            // Set BG for splash
+            setBG(5);
+
             // Show splash login screen
             splash();
             initialiseLogin();
@@ -141,8 +145,17 @@ const gamestates = { // Different gamestates within the game (player levelling s
 
             // Continue to tutorial
             setTimeout(function(){
+
+                // Continue
                 incrementGamestate();
+
+                setTimeout(function(){
+                        
+                    // Add one space traffic
+                    createSpaceTraffic(1, 500);
+                }, 8000)
             }, 2000)
+
         },
     },
     2 : {
@@ -183,8 +196,8 @@ const gamestates = { // Different gamestates within the game (player levelling s
             setMiranaSettings('game'); 
 
             // Change skybox
-            document.body.style.background = `url("images/spaceboxes/${getRandomInt(8)}.jpg")`;
-                document.body.style.backgroundSize = `cover`;
+            setBG();
+            //document.body.style.background = `url("images/spaceboxes/${getRandomInt(8)}.jpg") no-repeat center center fixed`;
             
             // Initialise model, view, and controller
             initialise(
@@ -503,6 +516,9 @@ function playerReachedInterventionMax(intervention){
 
         // Reset player intervention history
         playerInterventionHistory = [];
+
+        // Fade out now to fade in to hide force directed graph jiggling on creation
+        $('#svg-main').animate({opacity: 0}, 500); 
 
         // Reset game
         // If player also triggered playerReachedInterventionMax, run this next

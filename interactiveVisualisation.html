@@ -27,10 +27,13 @@
     <link rel="stylesheet" href="css/game.css">
 
 </head>
-<body style='overflow: hidden !important;'>
-
-    <div class='container'>
+<body style='overflow: hidden !important;'>    
+    <div id='container-4-bg' style='height: 100vh; width: 100vw;'>
+        <div id='preload-images'></div>
         
+        <!-- Graph area -->
+        <svg width="1000" height="700" id="svg-main" style='display: none; position: absolute; top:0; left:0;'></svg>
+
         <!-- Loading screen -->
         <div id='loading-screen'>
             <div class='w-100 h-100 d-flex flex-column justify-content-center align-items-center text-center fnt-safe'>
@@ -162,18 +165,6 @@
             </div>
 
         </div>  
-
-        <!-- Main content area --> 
-        <div class="row text-center" style='height: 100vh; width: 100vw;' >
-
-            <!-- Graph area -->
-            <div class="d-flex w-100 justify-content-center align-item-center" style='height: 100%' id='svg-container'>
-                
-                <svg width="1000" height="700" id="svg-main" style='display: none;'></svg>
-            
-            </div>
-            
-        </div> 
 
         <!-- Intervention dialogue -->
         <div class="modal" tabindex="-1" role="dialog" id='intervention-modal'>
@@ -387,14 +378,18 @@
 
                     <br><br>
                     <strong><i class="fas fa-mouse-pointer"></i> Interventions</strong><br>
-                    Click on a node to intervene on it. Interventions immediately affect the target trait; they increase good traits, such as wellbeing, and decrease bad traits, such as heart disease (CHD).
+                    Click on a node to intervene on it. 
+                    Interventions immediately affect the target trait; they increase good traits, such as wellbeing, and decrease bad traits, such as heart disease (CHD). 
+                    A key to the effects can be found in the bottom left of the screen.
 
                     <br><br>
                     <strong><i class="fas fa-fire"></i> Goals</strong><br>
+                    Use the reset button in the top left to reload the visualisation and see the effects of different interventions. 
                     You are free to use this visualisation however you like, but you might want to try: 
                     <ul>
-                        <li>Intervening on BMI and seeing that when it is reduced heart disease (CHD) also reduces</li>
-                        <li>Intervening on education and seeing its far-reaching effects</li>
+                        <li>Hover over a trait to see its name and prevalence</li>
+                        <li>Intervene on education and see that it has far-reaching effects</li>
+                        <li>Intervene on BMI and seeing that when it is reduced heart disease (CHD) also reduces</li>
                         <li>Make multiple interventions at the same time and see their interacting effects</li>
                     </ul>
                 </div>

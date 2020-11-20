@@ -11,7 +11,6 @@ Use: This file is called by the main script when a player has logged in and is f
 // Initialise tutorial dialogues
 function initialiseTutorial(){
 
-
     // Hide GUI elements for reveal
     $('#GUI-goal').hide().css('opacity', 0);
     $('#svg-main').hide().css('opacity', 0);
