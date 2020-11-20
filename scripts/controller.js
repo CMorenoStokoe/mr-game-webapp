@@ -23,7 +23,7 @@ function initialiseLogin(){
         if(username){
             createNewUser(
                 username,
-                function(){loadPlayerData(username)}
+                //function(){loadPlayerData(username)}
             );
             dismissSplash();
         } else {alert('Please enter your username')}
