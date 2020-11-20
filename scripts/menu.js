@@ -39,6 +39,9 @@ function createMenu(){
 
                 // Create volume slider
                 var div = document.createElement('DIV');
+                var volumeTitle = document.createElement('H5');
+                    volumeTitle.innerHTML = 'Volume';
+                    volumeTitle.className = 'p-2 m-2 w-100 d-flex';
                 var volumeLabel = document.createElement('LABEL'); // Label
                     volumeLabel.for = 'volume-slider';
                     volumeLabel.innerHTML = '<i class="fas fa-volume-up"></i> Volume';
@@ -53,6 +56,7 @@ function createMenu(){
                 
                 // Append volume to DOM
                 document.getElementById('menu-settings-body').appendChild(div);
+                    div.appendChild(volumeTitle)
                     div.appendChild(volumeLabel);
                     div.appendChild(volumeSlider);
                 
@@ -88,6 +92,26 @@ function createMenu(){
                     div.appendChild(btn);
                 
                 */
+
+                // Force reset
+                var resetDiv = document.createElement('DIV');
+                    resetDiv.className = 'p-2 m-2 w-100 d-flex flex-column';
+                document.getElementById('menu-settings-body').appendChild(resetDiv);
+                
+                var resetTitle = document.createElement('H5');
+                    resetTitle.innerHTML = 'Force reset';
+                    resetTitle.className = 'p-2 m-2 w-100 d-flex';
+                resetDiv.appendChild(resetTitle);
+
+                var resetLabel = document.createElement('P');
+                    resetLabel.innerHTML='If you run into issues with the game try force-resetting it with the button below.';
+                resetDiv.appendChild(resetLabel);
+
+                var resetBtn = document.createElement('BUTTON');
+                    resetBtn.onclick = function(){gamestates[gameState].action()};
+                    resetBtn.innerText = 'Force reset game';
+                    resetBtn.className = 'btn btn-lg btn-custom';
+                resetDiv.appendChild(resetBtn);
 
     // Record menu as generated
     menuGenerated = true;

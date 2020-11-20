@@ -133,6 +133,9 @@ class DataClass {
             // Get new prevalence value
             var newNodePrevalence = this.nodes[key].prevalence += value;
 
+                // Save unlimited prevalence
+                this.nodes[key].prevalenceUnlimited = newNodePrevalence;
+
                 // Clip prevalence to within min/max limits
                 newNodePrevalence = Math.min(this.nodes[key].max, newNodePrevalence);
                 newNodePrevalence = Math.max(this.nodes[key].min, newNodePrevalence);
@@ -152,6 +155,9 @@ class DataClass {
         
             // Prevalence change in native units
             this.nodes[nodeId].change_raw = prevalence - this.nodes[nodeId].average;
+
+            // Prevalence change unlimited by range
+            this.nodes[nodeId].change_unlimited = this.nodes[nodeId].prevalenceUnlimited - this.nodes[nodeId].average;
 
             // Prevalence change converted to 0-100% scale
             this.nodes[nodeId].change = standardise(this.nodes[nodeId]).prevalenceChange;

@@ -79,7 +79,7 @@ function initialiseView(
             fadeIn_SVG();
             fadeIn_planetInfo();
             $('.label').css('opacity', 0); // Start node labels hidden
-            setExpIndicators(playerExp); // Set exp bar
+            setExpIndicators(playerExp, levels[playerLvl].max); // Set exp bar
             styleProgressBar('default'); // Set progress bar style
 
             // Create game menu bar
@@ -153,7 +153,7 @@ function initialiseView(
 
     // Set exp and level indicators
     function setExpIndicators(playerExp, max=levels[playerLvl].max){
-        showExpFx(playerExp);
+        showExpFx(playerExp, max);
     }
 }
 
@@ -406,7 +406,6 @@ function conveyVisResults(){
 
 /* level and exp */
 
-
 // Show player exp effects
 function showExpFx(playerExp, max=100){
 
@@ -432,7 +431,7 @@ function styleProgressBar(style='default'){
         case 'intervention-max':
 
             // Format progress to continue
-            setHTML('GUI-currentSystem', `Continue &nbsp <i class="fas fa-chevron-right"></i>`)
+            setHTML('GUI-currentSystem', `Enact policy &nbsp <i class="fas fa-calendar-check"></i>`)
             document.getElementById('progress-goal').className = 'progress-bar progress-bar-striped progress-bar-animated bg-success';
             break;
         

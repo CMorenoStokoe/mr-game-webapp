@@ -212,10 +212,10 @@ body{
     overflow: auto;
 }
 .policyEffect{
-    opacity: 0;
+    opacity: 1;
 }
 .policyEffect-img{
-    height: 30px;
+    height: 50px;
     width: auto;
 }
 .btn-custom-outline{

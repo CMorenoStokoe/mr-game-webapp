@@ -249,35 +249,15 @@
                 <div class='card p-3 fnt-light' id='win-screen-div'>
                     
                     <!-- Header -->
-                    <h1 class='display-4 text-center m-2 fnt-bold'>Success!</h1>
-                    
-                    <!-- Score -->
-                    <h5 class='mt-2 fnt-bold'>Your score:</h5>
-                    <ul style='list-style-type: none; margin-bottom: 5px;'>
-                        <li>Goal score: <span id='score-goal'>12523</span></li>
-                        <li>Efficiency score: <span id='score-efficiency'>12523</span></li>
-                        <li>Side-effect score: <span id='score-goodness'>54326</span></li>
-                        <li>Time score: <span id='score-time'>3326</span></li>
-                        <li>Award score: <span id='score-award'>36</span></li>
-                        <li><p class='fnt-bold'>Total score: <span id='score-total'>21353</span></p></li>
-                    </ul>
-                    
-                    <!-- Awards -->
-                    <div class='p-1 m-1' id='score-awards-superDiv'>
-                        <p class='fnt-bold'>Awards</p>
-                        <div class='' id='win-screen-effects'>
-                            <div id='score-awards' class='d-flex flex-row m-2 align-items-center fnt-light'></div>
-                        </div>
-                    </div>
-
-                    <!-- System progress -->
-                    <div class='p-2 mb-2 w-100 d-flex flex-column justify-content-center align-items-center text-center'>
-                        <div id='win-screen-systemProgress' class='w-100'></div>
-                        <p><span id='win-screen-progress-text'></span> score remaining to unlock next system</p>
-                    </div>
+                    <h1 class='display-4 text-center m-2 fnt-bold'><i class="fas fa-calendar-check"></i> Policy enacted!</h1>
+              
+                    <!-- Interventions in policy -->
+                    <h4 class='mt-4'>Leaderboard: <span id='win-objective'></span></h4>
+                    <div id='win-effects-player-intervention' class='p-2 d-flex flex-row justify-content-center'></div>
+                    <div id='win-effects-best-intervention' class='p-2 d-flex flex-row justify-content-center'></div>                    
                     
                     <!-- Continue button -->
-                    <button id='win-screen-btn' class='btn w-100 btn-lrg btn-custom'>Continue</button>
+                    <button id='win-screen-btn' class='m-2 btn w-100 btn-lrg btn-custom'>Continue</button>
     
                 </div>
             </div>

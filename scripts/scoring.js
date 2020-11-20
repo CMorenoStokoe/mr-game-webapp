@@ -80,7 +80,6 @@ function scoringMethod_test(gameData){
 function scoringMethod_game(interventionEffects, numberOfInterventions){
     var objectiveScore = 0;
     var timeScore = 0;
-    var efficiencyScore = 0;
 
     // Calculate goodness score
     
@@ -102,10 +101,6 @@ function scoringMethod_game(interventionEffects, numberOfInterventions){
 
     // Calculate efficiency score compared to best intervention possible
     const efficiency = calcInterventionEfficiency(interventionEffects, numberOfInterventions);
-    
-        // Check if there was a possible better intervention
-        if(efficiency){ efficiencyScore = Math.abs(efficiency.score); } // % of best intervention
-        else{ efficiencyScore = 100 }
 
     // Calculate objective score
     objectiveScore = gameData.objective.change; // % change in objective
@@ -116,7 +111,7 @@ function scoringMethod_game(interventionEffects, numberOfInterventions){
             objective: objectiveScore, 
             goodness: badEffects.length / goodEffects.length * 100,
             time: timeScore,
-            efficiency: efficiencyScore,
+            efficiency: efficiency.score,
         },
         weighting: {  // Weighting of scores for exp levelling
             objective: 1, 
@@ -131,42 +126,102 @@ function scoringMethod_game(interventionEffects, numberOfInterventions){
 // Calculate intervention efficiency
 function calcInterventionEfficiency(interventionEffects, numberOfInterventions=1){
 
+    // Get player effect(s)
+    var playerEffect = interventionEffects[gameData.objective.id];
+        if(playerEffect == undefined){playerEffect = 0}; // If player's intervention had no effect on objective (solution to NaN error when Num/undefined)
+        playerEffect *= 1; // Round to same DP as bestEffect after multiplying that with strength
+        
     // Calculate best possible interventions
     const optimalInterventions = calcOptimalIntervention(gameData, EvE.data); // Get top 5 interventions
-    
-    // Get player effect(s)
-    const playerEffect = interventionEffects[gameData.objective.id];
+        console.log('Finding optimal intervention', optimalInterventions, interventionEffects, numberOfInterventions, playerEffect)
 
     // Return most effective possible intervention (if any)
-    if(optimalInterventions.length > 0){
-        var bestEffect = 0;
 
-        // Get optimal effect(s)
-        for (i = 0; i < numberOfInterventions; i++) {
+        // If optimal interventions possible
+        if(optimalInterventions.length > 0){
+            var bestEffect = 0;
+            var bestInterventionTargets = [];
 
-            // Get ith most optimal intervention
-            const optimalIntervention = optimalInterventions[i]; // Single best intervention
+            // Get optimal effect(s)
+            for (i = 0; i < numberOfInterventions; i++) {
 
-            // Add effect to optimal effect(s)
-            bestEffect += optimalIntervention.objectiveEffect;
-        }
-            
-        console.log(bestEffect);
-        // Calculate efficiency
-        console.log(playerEffect, bestEffect, playerEffect / bestEffect * 100)
-        var efficiency = to2DP(playerEffect / bestEffect * 100);
-            if(playerEffect == undefined){efficiency = 0;} // Avoid divide by 0 issue
+                // Get ith most optimal intervention
+                if(optimalInterventions[i]){
+                    
+                    // ith best intervention
+                    const optimalIntervention = optimalInterventions[i]; 
 
-            console.log(efficiency);
-        
-        return({score: efficiency, optimalInterventions: optimalInterventions})
+                    // If it improves the objective
+                    if(optimalIntervention.objectiveEffect){
 
-    } 
+                        // Get individual intervnetion's effect
+                        const thisEffect = optimalIntervention.objectiveEffect;
 
-    // Else if no possible intervention
-    else {
-        return false
-    };
+                        // Check if effect is good
+                        const objectiveIsGood = gameData.objective.isGood;
+                        const effectIsPositive = thisEffect > 0;
+                        const effectIsGood = objectiveIsGood==effectIsPositive ? true : false;
+
+                        // Add effect to optimal effect(s)
+                        if(effectIsGood){
+
+                            // Add effect to optimal effect(s)
+                            bestEffect += thisEffect * Number(playerInterventionStrength);
+                                console.log('Best effect before rounding:', thisEffect)
+
+                            // Add to list of optimal target(s)
+                            bestInterventionTargets.push(optimalIntervention.id);
+                                console.log('Found optimal intervention:', optimalIntervention, playerInterventionStrength, bestEffect)
+
+                        }
+                    }
+                }
+            }
+
+            // Catch no best effect
+            //if(bestEffect === 0){return {score: 100, optimalInterventions: optimalInterventions, bestInterventionTargets: bestInterventionTargets}}
+                
+            // Calculate efficiency
+            var efficiency = 0;
+
+                // If best and player effects are different in valence
+                if(bestEffect >= 0 && playerEffect < 0){ console.log('bestEffect >= 0 && playerEffect < 0')
+                    efficiency = 0; console.log(efficiency)
+                }
+                else if(bestEffect < 0 && playerEffect >= 0){ console.log('bestEffect < 0 && playerEffect >= 0')
+                    efficiency = 0; console.log(efficiency)
+                } 
+                // If best and player effects are same in valence
+                else if(bestEffect >= 0 && playerEffect >= 0){ console.log('bestEffect >= 0 && playerEffect >= 0')
+                    efficiency = bestEffect - playerEffect; console.log(efficiency)
+                    efficiency /= bestEffect; console.log(efficiency)
+                    efficiency = isFinite(efficiency) ? efficiency : 1; console.log(efficiency)
+                    efficiency *= 100; console.log(efficiency)
+                    efficiency = 100 - efficiency; console.log(efficiency)
+                    efficiency = Math.min(100, Math.max(0, efficiency)); console.log(efficiency)
+                }
+                else if(bestEffect < 0 && playerEffect < 0){ console.log('bestEffect < 0 && playerEffect < 0')
+                    efficiency = Math.abs(bestEffect) - Math.abs(playerEffect); console.log(efficiency)
+                    efficiency /= Math.abs(bestEffect); console.log(efficiency)
+                    efficiency = isFinite(efficiency) ? efficiency : 1; console.log(efficiency)
+                    efficiency *= 100; console.log(efficiency)
+                    efficiency = 100 - efficiency; console.log(efficiency)
+                    efficiency = Math.min(100, Math.max(0, efficiency)); console.log(efficiency)
+                }
+                // Else 
+                else { console.log('best effect = 0/NaN, playerEffect = 0/NaN')
+                    efficiency = 0;
+                } 
+                console.log('EFFICIENCY: ', efficiency)
+
+            return({score: efficiency, optimalInterventions: optimalInterventions, bestEffect: bestEffect, playerEffect: playerEffect, bestInterventionTargets: bestInterventionTargets})
+
+        } 
+
+        // No possible beneficial interventions
+        else { console.log('No possible intervention', interventionEffects)        
+            return {score: 100, optimalInterventions: optimalInterventions}
+        };
 
 };
 
@@ -204,7 +259,7 @@ function calculateAwards(){
 };
 
 // Calculate exp from score
-function calculateExp(node, nodePrevalenceChange, efficiency){
+function calculateExp(node, nodePrevalenceChange){
 
     // Standardise effect as % change in prevalence
     const stdConst = standardise(node).prevalenceChangePerUnit; // standardise.js

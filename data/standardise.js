@@ -19,7 +19,7 @@ function standardise(node){
     switch(node.units){
 
         // With percentage odds, a unit increase is a binary increase (i.e., giving everyone depression) so it is represented as a 100% increase/decrease
-        case 'Odds (%)': prevalenceChangePerUnit = 100; interventionUnitChange; break; 
+        case 'Odds (%)': prevalenceChangePerUnit = 100; break; 
 
         // With SDs, each unit increase (1 SD) is modelled as a~ 34% shift in prevalence distribution (33 not 34 so it looks like a 1/3 increase which is intuitive and more easily understandable than a 34% increase)
         case 'SD': prevalenceChangePerUnit = 33; break;

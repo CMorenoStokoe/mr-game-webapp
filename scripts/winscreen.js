@@ -10,16 +10,115 @@ This file contains code to show the win score screen
 
 
 // Show win score screen
-function showScoreScreen(gameData, score){
+function showScoreScreen(gameData, score, playerInterventionHistory){
 
-    // Populate win screen
+    // Reset content
+    document.getElementById('win-effects-player-intervention').innerHTML = '';
+    document.getElementById('win-effects-best-intervention').innerHTML = '';
 
-        console.log(score)
-    
-        // Show scores        
-        setText('score-goal', intervention.scores.objective);
-        setText('score-efficiency', intervention.scores.efficiency);
-    
+    // Show policy objective
+    setHTML('win-objective', `${gameData.objective.isGood ? 'Raise' : 'Lower'} ${gameData.objective.label}`)
+
+    // Get ntervention effects 
+        const eve = score.efficiency;
+
+    // Show leader board
+
+        // Determine if player enacted best policy
+        var playerDidBest = score.scores.efficiency>99.99999999999998 ? true : false;
+            console.log('playerDidBest = ', playerDidBest, score.scores.efficiency, '>99.9..')
+
+        // Get objective change by player
+        const playerEffect = standardise(gameData.objective).prevalenceChangePerUnit * gameData.objective.change_unlimited;
+        
+        // Show player policy
+        constructPolicyBubble(
+            playerInterventionHistory, 
+            gameData.objective.id, 
+            playerEffect, 
+            'win-effects-player-intervention',
+            `${playerUsername}'s policy ${playerDidBest ? '<i class="fas fa-crown"></i> Best' : ''}`);
+
+        if(eve){ // If any intervention can affect the objective
+            if(eve.optimalInterventions.length > 0){ // If any intervention can affect the objective in a beneficial way (e.g., reducing BMI but not increasing it)
+                if(eve.bestInterventionTargets.length > 0){ // If there is an optimal series of interventions
+                
+                // Show best possible policy (if not achieved by player)
+                    
+                    // If player did not achieve the best
+                    if(!(playerDidBest)){
+
+                        // Get best effect
+                        var efficiency = eve.bestEffect;
+
+                            // Convert to percent effect
+                            efficiency *= standardise(gameData.objective).prevalenceChangePerUnit;
+
+                        // Show best effect
+                        constructPolicyBubble(
+                            eve.bestInterventionTargets, 
+                            gameData.objective.id, 
+                            efficiency, 
+                            'win-effects-best-intervention',
+                            `${generateUsername()}'s policy <i class="fas fa-crown"></i> Best`
+                        );
+                    } 
+                    
+                    /* Else if player did achieve the best
+                    else {
+
+                        if(eve.optimalInterventions[1]){
+
+                            // Get next best effect
+                            var nextBest = optimalInterventions[1];
+
+                            // Get best effect
+                            var efficiency = nextBest.objectiveEffect;
+                                efficiency *= standardise(gameData.objective).prevalenceChangePerUnit;
+                
+                            // Show best effect
+                            constructPolicyBubble(
+                                eve.bestInterventionTargets, 
+                                gameData.objective.id, 
+                                efficiency, 
+                                'win-effects-best-intervention',
+                                `${generateUsername()}'s policy <i class="fas fa-crown"></i> Best`
+                            );
+
+                        }
+                        
+                    }*/
+
+                }else { // No intervention benefits objective
+                    document.getElementById('win-effects-best-intervention').innerHTML = 'No possible intervention could have improved the objective trait'
+                }
+            } else { // No intervention benefits objective
+                document.getElementById('win-effects-best-intervention').innerHTML = 'No possible intervention could have improved the objective trait'
+            }
+        } else { // No intervention affects objective
+            document.getElementById('win-effects-best-intervention').innerHTML = 'No possible intervention could have improved the objective trait'
+        }
+        
+        // Generate username
+        function generateUsername(){
+
+            const prefix = [
+                'uob_psych-',
+                'uob_psych-',
+                'uob_psych-',
+                'uob_psych-',
+                'uob_psych-',
+                'uob_psych-',
+                'uob_bio-',
+                'uob_med-',
+                'uob_chem-',
+                'uwe_psych-',
+                'bath_psych-',
+            ]
+
+            return `${prefix[getRandomInt(10)]}${getRandomInt(50)}`
+        }
+
     // Open win screen
     $('#win-screen').show().animate({opacity: 1}, 500); // Show modal
     progressSound.play(); // Play sound

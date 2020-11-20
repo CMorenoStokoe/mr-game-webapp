@@ -45,6 +45,7 @@ function initialiseData(nodes, edges, pValueThreshold){
         gameData.nodes[key].max = nodeValues[key].max;
         gameData.nodes[key].units = nodeValues[key].units;
         gameData.nodes[key].sd = nodeValues[key].SD;
+        gameData.nodes[key].prevalenceUnlimited = nodeValues[key].prevalence;
         gameData.setPrevalenceValues(key, nodeValues[key].prevalence); // In data-classes
 
         // Calculate how much this node should increase as a result of an intervention

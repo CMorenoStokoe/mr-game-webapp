@@ -92,9 +92,10 @@ function identifyOptimalIntervention(gameData, topInterventions, EvE){
             const thisEffect = results[objectiveId];
 
             // Determine if best intervention
-            if(interventionIsBetter(objective, thisEffect, bestEffect)){
-                optimalIntervention = {id: id, objectiveEffect: thisEffect};
-            }
+            const bestIntervention = interventionIsBetter(objective, thisEffect, bestEffect);
+                if(bestIntervention){
+                    optimalIntervention = {id: id, objectiveEffect: thisEffect};
+                }
     }    
 
     return optimalIntervention;
