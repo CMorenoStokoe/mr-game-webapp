@@ -193,7 +193,7 @@ const gamestates = { // Different gamestates within the game (player levelling s
             // Change skybox
             setBG();
             //document.body.style.background = `url("images/spaceboxes/${getRandomInt(8)}.jpg") no-repeat center center fixed`;
-            
+
             // Initialise model, view, and controller
             initialise(
                 profile='game',

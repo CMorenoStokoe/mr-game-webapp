@@ -19,7 +19,14 @@ function initialiseLogin(){
     
     // Make login button
     addOnclickEvent('splash-button', function(){
+
+        // Get player username
         const username = document.getElementById('splash-form').value;
+            
+        // Set player username
+        playerUsername = playerData.username;
+
+        // Register user with DB
         if(username){
             createNewUser(
                 username,
