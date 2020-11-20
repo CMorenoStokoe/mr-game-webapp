@@ -77,23 +77,28 @@ const directions = [
 
 
 // Function to make rockets fly across the screen
-function createSpaceTraffic(numberOfFlights, minimumTimeOnScreen = 500){
-
+function createSpaceTraffic(numberOfFlights, minimumTimeOnScreen = 500, immutable = false){
+    
     // Ensure space traffic is enabled
     stopSpaceTraffic = false;
 
     // Launch spaceships
     while(numberOfFlights > 0){
         createBGAudio(`rocketWoosh-${numberOfFlights}`); // Create a new audio object for each space ship so each can be heard simultaneously
-        createSpaceship(numberOfFlights); // Create space ship graphic and play sounds in a self-looping function until cancelled
+        createSpaceship(numberOfFlights, immutable); // Create space ship graphic and play sounds in a self-looping function until cancelled
         numberOfFlights--;
     };
 
     // Self-looping function to launch a single spaceship
-    function createSpaceship(currentFlightNumber){
-        
+    function createSpaceship(currentFlightNumber, immutable = false){
         // Don't spawn any more traffic if traffic has been stopped (e.g., dismissing the splash screen)
-        if(stopSpaceTraffic){return};
+        if(immutable){
+            // continue;
+        }else{
+            if(stopSpaceTraffic){
+                return
+            };
+        }
 
         // Pick rocket graphic randomly
         const randomRocket = rockets[getRandomInt(rockets.length)];
@@ -130,7 +135,7 @@ function createSpaceTraffic(numberOfFlights, minimumTimeOnScreen = 500){
 
         // Repeat this function on a random delay
         setTimeout(function(){
-            createSpaceship(currentFlightNumber);
+            createSpaceship(currentFlightNumber, immutable);
         }, speed)
     }
 

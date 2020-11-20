@@ -62,6 +62,7 @@ collections of methods categorised by purpose.
 
     // User interface
     var skipAnimations = false;
+    var firstLoad = true;
 
 
 /* Start-up configuration */
@@ -148,12 +149,6 @@ const gamestates = { // Different gamestates within the game (player levelling s
 
                 // Continue
                 incrementGamestate();
-
-                setTimeout(function(){
-                        
-                    // Add one space traffic
-                    createSpaceTraffic(1, 500);
-                }, 8000)
             }, 2000)
 
         },
@@ -411,6 +406,7 @@ function reset(){
 
 // Effect of players enacting an intervention
 function playerMadeIntervention(nodeId){
+    if(firstLoad){createSpaceTraffic(1, 500, true); firstLoad = false; stopSpaceTraffic = true;} // Space traffic
     
     // Treat IV users differently
     if(gameState == 'iv'){return playerInteractedWithIV(nodeId)};

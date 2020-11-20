@@ -104,13 +104,13 @@
   visibility: hidden;
   width: 0;
   height: 0;
-  background: url(images/spaceboxes/0.jpg),
-    url(images/spaceboxes/1.jpg),
-    url(images/spaceboxes/2.jpg),
-    url(images/spaceboxes/3.jpg),
-    url(images/spaceboxes/4.jpg),
-    url(images/spaceboxes/5.jpg),
-    url(images/spaceboxes/6.jpg),
-    url(images/spaceboxes/7.jpg),
-    url(images/spaceboxes/8.jpg);
+  background: url(../images/spaceboxes/0.jpg),
+    url(../images/spaceboxes/1.jpg),
+    url(../images/spaceboxes/2.jpg),
+    url(../images/spaceboxes/3.jpg),
+    url(../images/spaceboxes/4.jpg),
+    url(../images/spaceboxes/5.jpg),
+    url(../images/spaceboxes/6.jpg),
+    url(../images/spaceboxes/7.jpg),
+    url(../images/spaceboxes/8.jpg);
 }
