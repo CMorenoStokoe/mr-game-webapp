@@ -150,6 +150,8 @@ const gamestates = { // Different gamestates within the game (player levelling s
         name: 'tutorial',
         action: function(){
 
+            return  incrementGamestate();
+
             // Configure view
             setMiranaSettings('game'); 
             
@@ -176,7 +178,9 @@ const gamestates = { // Different gamestates within the game (player levelling s
         name: 'game',
         action:  function(){
 
-            // Configure view
+            // Configure view            
+            $('#legend_key').show();
+            $('#tutorial-0-modal').modal('show'); // Auto-show initial intro modal 
             setMiranaSettings('game'); 
 
             // Change skybox
@@ -209,6 +213,8 @@ const gamestates = { // Different gamestates within the game (player levelling s
         name: 'interactiveVisualisation',
         action:  function(){
 
+            $('#tutorial-0-modal').modal('show'); // Auto-show initial intro modal 
+            
             // Configure view
             setMiranaSettings('interactiveVisualisation'); 
             

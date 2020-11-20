@@ -530,6 +530,14 @@
         <button id='test_reset' class='btn btn-lrg btn-custom' onclick="gamestates[gameState].action(); reset();">Reset <i class="fas fa-undo-alt"></i></button>
 
     </div>
+    
+    <div class='' style='position: absolute; left:0; bottom:0; z-index: 99;'>
+        <div class='card p-2' style='background: rgba(248, 248, 255, 0.9)'>
+            <h5>Key</h5><br>
+            <p style='color: orangered'><i class="fas fa-arrow-right"></i> = Increase </p>
+            <p style='color: cornflowerblue'><i class="fas fa-arrow-right"></i> = Decrease </p>
+        </div>
+    </div>
 
     <!-- Reset button for IV -->
     <button id='iv_reset' class='btn btn-lrg btn-custom' onclick="reset();" style='position: absolute; left:0; top:0; z-index: 10; display: none;' >Reset <i class="fas fa-undo-alt"></i></button>

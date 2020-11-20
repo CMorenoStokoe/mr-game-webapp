@@ -73,7 +73,7 @@ function createBGAudio(id){
 
     // Create audio elements for sound
     var sound_ui = new Audio(); // Sound feedback for player actions in the UI
-        sound_ui.volume = 0.3;
+        sound_ui.volume = 0.2;
 
     // Define sound effects
     const sounds_spaceTraffic = [

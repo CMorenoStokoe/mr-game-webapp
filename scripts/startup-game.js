@@ -7,5 +7,6 @@ Configure start up
 */
 
 // Startup vars
-var developerMode = 3;
+var developerMode = false;
 var previewMode = false;
+$('#legend_key').hide();
