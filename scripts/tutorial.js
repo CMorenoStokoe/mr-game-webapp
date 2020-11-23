@@ -62,7 +62,7 @@ function tutorial(gameState){
             body: `
             <div class='d-flex flex-column justify-content-center'>    
             <img src='images/tutorial/controls.gif' class='m-2 d-flex align-self-center' style='height: 200px; width: auto;  border-radius: 5px;'>
-                <br>
+                <br><br>
                 <p class='mt-'game''><strong><i class="fas fa-mouse"></i> Click </strong> <br> On a trait to intervene on it </p>
                 <p><strong><i class="fas fa-mouse-pointer"></i> Hover </strong><br> Over a trait to see its <strong>name</strong>, <strong>prevalence</strong> and <strong>effects</strong>
                 <br><br>
@@ -84,8 +84,10 @@ function tutorial(gameState){
             gameStateSpecific: null,
             title: 'Line colors', 
             body: `
-                <p class='col-pos'><i class="fas fa-arrow-right"></i> <strong class='col-pos'>Red</strong> lines represent <strong class='col-pos'>increases</strong></p>
-                <p class='col-neg'><i class="fas fa-arrow-right"></i> <strong class='col-neg'>Blue</strong>  lines represent <strong class='col-neg'>decreases</strong></p>
+                <strong>Arrows represent causal relationships between traits</strong>
+                <br><br>
+                <p class='col-pos'><i class="fas fa-arrow-right"></i> <strong class='col-pos'>Red</strong> arrows represent <strong class='col-pos'>increases</strong></p>
+                <p class='col-neg'><i class="fas fa-arrow-right"></i> <strong class='col-neg'>Blue</strong>  arrows represent <strong class='col-neg'>decreases</strong></p>
                 <br>
                 <p class='text-muted'>Hint: There is a key in the bottom left of the screen if you get stuck</p>
             `, 
@@ -107,9 +109,9 @@ function tutorial(gameState){
                 <img src='images/tutorial/intervention-source.gif' class='m-2 d-flex align-self-center' style='height: 200px; width: auto; border-radius: 5px;'>
                 <br>
                 <strong>Interventions improve traits</strong>
-                <p>Good traits will be <strong class='col-pos'>increased</strong>
+                <p>Good traits will be <strong>increased</strong>
                 <br>
-                Bad traits will be <strong class='col-neg'>reduced</strong></p>
+                Bad traits will be <strong>reduced</strong></p>
             </div>
             `, 
         },
@@ -129,9 +131,10 @@ function tutorial(gameState){
             <div class='d-flex flex-column justify-content-center'>
                 <img src='images/tutorial/intervention-effects.gif' class='m-2 d-flex align-self-center' style='height: 200px; width: auto;  border-radius: 5px;'>
                 <br>
-                <p>Intervening on <strong>good</strong> traits will <strong class='col-pos'>increase</strong> the effects they have
-                <br>
-                Intervening on <strong>bad</strong> traits will <strong class='col-neg'>reduce</strong> the effects they have</p>
+                <p>
+                    Interventions <strong>enhance</strong> the effects of <strong>good</strong> traits 
+                    <br> Interventions <strong>diminish</strong> the effects of <strong>bad</strong> traits 
+                </p>
             </div>
             `, 
         },
