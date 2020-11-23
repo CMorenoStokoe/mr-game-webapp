@@ -209,7 +209,7 @@ const gamestates = { // Different gamestates within the game (player levelling s
     4 : {
         name: 'endScreen',
         action:  function(){
-            alert('You win! Thank you for playing this mini-game!')
+            alert('Error #104. Please reload this page and make sure you are not clicking through too quickly!')
         },
     },
     iv : {
