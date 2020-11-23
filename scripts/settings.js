@@ -154,8 +154,8 @@ function settingsProfile_BetaWeights(){
     settings.links.width = function(d) {return settings.links.scaleToBeta.calcScaledWidth(d.b_pct)};
 
     // Make edges more visible
-    settings.links.scaleToBeta.minWidth = 0.5;
-    settings.links.scaleToBeta.scaleFactor = 3;
+    settings.links.scaleToBeta.minWidth = 1;
+    settings.links.scaleToBeta.scaleFactor = 3.5;
 
     // Scale more accurately to their standardised effects in propagation
     settings.links.scaleToBeta.maxWidth = settings.links.scaleToBeta.minWidth + (settings.links.scaleToBeta.scaleFactor * 2);

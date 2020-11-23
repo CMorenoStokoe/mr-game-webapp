@@ -80,6 +80,7 @@ function addOnclickEventsToNodes(gameData){
 
             // Check exclusion criteria
             function invalidTarget(){
+                if(gameState === 'iv'){return false}
                 if(!(id)){return 'err'} // If anomalous behavior (where 'this' is window since this ignores any element calling this without an ID)
                 if(gameData.objective){
                     if(id == gameData.objective.id){return 1} // If node is the objective

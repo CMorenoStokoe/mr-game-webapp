@@ -48,6 +48,7 @@ collections of methods categorised by purpose.
     // Player information
     var currentSystemProgress = 0; // Player's progress in the current system league
     var playerUsername = null; // Player's username
+    var playerUsernameAnonymised = null;
 
     // Player actions
     var playerInterventionCount = 0; // Number of interventions made by player, on 3 becomes a policy ad triggers an event
@@ -173,9 +174,6 @@ const gamestates = { // Different gamestates within the game (player levelling s
             $('#legend_key').show();
             setMiranaSettings('game'); 
 
-            // Ensure player has username
-            if(playerUsername == null || playerUsername == undefined){playerUsername = 'Player'};
-
             // Change skybox
             setBG();
 
@@ -186,9 +184,16 @@ const gamestates = { // Different gamestates within the game (player levelling s
                 maxInterventions=1, 
                 data=jsonData);
             
-            // Tutorial
+            // On first load
             if(firstLoad){
+
+                // Show tutorial
                 tutorial('game');
+
+                // Ensure player has username
+                if(playerUsername == null || playerUsername == undefined){playerUsername = 'Player'};
+                if(playerUsernameAnonymised == null || playerUsernameAnonymised == undefined){playerUsernameAnonymised = `game-${Math.random()}`};
+                
             }
             // If end game
 
@@ -211,11 +216,17 @@ const gamestates = { // Different gamestates within the game (player levelling s
         name: 'interactiveVisualisation',
         action:  function(){
 
-            // Show tutorial on first load
+            // On first load
             if(firstLoad){
-                // Tutorial
+
+                // Show yutorial
                 tutorial(gameState);
                 firstLoad = false; // Disable game effects on first load
+
+                // Give user username
+                if(playerUsernameAnonymised == null || playerUsernameAnonymised == undefined){playerUsernameAnonymised = `iv-${Math.random()}`};
+                if(playerUsername == null || playerUsername == undefined){playerUsername = playerUsernameAnonymised};
+
             } else {
                 $('#tutorial-iv-goals').show().css('opacity', 1);
             }
@@ -409,14 +420,14 @@ function reset(){
 
 // Effect of players enacting an intervention
 function playerMadeIntervention(nodeId){
-    if(firstLoad){createSpaceTraffic(1, 500, true); firstLoad = false; stopSpaceTraffic = true;} // Space traffic
     
-    if(playerLvl>5){
-        endGame();
-    }
+    // Increment player intervention count
+    playerInterventionCount ++;
 
-    // Treat IV users differently
-    if(gameState == 'iv'){return playerInteractedWithIV(nodeId)};
+    // Check triggers
+    if(firstLoad){createSpaceTraffic(1, 500, true); firstLoad = false; stopSpaceTraffic = true;} // If first load
+    if(playerLvl>5){ endGame(); } // If end game
+    if(gameState == 'iv'){return playerInteractedWithIV(nodeId)}; // If IV
 
     // Apply intervention strength unlock (now so it does not affect scoring by error)
     if(playerSelectedStrUpgrade){
@@ -427,9 +438,6 @@ function playerMadeIntervention(nodeId){
 
     // Clear player unlock state
     playerUnlocksSelected = null;
-
-    // Increment player intervention count
-    playerInterventionCount ++;
 
     // Make intervention
 
@@ -513,6 +521,14 @@ function playerReachedInterventionMax(intervention){
         const score = scoreIntervention(gameData, method='game', totalInterventionEffects, playerInterventionCount);
             showScoreScreen(gameData, score, playerInterventionHistory);
 
+        // Save player policy to DB
+        let player_username = playerUsernameAnonymised;
+        let intervention_targets = `${playerInterventionHistory}`;
+        let policy_objective = gameData.objective.id;
+            let policy_score = score.scores.efficiency;
+            let policy_interventionCount = playerInterventionCount;
+        recordMove(player_username, intervention_targets, policy_objective, policy_score, policy_interventionCount);
+
         // Reset player intervention count
         playerInterventionCount = 0;
 
@@ -531,6 +547,7 @@ function playerReachedInterventionMax(intervention){
         })
 
     })
+
 }
 
 // Event on player level up
@@ -638,6 +655,12 @@ function playerUnlockedAbility(interventionMax, interventionStrength){
 // For IV
 function playerInteractedWithIV(nodeId){
 
+    // Save player intervention to DB
+    let player_username = playerUsernameAnonymised;
+    let policy_target = nodeId;
+    let policy_interventionCount = playerInterventionCount;
+    recordMove(player_username, policy_target, 999, 999, policy_interventionCount);
+
     // Make intervention
 
         // Get intervention value
@@ -659,6 +682,7 @@ function playerInteractedWithIV(nodeId){
         animatePropagation(propagation.path.edges, dataCallback); //animation2();
             function dataCallback(node){return} //efficiency = {score: intervention.scores.efficiency, efficiency: intervention.efficiency}
             //dataCallback(gameData.nodes[nodeId], propagation.result[gameData.nodes[nodeId].id]); // Intervention origin  
+
 }
 
 var err_count = 0;
