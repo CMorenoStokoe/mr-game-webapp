@@ -12,6 +12,7 @@ This script is called by the main script when data upload and fetch operations a
 
 // Create new user
 function createNewUser(username, callback = printToConsole){
+    return;
     
     // Attempt create new user (fails if already exists)
     var xhttp = new XMLHttpRequest();

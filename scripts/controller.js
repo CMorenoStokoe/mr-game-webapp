@@ -29,7 +29,7 @@ function initialiseLogin(){
         // Register user with DB
         if(username){
             createNewUser(
-                username,
+                playerUsernameAnonymised,
                 function(){incrementGamestate();}
                 //function(){loadPlayerData(username)}
             );
