@@ -10,7 +10,7 @@ Use: These functions are called by the main and secondary scripts when sound eff
 */
 
 // Sound effects volume
-var sfxVolume = 0.2;
+var sfxVolume = 0.1;
 
 // Function to create new background audio objects (e.g., space ship sounds)
 function createBGAudio(id){
@@ -137,7 +137,6 @@ function addVolumeSlider(){
     // Update the current slider value (each time you drag the slider handle)
     slider.oninput = function() {
         output.volume = this.value/100;
-        sfxVolume = this.value/100;
-        console.log(output.volume)
+        sfxVolume = this.value/200;
     }
 }

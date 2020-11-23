@@ -148,7 +148,7 @@ function tutorial(gameState){
             gameStateSpecific: 'iv',
             title: 'Goals', 
             body: `
-                You are free to use this visualisation however you like, for as long/little as you like, but you might want to try: 
+                You are free to use this visualisation however you like but you might want to try: 
                 <br><br>
                 <ul class='text-left'>
                     <li> Hover over a trait to see its name and prevalence </li> 
@@ -298,9 +298,9 @@ function tutorial(gameState){
             gameStateSpecific: 'game',
             title: `Success`, 
             body: `
-                You completed the tutorial
+                You completed the tutorial, you now know how the game works! <i class="fas fa-book"></i>
                 <br><br>
-                The game will end once you reach level six, play for as long as you like, but please return to the questionnaire once you're done!
+                The game ends once you reach level six 
             `, 
             btnText: `Level 6 here I come`,
         }, 
