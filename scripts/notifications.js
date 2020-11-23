@@ -12,59 +12,82 @@ revisit them later or miss them.
 
 */
 
-// Send message to player
-function notify(title, body, width = '600px', position = {x:'45vw', y:'45vh'}, contextIndicator = null){
-
-    // Construct and send message
-    constructMessage(title, body, width, position, contextIndicator);
-
-    // Log message
-    //writeToLog(`${title}<br>${body}`);
-    
-}
-
 // Construct message
-function constructMessage(title, body, width, position, contextIndicator){
+function constructMessage(d){
+    const id = d.id;
+    const title = d.title;
+    const body = d.body;
+    const position = d.position;
+    const width = d.width ? d.width : 'auto';
+    const btnText = d.btnText;
+
+    // Create container
+    var container = document.createElement('DIV');
+        container.id = id;
+        container.className = 'w-100 h-100';
+        container.style.opacity = 0;
+        container.style.display = 'none';
+        container.style.zIndex = 99;
+        container.style.textShadow = 'none';
+        container.style.color = 'black';
+        container.overflow = 'auto';
+
+        // Position element
+        if(position.type === 'auto'){ 
+            
+            // Auto positioning
+            container.style.position = 'absolute';
+            container.style.left = 0;
+            container.style.top = 0;
+            document.body.appendChild(container) 
+        }
+        if(position.type === 'onElement'){ document.getElementById(position.element).appendChild(container) }
+        if(position.type === 'absolute'){ document.body.appendChild(container) } 
+
+    // Flex box for centering
+    var flexBox = document.createElement('DIV');
+        flexBox.className = 'h-100 d-flex flex-row align-items-center justify-content-center';
+    
+        // Absolute positioning
+        if(position.type === 'absolute'){
+            flexBox.style.left = position.x;
+            flexBox.style.top = position.y;
+            flexBox.className = '';
+            flexBox.overflow = 'auto';
+        } 
+    
+    container.appendChild(flexBox);
 
     // Create div
     var div = document.createElement('DIV');
-        div.className = 'card tutorial';
-        div.style.position = 'absolute';
-        div.style.left = position.x;
-        div.style.top= position.y;
-        div.style.minWidth= width;
-    document.body.appendChild(div); // Append to DOM
+        div.className = 'card p-2';
+        div.style.maxWidth = '40rem';
+        div.overflow = 'auto';
+        if(btnText == 'Dismiss'){div.style.background = '#eee';}
+    flexBox.appendChild(div);
     
     // Add title
     var head = document.createElement('H5');
-        head.innerText = title;
+        head.innerHTML = title;
         head.className = 'text-center p-2';
     div.appendChild(head); // Append to DOM
     
+    // Content div
+    var content = document.createElement('DIV');
+        content.className = 'd-flex flex-row';
+
     // Add main body text
     var p = document.createElement('P');
         p.innerHTML = body;
         p.className = 'text-center p-2';
-
-        // Add arrow to indicate context (if required)
-        if(contextIndicator){ // Options e.g., arrow-up, arrow-left
-
-            // Make space for arrow
-            p.className = 'text-center p-2 col-md-9';
-
-            // Add arrow
-            var indicator = document.createElement('P');
-                indicator.className = 'col-md-3 d-flex justify-content-center align-items-center';
-                indicator.innerHTML = `<i class="fas fa-${contextIndicator}" style='font-size: 3em;'></i>`;
-            div.appendChild(indicator); // Append to DOM
-        }
-    
     div.appendChild(p); // Append to DOM
 
     // Add button to dismiss
     var btn = document.createElement('BUTTON');
+        btn.id = `${id}-btn`;
         btn.className = 'btn w-100 btn-lrg btn-custom';
-        btn.innerText = 'Continue';
-        btn.onclick = function(){$(this).parent.hide()};
+        if(btnText == 'Dismiss'){btn.className = 'btn w-100 btn-lrg btn-secondary';}
+        btn.innerHTML = `${btnText ? btnText : 'Continue'}`;
+        btn.onclick = function(){ $(`#${container.id}`).hide() };
     div.appendChild(btn); // Append to DOM
 }

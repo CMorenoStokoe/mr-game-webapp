@@ -67,7 +67,6 @@ function initialiseView(
         case 'game':
 
             // Reset view
-            reset_effectsPanel();
             reset_SVG();
 
             // Generate visualisation
@@ -77,7 +76,7 @@ function initialiseView(
             setUI_objective(); // Show objective
             setUI_planetInfo(); // Show planet
             fadeIn_SVG();
-            fadeIn_planetInfo();
+            //fadeIn_planetInfo();
             $('.label').css('opacity', 0); // Start node labels hidden
             setExpIndicators(playerExp, levels[playerLvl].max); // Set exp bar
             styleProgressBar('default'); // Set progress bar style
@@ -90,12 +89,12 @@ function initialiseView(
         default: console.log(`ERR: Unknown settings profile (${profile})`); break;
     }
 
-    // Reset intervention effects read-out panel
+    /* Reset intervention effects read-out panel
     function reset_effectsPanel(){
         $('#GUI-policyEffects').hide();
         document.getElementById('GUI-goal-p').style.background = 'none';
         $('#goal-success').hide();
-    }
+    }*/
 
     // Reset network visualisation
     function reset_SVG(){
@@ -452,3 +451,26 @@ function styleProgressBar(style='default'){
             break;
     }
 }
+
+
+/*
+// Set edge color
+function setEdgeColor(d){
+    
+    const target = d.target;
+    const source = d.source;
+
+    const effectIsIncrease = d.b>0;
+    const targetIsGood = target.isGood;
+    
+    console.log(target, source, effectIsIncrease, targetIsGood);
+
+    const effectIsGood = effectIsIncrease == targetIsGood;
+
+    const valueToAdd = effectIsGood ? 0.25 : -0.25;
+    var value = 0.5 + valueToAdd;
+
+    return d3.interpolateRdYlGn(value);
+
+}
+*/

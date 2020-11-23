@@ -79,7 +79,6 @@ function addOnclickEventsToNodes(gameData){
         // Intervene on node if it is a valid  target  
 
             // Check exclusion criteria
-            console.log(playerInterventionCount, playerInterventionMax)
             function invalidTarget(){
                 if(!(id)){return 'err'} // If anomalous behavior (where 'this' is window since this ignores any element calling this without an ID)
                 if(gameData.objective){
@@ -93,19 +92,11 @@ function addOnclickEventsToNodes(gameData){
             if(invalidTarget()){return playerSelectedInvalidTarget(id, invalidTarget())} // If invalid ignore and alert player
 
             // Intervene on target
-            interveneOnTrait(id);
-
-        // Intervention function
-        function interveneOnTrait(id){
-            
-            // Select trait for intervention
-            document.getElementById('intervention-text').innerText = gameData.nodes[id].label;
-            document.getElementById('intervention-btn').setAttribute('data-nodeId', id);
-
-            // Order intervention
             playerMadeIntervention(id);
-            //$('#intervention-modal').modal('show'); // Disabled: Brings up modal to select intervention direction)
-        }
+
+            // Dispatch event for tutorial
+            var event = new CustomEvent("playerMadeIntervention", { "detail": "Player made intervention" });
+                document.dispatchEvent(event);
     })
 }
 

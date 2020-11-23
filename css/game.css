@@ -17,10 +17,8 @@ body{
     display: hidden;
 }
 #loading-screen{
-    font-family: 'Oxanium', cursive;
-        font-weight: 700;
-        font-size: 2em;
-        color: var(--col-light);
+    font-size: 2em;
+    color: var(--col-light);
     position: absolute;
         top: 0%;
         right: 0%;
@@ -40,18 +38,16 @@ body{
     display: none;
 }
 #splash-title{
-    font-family: 'Gugi', cursive;
+    font-family: 'Gugi', cursive !important;
         color: var(--col-light);
-        text-shadow: 0 0 3px black;
-        font-weight: 400;
-        font-size: 8rem;
+        text-shadow: 0 0 3px black !important;
+        font-weight: 400 !important;
+        font-size: 8rem !important;
 }
 #splash-login{
     position: absolute;
         top: 50%;
         right: 50px;
-    font-family: 'Oxanium', cursive;
-        font-weight: 700;
         font-size: 2em;
         color: var(--col-light);
     opacity: 0;
@@ -140,6 +136,7 @@ body{
     width: 100%; 
         min-width: 200px;
     background: rgba(0,0,0,0);
+    border: 1px solid white;
 }
 
 /* Win score screen */
@@ -178,14 +175,29 @@ body{
     height: 0;
   }
   [type=radio] + i {
+    color: rgb(192, 192, 192);
     font-size: 2em;
-    color: var(--col-primary)
+  }
+  [type=radio] + i :hover {
+    font-size: 1.75em;
   }
   [type=radio]:checked + i {
-    color: black;
+    color: gold;
   }
 .unlock{
     padding: 2rem;
+}
+.unlock-active{
+    -webkit-transition:text-shadow 0.5s ease-in-out;
+    -moz-transition:text-shadow 0.5s ease-in-out;
+    -o-transition:text-shadow 0.5s ease-in-out;
+    -ms-transition:text-shadow 0.5s ease-in-out;
+    transition:text-shadow 0.5s ease-in-out;    
+    text-shadow: 0px 0px 10px gold;   
+ 
+} 
+.unlock-active-animation {
+    text-shadow: 0px 0px 1px gold;   
 }
 
 /* GUI below planet info showing effects of policies */

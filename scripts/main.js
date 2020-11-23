@@ -111,12 +111,12 @@ window.onload = function(){
 
 // Levels
 const levels = {
-    1: {id: 1, max: 100},
+    1: {id: 1, max: 200},
     2: {id: 2, max: 200},
     3: {id: 3, max: 300},
     4: {id: 4, max: 400},
     5: {id: 5, max: 500},
-    6: {id: 'End of game', max:1},
+    6: {id: 6, max: 900},
 }
 
 // Data for the different gamestates in the game
@@ -157,30 +157,13 @@ const gamestates = { // Different gamestates within the game (player levelling s
         name: 'tutorial',
         action: function(){
 
-            $('#tutorial-0-modal').modal('show'); // Auto-show initial intro modal 
+            // Continue to game
             return  incrementGamestate();
 
-            // Configure view
-            setMiranaSettings('game'); 
-            
-            // Start tutorial
-            initialiseTutorial();
-
-            // Initialise model, view, and controller
-            initialise(
-                profile='game',
-                pval=1, 
-                maxInterventions=1, 
-                data=tutorialData, 
-                objective='ukb_b_5238');
-
-            // Set background
-            document.body.style.background = `url("images/spaceboxes/${getRandomInt(8)}.jpg")`;
-            document.body.style.backgroundSize = `cover`;
         },
-        leagueName: 'Tutorial',
-            leagueProgressMax: 2.8,
-            leagueMaxInterventions: 1,
+        //leagueName: 'Tutorial',
+            //leagueProgressMax: 2.8,
+            //leagueMaxInterventions: 1,
     },
     3 : {
         name: 'game',
@@ -190,9 +173,11 @@ const gamestates = { // Different gamestates within the game (player levelling s
             $('#legend_key').show();
             setMiranaSettings('game'); 
 
+            // Ensure player has username
+            if(playerUsername == null || playerUsername == undefined){playerUsername = 'Player'};
+
             // Change skybox
             setBG();
-            //document.body.style.background = `url("images/spaceboxes/${getRandomInt(8)}.jpg") no-repeat center center fixed`;
 
             // Initialise model, view, and controller
             initialise(
@@ -200,6 +185,16 @@ const gamestates = { // Different gamestates within the game (player levelling s
                 pval=1, 
                 maxInterventions=1, 
                 data=jsonData);
+            
+            // Tutorial
+            if(firstLoad){
+                tutorial('game');
+            }
+            // If end game
+
+            if(playerLvl>5){
+                endGame();
+            }
 
         },
         leagueName: 'Persephone',
@@ -216,11 +211,14 @@ const gamestates = { // Different gamestates within the game (player levelling s
         name: 'interactiveVisualisation',
         action:  function(){
 
-            // Disable game effects on first load
-            firstLoad = false;
-
-            // Auto-show initial intro modal 
-            $('#tutorial-0-modal').modal('show');
+            // Show tutorial on first load
+            if(firstLoad){
+                // Tutorial
+                tutorial(gameState);
+                firstLoad = false; // Disable game effects on first load
+            } else {
+                $('#tutorial-iv-goals').show().css('opacity', 1);
+            }
 
             // Configure view
             setMiranaSettings('interactiveVisualisation'); 
@@ -236,6 +234,7 @@ const gamestates = { // Different gamestates within the game (player levelling s
             showInteractiveVisUI(); // Show interactive vis UI
             interactiveVisualisationControls(); // Controls for interactive vis
             hideAllLabels(gameData.nodes);
+
             
         },
         leagueName: 'interactive visualisation',
@@ -412,6 +411,10 @@ function reset(){
 function playerMadeIntervention(nodeId){
     if(firstLoad){createSpaceTraffic(1, 500, true); firstLoad = false; stopSpaceTraffic = true;} // Space traffic
     
+    if(playerLvl>5){
+        endGame();
+    }
+
     // Treat IV users differently
     if(gameState == 'iv'){return playerInteractedWithIV(nodeId)};
 
@@ -509,7 +512,6 @@ function playerReachedInterventionMax(intervention){
         // Show intervention effects
         const score = scoreIntervention(gameData, method='game', totalInterventionEffects, playerInterventionCount);
             showScoreScreen(gameData, score, playerInterventionHistory);
-            console.log('Policy scored', score)
 
         // Reset player intervention count
         playerInterventionCount = 0;
@@ -534,8 +536,6 @@ function playerReachedInterventionMax(intervention){
 // Event on player level up
 function playerLevelledUp(intervention){
 
-    // Raise player level
-
     // Show new level to player
 
         // Advance progress bar
@@ -545,26 +545,40 @@ function playerLevelledUp(intervention){
         styleProgressBar('lvl-up', playerLvl); // view.js
 
         // Enable progress bar press
-        $('#progress-goal-div').one('click', function(intervention){
+        $('#progress-goal-div').one('click', function(){
             
             // Increment player level
             playerLvl++;
-    
-            // If end of game
             if(playerLvl>5){
-                alert('You win! Thank you for playing.')
+                endGame();
             }
+
+            // Set unlocks to enabled
+
+                // If not at max
+                for(const unlock of [{id: 'max', value: playerInterventionMax}, {id: 'mult', value: playerInterventionStrength}]){
+                    if(unlock.value == 4 || unlock.value == 2.5){continue};
+                    // Value
+                    const value = unlock.id=='max' ? Number(unlock.value)+1 : (Number(unlock.value)+0.5)*2;
+
+                    console.log(unlock, value)
+                    $(`#ul-${unlock.id}-${value}`).css('cursor', 'pointer');
+                    $(`#ul-${unlock.id}-${value}-rd`).prop('disabled', false);
+                    $(`#ul-${unlock.id}-${value}-i`).addClass("unlock-active")
+                    $(`#ul-${unlock.id}-${value}-i`).addClass("unlock-active-animation")
+                        // Animate
+                        let counter = 0;
+                        setInterval(function(){
+                            counter++; if(counter > 10){return}
+                            $(`#ul-${unlock.id}-${value}-i`).toggleClass("unlock-active-animation");
+                        }, 1000);
+                }
         
             // Reset player exp
             playerExp = 0;
             
             // Set level on progress bar
             setHTML('GUI-currentPlanet' , `Level ${playerLvl}`); // Text
-
-            // Set unlocks to enabled
-            $("#unlocks :input").prop('disabled', false);
-            $("#unlocks .unlock").css('cursor', 'pointer');
-            $("#unlocks").css('filter', '');
 
             // Show level-up modal
             $('#modal-lvlup').modal('show');
@@ -573,6 +587,11 @@ function playerLevelledUp(intervention){
 
         // If player also triggered playerReachedInterventionMax, run this next
         $('#modal-lvlup').one('hidden.bs.modal', function (intervention) {
+            
+            if(playerLvl>5){
+                endGame();
+            }
+
             playerReachedInterventionMax(intervention);
         })
 }
@@ -580,19 +599,40 @@ function playerLevelledUp(intervention){
 // Effect on player making unlocks
 function playerUnlockedAbility(interventionMax, interventionStrength){
 
-    // Record update 
-    if(interventionStrength !== playerInterventionStrength){
-        playerSelectedStrUpgrade = {id: 'playerSelectedStrUpgrade', value: interventionStrength};
-    } 
-    console.log('player unlocked', interventionMax, interventionStrength, 'from', playerInterventionStrength, playerInterventionMax, );
+    // Record updates 
+    const playerSelectedMaxUpgrade = interventionMax !== playerInterventionMax;
+    const playerSelectedMultUpgrade = interventionStrength !== playerInterventionStrength;
+        if(interventionStrength !== playerInterventionStrength){
+            playerSelectedStrUpgrade = {id: 'playerSelectedStrUpgrade', value: interventionStrength};
+        } 
 
     // Update game variables
     playerInterventionMax = interventionMax;
 
-    // Disable options again until level up
-    $("#unlocks :input").prop('disabled', true);
-    $("#unlocks .unlock").css('cursor', 'default');
-    $("#unlocks").css('filter', 'grayscale(100%)');
+    // Disable radios
+        const radios = [
+            'ul-max-1',
+            'ul-max-2',
+            'ul-max-3',
+            'ul-max-4',
+            'ul-mult-2',
+            'ul-mult-3',
+            'ul-mult-4',
+            'ul-mult-5',
+        ];
+
+        for(const radio of radios){
+            $(`#${radio}`).css('cursor', 'default');
+            $(`#${radio}-rd`).prop('disabled', true);
+            $(`#${radio}-i`).removeClass("unlock-active");
+            $(`#${radio}-i`).removeClass("unlock-active-animation");
+        }
+
+        // If end game
+        if(playerLvl>5){
+            endGame();
+        }
+
 }
 
 // For IV
@@ -621,8 +661,10 @@ function playerInteractedWithIV(nodeId){
             //dataCallback(gameData.nodes[nodeId], propagation.result[gameData.nodes[nodeId].id]); // Intervention origin  
 }
 
+var err_count = 0;
 // Effect if player selects invalid target
 function playerSelectedInvalidTarget(nodeId, reason){
+    err_count++;
 
     // Get node
     const node = gameData.nodes[nodeId];
@@ -638,7 +680,7 @@ function playerSelectedInvalidTarget(nodeId, reason){
             message = 'the trait you selected would have no effects if it was intervened on. Please select another trait to intervene on';
             break;
         case 3: //'intervention max reached'
-            message = 'you have reached the maximum number of interventions you can make. Please continue with the game';
+            message = `you have reached the maximum number of interventions you can make. Enact your policy to continue by pressing the 'enact policy button'!`;
             break;
         case 4: //'trait already intervened on'
             message = 'you have already intervened on this trait. Please select another trait to intervene on';
@@ -647,10 +689,35 @@ function playerSelectedInvalidTarget(nodeId, reason){
             return;
     }
 
+    const id = `err-${err_count}`;
     // Display message
-    alert(`
-        Invalid target
+    constructMessage({
+        id: id,
+        position: {
+            type: 'auto',
+            element: null,
+            x: null,
+            y: null,
+        },
+        trigger: 'startup',
+        reveal: null,
+        gameStateSpecific: null,
+        title: `Invalid target`, 
+        body: `
+            You can't intervene on ${node.label} because ${message}.
+        `, 
+        btnText: `Dismiss`,
+    });
+    $(`#${id}`).show().animate({opacity: 1}, 500);
 
-        You can't intervene on ${node.label} because ${message}.
-    `)
+    
+    if(playerLvl>5){
+        endGame();
+    }
+}
+
+// End game
+function endGame(){ console.log('end game')
+    $('#endgame-modal').modal('show');
+    $(`#svg-main`).hide().animate({opacity: 0}, 500);
 }

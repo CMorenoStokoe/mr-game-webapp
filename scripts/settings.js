@@ -45,8 +45,27 @@ function setMiranaSettings(profile){
     }
 }
 
+
 // Default settings profile 
 function settingsProfile_Default(){
+
+    /* Colors */
+    
+        // Change color scheme
+        settings.links.colNeg = d3.interpolateGnBu(0.75);
+        settings.links.colPos = d3.interpolateOrRd(0.6);
+
+        // Add function to color prevalence bar
+        settings.nodes.colorSchemeForInterpolation = 
+            d => d.change<0 ? 
+                d3.interpolateGnBu(1-1*d.change_bar/100) : 
+                d3.interpolateOrRd(1*d.change_bar/100),
+
+        settings.nodes.labels.prevalenceBarColorScheme = 
+            d => d.change<0 ?
+                d3.interpolateGnBu(1-d.change_bar/100) : 
+                d3.interpolateOrRd(d.change_bar/100);
+
 
     /* Simulation */
 
@@ -111,14 +130,8 @@ function settingsProfile_Default(){
                 circleRadius = Math.sqrt(circleRadius*100 / 3.14); // Scale by area instead of radius
             return circleRadius;
         }
-        
-    
 
     /* Links */
-    
-        // Change color scheme
-        settings.links.colNeg = d3.interpolateGnBu(0.75);
-        settings.links.colPos = d3.interpolateOrRd(0.75);
 
         // Make overlapping edges more visible
         settings.links.opacity = 1;
@@ -211,9 +224,6 @@ function settingsProfile_PrevalenceLabels(){
         x: (d.change<0 ? -settings.nodes.labels.backgroundWidth()/2.5 - 17: settings.nodes.labels.backgroundWidth()/2.25  - 17),
         y: d.circleRadius + settings.nodes.labels.backgroundHeight/2.75,
     }};
-
-    // Add function to color prevalence bar
-    settings.nodes.labels.prevalenceBarColorScheme = d => d.change<0 ? d3.interpolateGnBu(1-d.change_bar/100) : d3.interpolateOrRd(d.change_bar/100);
 
     // Add extra information on prevalence
     settings.nodes.labels.extras=function(node){

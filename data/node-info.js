@@ -70,7 +70,7 @@ const isGood = {
     'ukb_b_19953': false, //BMI, 
     'ukb_b_5238': true, //Intelligence, 
     'ukb_b_4956': false, //Eveningness, 
-    'ukb_b_5076': false, //Not socialising, 
+    'ukb_b_5076': true, // Socialising, 
     'ieu_a_961': false, //Smoking, 
     'ukb_b_4710': true, //Exercise, 
     'ukb_b_5237': false, //Coffee intake, 

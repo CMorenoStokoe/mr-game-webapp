@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Mendel Game</title>
+    <title>Interactive visualisation</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -18,6 +18,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@200;400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,200;0,300;1,200&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Gugi&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400&display=swap" rel="stylesheet">
 
     <!-- Fa icons -->
     <link rel="stylesheet" href="css/all.css">
@@ -28,6 +29,7 @@
 
 </head>
 <body style='overflow: hidden !important;'>    
+
     <div id='container-4-bg' style='height: 100vh; width: 100vw;'>
         <div id='preload-images'></div>
         
@@ -129,39 +131,6 @@
                 <!-- Button to continue -->
                 <button id='policyEffects-button' class='btn btn-lrg btn-custom-outline mt-3'>Next level <i class="fas fa-chevron-right"></i> <i class="fas fa-globe-africa"></i></button>
 
-            </div>
-
-            <!-- Tutorial -->
-            <div id='tutorial-2' class='card tutorial'>
-                <div class='row w-100'>
-                    <div class='col-md-3 d-flex justify-content-center align-items-center'>
-                        <i class="fas fa-arrow-up" style='font-size: 3em;'></i>
-                    </div>
-                    <div class='col-md-9 p-2'>
-                        <h5>Goal:</h5>
-                        <p class='p-2' style='white-space: nowrap;'>
-                            <img src='images/epicons/intelligence.png' class='m-2' style='height: 30px; width: auto;'>
-                            <i class='fas fa-chevron-up chevron-pos'></i>
-                            Raise intelligence
-                        </p>
-                    </div>
-                </div>
-                <button id='tutorial-2-btn' class='btn w-100 btn-lrg btn-custom'>Continue</button>
-            </div>
-
-            <!-- Tutorial -->
-            <div id='tutorial-6' class='card tutorial'>
-                <div class='row w-100'>
-                    <div class='col-md-3 d-flex justify-content-center align-items-center'>
-                        <i class="fas fa-arrow-up" style='font-size: 3em;'></i>
-                    </div>
-                    <div class='col-md-9 p-2'>
-                        <p class='p-2'>
-                            Press 'Next' to continue to the next level
-                        </p>
-                    </div>
-                </div>
-                <button id='tutorial-6-btn' class='btn w-100 btn-lrg btn-custom'>Continue</button>
             </div>
 
         </div>  
@@ -399,63 +368,6 @@
               </div>
             </div>
         </div>
-
-        <div id='tutorial-1' class='card tutorial' style='position: absolute; left: 35vw; top: 10px; min-width: 500px;'>
-            <div class='row'>
-                <div class='col-md-3 d-flex justify-content-center align-items-center'>
-                    <i class="fas fa-arrow-left" style='font-size: 3em;'></i>
-                </div>
-                <div class='col-md-9 p-2'>
-                    <strong>You arrive at your first planet.</strong>
-                    <br>
-                    The population of Aeries-IV are not very bright...
-                    <br>
-                    They would like to be smarter.
-                </div>
-            </div>
-            <button id='tutorial-1-btn' class='btn w-100 btn-lrg btn-custom'>Continue</button>
-        </div>
-        
-        <div id='tutorial-3' class='card tutorial' style='position: absolute; right: 10px; bottom: 10px; min-width: 600px;'>
-            <h5 class='text-center p-2'>Trait network</h5>
-            <p class='text-center p-2'>
-                Here you will find the network of traits you can intervene on. <br>
-                Health related traits are shown as circles, and the arrows between them show how they affect each-other
-                (<strong style='color: coral'>Red = Increase </strong>, and
-                <strong style='color: cornflowerblue'>Blue = Decrease </strong>)
-            </p>
-            <div class='d-flex justify-content-center align-items-center'>
-                <ul class='text-left' style='list-style-type: none;'>
-                    <li><strong><i class="fas fa-mouse-pointer"></i> Hover </strong>
-                        <br>
-                        <ul class='text-left' style='list-style-type: none;'><li>
-                            over a trait to show its <strong>name</strong> and more clearly see its <strong>effects</strong>
-                        </li></ul>
-                    </li>
-                    <br>
-                    <li><strong><i class="fas fa-mouse"></i> Click </strong>
-                        <br>
-                        <ul class='text-left' style='list-style-type: none;'><li>
-                            on a trait to <strong>intervene</strong> on it
-                        </li></ul>
-                    </li>
-                </ul>
-                <img src='images/tutorial/controls.gif' class='m-2 d-flex align-self-center' style='height: 200px; width: auto;'>
-            </div>
-            <button id='tutorial-3-btn' class='btn w-100 btn-lrg btn-custom'>Continue</button>
-        </div>
-
-        <div id='tutorial-4' class='card tutorial' style='position: absolute; right: 10px; top: 10px; min-width: 500px;'>
-            <div class='d-flex flex-column justify-content-center align-items-center'>
-                <p class='m-2 text-center'>
-                    <strong>You can't intervene on the goal directly</strong><br>
-                    Instead, find and intervene on a trait which affects the goal (e.g., education)
-                </p>    
-                <img src='images/tutorial/fdgExample2.png' class='m-2' style='height: 50px; width: auto;'>
-                <strong class='m-2'><i class="fas fa-dna"></i> Intervene on education now</strong>
-            </div>
-            <button id='tutorial-4-btn' class='w-100 btn btn-lrg btn-custom'>Play!</button>
-        </div>
        
 
     </div><!-- / container-->
@@ -482,11 +394,12 @@
         </div>
     </div>
     
-    <div class='' style='position: absolute; left:0; bottom:0; z-index: 99;'>
+    <!-- Legend -->
+    <div class='' style='position: absolute; left:0; bottom:0; z-index: 99;' id='legend_key'>
         <div class='card p-2' style='background: rgba(248, 248, 255, 0.9)'>
             <h5>Key</h5><br>
-            <p style='color: orangered'><i class="fas fa-arrow-right"></i> = Increase </p>
-            <p style='color: cornflowerblue'><i class="fas fa-arrow-right"></i> = Decrease </p>
+            <p class='col-pos'><i class="fas fa-arrow-right"></i> = Increase </p>
+            <p class='col-neg'><i class="fas fa-arrow-right"></i> = Decrease </p>
         </div>
     </div>
 

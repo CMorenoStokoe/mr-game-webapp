@@ -63,6 +63,48 @@ function createMenu(){
                 // Add volume change functionality
                 addVolumeSlider();
 
+
+            // View the tutorial again
+                var tutorialDiv = document.createElement('DIV');
+                tutorialDiv.className = 'p-2 m-2 w-100 d-flex flex-column';
+                document.getElementById('menu-settings-body').appendChild(tutorialDiv);
+                
+                var tutorialTitle = document.createElement('H5');
+                    tutorialTitle.innerHTML = 'Controls';
+                    tutorialTitle.className = 'p-2 m-2 w-100 d-flex';
+                tutorialDiv.appendChild(tutorialTitle);
+
+                var tutorialLabel = document.createElement('P');
+                    tutorialLabel.innerHTML='If you forget the controls or want a refresher click the button below to rewatch the tutorial.';
+                tutorialDiv.appendChild(tutorialLabel);
+
+                var tutorialBtn = document.createElement('BUTTON');
+                    tutorialBtn.onclick = function(){tutorial('game');};
+                    tutorialBtn.innerText = 'Rewatch tutorial';
+                    tutorialBtn.className = 'btn btn-lg btn-custom';
+                tutorialDiv.appendChild(tutorialBtn);
+
+            // Force reset
+                var resetDiv = document.createElement('DIV');
+                    resetDiv.className = 'p-2 m-2 w-100 d-flex flex-column';
+                document.getElementById('menu-settings-body').appendChild(resetDiv);
+                
+                var resetTitle = document.createElement('H5');
+                    resetTitle.innerHTML = 'Force reset';
+                    resetTitle.className = 'p-2 m-2 w-100 d-flex';
+                resetDiv.appendChild(resetTitle);
+
+                var resetLabel = document.createElement('P');
+                    resetLabel.innerHTML='If you run into issues with the game try force-resetting it with the button below.';
+                resetDiv.appendChild(resetLabel);
+
+                var resetBtn = document.createElement('BUTTON');
+                    resetBtn.onclick = function(){gamestates[gameState].action()};
+                    resetBtn.innerText = 'Force reset game';
+                    resetBtn.className = 'btn btn-lg btn-custom';
+                resetDiv.appendChild(resetBtn);
+
+            
             /* Color blind
             
                 // Create toggle
@@ -92,26 +134,6 @@ function createMenu(){
                     div.appendChild(btn);
                 
                 */
-
-                // Force reset
-                var resetDiv = document.createElement('DIV');
-                    resetDiv.className = 'p-2 m-2 w-100 d-flex flex-column';
-                document.getElementById('menu-settings-body').appendChild(resetDiv);
-                
-                var resetTitle = document.createElement('H5');
-                    resetTitle.innerHTML = 'Force reset';
-                    resetTitle.className = 'p-2 m-2 w-100 d-flex';
-                resetDiv.appendChild(resetTitle);
-
-                var resetLabel = document.createElement('P');
-                    resetLabel.innerHTML='If you run into issues with the game try force-resetting it with the button below.';
-                resetDiv.appendChild(resetLabel);
-
-                var resetBtn = document.createElement('BUTTON');
-                    resetBtn.onclick = function(){gamestates[gameState].action()};
-                    resetBtn.innerText = 'Force reset game';
-                    resetBtn.className = 'btn btn-lg btn-custom';
-                resetDiv.appendChild(resetBtn);
 
     // Record menu as generated
     menuGenerated = true;

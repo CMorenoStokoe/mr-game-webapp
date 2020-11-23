@@ -9,13 +9,16 @@ Use: These functions are called by the main and secondary scripts when sound eff
 
 */
 
+// Sound effects volume
+var sfxVolume = 0.2;
+
 // Function to create new background audio objects (e.g., space ship sounds)
 function createBGAudio(id){
     
     // Create audio object and append to DOM
     var audio = new Audio();
         audio.id = id;
-        audio.volume = 0.3;
+        audio.volume = sfxVolume;
     document.body.appendChild(audio);
 
 }
@@ -73,7 +76,7 @@ function createBGAudio(id){
 
     // Create audio elements for sound
     var sound_ui = new Audio(); // Sound feedback for player actions in the UI
-        sound_ui.volume = 0.2;
+        sound_ui.volume = sfxVolume;
 
     // Define sound effects
     const sounds_spaceTraffic = [
@@ -87,10 +90,11 @@ function createBGAudio(id){
     ]
     
     // Function to play songs from soundtrack
-    function playShipSound(audioObject, shipSpeed){
+    function playShipSound(audioObject, shipSpeed, volume = sfxVolume){
         
         // Get audio element
         var audio = document.getElementById(audioObject);
+            audio.volume = volume;
 
         // Choose a space ship sound based on its speed
         if      (shipSpeed > 12500){
@@ -133,6 +137,7 @@ function addVolumeSlider(){
     // Update the current slider value (each time you drag the slider handle)
     slider.oninput = function() {
         output.volume = this.value/100;
+        sfxVolume = this.value/100;
         console.log(output.volume)
     }
 }
