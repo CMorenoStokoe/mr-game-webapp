@@ -28,12 +28,13 @@ function initialiseLogin(){
 
         // Register user with DB
         if(username){
-            createNewUser(
+            /*createNewUser(
                 playerUsernameAnonymised,
                 function(){incrementGamestate();}
                 //function(){loadPlayerData(username)}
-            );
-            dismissSplash();
+            );*/
+            //dismissSplash();
+            incrementGamestate();
         } else {alert('Please enter your username')}
     });
 }
