@@ -313,7 +313,7 @@ function tutorial(gameState){
             gameStateSpecific: 'game',
             title: ``, 
             body: `
-                <p>This screen will show you how effective your policy achieved the goal and whether anyone found a better policy (players anonymised)</p>
+                <p>This screen will show you how effective your policy achieved the goal and whether anyone found a better policy. Players anonymised.</p>
                 <p>Hint: Beat other players by finding the best policies to level up faster! <i class="fas fa-crown"></i></p>
             `, 
             btnText: `Dismiss`,
