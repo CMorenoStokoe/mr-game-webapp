@@ -30,7 +30,7 @@ function constructMessage(d){
         container.style.zIndex = 99;
         container.style.textShadow = 'none';
         container.style.color = 'black';
-        container.overflow = 'auto';
+        container.style.overflow = 'auto';
 
         // Position element
         if(position.type === 'auto'){ 
@@ -53,7 +53,7 @@ function constructMessage(d){
             flexBox.style.left = position.x;
             flexBox.style.top = position.y;
             flexBox.className = '';
-            flexBox.overflow = 'auto';
+            flexBox.style.overflow = 'auto';
         } 
     
     container.appendChild(flexBox);
@@ -61,8 +61,9 @@ function constructMessage(d){
     // Create div
     var div = document.createElement('DIV');
         div.className = 'card p-2';
+        div.style.overflow = 'auto';
+        div.style.maxHeight = '80vh';
         div.style.maxWidth = '40rem';
-        div.overflow = 'auto';
         if(btnText == 'Dismiss'){div.style.background = '#eee';}
     flexBox.appendChild(div);
     

@@ -10,10 +10,22 @@ Use: These functions are called by the main and secondary scripts when sound eff
 */
 
 // Sound effects volume
-var sfxVolume = 0.1;
+var musicVolume = 0.3;
+var sfxVolume = 0.15;
+
+// Update volumes
+function getVolumeSliderLevels(){
+    musicVolume = document.getElementById("volume-slider").value/100;
+    sfxVolume = document.getElementById("volume-slider").value/200;
+}
 
 // Function to create new background audio objects (e.g., space ship sounds)
 function createBGAudio(id){
+
+    // Update volumes
+    if(document.getElementById("volume-slider")){
+        getVolumeSliderLevels()
+    }
     
     // Create audio object and append to DOM
     var audio = new Audio();
@@ -24,7 +36,6 @@ function createBGAudio(id){
 }
 
 // Create soundtrack audio elements
-
 
     // Create win screen progress audio sound
     var progressSound = new Audio();
@@ -40,11 +51,16 @@ function createBGAudio(id){
     var music = new Audio();
         music.id = 'soundtrack';
         music.addEventListener('ended', function(){playSoundtrack()});
-        music.volume = 0.3;
+        music.volume = musicVolume;
         document.body.appendChild(music);
 
     // Function to play songs from soundtrack
     function playSoundtrack(song = false){
+
+        // Update volumes
+        if(document.getElementById("volume-slider")){
+            getVolumeSliderLevels()
+        }
 
         // Transition music out
         $('#soundtrack').animate({volume: 0}, 2000);
@@ -53,7 +69,7 @@ function createBGAudio(id){
         setTimeout(function(){
 
             // Transition music back in
-            $('#soundtrack').animate({volume: 0.3}, 2000);
+            $('#soundtrack').animate({volume: musicVolume}, 2000);
 
             // Play a specified song (if specified)
             if(song){ 
@@ -68,7 +84,7 @@ function createBGAudio(id){
                     music.play();
             }
 
-        }, 1000)
+        }, 2000)
 
     }
 
@@ -90,11 +106,16 @@ function createBGAudio(id){
     ]
     
     // Function to play songs from soundtrack
-    function playShipSound(audioObject, shipSpeed, volume = sfxVolume){
+    function playShipSound(audioObject, shipSpeed, unusedVar){
         
+        // Update volumes
+        if(document.getElementById("volume-slider")){
+            getVolumeSliderLevels()
+        }
+
         // Get audio element
         var audio = document.getElementById(audioObject);
-            audio.volume = volume;
+            audio.volume = sfxVolume;
 
         // Choose a space ship sound based on its speed
         if      (shipSpeed > 12500){
@@ -115,9 +136,15 @@ function createBGAudio(id){
 
 // Function to give all buttons a sound effect on press
 function addButtonPressSound(){
+
+    // Update volumes
+    if(document.getElementById("volume-slider")){
+        getVolumeSliderLevels()
+    }
     
     // Create button audio sound
     var buttonPressSound = new Audio();
+        buttonPressSound.volume = sfxVolume*2;
         buttonPressSound.src = `audio/sounds/ui/effect-good.wav`;
 
     // Play sound on button press
@@ -130,6 +157,11 @@ function addButtonPressSound(){
 // Function to control volume
 function addVolumeSlider(){
 
+    // Update volumes
+    if(document.getElementById("volume-slider")){
+        getVolumeSliderLevels();
+    }
+
     // Get slider and soundtrack
     var slider = document.getElementById("volume-slider");
     var output = document.getElementById("soundtrack");
@@ -139,4 +171,14 @@ function addVolumeSlider(){
         output.volume = this.value/100;
         sfxVolume = this.value/200;
     }
+}
+
+// Function to play sound
+function playSound(sfx){
+    
+    // Make sound
+    var buttonPressSound = new Audio();
+        buttonPressSound.volume = sfxVolume*2;
+        buttonPressSound.src = `audio/sounds/ui/effect-good.wav`;
+    buttonPressSound.play();
 }

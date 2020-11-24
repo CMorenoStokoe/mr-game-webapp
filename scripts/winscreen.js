@@ -63,10 +63,12 @@ function showScoreScreen(gameData, score, playerInterventionHistory){
                             `${generateUsername()}'s policy <i class="fas fa-crown"></i> Best`
                         );
                     } 
-                    
-                    /* Else if player did achieve the best
+                    // Else if player did achieve the best
                     else {
 
+                        document.getElementById('win-effects-best-intervention').innerHTML = `You found the best policy!`;
+
+                        /* Show next best player 
                         if(eve.optimalInterventions[1]){
 
                             // Get next best effect
@@ -85,11 +87,11 @@ function showScoreScreen(gameData, score, playerInterventionHistory){
                                 `${generateUsername()}'s policy <i class="fas fa-crown"></i> Best`
                             );
 
-                        }
+                        }*/
                         
-                    }*/
+                    }
 
-                }else { // No intervention benefits objective
+                } else { // No intervention benefits objective
                     document.getElementById('win-effects-best-intervention').innerHTML = 'No possible intervention could have improved the objective trait'
                 }
             } else { // No intervention benefits objective
@@ -103,20 +105,48 @@ function showScoreScreen(gameData, score, playerInterventionHistory){
         function generateUsername(){
 
             const prefix = [
-                'uob_psych-',
-                'uob_psych-',
-                'uob_psych-',
-                'uob_psych-',
-                'uob_psych-',
-                'uob_psych-',
-                'uob_bio-',
-                'uob_med-',
-                'uob_chem-',
-                'uwe_psych-',
-                'bath_psych-',
+                'Abigail (Biology @  Bath)',
+                'Adam (Biology @  UWE)',
+                'Amy (Psychology @  UWE)',
+                'Benjamin (Psychology @  UWE)',
+                'Bethany (Psychology @  UWE)',
+                'Callum (Psychology @  Bath)',
+                'Charlotte (Chemistry @  UWE)',
+                'Chloe (Chemistry @  UWE)',
+                'Ellie (Chemistry @  UWE)',
+                'Emily (Language @  UWE)',
+                'Emma (Psychology @  UoB)',
+                'Fatima (Psychology @  UoB)',
+                'Georgia (Psychology @  UoB)',
+                'Grace (Psychology @  UoB)',
+                'Hannah (Physics @  UWE)',
+                'Jack (Politics @  UWE)',
+                'James (Psychology @  UoB)',
+                'Jessica (Psychology @  UoB)',
+                'Jian (Psychology @  UoB)',
+                'Joseph (Biology @  UoB)',
+                'Katie (Biology @  UoB)',
+                'Lauren (Business @  UoB)',
+                'Lian (Chemistry @  UoB)',
+                'Lucy (Psychology @  UoB)',
+                'Luke (Psychology @  UoB)',
+                'Matthew (Psychology @  UoB)',
+                'Megan (Psychology @  Bath)',
+                'Mohamed (Psychology @  Bath)',
+                'Molly (Psychology @  Bath)',
+                'Olivia (Law @  Bath)',
+                'Rebecca (Medicine @  UoB)',
+                'Ryan (Medicine @  UoB)',
+                'Sofía (Medicine @  UoB)',
+                'Sophie (Psychology @  UoB)',
+                'Thomas (Psychology @  UoB)',
+                'Wei (Psychology @  UoB)',
+                'Xian (Psychology @  UoB)',
+                'Youssef (Psychology @  UoB)',
+                'Zhen (Psychology @  UoB)',                          
             ]
 
-            return `${prefix[getRandomInt(10)]}${getRandomInt(50)}`
+            return `${prefix[getRandomInt(prefix.length)]}`
         }
 
     // Open win screen

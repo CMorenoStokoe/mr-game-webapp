@@ -65,7 +65,8 @@
         </div>
         <div id='splash-login'>
             <div class='card m-2 p-2 bg-light' id='splash-login-box'>     
-                <input class='m-2 bg-light' type="text" id="splash-form" name="fname" placeholder=" Enter username">
+                <input class='m-2 bg-light' type="text" id="splash-form" name="fname" placeholder=" Enter a username">
+                <p class='text-muted m-2' style='font-size: 1rem;'>This will be used for display purposes only and is not stored</p>
                 <button class='btn btn-lg m-2 btn-custom' id='splash-button'>Login</button>
             </div>
         </div>
@@ -206,15 +207,15 @@
         </div> -->
 
         <!-- Win screen -->
-        <div id='win-screen' class='w-100 h-100' style='position: absolute; top:0px; left:0px; overflow: auto;'>
+        <div id='win-screen' class='w-100 h-100' style='position: absolute; top:0px; left: 0px;'>
             <div class='d-flex flex-column h-100 align-items-center justify-content-center'>
-                <div class='card p-3 fnt-light' id='win-screen-div'>
+                <div class='card p-3 fnt-light' id='win-screen-div' style='overflow: auto; max-height: 100vh; max-width: 100vw;'>
                     <!-- Header -->
-                    <h3 class='text-center m-2 fnt-bold'><i class="fas fa-calendar-check"></i> Policy enacted!</h3>
+                    <h3 class='text-center m-2 fnt-bold col-primary'>Leaderboard <i class="fas fa-crown"></i><br></h3>
               
                     <div id='win-screen-notice'></div>
                     <!-- Interventions in policy -->
-                    <h4 class='mt-4'>Leaderboard: <em id='win-objective'></em></h4>
+                    <h4 class='mt-4 text-center' id='win-objective'></h4>
                     <div id='win-effects-player-intervention' class='p-2 d-flex flex-row justify-content-center'></div>
                     <div id='win-effects-best-intervention' class='p-2 d-flex flex-row justify-content-center'></div>                    
                     
@@ -233,7 +234,6 @@
                 <div class="modal-header" style='border: none;'>
                   <div class="modal-title">
                       <h1><i class="fas fa-fire"></i> Unlockable abilities</h1>                  
-                      <p class='text-muted'>Every time you level up you can unlock an ability to power up your interventions.</p>
                   </div>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -247,7 +247,9 @@
                             
                             <div>
                                 <h4>Number of interventions</h4>
-                                <p class='text-muted'>Increase the number of interventions that you can make at the same time.</p>
+                                <p class='text-muted'>
+                                    Increase the number of interventions that you make per policy.
+                                </p>
                             </div>
 
                             <div class='d-flex flex-row align-items-center justify-content-center'>
@@ -286,7 +288,9 @@
 
                             <div>
                                 <h4>Strength of interventions</h4>
-                                <p class='text-muted'>Increase the amount that your interventions change a trait.</p>
+                                <p class='text-muted'>
+                                    Increase the amount that your interventions change a trait.
+                                </p>
                             </div>
 
                             <div class='d-flex flex-row align-items-center justify-content-center'>
@@ -295,28 +299,28 @@
                                     <input type="radio" name="strength" id='ul-mult-2-rd' value=1 checked>
                                     <i class="fas fa-times"id='ul-mult-2-i'></i>
                                     <br>
-                                    30%
+                                    33% (1x)
                                 </label>
                                 
                                 <label class='unlock' id='ul-mult-3'>
                                     <input type="radio" name="strength" id='ul-mult-3-rd' value=1.5 disabled>
                                     <i class="fas fa-times"id='ul-mult-3-i'></i>
                                     <br>
-                                    50%
+                                    50% (1.5x)
                                 </label>
                                 
                                 <label class='unlock' id='ul-mult-4'>
                                     <input type="radio" name="strength" id='ul-mult-4-rd' value=2 disabled>
                                     <i class="fas fa-times"id='ul-mult-4-i'></i>
                                     <br>
-                                    70%
+                                    66% (2x)
                                 </label>
 
                                 <label class='unlock' id='ul-mult-5'>
                                     <input type="radio" name="strength" id='ul-mult-5-rd' value=2.5 disabled>
                                     <i class="fas fa-times"id='ul-mult-5-i'></i>
                                     <br>
-                                    100%
+                                    82.5% (2.5x)
                                 </label>
 
                             </div>

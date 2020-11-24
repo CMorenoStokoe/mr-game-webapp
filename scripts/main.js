@@ -189,6 +189,7 @@ const gamestates = { // Different gamestates within the game (player levelling s
 
                 // Show tutorial
                 tutorial('game');
+                addButtonPressSound();
 
                 // Ensure player has username
                 if(playerUsername == null || playerUsername == undefined){playerUsername = 'Player'};
@@ -219,8 +220,9 @@ const gamestates = { // Different gamestates within the game (player levelling s
             // On first load
             if(firstLoad){
 
-                // Show yutorial
+                // Show tutorial
                 tutorial(gameState);
+                addButtonPressSound();
                 firstLoad = false; // Disable game effects on first load
 
                 // Give user username
@@ -704,7 +706,11 @@ function playerSelectedInvalidTarget(nodeId, reason){
             message = 'the trait you selected would have no effects if it was intervened on. Please select another trait to intervene on';
             break;
         case 3: //'intervention max reached'
-            message = `you have reached the maximum number of interventions you can make. Enact your policy to continue by pressing the 'enact policy button'!`;
+            message = `
+                you have reached the maximum number of interventions you can make. <br><br>
+                Enact your policy to continue by pressing the 'Enact Policy' in the top left of the screen! <br><br>
+                You only need to click on a trait once to make an intervention, 
+                you might be receiving this message if you double click!`;
             break;
         case 4: //'trait already intervened on'
             message = 'you have already intervened on this trait. Please select another trait to intervene on';
@@ -726,7 +732,7 @@ function playerSelectedInvalidTarget(nodeId, reason){
         trigger: 'startup',
         reveal: null,
         gameStateSpecific: null,
-        title: `Invalid target`, 
+        title: `Oops!`, 
         body: `
             You can't intervene on ${node.label} because ${message}.
         `, 

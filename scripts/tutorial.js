@@ -44,6 +44,10 @@ function tutorial(gameState){
                 <strong>Your role</strong><br>
                 We are putting you in the position of public health policy maker for this population. 
                 Your aim is to use public health interventions to minimise the prevalence of negative traits and maximise the prevalence of good traits.
+                <br><br>
+                <strong>Tutorial</strong><br>
+                You will now be shown a short tutorial to help you make interventions using this software. 
+                Please read the dialogues and press the yellow buttons when you are ready to continue.
                 </p>
             `, 
         },
@@ -63,13 +67,17 @@ function tutorial(gameState){
             <div class='d-flex flex-column justify-content-center'>    
             <img src='images/tutorial/controls.gif' class='m-2 d-flex align-self-center' style='height: 200px; width: auto;  border-radius: 5px;'>
                 <br><br>
-                <p class='mt-'game''><strong><i class="fas fa-mouse"></i> Click </strong> <br> On a trait to intervene on it </p>
+                <p><strong><i class="fas fa-mouse"></i> Click </strong> <br> On a trait to intervene on it </p>
                 <p><strong><i class="fas fa-mouse-pointer"></i> Hover </strong><br> Over a trait to see its <strong>name</strong>, <strong>prevalence</strong> and <strong>effects</strong>
-                <br><br>
-                <strong><i class="fas fa-hand-rock"></i></i> Drag </strong><br> A trait to reposition it </p>
+                <br><p class='text-muted'>
+                    <strong>Optionally </strong><br>
+                    If you can't see all the effects clearly 
+                    <strong class='col-dark'><i class="fas fa-hand-rock"></i></i> Drag </strong> 
+                    a trait to reposition it 
+                </p>
             </div>
             `, 
-            btnText: `Click, hover, drag. Got it.`,
+            btnText: `Click to intervene. Got it.`,
         },
         {
             id: 'tutorial-intv-lines',
@@ -178,7 +186,7 @@ function tutorial(gameState){
                 <br><br>
                 Level up by achieving goals <i class="fas fa-fire"></i>
             `, 
-            btnText: `<i class="fas fa-fire"></i>`,
+            btnText: `So I have to level up? Ok <i class="fas fa-fire"></i>`,
         }, 
         {
             id: 'tutorial-game-exp',
@@ -234,21 +242,63 @@ function tutorial(gameState){
             btnText: `Let's go! <i class="fas fa-mouse-pointer"></i>`,
         }, 
         {
-            id: 'tutorial-game-enactPolicy',
+            id: 'tutorial-game-interventionMade',
             position: {
-                type: 'onElement',
-                element: 'GUI-planetInfo',
+                type: 'auto',
+                element: null,
                 x: null,
                 y: null,
             },
             trigger: 'onIntervention',
             reveal: null,
             gameStateSpecific: 'game',
+            title: `You made an intervention!`, 
+            body: `
+                <div class='d-flex flex-column justify-content-center'>
+                    <img src='images/tutorial/levelup.gif' class='m-2 d-flex align-self-center' style='height: 200px; width: auto;  border-radius: 5px;'>
+                    <p><br>Depending on the effects of your intervention you may have made some progress towards levelling up!</p>
+                </div>
+            `, 
+            btnText: `Continue`,
+        },
+        {
+            id: 'tutorial-game-enactPolicy',
+            position: {
+                type: 'auto',
+                element: null,
+                x: null,
+                y: null,
+            },
+            trigger: 'onPrevious',
+            reveal: null,
+            gameStateSpecific: 'game',
+            title: `Policies`, 
+            body: `
+                <p>Well done, now you have made an intervention it's time to enact it as a policy!</p>
+                <p>Enacting policies will show you how effective your intervention was on a leaderboard <i class="fas fa-crown"></i></p>
+                <p class='text-muted'>Note: Later on in the game you might need to make more interventions 
+                before you can make a policy</p>
+            `, 
+            btnText: `Continue`,
+        },
+        {
+            id: 'tutorial-game-enactPolicy2',
+            position: {
+                type: 'onElement',
+                element: 'GUI-planetInfo',
+                x: null,
+                y: null,
+            },
+            trigger: 'onPrevious',
+            reveal: null,
+            gameStateSpecific: 'game',
             title: `<i class="fas fa-hand-point-up" style='font-size: 3em;'></i>`, 
             body: `
-                Well done! Now you made an intervention let’s make it a policy and see its effects
+                The levelling bar above will turn into a button saying 'Enact Policy' when you can enact a policy
+                <br><br>
+                Click it now!
             `, 
-            btnText: `Click 'Enact Policy' <i class="fas fa-hand-point-up"></i>`,
+            btnText: `Okay`,
         },
         {
             id: 'tutorial-game-policyEnacted',
@@ -261,11 +311,10 @@ function tutorial(gameState){
             trigger: 'startup',
             reveal: null,
             gameStateSpecific: 'game',
-            title: `<i class="fas fa-crown"></i> Leaderboard`, 
+            title: ``, 
             body: `
-                This screen shows you how much your policy achieved the goal
-                <br>
-                Beat other players to receive more score <i class="fas fa-crown"><br>
+                <p>This screen will show you how effective your policy achieved the goal and whether anyone found a better policy (players anonymised)</p>
+                <p>Hint: Beat other players by finding the best policies to level up faster! <i class="fas fa-crown"></i></p>
             `, 
             btnText: `Dismiss`,
         },
@@ -280,11 +329,9 @@ function tutorial(gameState){
             trigger: 'startup',
             reveal: null,
             gameStateSpecific: 'game',
-            title: `Level up!`, 
+            title: `Unlocks <i class="fas fa-plus"></i>`, 
             body: `
-                Each time you level up you can unlock a new ability to power up your interventions.
-                <br><br> 
-                Try upgrading your intervention strength to 50% now <i class="fas fa-plus"></i>
+                Each time you level up you can unlock a new ability to power up your interventions
             `, 
             btnText: `Dismiss`,
         }, 
@@ -299,13 +346,15 @@ function tutorial(gameState){
             trigger: 'modal-lvlup-btn',
             reveal: null,
             gameStateSpecific: 'game',
-            title: `Success`, 
+            title: `You completed the tutorial`, 
             body: `
-                You completed the tutorial, you now know how the game works! <i class="fas fa-book"></i>
+                You now know how the game works! <i class="fas fa-book"></i>
                 <br><br>
-                The game ends once you reach level six 
+                You are now on level 2.
+                <br>
+                The game ends once you reach level 6. 
             `, 
-            btnText: `Level 6 here I come`,
+            btnText: `Level 6 here I come  <i class="fas fa-fire">`,
         }, 
         
     ]
