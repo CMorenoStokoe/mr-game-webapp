@@ -23,7 +23,8 @@ function tutorial(gameState){
     const dialogs = [
         // Everyone
         {
-            id: 'tutorial-welcome',
+            id: 'tutorial-data',
+            name: 'The data',
             position: {
                 type: 'auto',
                 element: null,
@@ -33,26 +34,26 @@ function tutorial(gameState){
             trigger: 'startup',
             reveal: null,
             gameStateSpecific: null,
-            title: 'Public Health Simulation', 
+            title: 'Our dataset', 
             body: `
                 <p class='text-left'>
-                <strong>Our data</strong><br>
-                The data we are about to present you was analysed from genomics datasets containing information on around a million participants’ genetics and life factors. 
-                From this we have created a simulation of the population prevalence and effects of 17 health, wellbeing, mental health and behavioural traits. 
-                We are using this data as the template for this study even though some effects might appear unrealistic.
-                <br><br>
-                <strong>Your role</strong><br>
-                We are putting you in the position of public health policy maker for this population. 
-                Your aim is to use public health interventions to minimise the prevalence of negative traits and maximise the prevalence of good traits.
-                <br><br>
-                <strong>Tutorial</strong><br>
-                You will now be shown a short tutorial to help you make interventions using this software. 
-                Please read the dialogues and press the yellow buttons when you are ready to continue.
+                    We have analysed 
+                    ${tip('genomics datasets',`Large datasets containing information on genetic make-up and phenotypes such as behaviours and health`)} 
+                    containing information on around a million participants 
+                    to create a public health simulation. 
+                    It simulates the 
+                    ${tip('population prevalence', `A measure of how common a trait is (a trait with higher prevalence means that it is more common)`)}
+                    and effects of seventeen health, wellbeing, mental health and behavioural traits. 
+                    <br><br>
+                    Please be aware that this simulation might appear  
+                    ${tip('incomplete', `For example in this simulation exercise does not help you lose weight...`)} 
+                    but try to learn this data even if your own knowledge tells you it might not be quite right!
                 </p>
             `, 
         },
         {
-            id: 'tutorial-controls',
+            id: 'tutorial-whatdoido',
+            name: 'Your aim',
             position: {
                 type: 'auto',
                 element: null,
@@ -62,7 +63,69 @@ function tutorial(gameState){
             trigger: 'onPrevious',
             reveal: null,
             gameStateSpecific: null,
-            title: 'Controls', 
+            title: 'Using the simulation', 
+            body: `
+                <p class='text-left'>
+                    We are putting you in the position of public health policy maker for a population.
+                    <br><br>
+                    <strong>What is my aim?</strong><br>
+                    Maximise the 
+                    ${tip('prevalence', `A measure of how common a trait is (a trait with higher prevalence means that it is more common)`)}
+                    of 
+                    ${tip('good traits', 'For example wellbeing and intelligence' )} 
+                    and minimise the 
+                    ${tip('prevalence', `A measure of how common a trait is (a trait with higher prevalence means that it is more common)`)} 
+                    of 
+                    ${tip('bad traits', 'For example heart disease (CHD) and diabetes' )}
+                    <br><br>
+                    <strong>How do I do this?</strong><br>
+                    Learn the relations between traits and make 
+                    ${tip('interventions', 'Simulate the effects of changing the prevalence of a trait' )} 
+                    to affect changes in traits
+                    <br><br>
+                    A short <strong>tutorial</strong> will help you understand the data visualisation and 
+                    how to make interventions using this software. 
+                    Please read the dialogues and press the yellow buttons to continue
+                </p>
+            `, 
+        },
+        {
+            id: 'tutorial-intv-lines',
+            name: 'Understanding arrows in the visualisation',
+            position: {
+                type: 'auto',
+                element: null,
+                x: null,
+                y: null,
+            },
+            trigger: 'onPrevious',
+            reveal: null,
+            gameStateSpecific: null,
+            title: 'Reading the simulation', 
+            body: `
+                Arrows represent 
+                ${tip('causal relationships', 'A change in one trait causes a change in another')} 
+                between traits
+                <br><br>
+                <p class='col-pos'><i class="fas fa-arrow-right"></i> <strong class='col-pos'>Red</strong> arrows represent <strong class='col-pos'>increases</strong></p>
+                <p class='col-neg'><i class="fas fa-arrow-right"></i> <strong class='col-neg'>Blue</strong>  arrows represent <strong class='col-neg'>decreases</strong></p>
+                <br>
+                <p class='text-muted'>Hint: The key in the bottom left of the screen shows this</p>
+            `, 
+        },
+        {
+            id: 'tutorial-controls',
+            name: 'The controls',
+            position: {
+                type: 'auto',
+                element: null,
+                x: null,
+                y: null,
+            },
+            trigger: 'onPrevious',
+            reveal: null,
+            gameStateSpecific: null,
+            title: 'Interacting with the simulation', 
             body: `
             <div class='d-flex flex-column justify-content-center'>    
             <img src='images/tutorial/controls.gif' class='m-2 d-flex align-self-center' style='height: 200px; width: auto;  border-radius: 5px;'>
@@ -80,28 +143,8 @@ function tutorial(gameState){
             btnText: `Click to intervene. Got it.`,
         },
         {
-            id: 'tutorial-intv-lines',
-            position: {
-                type: 'auto',
-                element: null,
-                x: null,
-                y: null,
-            },
-            trigger: 'onPrevious',
-            reveal: null,
-            gameStateSpecific: null,
-            title: 'Line colors', 
-            body: `
-                <strong>Arrows represent causal relationships between traits</strong>
-                <br><br>
-                <p class='col-pos'><i class="fas fa-arrow-right"></i> <strong class='col-pos'>Red</strong> arrows represent <strong class='col-pos'>increases</strong></p>
-                <p class='col-neg'><i class="fas fa-arrow-right"></i> <strong class='col-neg'>Blue</strong>  arrows represent <strong class='col-neg'>decreases</strong></p>
-                <br>
-                <p class='text-muted'>Hint: There is a key in the bottom left of the screen if you get stuck</p>
-            `, 
-        },
-        {
             id: 'tutorial-intv-source',
+            name: 'How interventions change good and bad traits',
             position: {
                 type: 'auto',
                 element: null,
@@ -125,6 +168,7 @@ function tutorial(gameState){
         },
         {
             id: 'tutorial-intv-effects',
+            name: 'Understanding the effects of interventions',
             position: {
                 type: 'auto',
                 element: null,
@@ -140,14 +184,19 @@ function tutorial(gameState){
                 <img src='images/tutorial/intervention-effects.gif' class='m-2 d-flex align-self-center' style='height: 200px; width: auto;  border-radius: 5px;'>
                 <br>
                 <p>
-                    Interventions <strong>enhance</strong> the effects of <strong>good</strong> traits 
-                    <br> Interventions <strong>diminish</strong> the effects of <strong>bad</strong> traits 
+                    Interventions 
+                    ${tip('enhance', 'Effects will be stronger (For example, raising education will increase its positive effect on intelligence, thus raising intelligence)')} 
+                    the effects of <strong>good</strong> traits 
+                    <br> Interventions 
+                    ${tip('diminish', 'Effects will be weaker (For example, reducing depression will reduce its negative effect on wellbeing, thus raising wellbeing)')} 
+                    the effects of <strong>bad</strong> traits 
                 </p>
             </div>
             `, 
         },
         {
             id: 'tutorial-iv-goals',
+            name: 'Suggested goals',
             position: {
                 type: 'auto',
                 element: null,
@@ -171,6 +220,7 @@ function tutorial(gameState){
         }, //tutorial-intv-effects-btn
         {
             id: 'tutorial-game-level',
+            name: 'How to level up',
             position: {
                 type: 'onElement',
                 element: 'GUI-planetInfo',
@@ -190,6 +240,7 @@ function tutorial(gameState){
         }, 
         {
             id: 'tutorial-game-exp',
+            name: 'Seeing your progress towards the next level',
             position: {
                 type: 'onElement',
                 element: 'GUI-planetInfo',
@@ -207,6 +258,7 @@ function tutorial(gameState){
         },         
         {
             id: 'tutorial-game-goals',
+            name: 'In-game goals',
             position: {
                 type: 'onElement',
                 element: 'GUI-planetInfo',
@@ -226,6 +278,7 @@ function tutorial(gameState){
         }, 
         {
             id: 'tutorial-game-start',
+            name: '',
             position: {
                 type: 'onElement',
                 element: 'GUI-planetInfo',
@@ -243,6 +296,7 @@ function tutorial(gameState){
         }, 
         {
             id: 'tutorial-game-interventionMade',
+            name: 'Level up by making interventions',
             position: {
                 type: 'auto',
                 element: null,
@@ -263,6 +317,7 @@ function tutorial(gameState){
         },
         {
             id: 'tutorial-game-enactPolicy',
+            name: 'What policies are',
             position: {
                 type: 'auto',
                 element: null,
@@ -283,6 +338,7 @@ function tutorial(gameState){
         },
         {
             id: 'tutorial-game-enactPolicy2',
+            name: 'How to enact a policy',
             position: {
                 type: 'onElement',
                 element: 'GUI-planetInfo',
@@ -302,6 +358,7 @@ function tutorial(gameState){
         },
         {
             id: 'tutorial-game-policyEnacted',
+            name: 'The leaderboard (in leaderboard screen)',
             position: {
                 type: 'onElement',
                 element: 'win-screen-notice',
@@ -320,6 +377,7 @@ function tutorial(gameState){
         },
         {
             id: 'tutorial-game-levelup',
+            name: 'Unlocking new abilities (in level-up screen)',
             position: {
                 type: 'onElement',
                 element: 'levelup-notice',
@@ -337,6 +395,7 @@ function tutorial(gameState){
         }, 
         {
             id: 'tutorial-game-final',
+            name: 'The end of the game',
             position: {
                 type: 'auto',
                 element: null,
@@ -352,9 +411,9 @@ function tutorial(gameState){
                 <br><br>
                 You are now on level 2.
                 <br>
-                The game ends once you reach level 6. 
+                The game ends once you reach level ${Object.entries(levels).length}. 
             `, 
-            btnText: `Level 6 here I come  <i class="fas fa-fire">`,
+            btnText: `Level ${Object.entries(levels).length} here I come  <i class="fas fa-fire">`,
         }, 
         
     ]
@@ -372,6 +431,17 @@ function tutorial(gameState){
 
         // Make dialog
         constructMessage(dialog);
+
+        // Add as topic to help page
+        var help = document.createElement('BUTTON');
+            help.innerHTML = dialog.name;
+            help.style.display = 'block';
+            help.className = 'btn btn-custom m-2';
+            help.onclick = function(){
+                $(`#${dialog.id}`).show().animate({opacity: 1}, 500);
+                $(`#menu-help`).modal('hide');
+            }
+        document.getElementById('menu-help-content').appendChild(help)
         
         // Set up trigger
         if(dialog.trigger == 'startup'){
@@ -384,7 +454,7 @@ function tutorial(gameState){
             
             // Show dialog once previous has been dismissed
             const previousDialog = dialogs[n-1];
-            $(`#${previousDialog.id}-btn`).click(function(){
+            $(`#${previousDialog.id}-btn`).one('click', function(){
                 $(`#${dialog.id}`).show().animate({opacity: 1}, 500);
                 if(dialog.reveal){  revealComponents(dialog.reveal); };
             });
@@ -420,6 +490,16 @@ function tutorial(gameState){
             $(`#${comp}`).show().animate({opacity: 1}, 500)
         }
         
+    }
+
+    // Enable popovers
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+
+    // Function to generate tooltips
+    function tip(text, tip){
+        return `<a href="#" data-toggle="tooltip" title="${tip}">${text}</a>`;
     }
 
 }

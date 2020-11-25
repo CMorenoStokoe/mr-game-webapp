@@ -81,9 +81,6 @@ function initialiseView(
             setExpIndicators(playerExp, levels[playerLvl].max); // Set exp bar
             styleProgressBar('default'); // Set progress bar style
 
-            // Create game menu bar
-            createMenu(); // menu.js
-
             break;
 
         default: console.log(`ERR: Unknown settings profile (${profile})`); break;
@@ -160,7 +157,7 @@ function initialiseView(
 /* Update visualisation */
 
 // Format nodes so they scale with their prevalence values
-function formatNode(node, interval = 500, scaleTo = 'final'){
+function formatNode(node, interval = 500){
 
     // Calculate node size
 
@@ -172,6 +169,7 @@ function formatNode(node, interval = 500, scaleTo = 'final'){
     
     // Calculate node color
     var color = settings.nodes.colorSchemeForInterpolation(node);
+        if(node.change === 0){color = 'white'};
 
     // Format node to scale with prevalence
     d3.select(`#${node.id}`).select("circle").transition()

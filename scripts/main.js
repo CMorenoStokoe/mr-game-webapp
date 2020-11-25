@@ -132,6 +132,9 @@ const gamestates = { // Different gamestates within the game (player levelling s
             // Show splash login screen
             splash();
             initialiseLogin();
+
+            // Create game menu bar
+            createMenu(); // menu.js
         },
     },
     1 : {
@@ -372,7 +375,7 @@ function loadPlayerData(username){
     getPlayerData(username, loadGame);
 
     // Write this data to local variables and launch game
-    function loadGame(playerData){ console.log(`Loaded player gamestate (${playerData})`)
+    function loadGame(playerData){
 
         // Write data to local gamedata variables
         gameState = playerData.currentLevel;
@@ -406,12 +409,20 @@ function incrementGamestate(){
 
 // Function to reset
 function reset(){
+
     // Interrupt animations
     skipAnimations = true;
+
+    // Reset nodes after animations finish
     setTimeout(function(){
+
+        // Reset styles
         setNodeOpacity(1);
         setEdgeOpacity(1);
-    }, 2500);
+        for(const [id, node] of Object.entries(gameData.nodes)){
+            formatNode(node);
+        }
+    }, 2750);
 
     // Reset game
     gamestates[gameState].action();

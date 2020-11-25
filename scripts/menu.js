@@ -24,6 +24,14 @@ function createMenu(){
 
     // Create menu buttons
 
+        // Help
+        // Create elements
+        createButton('menu-help-btn', `Help`, 'menu', 'btn btn-lg btn-custom m-1');
+
+        // Assign function to buttons
+        $(`#menu-help-btn`).click(function(){$(`#menu-help`).modal('show')});
+
+        // Settings
         // Create elements
         createButton('menu-settings-btn', `<i class="fas fa-cogs"></i>`, 'menu', 'btn btn-lg btn-custom m-1');
 
@@ -64,7 +72,7 @@ function createMenu(){
                 addVolumeSlider();
 
 
-            // View the tutorial again
+            /* View the tutorial again
                 var tutorialDiv = document.createElement('DIV');
                 tutorialDiv.className = 'p-2 m-2 w-100 d-flex flex-column';
                 document.getElementById('menu-settings-body').appendChild(tutorialDiv);
@@ -82,7 +90,7 @@ function createMenu(){
                     tutorialBtn.onclick = function(){tutorial('game');};
                     tutorialBtn.innerText = 'Rewatch tutorial';
                     tutorialBtn.className = 'btn btn-lg btn-custom';
-                tutorialDiv.appendChild(tutorialBtn);
+                tutorialDiv.appendChild(tutorialBtn);*/
 
             // Force reset
                 var resetDiv = document.createElement('DIV');

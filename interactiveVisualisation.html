@@ -371,6 +371,95 @@
        
 
     </div><!-- / container-->
+    
+    <!-- Help modal button -->
+    <button type="button" class="btn btn-custom" data-toggle="modal" data-target="#menu-help" style='position: absolute; top:0; right:0; z-index: 99;'>
+        Help
+    </button>
+    <!-- Help menu modal -->
+    <div class="modal" tabindex="-1" role="dialog" id='menu-help'>
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Help<i class="fas fa-help"></i></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" id='menu-help-content'>
+                <div id="accordion">
+                    <strong class='p-2'>Troubleshooting</strong>
+                    <div class="card">
+                      <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            What are these traits?
+                          </button>
+                        </h5>
+                      </div>
+                  
+                      <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            Some traits may be unfamiliar to you, you aren't expected to know about every one 
+                            but here are some definitions:
+                            <ul>
+                                <li>Eveningness: Whether you are a 'morning' or 'evening' person</li> 
+                                <li>CHD: Short for Chronic Heart Disease</li>
+                                <li>Neuroticism: Personality trait associated with seeing the world as distressing and more often feeling strong emotions such as worry and anger</li>
+                                <li>BMI: Your weight (relative to your height)</li>
+                                <li>Wellbeing: How happy you report yourself as feeling</li>
+                                <li>Depression: Mental health disorder associated with unhappiness, loss of motivation, and negative cognitive biases</li>
+                            </ul>                        
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card">
+                      <div class="card-header" id="headingTwo">
+                        <h5 class="mb-0">
+                          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            It's hard to see all the arrows!
+                          </button>
+                        </h5>
+                      </div>
+                      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                        <div class="card-body">
+                            Some effects are really tiny, so we represent this accurately 
+                            (if they're tiny then they won't matter much)! 
+                            You can try increasing the zoom on your browser and refreshing the page, 
+                            or dragging the traits to reposition them on the page
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card">
+                      <div class="card-header" id="headingThree">
+                        <h5 class="mb-0">
+                          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            It isn't working!
+                          </button>
+                        </h5>
+                      </div>
+                      <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                        <div class="card-body">
+                            Please ensure you are not using Internet Explorer. 
+                            We will be happy to help so please get in touch (see footer)!
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <br>
+                <p class='p-2'>
+                    <strong>I am stuck!</strong><br>
+                    Access tutorials again if you forget the controls or want a refresher
+                </p>
+            </div>
+            <div class="modal-footer">
+                <p>
+                    If you are still having issues please get in touch via the email at the beginning of the qualtrics survey!
+                </p>
+            </div>
+          </div>
+        </div>
+    </div>
 
     <!-- Developer mode modal -->
     <div class="modal" tabindex="-1" role="dialog" id='dev-modal'>

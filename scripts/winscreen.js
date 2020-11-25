@@ -25,7 +25,7 @@ function showScoreScreen(gameData, score, playerInterventionHistory){
     // Show leader board
 
         // Determine if player enacted best policy
-        var playerDidBest = score.scores.efficiency>99.9999998 ? true : false;
+        var playerDidBest = score.scores.efficiency>99.9999998 ? true : false; // Be generous to the player, partly because JS maths results in value mismatches due to rounding
             console.log('playerDidBest = ', playerDidBest, score.scores.efficiency, '>99.9..')
 
         // Get objective change by player
