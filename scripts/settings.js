@@ -133,6 +133,9 @@ function settingsProfile_Default(){
 
     /* Links */
 
+        // Disable bidirectional arrows since these are not used in the game
+        settings.links.bidirectional.enabled = false;
+
         // Make overlapping edges more visible
         settings.links.opacity = 1;
         settings.arrows.opacity = 1;
@@ -155,10 +158,10 @@ function settingsProfile_BetaWeights(){
 
     // Make edges more visible
     settings.links.scaleToBeta.minWidth = 1;
-    settings.links.scaleToBeta.scaleFactor = 3.5;
+    settings.links.scaleToBeta.scaleFactor = 7;
 
     // Scale more accurately to their standardised effects in propagation
-    settings.links.scaleToBeta.maxWidth = settings.links.scaleToBeta.minWidth + (settings.links.scaleToBeta.scaleFactor * 2);
+    settings.links.scaleToBeta.maxWidth = settings.links.scaleToBeta.minWidth + settings.links.scaleToBeta.scaleFactor;
     settings.links.scaleToBeta.calcScaledWidth = function(b){
 
         // Calculate relative width (in categories for easier viewing)

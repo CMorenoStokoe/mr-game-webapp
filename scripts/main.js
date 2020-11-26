@@ -117,7 +117,8 @@ const levels = {
     3: {id: 3, max: 300},
     4: {id: 4, max: 400},
     5: {id: 5, max: 500},
-    6: {id: 6, max: 900},
+    6: {id: 6, max: 700},
+    7: {id: 7, max: 900},
 }
 
 // Data for the different gamestates in the game
@@ -186,7 +187,7 @@ const gamestates = { // Different gamestates within the game (player levelling s
                 pval=1, 
                 maxInterventions=1, 
                 data=jsonData);
-            
+
             // On first load
             if(firstLoad){
 

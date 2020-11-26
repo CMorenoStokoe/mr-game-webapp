@@ -43,6 +43,7 @@ function initialiseView(
 
             // Generate visualisation
             generateGraphFromJSON(gameData.toD3().nodes, gameData.toD3().links, '#svg-main', settings, pValueThreshold); 
+            createLegend('graph-legend', 'svg-main', settings);
 
             // Configure view
             fadeIn_SVG();
@@ -57,6 +58,7 @@ function initialiseView(
 
             // Generate visualisation
             generateGraphFromJSON(gameData.toD3().nodes, gameData.toD3().links, '#svg-main', settings, pValueThreshold); 
+            createLegend('graph-legend', 'svg-main', settings, blackText = true, customLabels={'scale': 'Prevalence change (%)', 'pos': 'Reduces', 'neg': 'Increases', 'min': '<5%', 'max': '100%',});
 
             // Configure view
             setUI_objective(); // Show objective
@@ -71,6 +73,9 @@ function initialiseView(
 
             // Generate visualisation
             generateGraphFromJSON(gameData.toD3().nodes, gameData.toD3().links, '#svg-main', settings, pValueThreshold); 
+            createLegend('graph-legend', 'svg-main', settings);
+            console.log(d3.select('#graph-legend'), d3.select('#graph-legend').selectAll('text'))
+            d3.select('#graph-legend').selectAll('text').style.fill = 'black';
 
             // Configure view
             setUI_objective(); // Show objective
