@@ -31,7 +31,7 @@ function showScoreScreen(gameData, score, playerInterventionHistory){
         // Get objective change by player
         const playerEffect = standardise(gameData.objective).prevalenceChangePerUnit * gameData.objective.change_unlimited;
         
-        if(playerDidBest){document.getElementById('win-effects-player-intervention').innerHTML = '<h5><i class="fas fa-crown"></i> Best policy</h5>'}
+        //if(playerDidBest){document.getElementById('win-effects-player-intervention').innerHTML = '<h5><i class="fas fa-crown"></i> Best policy</h5>'}
 
         // Show player policy
         constructPolicyBubble(
@@ -39,7 +39,7 @@ function showScoreScreen(gameData, score, playerInterventionHistory){
             gameData.objective.id, 
             playerEffect, 
             'win-effects-player-intervention',
-            `${playerUsername}'s policy`);
+            `${playerUsername}'s policy ${playerDidBest ? '<i class="fas fa-crown"></i> Best policy': ''}`);
 
         if(eve){ // If any intervention can affect the objective
             if(eve.optimalInterventions.length > 0){ // If any intervention can affect the objective in a beneficial way (e.g., reducing BMI but not increasing it)
@@ -50,7 +50,7 @@ function showScoreScreen(gameData, score, playerInterventionHistory){
                     // If player did not achieve the best
                     if(!(playerDidBest)){
 
-                        document.getElementById('win-effects-best-intervention').innerHTML = '<h5><i class="fas fa-crown"></i> Best policy</h5>'
+                        //document.getElementById('win-effects-best-intervention').innerHTML = '<h5><i class="fas fa-crown"></i> Best policy</h5>'
                         
 
                         // Get best effect
@@ -65,7 +65,8 @@ function showScoreScreen(gameData, score, playerInterventionHistory){
                             gameData.objective.id, 
                             efficiency, 
                             'win-effects-best-intervention',
-                            `${generateUsername()}'s policy`
+                            `Computer AI's Policy <i class="fas fa-crown"></i> Best policy`
+                            //`${generateUsername()}'s policy` // Anonymised players
                         );
                     } 
                     // Else if player did achieve the best

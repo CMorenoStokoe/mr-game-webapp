@@ -157,9 +157,8 @@ function tutorial(gameState){
             body: `
                 <strong>Line widths represent the strength of relationships</strong>
                 <br><br>
-                <p></p>
-                <br>
-                <p class='text-muted'>Hint: There is a key in the bottom left of the screen if you get stuck</p>
+                <p><strong>Thicker</strong> lines cause larger effects</p>
+                <p><em>Thinner lines cause smaller effects</em></p>
             `, 
         },
         {
@@ -310,7 +309,11 @@ function tutorial(gameState){
             gameStateSpecific: 'game',
             title: ``, 
             body: `
-                You are now ready to start making interventions! Have a go now
+                You are now ready to start making interventions! 
+                <br><br>
+                You are competing against the computer to find the best interventions! <i class="fas fa-robot"></i>
+                <br><br>
+                Have a go at making an intervention now
             `, 
             btnText: `Let's go! <i class="fas fa-mouse-pointer"></i>`,
         }, 
@@ -350,7 +353,8 @@ function tutorial(gameState){
             title: `Policies`, 
             body: `
                 <p>Well done, now you have made an intervention it's time to enact it as a policy!</p>
-                <p>Enacting policies will show you how effective your intervention was on a leaderboard <i class="fas fa-crown"></i></p>
+                <p> Enacting policies will show you how well your interventions compared to the best policy 
+                found by the computer! <i class="fas fa-robot"></i></p>
                 <p class='text-muted'>Note: Later on in the game you might need to make more interventions 
                 before you can make a policy</p>
             `, 
@@ -390,8 +394,9 @@ function tutorial(gameState){
             gameStateSpecific: 'game',
             title: ``, 
             body: `
-                <p>This screen will show you how effective your policy achieved the goal and whether the computer found a better policy.</p>
-                <p>Hint: Find the best policies and beat the computer to level up faster! <i class="fas fa-crown"></i></p>
+                <p>This screen will show you how effective your policy was. 
+                Beat the computer by finding the best policies and level up faster! 
+                <i class="fas fa-crown"></i></p>
             `, 
             btnText: `Dismiss`,
         },
@@ -463,13 +468,14 @@ function tutorial(gameState){
             }
         document.getElementById('menu-help-content').appendChild(help)
         
-        // Set up trigger
+        // Trigger on startup
         if(dialog.trigger == 'startup'){
 
             // Show this on start up
             $(`#${dialog.id}`).show().animate({opacity: 1}, 500);
             if(dialog.reveal){  $(`#${dialog.reveal}`).show().animate({opacity: 1}, 500) };
 
+        // Trigger on previous dialogue dismiss
         } else if (dialog.trigger == 'onPrevious'){
             
             // Show dialog once previous has been dismissed
@@ -478,7 +484,7 @@ function tutorial(gameState){
                 $(`#${dialog.id}`).show().animate({opacity: 1}, 500);
                 if(dialog.reveal){  revealComponents(dialog.reveal); };
             });
-
+        // Trigger on player made intervention
         } else if (dialog.trigger === 'onIntervention'){
 
             // Listen for intervention event
@@ -488,12 +494,17 @@ function tutorial(gameState){
                 if(eventFired[dialog.id]==true){return};
                 eventFired[dialog.id]=true;
 
-                // Show this when a specific button is pressed
-                $(`#${dialog.id}`).show().animate({opacity: 1}, 500);
-                if(dialog.reveal){  revealComponents(dialog.reveal); };
+                // Delay by 5s
+                setTimeout(function(){
+
+                    // Show this when intervention is pressed
+                    $(`#${dialog.id}`).show().animate({opacity: 1}, 500);
+                    if(dialog.reveal){  revealComponents(dialog.reveal); };
+                }, 5000)
 
             });
 
+        // Trigger on a specific button press
         } else {
             
             $(`#${dialog.trigger}`).one('click', function(){
