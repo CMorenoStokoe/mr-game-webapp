@@ -174,8 +174,7 @@ const gamestates = { // Different gamestates within the game (player levelling s
         name: 'game',
         action:  function(){
 
-            // Configure view            
-            $('#legend_key').show();
+            // Configure view           
             setMiranaSettings('game'); 
 
             // Change skybox
