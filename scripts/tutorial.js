@@ -101,7 +101,7 @@ function tutorial(gameState){
             trigger: 'onPrevious',
             reveal: null,
             gameStateSpecific: null,
-            title: 'Reading the simulation', 
+            title: 'Identifying relationships', 
             body: `
                 Arrows represent 
                 ${tip('causal relationships', 'A change in one trait causes a change in another')} 
@@ -141,6 +141,26 @@ function tutorial(gameState){
             </div>
             `, 
             btnText: `Click to intervene. Got it.`,
+        },
+        {
+            id: 'tutorial-intv-lineWidth',
+            position: {
+                type: 'auto',
+                element: null,
+                x: null,
+                y: null,
+            },
+            trigger: 'onPrevious',
+            reveal: null,
+            gameStateSpecific: null,
+            title: 'Identifying relationship strengths', 
+            body: `
+                <strong>Line widths represent the strength of relationships</strong>
+                <br><br>
+                <p></p>
+                <br>
+                <p class='text-muted'>Hint: There is a key in the bottom left of the screen if you get stuck</p>
+            `, 
         },
         {
             id: 'tutorial-intv-source',
@@ -370,8 +390,8 @@ function tutorial(gameState){
             gameStateSpecific: 'game',
             title: ``, 
             body: `
-                <p>This screen will show you how effective your policy achieved the goal and whether anyone found a better policy. Players anonymised.</p>
-                <p>Hint: Beat other players by finding the best policies to level up faster! <i class="fas fa-crown"></i></p>
+                <p>This screen will show you how effective your policy achieved the goal and whether the computer found a better policy.</p>
+                <p>Hint: Find the best policies and beat the computer to level up faster! <i class="fas fa-crown"></i></p>
             `, 
             btnText: `Dismiss`,
         },
