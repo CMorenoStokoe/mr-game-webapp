@@ -30,12 +30,18 @@
 </head>
 <body style='overflow: hidden !important;'>    
 
+    <div class='d-flex flex-row justify-content-center align-items-center' style='display: absolute; left:0; top:0; height: 100vh; width: 100vw;'>
+
+        <!-- Graph area -->
+        <svg width="1000" height="1000" id="svg-main" style='display: flex;'></svg>
+
+        <img src='images/tutorial/legend.JPG' style='position: absolute; bottom: 0; left:0; max-height: 300px; width: auto; height: auto;'></img>
+    </div>
+    
+
     <div id='container-4-bg' style='height: 100vh; width: 100vw;'>
         <div id='preload-images'></div>
         
-        <!-- Graph area -->
-        <svg width="1000" height="700" id="svg-main" style='display: none; position: absolute; top:0; left:0;'></svg>
-
         <!-- Loading screen -->
         <div id='loading-screen'>
             <div class='w-100 h-100 d-flex flex-column justify-content-center align-items-center text-center fnt-safe'>
@@ -445,12 +451,27 @@
                         </div>
                       </div>
                     </div>
+                    <div class="card">
+                      <div class="card-header" id="headingFour">
+                        <h5 class="mb-0">
+                          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            I can't see everything!
+                          </button>
+                        </h5>
+                      </div>
+                      <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                        <div class="card-body">
+                            <p>Please ensure your browser is set to 100% zoom</p>
+                            <p>
+                                If you can't see all the effects clearly 
+                                <strong class='col-dark'><i class="fas fa-hand-rock"></i></i> Drag </strong> 
+                                a trait to reposition it 
+                            </p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 <br>
-                <p class='p-2'>
-                    <strong>I am stuck!</strong><br>
-                    Access tutorials again if you forget the controls or want a refresher
-                </p>
             </div>
             <div class="modal-footer">
                 <p>

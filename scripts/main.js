@@ -192,6 +192,7 @@ const gamestates = { // Different gamestates within the game (player levelling s
                 // Show tutorial
                 tutorial('game');
                 addButtonPressSound();
+                $('#legend').show();
 
                 // Ensure player has username
                 if(playerUsername == null || playerUsername == undefined){playerUsername = 'Player'};

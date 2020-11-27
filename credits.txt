@@ -1,37 +1,33 @@
-Game web app
-------------
-Dynamic Genetics Lab, University of Bristol
-
-Art
------
-all other assets:
-- Chris Moreno-Stokoe
-
-images
-- space background : unsplash
+Images
+======
+Unsplash:
 NASA
 Aldebaran S 
 Bryan Goff
 Nathan Anderson
 
+All other assets copyright @ Chris Moreno-Stokoe
+
 Audio
------
+=====
+
 Music
+-----
 - Aviators, Infinity Awaits Us
 
 Sounds
+------
 - freesfx sounds 
 Series 1000 General: spaceship_1024_41_1, 2 & 3; 1024_45_1
 freesfx.co.uk
 
 - Freesound.org
-"Abstract Spaceship, Flyby, Descending, A.wav" by InspectorJ (www.jshaw.co.uk) of Freesound.org
-
 492072__nicknamelarry__space-flight-sound-effect
 199694__omar-alvarado__somespacetruck
 345795__anoesj__hollow-space-drone.wav
 434161__mickthemicguy__space-door-slide-close
 442181__suburbanwizard__ambient-space-4
+"Abstract Spaceship, Flyby, Descending, A.wav" by InspectorJ (www.jshaw.co.uk) of Freesound.org
 
 - Itch.io
 GameSupplyGuy
