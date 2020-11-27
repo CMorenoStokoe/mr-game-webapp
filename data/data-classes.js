@@ -137,8 +137,8 @@ class DataClass {
                 this.nodes[key].prevalenceUnlimited = newNodePrevalence;
 
                 // Clip prevalence to within min/max limits
-                newNodePrevalence = Math.min(this.nodes[key].max, newNodePrevalence);
-                newNodePrevalence = Math.max(this.nodes[key].min, newNodePrevalence);
+                //newNodePrevalence = Math.min(this.nodes[key].max, newNodePrevalence);
+                //newNodePrevalence = Math.max(this.nodes[key].min, newNodePrevalence);
 
             // Update prevalence related values for node (e.g., change and progress bar width)
             this.setPrevalenceValues(key, newNodePrevalence);
@@ -150,14 +150,18 @@ class DataClass {
 
         // Set extra data variables for showing prevalence changes
 
-            // Absolute current prevalence
+            // Current prevalence
             this.nodes[nodeId].prevalence = prevalence;
         
             // Prevalence change in native units
             this.nodes[nodeId].change_raw = prevalence - this.nodes[nodeId].average;
 
             // Prevalence change unlimited by range
-            this.nodes[nodeId].change_unlimited = this.nodes[nodeId].prevalenceUnlimited - this.nodes[nodeId].average;
+            this.nodes[nodeId].change_unlimited = standardise(this.nodes[nodeId]).prevalenceChange;
+            
+            // Clip to min/max values
+            prevalence = Math.min(this.nodes[nodeId].max, prevalence);
+            prevalence = Math.max(this.nodes[nodeId].min, prevalence);
 
             // Prevalence change converted to 0-100% scale
             this.nodes[nodeId].change = standardise(this.nodes[nodeId]).prevalenceChange;

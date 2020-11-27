@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Mendel Game</title>
+    <title>Visualisation</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -28,14 +28,14 @@
     <link rel="stylesheet" href="css/game.css">
 
 </head>
-<body style='overflow: hidden !important;'>
+<body style='overflow: hidden !important;'>    
 
     <div id='container-4-bg' style='height: 100vh; width: 100vw;'>
         <div id='preload-images'></div>
-
+        
         <!-- Graph area -->
         <svg width="1000" height="700" id="svg-main" style='display: none; position: absolute; top:0; left:0;'></svg>
-        
+
         <!-- Loading screen -->
         <div id='loading-screen'>
             <div class='w-100 h-100 d-flex flex-column justify-content-center align-items-center text-center fnt-safe'>
@@ -49,7 +49,7 @@
                 </div>
                 
                 <!-- Start game button -->
-                <button type='button' class='btn btn-lrg btn-custom-outline p-3 fnt-safe' id='screen-button' style='border-radius: 5px !important;'> 
+                <button type='button' class='btn btn-lrg btn-custom-outline p-3 fnt-safe' id='screen-button'>
                     <h1 style='margin: 0;'> Start <i class="fas fa-play" id='screen-arrow'></i> </h1>
                 </button>
 
@@ -65,9 +65,8 @@
         </div>
         <div id='splash-login'>
             <div class='card m-2 p-2 bg-light' id='splash-login-box'>     
-                <input class='m-2 bg-light' type="text" id="splash-form" name="fname" placeholder=" Enter a username">
-                <p class='text-muted m-2' style='font-size: 1rem;'>This will be used for display purposes only and is not stored</p>
-                <button class='btn btn-lg m-2 btn-custom' id='splash-button'>Play </button>
+                <input class='m-2 bg-light' type="text" id="splash-form" name="fname" placeholder=" Enter username">
+                <button class='btn btn-lg m-2 btn-custom' id='splash-button'>Login</button>
             </div>
         </div>
         <div id='splash-planet'></div> <!-- Planet -->
@@ -80,20 +79,16 @@
         <div id='GUI-planetInfo' class='d-flex flex-column justify-content-center'>
 
             <!-- Current planet-->
-            <div id='GUI-currentPlanet-div'>
-                <h1 id='GUI-currentPlanet' class='display-4'>
-                    Level 1
-                </h1>
-            </div>
+            <h1 id='GUI-currentPlanet' class='display-4'>
+                Level 1
+            </h1>
 
             <!-- Current system -->
-            <div id='progress-goal-div-div'>
-                <div class="progress center-block position-relative" id='progress-goal-div' style='cursor: pointer;'>
-                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%; color: rgba(0,0,0,0); text-shadow: none;" id='progress-goal'></div>
-                    <h5 class="justify-content-center d-flex position-absolute w-100 mt-1" id='GUI-currentSystem' style='font-weight: 600;'>
-                        Aeries system
-                    </h5>
-                </div>
+            <div class="progress center-block position-relative" id='progress-goal-div' style='cursor: pointer;'>
+                <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%; color: rgba(0,0,0,0); text-shadow: none;" id='progress-goal'></div>
+                <h5 class="justify-content-center d-flex position-absolute w-100 mt-1" id='GUI-currentSystem' style='font-weight: 600;'>
+                    Aeries system
+                </h5>
             </div>
 
             <!-- Current goal -->
@@ -103,10 +98,11 @@
                     <img id='goal-icon' src='images/epicons/sleep.png' class='m-2' style='height: 30px; width: auto;'>
                     <i class='' id='goal-indicator'></i>
                     <span id='goal'>Increase sleep</span>
+                    <i class="fas fa-check-circle" id='goal-success'></i>
                 </p>
             </div> 
             
-            <!-- Intervention effects 
+            <!-- Intervention effects -->
             <div id='GUI-policyEffects' class='p-2'>
 
                 <h5 class='p-1 text-center' id='GUI-policyEffects-title'>
@@ -130,15 +126,16 @@
                         </p>
                     </div>   
 
-                </div> -->
+                </div>
 
-                <!-- Button to continue 
+                <!-- Button to continue -->
                 <button id='policyEffects-button' class='btn btn-lrg btn-custom-outline mt-3'>Next level <i class="fas fa-chevron-right"></i> <i class="fas fa-globe-africa"></i></button>
-                -->
+
             </div>
+
         </div>  
 
-        <!-- Intervention dialogue
+        <!-- Intervention dialogue -->
         <div class="modal" tabindex="-1" role="dialog" id='intervention-modal'>
             <div class="modal-dialog modal-sm" role="document">
               <div class="modal-content">
@@ -181,9 +178,9 @@
                 </div>
               </div>
             </div>
-            <div class='d-flex flex-row justify-content-center align-items-center'> 
-            -->
-                <!-- Tutorial 
+            <div class='d-flex flex-row justify-content-center align-items-center'>
+
+                <!-- Tutorial -->
                 <div id='tutorial-5' class='card tutorial' style='min-width: 500px;'>
                     <div class='row'>
                         <div class='col-md-3 d-flex justify-content-center align-items-center'>
@@ -204,21 +201,20 @@
                 </div>
 
             </div>
-        </div> -->
+        </div>
 
         <!-- Win screen -->
-        <div id='win-screen' class='w-100 h-100' style='position: absolute; top:0px; left: 0px;'>
+        <div id='win-screen' class='w-100 h-100' style='position: absolute; top:0px; left:0px;'>
             <div class='d-flex flex-column h-100 align-items-center justify-content-center'>
-                <div class='card p-3 fnt-light' id='win-screen-div' style='overflow: auto; max-height: 100vh; max-width: 100vw;'>
-                    <!-- Header -->
-                    <h3 class='text-center m-2 fnt-bold col-primary'>Leaderboard <i class="fas fa-crown"></i><br></h3>
+                <div class='card p-3 fnt-light' id='win-screen-div'>
                     
-                    <div id='win-screen-notice'></div>
+                    <!-- Header -->
+                    <h1 class='display-4 text-center m-2 fnt-bold'><i class="fas fa-calendar-check"></i> Policy enacted!</h1>
+              
                     <!-- Interventions in policy -->
-                    <h4 class='mt-4 text-center' id='win-objective'></h4>
-                    <hr>
-                    <div id='win-effects-best-intervention' class='p-2 d-flex flex-column justify-content-center'></div> 
-                    <div id='win-effects-player-intervention' class='p-2 d-flex flex-column justify-content-center'></div>
+                    <h4 class='mt-4'>Leaderboard: <span id='win-objective'></span></h4>
+                    <div id='win-effects-player-intervention' class='p-2 d-flex flex-row justify-content-center'></div>
+                    <div id='win-effects-best-intervention' class='p-2 d-flex flex-row justify-content-center'></div>                    
                     
                     <!-- Continue button -->
                     <button id='win-screen-btn' class='m-2 btn w-100 btn-lrg btn-custom'>Continue</button>
@@ -230,57 +226,55 @@
 
         <!-- Level up modal -->
         <div class="modal" tabindex="-1" role="dialog" id='modal-lvlup'>
-            <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header" style='border: none;'>
                   <div class="modal-title">
                       <h1><i class="fas fa-fire"></i> Unlockable abilities</h1>                  
+                      <p class='text-muted'>Every time you level up you can unlock an ability to power up your interventions.</p>
                   </div>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                <div class="modal-body" id='levelup-content'>
-                        <div id='levelup-notice'></div>
+                <div class="modal-body">
 
                         <form id='unlocks'>
                             <div class='d-flex flex-column justify-content-around'>
                             
                             <div>
                                 <h4>Number of interventions</h4>
-                                <p class='text-muted'>
-                                    Increase the number of interventions that you make per policy.
-                                </p>
+                                <p class='text-muted'>Increase the number of interventions that you can make at the same time.</p>
                             </div>
 
                             <div class='d-flex flex-row align-items-center justify-content-center'>
 
 
-                                <label class='unlock' id='ul-max-1'>
-                                    <input type="radio" name="max" id='ul-max-1-rd' value=1 checked>
-                                    <i class="fas fa-plus" id='ul-max-1-i'></i>
+                                <label class='unlock'>
+                                    <input type="radio" name="max" value=1 checked>
+                                    <i class="fas fa-plus"></i>
                                     <br>
                                     1
                                 </label>
                                 
-                                <label class='unlock' id='ul-max-2'>
-                                    <input type="radio" name="max" id='ul-max-2-rd' value=2 disabled>
-                                    <i class="fas fa-plus" id='ul-max-2-i'></i>
+                                <label class='unlock'>
+                                    <input type="radio" name="max" value=2>
+                                    <i class="fas fa-plus"></i>
                                     <br>
                                     2
                                 </label>
                                 
-                                <label class='unlock' id='ul-max-3'>
-                                    <input type="radio" name="max" id='ul-max-3-rd' value=3 disabled>
-                                    <i class="fas fa-plus" id='ul-max-3-i'></i>
+                                <label class='unlock'>
+                                    <input type="radio" name="max" value=3>
+                                    <i class="fas fa-plus"></i>
                                     <br>
                                     3
                                 </label>
 
                                 
-                                <label class='unlock' id='ul-max-4'>
-                                    <input type="radio" name="max" id='ul-max-4-rd' value=4 disabled>
-                                    <i class="fas fa-plus" id='ul-max-4-i'></i>
+                                <label class='unlock'>
+                                    <input type="radio" name="max" value=4>
+                                    <i class="fas fa-plus"></i>
                                     <br>
                                     4
                                 </label>
@@ -289,39 +283,37 @@
 
                             <div>
                                 <h4>Strength of interventions</h4>
-                                <p class='text-muted'>
-                                    Increase the amount that your interventions change a trait.
-                                </p>
+                                <p class='text-muted'>Increase the amount that your interventions change a trait.</p>
                             </div>
 
                             <div class='d-flex flex-row align-items-center justify-content-center'>
 
-                                <label class='unlock' id='ul-mult-2'>
-                                    <input type="radio" name="strength" id='ul-mult-2-rd' value=1 checked>
-                                    <i class="fas fa-times"id='ul-mult-2-i'></i>
+                                <label class='unlock'>
+                                    <input type="radio" name="strength" value=1 checked>
+                                    <i class="fas fa-times"></i>
                                     <br>
-                                    33% (1x)
+                                    30%
                                 </label>
                                 
-                                <label class='unlock' id='ul-mult-3'>
-                                    <input type="radio" name="strength" id='ul-mult-3-rd' value=1.5 disabled>
-                                    <i class="fas fa-times"id='ul-mult-3-i'></i>
+                                <label class='unlock'>
+                                    <input type="radio" name="strength" value=1.5>
+                                    <i class="fas fa-times"></i>
                                     <br>
-                                    50% (1.5x)
+                                    50%
                                 </label>
                                 
-                                <label class='unlock' id='ul-mult-4'>
-                                    <input type="radio" name="strength" id='ul-mult-4-rd' value=2 disabled>
-                                    <i class="fas fa-times"id='ul-mult-4-i'></i>
+                                <label class='unlock'>
+                                    <input type="radio" name="strength" value=2>
+                                    <i class="fas fa-times"></i>
                                     <br>
-                                    66% (2x)
+                                    70%
                                 </label>
 
-                                <label class='unlock' id='ul-mult-5'>
-                                    <input type="radio" name="strength" id='ul-mult-5-rd' value=2.5 disabled>
-                                    <i class="fas fa-times"id='ul-mult-5-i'></i>
+                                <label class='unlock'>
+                                    <input type="radio" name="strength" value=2.5>
+                                    <i class="fas fa-times"></i>
                                     <br>
-                                    82.5% (2.5x)
+                                    100%
                                 </label>
 
                             </div>
@@ -339,7 +331,135 @@
             </div>
         </div>
 
+        <!-- Tutorial -->
+        <div class="modal" tabindex="-1" role="dialog" id='tutorial-0-modal'>
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header" style='border: none;'>
+                  <h5 class="modal-title">Tutorial</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    
+                    <strong>Your goal is to make successful public health interventions</strong>
+
+                    <br><br>
+                    <strong><i class="fas fa-mouse-pointer"></i> Interventions</strong><br>
+                    Click on a node to intervene on it. 
+                    Interventions immediately affect the target trait; they increase good traits, such as wellbeing, and decrease bad traits, such as heart disease (CHD). 
+                    A key to the effects can be found in the bottom left of the screen.
+
+                    <br><br>
+                    <strong><i class="fas fa-fire"></i> Goals</strong><br>
+                    Use the reset button in the top left to reload the visualisation and see the effects of different interventions. 
+                    You are free to use this visualisation however you like, but you might want to try: 
+                    <ul>
+                        <li>Hover over a trait to see its name and prevalence</li>
+                        <li>Intervene on education and see that it has far-reaching effects</li>
+                        <li>Intervene on BMI and seeing that when it is reduced heart disease (CHD) also reduces</li>
+                        <li>Make multiple interventions at the same time and see their interacting effects</li>
+                    </ul>
+                </div>
+                <div class="modal-footer" style='border: none;'>
+                  <button type="button" class="w-100 btn btn-lrg btn-custom" data-dismiss="modal">Continue</button>
+                </div>
+              </div>
+            </div>
+        </div>
+       
+
     </div><!-- / container-->
+    
+    <!-- Help modal button -->
+    <button type="button" class="btn btn-custom" data-toggle="modal" data-target="#menu-help" style='position: absolute; top:0; right:0; z-index: 99;'>
+        Help
+    </button>
+    <!-- Help menu modal -->
+    <div class="modal" tabindex="-1" role="dialog" id='menu-help'>
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Help<i class="fas fa-help"></i></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" id='menu-help-content'>
+                <div id="accordion">
+                    <strong class='p-2'>Troubleshooting</strong>
+                    <div class="card">
+                      <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            What are these traits?
+                          </button>
+                        </h5>
+                      </div>
+                  
+                      <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            Some traits may be unfamiliar to you, you aren't expected to know about every one 
+                            but here are some definitions:
+                            <ul>
+                                <li>Eveningness: Whether you are a 'morning' or 'evening' person</li> 
+                                <li>CHD: Short for Chronic Heart Disease</li>
+                                <li>Neuroticism: Personality trait associated with seeing the world as distressing and more often feeling strong emotions such as worry and anger</li>
+                                <li>BMI: Your weight (relative to your height)</li>
+                                <li>Wellbeing: How happy you report yourself as feeling</li>
+                                <li>Depression: Mental health disorder associated with unhappiness, loss of motivation, and negative cognitive biases</li>
+                            </ul>                        
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card">
+                      <div class="card-header" id="headingTwo">
+                        <h5 class="mb-0">
+                          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            It's hard to see all the arrows!
+                          </button>
+                        </h5>
+                      </div>
+                      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                        <div class="card-body">
+                            Some effects are really tiny, so we represent this accurately 
+                            (if they're tiny then they won't matter much)! 
+                            You can try increasing the zoom on your browser and refreshing the page, 
+                            or dragging the traits to reposition them on the page
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card">
+                      <div class="card-header" id="headingThree">
+                        <h5 class="mb-0">
+                          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            It isn't working!
+                          </button>
+                        </h5>
+                      </div>
+                      <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                        <div class="card-body">
+                            Please ensure you are not using Internet Explorer. 
+                            We will be happy to help so please get in touch at chris.moreno-stokoe@bristol.ac.uk!
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <br>
+                <p class='p-2'>
+                    <strong>I am stuck!</strong><br>
+                    Access tutorials again if you forget the controls or want a refresher
+                </p>
+            </div>
+            <div class="modal-footer">
+                <p>
+                    If you are still having issues please get in touch at chris.moreno-stokoe@bristol.ac.uk!
+                </p>
+            </div>
+          </div>
+        </div>
+    </div>
 
     <!-- Developer mode modal -->
     <div class="modal" tabindex="-1" role="dialog" id='dev-modal'>
@@ -412,117 +532,7 @@
     <button id='iv_reset' class='btn btn-lrg btn-custom' onclick="reset();" style='position: absolute; left:0; top:0; z-index: 10; display: none;' >Reset <i class="fas fa-undo-alt"></i></button>
 
     <!-- Modals -->
-    <div id='modals'></div>   
-    
-    <!-- Help menu modal -->
-    <div class="modal" tabindex="-1" role="dialog" id='menu-help'>
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Help<i class="fas fa-help"></i></h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body" id='menu-help-content'>
-                <div class="modal-body" id='menu-help-content'>
-                    <div id="accordion">
-                        <strong class='p-2'>Troubleshooting</strong>
-                        <div class="card">
-                          <div class="card-header" id="headingOne">
-                            <h5 class="mb-0">
-                              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                What are these traits?
-                              </button>
-                            </h5>
-                          </div>
-                      
-                          <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                            <div class="card-body">
-                                Some traits may be unfamiliar to you, you aren't expected to know about every one 
-                                but here are some definitions:
-                                <ul>
-                                    <li>Eveningness: Whether you are a 'morning' or 'evening' person</li> 
-                                    <li>CHD: Short for Chronic Heart Disease</li>
-                                    <li>Neuroticism: Personality trait associated with seeing the world as distressing and more often feeling strong emotions such as worry and anger</li>
-                                    <li>BMI: Your weight (relative to your height)</li>
-                                    <li>Wellbeing: How happy you report yourself as feeling</li>
-                                    <li>Depression: Mental health disorder associated with unhappiness, loss of motivation, and negative cognitive biases</li>
-                                </ul>                        
-                            </div>
-                          </div>
-                        </div>
-                        <div class="card">
-                          <div class="card-header" id="headingTwo">
-                            <h5 class="mb-0">
-                              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                It's hard to see all the arrows!
-                              </button>
-                            </h5>
-                          </div>
-                          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                            <div class="card-body">
-                                Some effects are really tiny, so we represent this accurately 
-                                (if they're tiny then they won't matter much)! 
-                                You can try increasing the zoom on your browser and refreshing the page, 
-                                or dragging the traits to reposition them on the page
-                            </div>
-                          </div>
-                        </div>
-                        <div class="card">
-                          <div class="card-header" id="headingThree">
-                            <h5 class="mb-0">
-                              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                It isn't working!
-                              </button>
-                            </h5>
-                          </div>
-                          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                            <div class="card-body">
-                                Please ensure you are not using Internet Explorer. 
-                                We will be happy to help so please get in touch at chris.moreno-stokoe@bristol.ac.uk!
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    <br>
-                <p class='p-2'>
-                    <strong>I am stuck!</strong><br>
-                    Access tutorials again if you forget the controls or want a refresher (these will appear where you first saw them)
-                </p>
-            </div>
-            </div>
-            <div class="modal-footer">
-                <p>If you are still having issues please get in touch at chris.moreno-stokoe@bristol.ac.uk!</p>
-            </div>
-          </div>
-        </div>
-    </div>
-
-    <!-- Endgame -->
-    <div class="modal" tabindex="-1" role="dialog" id='endgame-modal' style='background: black !important;'>
-        <div class="modal-dialog modal-lg" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">You win! <i class="fas fa-crown"></i></h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-                <p>
-                    You beat the final level! <i class="fas fa-fire"></i>
-                    <br><br>
-                    Thank you for taking the time to play this far. <br>
-                    If you are participating in a study please return to the questionnaire now <i class="fas fa-align-right"></i>
-                </p>
-            </div>
-            <div class="modal-footer">
-                <p>Thank you for playing!</p>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div id='modals'></div>    
 
     <!--[if lt IE 7]>
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
@@ -599,7 +609,7 @@
     <script src="scripts/menu.js"></script> 
 
     <!-- Main scripts: MVC -->
-    <script src="scripts/startup-game.js"></script> 
+    <script src="scripts/startup-vis.js"></script> 
     <script src="scripts/model.js"></script> 
     <script src="scripts/view.js"></script> 
     <script src="scripts/controller.js"></script> 

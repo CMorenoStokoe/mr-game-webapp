@@ -137,6 +137,7 @@ function calcInterventionEfficiency(interventionEffects, numberOfInterventions=1
 
     // Return most effective possible intervention (if any)
 
+        console.log('Optimal interventions', optimalInterventions)
         // If optimal interventions possible
         if(optimalInterventions.length > 0){
             var bestEffect = 0;
@@ -160,7 +161,8 @@ function calcInterventionEfficiency(interventionEffects, numberOfInterventions=1
                         // Check if effect is good
                         const objectiveIsGood = gameData.objective.isGood;
                         const effectIsPositive = thisEffect > 0;
-                        const effectIsGood = objectiveIsGood==effectIsPositive ? true : false;
+                        const effectIsGood = objectiveIsGood==effectIsPositive;
+                        console.log('assessing if good', gameData.objective.isGood, thisEffect)
 
                         // Add effect to optimal effect(s)
                         if(effectIsGood){

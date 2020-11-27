@@ -20,7 +20,6 @@ function setMiranaSettings(profile){
             settingsProfile_Default();
             settingsProfile_BetaWeights();
             settingsProfile_PermanentLabels();
-            settings.nodes.fill='white';
             break;
 
         case 'interactiveVisualisation':

@@ -73,15 +73,15 @@ function constructTraitEffectBubble(nodeId, b, bubbleId, parentId, tense='past')
     // Determine effect direction
     var effectDirection = 'No effect on';
     var effectDirectionIcon = 'fas fa-equals m-1';
-        if(b<0){
+        if(Number(b)<0){
             effectDirection = 'Lowered';
             effectDirectionIcon = 'fas fa-angle-down col-neg m-1';
-        }else if(b>0){
+        }else if(Number(b)>0){
             effectDirection = 'Raised'; 
             effectDirectionIcon = `fas fa-angle-up col-pos m-1`; 
         }
         if(tense=='future'){
-            if(b<0){effectDirection = 'Lower'}
+            if(Number(b)<0){effectDirection = 'Lower'}
             else {effectDirection = 'Raise'};
         }
         

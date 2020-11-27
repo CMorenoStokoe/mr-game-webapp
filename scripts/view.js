@@ -312,15 +312,17 @@ function setEdgeOpacity(value){
 }
 
 // Highlight node
-function focusOnNode(id, transparency = 0.3, interval = 2500){
+function focusOnNode(id, transparency = 0.3, interval = 2500, fadeOut=true){
 
     const sourceNodeG = d3.select(`#${id}`);
     sourceNodeG.select("circle").style('opacity', 1);
     sourceNodeG.select("image").style('opacity', 1);
-    setTimeout(function(){ 
-        sourceNodeG.select("circle").style('opacity', transparency);
-        sourceNodeG.select("image").style('opacity', transparency);
-    }, interval);
+    if(fadeOut){
+        setTimeout(function(){ 
+            sourceNodeG.select("circle").style('opacity', transparency);
+            sourceNodeG.select("image").style('opacity', transparency);
+        }, interval);
+    }
 }
 
 /* Highlight nodes in path

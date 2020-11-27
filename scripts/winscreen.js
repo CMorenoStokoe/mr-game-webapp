@@ -10,7 +10,7 @@ This file contains code to show the win score screen
 
 
 // Show win score screen
-function showScoreScreen(gameData, score, playerInterventionHistory){
+function showScoreScreen(gameData, score, playerInterventionHistory){ console.log(score)
 
     // Reset content
     document.getElementById('win-effects-player-intervention').innerHTML = '';
@@ -29,11 +29,11 @@ function showScoreScreen(gameData, score, playerInterventionHistory){
             console.log('playerDidBest = ', playerDidBest, score.scores.efficiency, '>99.9..')
 
         // Get objective change by player
-        const playerEffect = standardise(gameData.objective).prevalenceChangePerUnit * gameData.objective.change_unlimited;
+        const playerEffect = gameData.objective.change_unlimited;
         
         if(playerDidBest){
             document.getElementById('win-effects-player-intervention').innerHTML = 
-            `<i class="fas fa-crown"></i> You found the best policy to 
+            `<i class="fas fa-crown col-primary"></i> You found the best policy to 
             ${gameData.objective.isGood ? 'raise' : 'lower'} ${gameData.objective.label}!`;
         }
 
@@ -43,7 +43,7 @@ function showScoreScreen(gameData, score, playerInterventionHistory){
             gameData.objective.id, 
             playerEffect, 
             'win-effects-player-intervention',
-            `${playerUsername}'s policy ${playerDidBest ? '<i class="fas fa-crown col-primary"></i> Best policy': ''}`);
+            `${playerUsername}'s policy ${playerDidBest ? '<i class="fas fa-crown col-primary"></i>': ''}`);
 
         if(eve){ // If any intervention can affect the objective
             if(eve.optimalInterventions.length > 0){ // If any intervention can affect the objective in a beneficial way (e.g., reducing BMI but not increasing it)
@@ -55,8 +55,8 @@ function showScoreScreen(gameData, score, playerInterventionHistory){
                     if(!(playerDidBest)){
 
                         document.getElementById('win-effects-best-intervention').innerHTML = 
-                        `<i class="fas fa-robot"></i> The computer found a better policy to 
-                        ${gameData.objective.isGood ? 'raise' : 'lower'} ${gameData.objective.label}! `
+                        `<i class="fas fa-robot" style="color: orangered"></i> The computer found a better policy to 
+                        ${gameData.objective.isGood ? 'raise' : 'lower'} ${gameData.objective.label}!`
                         
 
                         // Get best effect
@@ -71,7 +71,7 @@ function showScoreScreen(gameData, score, playerInterventionHistory){
                             gameData.objective.id, 
                             efficiency, 
                             'win-effects-best-intervention',
-                            `Computer AI's Policy <i class="fas fa-crown" style='col-primary'></i>`
+                            `Computer AI's Policy <i class="fas fa-crown" style='color: orangered'></i>`
                             //`${generateUsername()}'s policy` // Anonymised players
                         );
                     } 
@@ -113,8 +113,8 @@ function showScoreScreen(gameData, score, playerInterventionHistory){
 
         // Show message about no possible intervention
         function noPossibleInterventionMsg(){
-            return `There wasn't a way for you to ${gameData.objective.isGood ? 'raise' : 'lower'} ${gameData.objective.label} 
-            with the choice of interventions you had, so you were given a score of 100%.`;
+            return `<p class='text-muted'>There wasn't a way for you to ${gameData.objective.isGood ? 'raise' : 'lower'} ${gameData.objective.label} 
+            with the choice of interventions you had, so you were given a score of 100%.</p>`;
         }
         
         // Generate username

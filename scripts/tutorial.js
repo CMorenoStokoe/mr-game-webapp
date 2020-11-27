@@ -109,7 +109,7 @@ function tutorial(gameState){
                     ${tip('causal relationships', 'A change in one trait causes a change in another')} 
                     between traits
                     </p>
-                    <img src='images/tutorial/key.PNG' class='m-2 d-flex align-self-center' style='height: 200px; width: auto;  border-radius: 5px;'>
+                    <img src='images/tutorial/key.png' class='m-2 d-flex align-self-center' style='height: 200px; width: auto;  border-radius: 5px;'>
                     <p class='col-pos'><i class="fas fa-arrow-right"></i> <strong class='col-pos'>Red</strong> arrows represent <strong class='col-pos'>increases</strong></p>
                     <p class='col-neg'><i class="fas fa-arrow-right"></i> <strong class='col-neg'>Blue</strong>  arrows represent <strong class='col-neg'>decreases</strong></p>
                     <p class='text-muted'>The key in the bottom left of the screen shows this in case you forget</p>
@@ -185,7 +185,7 @@ function tutorial(gameState){
             body: `
                 <div class='d-flex flex-column justify-content-center'>    
                     <strong>Line widths represent the strength of relationships</strong>
-                    <img src='images/tutorial/scale.PNG' class='m-2 d-flex align-self-center' style='height: 200px; width: auto;  border-radius: 5px;'>
+                    <img src='images/tutorial/scale.png' class='m-2 d-flex align-self-center' style='height: 200px; width: auto;  border-radius: 5px;'>
                     <br>
                     <p class='text-muted'>The scale in the bottom left of the screen shows 
                     by how much a relationship affects a trait's 

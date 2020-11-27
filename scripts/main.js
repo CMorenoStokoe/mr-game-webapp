@@ -250,7 +250,6 @@ const gamestates = { // Different gamestates within the game (player levelling s
             showInteractiveVisUI(); // Show interactive vis UI
             interactiveVisualisationControls(); // Controls for interactive vis
             hideAllLabels(gameData.nodes);
-
             
         },
         leagueName: 'interactive visualisation',
@@ -286,15 +285,15 @@ const gamestates = { // Different gamestates within the game (player levelling s
 
             // Configure view
             setMiranaSettings('visualisation'); 
-
+            
             // Initialise model, view, and controller
             initialise(
                 profile='visualisation',
-                pval=1, 
+                pval=1,
                 maxInterventions=0, 
                 data=jsonData,
                 objective = 'none');
-            hideGameUI(); // Remove game UI
+            hideGameUI(); // Hide game UI
 
         },
         leagueName: 'visualisation',
@@ -531,7 +530,7 @@ function playerReachedInterventionMax(intervention){
         // Get total intervention effects of all interventions
         const totalInterventionEffects = {};
         for(const [key, value] of Object.entries(gameData.nodes)){
-            totalInterventionEffects[key] = value.change_unlimited;
+            totalInterventionEffects[key] = value.change_raw;
         }
 
         // Show intervention effects

@@ -164,17 +164,21 @@ function animation1(paths, dataCallback, interval=2500){
 
         // Animate labels to pop up
         showLabel(path.source);
-        setTimeout(function(){ // Hide labels again after
-            if(!(skipAnimations)){
-                hideLabel(path.source);
+
+        // Hide label if not used in the next animation
+        if(edges.length>0){
+            if(!(edges[0].source == path.source || edges[0].target == path.source)){
+                setTimeout(function(){ // Hide labels again after
+                    hideLabel(path.source); 
+                },interval-50)
             }
-        },interval-50)
+        }
 
     /* Show intervention's effects on each nodes' prevalence */
             
         // Update source node
         const sourceNode = gameData.nodes[path.source];
-        focusOnNode(sourceNode.id, transparency, interval);
+        focusOnNode(sourceNode.id, transparency, interval*2, false);
         formatNode(sourceNode); // Set node size
         
         if(!(sourceNode.id==previousNode)){
@@ -187,7 +191,7 @@ function animation1(paths, dataCallback, interval=2500){
         
         // Compensate time interval
         const fullTimeInterval = interval;
-            const delay = 750;
+            const delay = interval*0.3;
             const delayedInterval = fullTimeInterval-delay;
 
         // Update target node
@@ -200,9 +204,19 @@ function animation1(paths, dataCallback, interval=2500){
             
             // Show label
             showLabel(path.target); 
-            setTimeout(function(){ // Hide labels again after
-                hideLabel(path.target); 
-            },delayedInterval-100)
+            
+            // Hide label if not used in the next animation
+            if(edges.length>0){
+                if(!(edges[0].source == path.target || edges[0].target == path.target)){
+                    setTimeout(function(){ // Hide labels again after
+                        hideLabel(path.target); 
+                    },delayedInterval-100)
+                }
+            }else{
+                setTimeout(function(){ // Hide labels again after
+                    hideLabel(path.target); 
+                },delayedInterval-100)
+            }
 
             // Highlight node
             const targetNode = gameData.nodes[path.target];
@@ -227,7 +241,7 @@ function animation1(paths, dataCallback, interval=2500){
                     iteratePaths(edges); // Self-loop
                 }
 
-            }, interval);
+            }, interval*=0.9);
         } 
 
         // Once all effects have been shown
