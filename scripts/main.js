@@ -101,7 +101,6 @@ window.onload = function(){
     // Otherwise load game normally
     else {
         preload(); // Preload assets and prepare splash
-        addButtonPressSound(); // Add sounds to button presses
     } 
     
 }
@@ -198,6 +197,7 @@ const gamestates = { // Different gamestates within the game (player levelling s
                 if(playerUsername == null || playerUsername == undefined){playerUsername = 'Player'};
                 if(playerUsernameAnonymised == null || playerUsernameAnonymised == undefined){playerUsernameAnonymised = `game-${Math.random()}`};
                 
+                firstLoad = false; // Disable game effects on first load
             }
             // If end game
 
@@ -412,6 +412,7 @@ function reset(){
 
     // Interrupt animations
     skipAnimations = true;
+    stopSpaceTraffic = true;
 
     // Reset nodes after animations finish
     setTimeout(function(){
@@ -438,7 +439,7 @@ function playerMadeIntervention(nodeId){
     playerInterventionCount ++;
 
     // Check triggers
-    if(firstLoad){createSpaceTraffic(1, 500, true); firstLoad = false; stopSpaceTraffic = true;} // If first load
+    //if(firstLoad){createSpaceTraffic(1, 500, true); firstLoad = false; stopSpaceTraffic = true;} // If first load
     if(playerLvl>5){ endGame(); } // If end game
     if(gameState == 'iv'){return playerInteractedWithIV(nodeId)}; // If IV
 
@@ -518,6 +519,9 @@ function playerMadeIntervention(nodeId){
 // Effects of player enacting interventions up to their maximum allowance of concurrent interventions
 function playerReachedInterventionMax(intervention){
 
+    // Policy ready sound
+    policyReadySound.play();
+
     // Format progress bar
     styleProgressBar('intervention-max'); // view.js
 
@@ -567,6 +571,9 @@ function playerReachedInterventionMax(intervention){
 function playerLevelledUp(intervention){
 
     // Show new level to player
+
+        // Play level up sound
+        lvlUpSound.play();
 
         // Advance progress bar
         setProgress('progress-goal-div', levels[playerLvl].max); // Progress bar    

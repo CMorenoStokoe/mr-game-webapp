@@ -40,6 +40,17 @@ function createBGAudio(id){
     // Create win screen progress audio sound
     var progressSound = new Audio();
         progressSound.src = `audio/sounds/event-positive/moment2.mp3`;
+        progressSound.volume = musicVolume;
+    
+    // Create level up sound
+    var lvlUpSound = new Audio();
+        lvlUpSound.src = `audio/sounds/event-positive/destinyscoming.mp3`;
+        lvlUpSound.volume = musicVolume;
+
+    // Create policy ready
+    var policyReadySound = new Audio();
+        policyReadySound.src = `audio/sounds/event-positive/progress-good.wav`;
+        policyReadySound.volume = musicVolume;
 
     // Define songs in soundtrack
     const soundtrack = [
@@ -170,6 +181,9 @@ function addVolumeSlider(){
     slider.oninput = function() {
         output.volume = this.value/100;
         sfxVolume = this.value/200;
+        progressSound.volume =  this.value/100;
+        lvlUpSound.volume =  this.value/100;
+        policyReadySound.volume =  this.value/100;
     }
 }
 

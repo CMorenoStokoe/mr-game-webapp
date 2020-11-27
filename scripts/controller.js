@@ -99,9 +99,6 @@ function addOnclickEventsToNodes(gameData){
             // Dispatch event for tutorial
             var event = new CustomEvent("playerMadeIntervention", { "detail": "Player made intervention" });
                 document.dispatchEvent(event);
-
-            // Make sound
-            playSound();
     })
 }
 

@@ -76,11 +76,17 @@ function constructMessage(d){
     // Content div
     var content = document.createElement('DIV');
         content.className = 'd-flex flex-row';
+        content.style.overflow = 'auto';
+        content.style.maxHeight = '80vh';
+        content.style.maxWidth = '40rem';
 
     // Add main body text
     var p = document.createElement('P');
         p.innerHTML = body;
         p.className = 'text-center p-2';
+        p.style.overflow = 'auto';
+        p.style.maxHeight = '80vh';
+        p.style.maxWidth = '40rem';
     div.appendChild(p); // Append to DOM
 
     // Add button to dismiss

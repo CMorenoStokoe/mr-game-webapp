@@ -103,14 +103,17 @@ function tutorial(gameState){
             gameStateSpecific: null,
             title: 'Identifying relationships', 
             body: `
-                Arrows represent 
-                ${tip('causal relationships', 'A change in one trait causes a change in another')} 
-                between traits
-                <br><br>
-                <p class='col-pos'><i class="fas fa-arrow-right"></i> <strong class='col-pos'>Red</strong> arrows represent <strong class='col-pos'>increases</strong></p>
-                <p class='col-neg'><i class="fas fa-arrow-right"></i> <strong class='col-neg'>Blue</strong>  arrows represent <strong class='col-neg'>decreases</strong></p>
-                <br>
-                <p class='text-muted'>Hint: The key in the bottom left of the screen shows this</p>
+                <div class='d-flex flex-column justify-content-center'>  
+                    <p>
+                    Arrows represent 
+                    ${tip('causal relationships', 'A change in one trait causes a change in another')} 
+                    between traits
+                    </p>
+                    <img src='images/tutorial/key.PNG' class='m-2 d-flex align-self-center' style='height: 200px; width: auto;  border-radius: 5px;'>
+                    <p class='col-pos'><i class="fas fa-arrow-right"></i> <strong class='col-pos'>Red</strong> arrows represent <strong class='col-pos'>increases</strong></p>
+                    <p class='col-neg'><i class="fas fa-arrow-right"></i> <strong class='col-neg'>Blue</strong>  arrows represent <strong class='col-neg'>decreases</strong></p>
+                    <p class='text-muted'>The key in the bottom left of the screen shows this in case you forget</p>
+                </div>
             `, 
         },
         {
@@ -143,6 +146,31 @@ function tutorial(gameState){
             btnText: `Click to intervene. Got it.`,
         },
         {
+            id: 'tutorial-propagation',
+            name: 'Propagation',
+            position: {
+                type: 'auto',
+                element: null,
+                x: null,
+                y: null,
+            },
+            trigger: 'onPrevious',
+            reveal: null,
+            gameStateSpecific: null,
+            title: 'Propagation', 
+            body: `
+            <div class='d-flex flex-column justify-content-center'>    
+                <img src='images/tutorial/propagation.gif' class='m-2 d-flex align-self-center' style='height: 200px; width: auto;  border-radius: 5px;'>
+                <p>
+                    When you make an intervention the effects will be shown to you as they 
+                    ${tip('propagate', 'Spread widely from one trait to another' )} 
+                    through the network
+                </p>
+            </div>
+            `, 
+            btnText: `I see.`,
+        },
+        {
             id: 'tutorial-intv-lineWidth',
             position: {
                 type: 'auto',
@@ -155,10 +183,15 @@ function tutorial(gameState){
             gameStateSpecific: null,
             title: 'Identifying relationship strengths', 
             body: `
-                <strong>Line widths represent the strength of relationships</strong>
-                <br><br>
-                <p><strong>Thicker</strong> lines cause larger effects</p>
-                <p><em>Thinner lines cause smaller effects</em></p>
+                <div class='d-flex flex-column justify-content-center'>    
+                    <strong>Line widths represent the strength of relationships</strong>
+                    <img src='images/tutorial/scale.PNG' class='m-2 d-flex align-self-center' style='height: 200px; width: auto;  border-radius: 5px;'>
+                    <br>
+                    <p class='text-muted'>The scale in the bottom left of the screen shows 
+                    by how much a relationship affects a trait's 
+                    ${tip('prevalence', `A measure of how common a trait is (a trait with higher prevalence means that it is more common)`)} 
+                    compared to normal</p>
+                </div>
             `, 
         },
         {
@@ -412,9 +445,11 @@ function tutorial(gameState){
             trigger: 'startup',
             reveal: null,
             gameStateSpecific: 'game',
-            title: `Unlocks <i class="fas fa-plus"></i>`, 
+            title: ``, 
             body: `
-                Each time you level up you can unlock a new ability to power up your interventions
+                Each time you level up you can unlock a new ability to power up your interventions!
+                <br><br>
+                Try unlocking the ability to make two interventions per policy now <i class="fas fa-plus"></i>
             `, 
             btnText: `Dismiss`,
         }, 
@@ -439,8 +474,7 @@ function tutorial(gameState){
                 The game ends once you reach level ${Object.entries(levels).length}. 
             `, 
             btnText: `Level ${Object.entries(levels).length} here I come  <i class="fas fa-fire">`,
-        }, 
-        
+        },         
     ]
     
     // Display tutorials in sequence
