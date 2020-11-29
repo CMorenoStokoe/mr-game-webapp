@@ -315,33 +315,35 @@ function tutorial(gameState){
             title: `<i class="fas fa-hand-point-up" style='font-size: 3em;'></i>`, 
             body: `
                 Here is your first goal <i class="fas fa-medal"></i>
-                <br><br>
-                Goals are random and might not always be achievable but try your best to enact policies which benefit people
             `, 
             btnText: `<i class="fas fa-thumbs-up"></i>`,
-        }, 
+        },          
         {
-            id: 'tutorial-game-start',
-            name: '',
+            id: 'tutorial-game-unachievableGoals',
+            name: 'Unachievable goals',
             position: {
-                type: 'onElement',
-                element: 'GUI-planetInfo',
+                type: 'auto',
+                element: null,
                 x: null,
                 y: null,
             },
             trigger: 'onPrevious',
-            reveal: 'progress-goal-div-div',
+            reveal: 'GUI-goal',
             gameStateSpecific: 'game',
-            title: ``, 
+            title: `About goals...`, 
             body: `
-                You are now ready to start making interventions! 
-                <br><br>
+                <strong>Goals are random</strong>
+                <br>
+                They might not always be achievable but try your best to enact policies which benefit people
+                <br><br>                
+                <strong>Beat the computer!</strong>
+                <br>
                 You are competing against the computer to find the best interventions! <i class="fas fa-robot"></i>
                 <br><br>
-                Have a go at making an intervention now
+                You are now ready to start making interventions! Have a go at making an intervention now
             `, 
             btnText: `Let's go! <i class="fas fa-mouse-pointer"></i>`,
-        }, 
+        },
         {
             id: 'tutorial-game-interventionMade',
             name: 'Level up by making interventions',
