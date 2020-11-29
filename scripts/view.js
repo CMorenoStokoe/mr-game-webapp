@@ -76,10 +76,11 @@ function initialiseView(
 
             // Configure view
             setUI_objective(); // Show objective
-            setUI_planetInfo(); // Show planet
+            //setUI_planetInfo(); // Show planet
             fadeIn_SVG();
-            //fadeIn_planetInfo();
+            
             $('.label').css('opacity', 0); // Start node labels hidden
+
             setExpIndicators(playerExp, levels[playerLvl].max); // Set exp bar
             styleProgressBar('default'); // Set progress bar style
 

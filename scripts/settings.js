@@ -26,7 +26,6 @@ function setMiranaSettings(profile){
             settingsProfile_Default();
             settingsProfile_BetaWeights();
             settingsProfile_PrevalenceLabels();
-            settingsProfile_PermanentLabels();
             break;
 
         case 'test':
