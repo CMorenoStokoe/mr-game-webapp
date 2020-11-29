@@ -105,13 +105,11 @@ function tutorial(gameState){
             body: `
                 <div class='d-flex flex-column justify-content-center'>  
                     <p>
-                    Arrows represent 
-                    ${tip('causal relationships', 'A change in one trait causes a change in another')} 
-                    between traits
+                        Arrows represent 
+                        ${tip('causal relationships', 'A change in one trait causes a change in another')} 
+                        between traits
                     </p>
-                    <img src='images/tutorial/key.png' class='m-2 d-flex align-self-center' style='height: 200px; width: auto;  border-radius: 5px;'>
-                    <p class='col-pos'><i class="fas fa-arrow-right"></i> <strong class='col-pos'>Red</strong> arrows represent <strong class='col-pos'>increases</strong></p>
-                    <p class='col-neg'><i class="fas fa-arrow-right"></i> <strong class='col-neg'>Blue</strong>  arrows represent <strong class='col-neg'>decreases</strong></p>
+                    <img src='images/tutorial/key.jpg' class='m-2 d-flex align-self-center' style='height: 200px; width: auto;  border-radius: 5px;'>
                     <p class='text-muted'>The key in the bottom left of the screen shows this in case you forget</p>
                 </div>
             `, 
@@ -208,14 +206,14 @@ function tutorial(gameState){
             gameStateSpecific: null,
             title: 'Intervening on a trait', 
             body: `
-            <div class='d-flex flex-column justify-content-center'>    
-                <img src='images/tutorial/intervention-source.gif' class='m-2 d-flex align-self-center' style='height: 200px; width: auto; border-radius: 5px;'>
-                <br>
-                <strong>Interventions improve traits</strong>
-                <p>Good traits will be <strong>increased</strong>
-                <br>
-                Bad traits will be <strong>reduced</strong></p>
-            </div>
+                <div class='d-flex flex-column justify-content-center'>    
+                    <img src='images/tutorial/intervention-source.gif' class='m-2 d-flex align-self-center' style='height: 200px; width: auto; border-radius: 5px;'>
+                    <br>
+                    <strong>Interventions improve traits</strong>
+                    <p>Good traits will be <strong>increased</strong>
+                    <br>
+                    Bad traits will be <strong>reduced</strong></p>
+                </div>
             `, 
         },
         {
