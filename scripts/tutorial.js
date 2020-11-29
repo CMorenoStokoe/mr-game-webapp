@@ -328,7 +328,7 @@ function tutorial(gameState){
                 y: null,
             },
             trigger: 'onPrevious',
-            reveal: 'GUI-goal',
+            reveal: null,
             gameStateSpecific: 'game',
             title: `About goals...`, 
             body: `
@@ -401,9 +401,7 @@ function tutorial(gameState){
             gameStateSpecific: 'game',
             title: `<i class="fas fa-hand-point-up" style='font-size: 3em;'></i>`, 
             body: `
-                The levelling bar above will turn into a button saying 'Enact Policy' when you can enact a policy
-                <br><br>
-                Click it now!
+                Now press 'Enact policy'!
             `, 
             btnText: `Okay`,
         },
