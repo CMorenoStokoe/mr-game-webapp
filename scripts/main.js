@@ -200,11 +200,9 @@ const gamestates = { // Different gamestates within the game (player levelling s
                 
                 firstLoad = false; // Disable game effects on first load
             }
-            // If end game
 
-            if(playerLvl>5){
-                endGame();
-            }
+            // Check if end game
+            checkEndGame()
 
         },
         leagueName: 'Persephone',
@@ -441,7 +439,6 @@ function playerMadeIntervention(nodeId){
 
     // Check triggers
     //if(firstLoad){createSpaceTraffic(1, 500, true); firstLoad = false; stopSpaceTraffic = true;} // If first load
-    if(playerLvl>5){ endGame(); } // If end game
     if(gameState == 'iv'){return playerInteractedWithIV(nodeId)}; // If IV
 
     // Apply intervention strength unlock (now so it does not affect scoring by error)
@@ -587,9 +584,6 @@ function playerLevelledUp(intervention){
             
             // Increment player level
             playerLvl++;
-            if(playerLvl>5){
-                endGame();
-            }
 
             // Set unlocks to enabled
 
@@ -626,9 +620,7 @@ function playerLevelledUp(intervention){
         // If player also triggered playerReachedInterventionMax, run this next
         $('#modal-lvlup').one('hidden.bs.modal', function (intervention) {
             
-            if(playerLvl>5){
-                endGame();
-            }
+            checkEndGame();
 
             playerReachedInterventionMax(intervention);
         })
@@ -667,9 +659,7 @@ function playerUnlockedAbility(interventionMax, interventionStrength){
         }
 
         // If end game
-        if(playerLvl>5){
-            endGame();
-        }
+        checkEndGame()
 
 }
 
@@ -758,14 +748,18 @@ function playerSelectedInvalidTarget(nodeId, reason){
         btnText: `Dismiss`,
     });
     $(`#${id}`).show().animate({opacity: 1}, 500);
-
-    
-    if(playerLvl>5){
-        endGame();
-    }
 }
 
 // End game
+function checkEndGame(){
+    if(playerLvl>Object.entries(levels).length){
+        endGame();
+        return true;
+    } else if (playerExp >= 900){
+        endGame();
+    }
+    return false;
+}
 function endGame(){ console.log('end game')
     $('#endgame-modal').modal('show');
     $(`#svg-main`).hide().animate({opacity: 0}, 500);
