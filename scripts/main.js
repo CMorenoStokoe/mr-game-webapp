@@ -286,17 +286,16 @@ const gamestates = { // Different gamestates within the game (player levelling s
         action:  function(){
 
             // Configure view
-            setMiranaSettings('interactiveVisualisation'); 
+            setMiranaSettings('visualisation'); 
             
             // Initialise model, view, and controller
             initialise(
-                profile='interactiveVisualisation',
+                profile='visualisation',
                 pval=1,
                 maxInterventions=0, 
                 data=jsonData,
                 objective = 'none');
             hideGameUI(); // Hide game UI
-            hideAllLabels(gameData.nodes);
 
         },
         leagueName: 'visualisation',

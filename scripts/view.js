@@ -47,7 +47,6 @@ function initialiseView(
 
             // Configure view
             fadeIn_SVG();
-            setUI_objective(); // Show objective
 
             break;
 
@@ -291,6 +290,11 @@ function highlightEdge(id, interval = 2500){
 function hideAllLabels(nodes){
     for(const [id, node] of Object.entries(nodes)){
         hideLabel(id);
+    }
+}
+function showAllLabels(nodes){
+    for(const [id, node] of Object.entries(nodes)){
+        showLabel(id);
     }
 }
 
