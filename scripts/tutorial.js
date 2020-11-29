@@ -109,7 +109,7 @@ function tutorial(gameState){
                         ${tip('causal relationships', 'A change in one trait causes a change in another')} 
                         between traits
                     </p>
-                    <img src='images/tutorial/key.jpg' class='m-2 d-flex align-self-center' style='height: 200px; width: auto;  border-radius: 5px;'>
+                    <img src='images/tutorial/key.JPG' class='m-2 d-flex align-self-center' style='height: 200px; width: auto;  border-radius: 5px;'>
                     <p class='text-muted'>The key in the bottom left of the screen shows this in case you forget</p>
                 </div>
             `, 
@@ -133,12 +133,6 @@ function tutorial(gameState){
                 <br><br>
                 <p><strong><i class="fas fa-mouse"></i> Click </strong> <br> On a trait to intervene on it </p>
                 <p><strong><i class="fas fa-mouse-pointer"></i> Hover </strong><br> Over a trait to see its <strong>name</strong>, <strong>prevalence</strong> and <strong>effects</strong>
-                <br><p class='text-muted'>
-                    <strong>Optionally </strong><br>
-                    If you can't see all the effects clearly 
-                    <strong class='col-dark'><i class="fas fa-hand-rock"></i></i> Drag </strong> 
-                    a trait to reposition it 
-                </p>
             </div>
             `, 
             btnText: `Click to intervene. Got it.`,

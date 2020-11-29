@@ -274,6 +274,7 @@ const gamestates = { // Different gamestates within the game (player levelling s
             hideGameUI(); // Remove game UI
             showTestUI(); // Add test UI
             initialiseTestControls(); // Controls for test
+            createMenu(); // menu.js
 
         },
         leagueName: 'visualisation',
