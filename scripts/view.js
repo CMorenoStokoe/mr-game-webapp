@@ -19,9 +19,9 @@ functions in other secondary files.
 
 // Scale SVG to window
 const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
-    document.getElementById('svg-main').setAttribute('width', vw);  
 const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
     document.getElementById('svg-main').setAttribute('height', vh);
+    document.getElementById('svg-main').setAttribute('width', vh);
 
 // Enable popovers
 $(function () {$('[data-toggle="popover"]').popover()})
@@ -43,7 +43,7 @@ function initialiseView(
 
             // Generate visualisation
             generateGraphFromJSON(gameData.toD3().nodes, gameData.toD3().links, '#svg-main', settings, pValueThreshold);
-            createLegend('graph-legend', 'svg-main', settings, blackText = true, customLabels={'scale': 'Prevalence change (%)', 'pos': 'Increases', 'neg': 'Reduces', 'min': '<5%', 'max': '100%',});
+            //createLegend('graph-legend', 'svg-main', settings, blackText = true, customLabels={'scale': 'Prevalence change (%)', 'pos': 'Increases', 'neg': 'Reduces', 'min': '<5%', 'max': '100%',});
 
             // Configure view
             fadeIn_SVG();
@@ -58,7 +58,7 @@ function initialiseView(
 
             // Generate visualisation
             generateGraphFromJSON(gameData.toD3().nodes, gameData.toD3().links, '#svg-main', settings, pValueThreshold); 
-            createLegend('graph-legend', 'svg-main', settings, blackText = true, customLabels={'scale': 'Prevalence change (%)', 'pos': 'Increases', 'neg': 'Reduces', 'min': '<5%', 'max': '100%',});
+            //createLegend('graph-legend', 'svg-main', settings, blackText = true, customLabels={'scale': 'Prevalence change (%)', 'pos': 'Increases', 'neg': 'Reduces', 'min': '<5%', 'max': '100%',});
 
             // Configure view
             setUI_objective(); // Show objective
@@ -73,7 +73,7 @@ function initialiseView(
 
             // Generate visualisation
             generateGraphFromJSON(gameData.toD3().nodes, gameData.toD3().links, '#svg-main', settings, pValueThreshold); 
-            createLegend('graph-legend', 'svg-main', settings, blackText = true, customLabels={'scale': 'Prevalence change (%)', 'pos': 'Increases', 'neg': 'Reduces', 'min': '<5%', 'max': '100%',});
+            //createLegend('graph-legend', 'svg-main', settings, blackText = true, customLabels={'scale': 'Prevalence change (%)', 'pos': 'Increases', 'neg': 'Reduces', 'min': '<5%', 'max': '100%',});
 
             // Configure view
             setUI_objective(); // Show objective

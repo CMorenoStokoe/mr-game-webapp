@@ -26,6 +26,7 @@ function setMiranaSettings(profile){
             settingsProfile_Default();
             settingsProfile_BetaWeights();
             settingsProfile_PrevalenceLabels();
+            settingsProfile_PermanentLabels();
             break;
 
         case 'test':
@@ -70,6 +71,11 @@ function settingsProfile_Default(){
 
         //settings.simulation.strength = -3000; // Spread out nodes in graph
         settings.simulation.autoUpdate = true; // Enable force-tick auto updating of graph to and ensure it stays updated as nodes are changed
+
+        // More compatiable view
+        settings.simulation.forceViewbox = true;
+		settings.simulation.viewbox.x = 1100;
+		settings.simulation.viewbox.y = 1100;
 
     /* Animation */
         

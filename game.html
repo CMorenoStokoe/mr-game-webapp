@@ -30,11 +30,16 @@
 </head>
 <body style='overflow: hidden !important;'>
 
-    <div id='container-4-bg' style='height: 100vh; width: 100vw;'>
-        <div id='preload-images'></div>
+    <div class='d-flex flex-row justify-content-center align-items-center' style='display: absolute; left:0; top:0; height: 100vh; width: 100vw;'>
 
         <!-- Graph area -->
-        <svg width="1000" height="700" id="svg-main" style='display: none; position: absolute; top:0; left:0;'></svg>
+        <svg width="1000" height="1000" id="svg-main" style='display: none;'></svg>
+
+        <img src='images/tutorial/legend.JPG' style='position: absolute; bottom: 0; left:0; max-height: 300px; width: auto; height: auto;' id='legend'></img>
+    </div>
+
+    <div id='container-4-bg' style='height: 100vh; width: 100vw;'>
+        <div id='preload-images'></div>
         
         <!-- Loading screen -->
         <div id='loading-screen'>
