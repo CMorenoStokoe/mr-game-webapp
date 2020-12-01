@@ -58,7 +58,7 @@ function createMenu(){
                     volumeSlider.type = 'range';
                     volumeSlider.min = '0';
                     volumeSlider.max = '100';
-                    volumeSlider.value = '30';
+                    volumeSlider.value = '10';
                     volumeSlider.className = 'slider';
                     volumeSlider.id = 'volume-slider';
                 

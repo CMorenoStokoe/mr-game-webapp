@@ -10,7 +10,7 @@ Use: These functions are called by the main and secondary scripts when sound eff
 */
 
 // Sound effects volume
-var musicVolume = 0.3;
+var musicVolume = 0.1;
 var sfxVolume = 0.15;
 
 // Update volumes
