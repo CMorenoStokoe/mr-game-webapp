@@ -113,8 +113,9 @@ function showScoreScreen(gameData, score, playerInterventionHistory){ console.lo
 
         // Show message about no possible intervention
         function noPossibleInterventionMsg(){
-            return `<p class='text-muted'>There wasn't a way for you to ${gameData.objective.isGood ? 'raise' : 'lower'} ${gameData.objective.label} 
-            with the choice of interventions you had, so you were given a score of 100%.</p>`;
+            return `<p class='text-muted'>The computer couldn't find a way to 
+            ${gameData.objective.isGood ? 'raise' : 'lower'} ${gameData.objective.label} 
+            with the choice of interventions you had, so you were given a score of 100%!</p>`;
         }
         
         // Generate username
