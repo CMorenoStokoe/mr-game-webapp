@@ -380,10 +380,9 @@ function tutorial(gameState){
             title: `Policies`, 
             body: `
                 <p>Well done, now you have made an intervention it's time to enact it as a policy!</p>
-                <p> Enacting policies will show you how well your interventions compared to the best policy 
+                <p>You should consider an intervention as part of a policy; a policy can contain one or more interventions.</p>
+                <p>Enacting policies will show you how well your interventions compared to the best solutions 
                 found by the computer! <i class="fas fa-robot"></i></p>
-                <p class='text-muted'>Note: Later on in the game you might need to make more interventions 
-                before you can make a policy</p>
             `, 
             btnText: `Continue`,
         },
@@ -483,7 +482,7 @@ function tutorial(gameState){
         // Make dialog
         constructMessage(dialog);
 
-        // Add as topic to help page
+        /* Add as topic to help page
         var help = document.createElement('BUTTON');
             help.innerHTML = dialog.name;
             help.style.display = 'block';
@@ -493,6 +492,7 @@ function tutorial(gameState){
                 $(`#menu-help`).modal('hide');
             }
         document.getElementById('menu-help-content').appendChild(help)
+        */
         
         // Trigger on startup
         if(dialog.trigger == 'startup'){
