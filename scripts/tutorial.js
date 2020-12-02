@@ -207,7 +207,7 @@ function tutorial(gameState){
             body: `
                 <div class='d-flex flex-column justify-content-center'>    
                     <strong>The simulation classifies traits as either good or bad</strong>
-                    <img src='images/tutorial/goodnessbadness.jpg' class='m-2 d-flex align-self-center' style='height: 200px; width: auto; border-radius: 5px;'>
+                    <img src='images/tutorial/goodnessbadness.JPG' class='m-2 d-flex align-self-center' style='height: 200px; width: auto; border-radius: 5px;'>
                     <br>                 
                     <p>You can view information about the traits in the simulation at any time from the help tab in the top-right corner of your screen<p>                    
                 </div>
