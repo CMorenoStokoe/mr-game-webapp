@@ -66,7 +66,12 @@ function tutorial(gameState){
             title: 'Using the simulation', 
             body: `
                 <p class='text-left'>
-                    We are putting you in the position of public health policy maker for a population.
+                    ${
+                        gameState==='iv' ? 
+                            'We are putting you in the position of public health policy maker for a population.'
+                            : 
+                            'You are the public health officer for the solar system. Your task is to improve public health on each of the planets. In the game you will be asked to select interventions to solve particular public health issues.'
+                    }
                     <br><br>
                     <strong>What is my aim?</strong><br>
                     Maximise the 
@@ -183,6 +188,28 @@ function tutorial(gameState){
                     by how much a relationship affects a trait's 
                     ${tip('prevalence', `A measure of how common a trait is (a trait with higher prevalence means that it is more common)`)} 
                     compared to normal</p>
+                </div>
+            `, 
+        },
+        {
+            id: 'tutorial-intv-goodness',
+            name: 'Good and bad traits',
+            position: {
+                type: 'auto',
+                element: null,
+                x: null,
+                y: null,
+            },
+            trigger: 'onPrevious',
+            reveal: null,
+            gameStateSpecific: null,
+            title: 'Good and bad traits', 
+            body: `
+                <div class='d-flex flex-column justify-content-center'>    
+                    <strong>The simulation classifies traits as either good or bad</strong>
+                    <img src='images/tutorial/goodnessbadness.jpg' class='m-2 d-flex align-self-center' style='height: 200px; width: auto; border-radius: 5px;'>
+                    <br>                 
+                    <p>You can view information about the traits in the simulation at any time from the help tab in the top-right corner of your screen<p>                    
                 </div>
             `, 
         },
@@ -481,18 +508,6 @@ function tutorial(gameState){
 
         // Make dialog
         constructMessage(dialog);
-
-        /* Add as topic to help page
-        var help = document.createElement('BUTTON');
-            help.innerHTML = dialog.name;
-            help.style.display = 'block';
-            help.className = 'btn btn-custom m-2';
-            help.onclick = function(){
-                $(`#${dialog.id}`).show().animate({opacity: 1}, 500);
-                $(`#menu-help`).modal('hide');
-            }
-        document.getElementById('menu-help-content').appendChild(help)
-        */
         
         // Trigger on startup
         if(dialog.trigger == 'startup'){
@@ -547,6 +562,58 @@ function tutorial(gameState){
             $(`#${comp}`).show().animate({opacity: 1}, 500)
         }
         
+    }
+
+    // Make table of trait goodness
+    var tableTitle = document.createElement('H5');
+        tableTitle.className = 'p-2';
+        tableTitle.innerHTML = 'Trait key';
+    document.getElementById('menu-help-content').appendChild(tableTitle);
+    var table = document.createElement('TABLE');
+        table.className = 'p-2 mb-4 table table-striped';
+    document.getElementById('menu-help-content').appendChild(table);
+
+    // Add headers
+    var tr = document.createElement('TR');
+    table.appendChild(tr);
+        var th = document.createElement('TH');
+            th.innerHTML = `<strong>Trait</strong>`;
+        table.appendChild(th);
+        var td = document.createElement('TD');
+            td.innerHTML = `<strong>Icon</strong>`;
+        table.appendChild(td);
+        var td = document.createElement('TD');
+            td.innerHTML = `<strong>Good/Bad</strong>`;
+        table.appendChild(td);
+        var td = document.createElement('TD');
+            td.innerHTML = `<strong>Definition</strong>`;
+        table.appendChild(td);
+
+    // Add row to table for each trait
+    for(const [key, value] of Object.entries(isGood)){
+
+        // Add row for each trait
+        var tr = document.createElement('TR');
+        table.appendChild(tr);
+
+            // Add col for trait label
+            var th = document.createElement('TH');
+                th.innerHTML = nodeNames[key];
+            table.appendChild(th);
+            var td = document.createElement('TD');
+                td.style.padding = 0;
+                td.innerHTML = `<img src='images/epicons/${icons[key]}.png' style='height: 2.5rem; width: auto;'></img>`;
+            table.appendChild(td);
+
+            // Add col for trait goodness
+            var td = document.createElement('TD');
+                td.innerHTML = value===true ? `<span style='color: green'>Good</span>` : `<span style='color: purple'>Bad</span>`;
+            table.appendChild(td);
+
+            // Add col for trait definition
+            var td = document.createElement('TD');
+                td.innerHTML = nodeDefs[key];
+            table.appendChild(td);
     }
 
     // Enable popovers

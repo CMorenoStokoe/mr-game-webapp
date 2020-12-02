@@ -18,7 +18,7 @@ function setMiranaSettings(profile){
 
         case 'visualisation':
             settingsProfile_Default();
-            settingsProfile_BetaWeights();
+            //settingsProfile_BetaWeights();
             settingsProfile_PermanentLabels();
             break;
 
@@ -151,31 +151,6 @@ function settingsProfile_Default(){
         // Hide edge weights
         settings.links.scaleToBeta.method = 'none'; 
         settings.links.width = 2;
-    
-    /* Arrows */
-	settings.arrows.arrowType = d=>settings.arrows.selectArrow(d.b_pct, d.offset),
-    settings.arrows.selectArrow = function(b, offset, outline=false){ 
-        if(outline){
-            switch(true){ // If outline
-                case b < 0 && offset == 0: return('url(#end-neg_outline)'); // Negative uni-directional estimate
-                case b >= 0 && offset == 0: return('url(#end-pos_outline)'); // Positive uni-directional estimate
-                case b >= 0 && offset != 0: return('url(#end-pos-bi_outline)'); // Negative bi-directional estimate
-                case b < 0 && offset != 0: return('url(#end-neg-bi_outline)'); // Positive bi-directional estimate
-            }
-        } else { // If bidirectional arrows disabled
-            let suffix = '';
-            if(Math.abs(b)<=5){
-                suffix = '-xl';
-            }
-            else if(Math.abs(b)<=15){
-                suffix = '-lg';
-            }
-            switch(true){
-                case b < 0: return(`url(#end-neg${suffix})`); // Negative uni-directional estimate
-                case b >= 0: return(`url(#end-pos${suffix})`); // Positive uni-directional estimate
-            }
-        }
-    }
 }
 
 // Settings profile to show beta weights for effects 
@@ -211,6 +186,32 @@ function settingsProfile_BetaWeights(){
             )
         )
     ;}
+    
+    
+    /* Arrows */
+	settings.arrows.arrowType = d=>settings.arrows.selectArrow(d.b_pct, d.offset),
+    settings.arrows.selectArrow = function(b, offset, outline=false){ 
+        if(outline){
+            switch(true){ // If outline
+                case b < 0 && offset == 0: return('url(#end-neg_outline)'); // Negative uni-directional estimate
+                case b >= 0 && offset == 0: return('url(#end-pos_outline)'); // Positive uni-directional estimate
+                case b >= 0 && offset != 0: return('url(#end-pos-bi_outline)'); // Negative bi-directional estimate
+                case b < 0 && offset != 0: return('url(#end-neg-bi_outline)'); // Positive bi-directional estimate
+            }
+        } else { // If bidirectional arrows disabled
+            let suffix = '';
+            if(Math.abs(b)<=5){
+                suffix = '-xl';
+            }
+            else if(Math.abs(b)<=15){
+                suffix = '-lg';
+            }
+            switch(true){
+                case b < 0: return(`url(#end-neg${suffix})`); // Negative uni-directional estimate
+                case b >= 0: return(`url(#end-pos${suffix})`); // Positive uni-directional estimate
+            }
+        }
+    }
 }
 
 function settingsProfile_enableOutlines(){

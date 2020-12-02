@@ -62,8 +62,8 @@ const isGood = {
     'ieu_a_1018': true, //Wellbeing, 
     'ukb_b_8476': false, //Loneliness, 
     'ukb_b_3957': false, //Sleeplessness, 
-    'ukb_d_SLEEP': false, //ICD10 Insomni, 
-    'ukb_b_4062': true, //Happiness, 
+    //'ukb_d_SLEEP': false, //ICD10 Insomni, 
+    //'ukb_b_4062': true, //Happiness, 
     'ieu_a_118': false, //Neuroticism, 
     'ukb_b_5779': false, //Alcohol, 
     'ieu_a_1239': true, //Education, 
@@ -78,3 +78,44 @@ const isGood = {
     'ukb_b_4424': true, //Sleep duration, 
     'ieu_a_24': false, //Diabetes
 }
+const nodeNames = {
+    'ieu_a_1187': 'Depression', //, 
+    'ukb_b_6519': 'Worry', //, 
+    'ieu_a_1018': 'Wellbeing', //, 
+    'ukb_b_8476': 'Loneliness', //, 
+    'ukb_b_3957': 'Insomnia', //, 
+    'ieu_a_118': 'Neuroticism', //, 
+    'ukb_b_5779': 'Alcohol', //, 
+    'ieu_a_1239': 'Education', //, 
+    'ukb_b_19953': 'BMI', //, 
+    'ukb_b_5238': 'Intelligence', //, 
+    'ukb_b_4956': 'Eveningness', //, 
+    'ukb_b_5076': 'Socialising', // , 
+    'ieu_a_961': 'Smoking', //, 
+    'ukb_b_4710': 'Exercise', //, 
+    'ukb_b_5237': 'Coffee intake', //, 
+    'ieu_a_7': 'Heart disease', //CHD, 
+    'ukb_b_4424': 'Sleep', //, 
+    'ieu_a_24': 'Diabetes', //
+}
+
+const nodeDefs = {
+    'ieu_a_1187': 'Mood disorder associated with sadness and loss of interest', //, 
+    'ukb_b_6519': 'Frequency of feeling worried', //, 
+    'ieu_a_1018': 'Self-reported feelings of life satisfaction and happiness', //, 
+    'ukb_b_8476': 'Frequency of feeling lonely', //, 
+    'ukb_b_3957': 'Difficulties initiating and maintaining sleep', //, 
+    'ieu_a_118': 'Personality trait associated with feeling strong emotions', //, 
+    'ukb_b_5779': 'Units of alcohol drank per week', //, 
+    'ieu_a_1239': 'Years of education', //, 
+    'ukb_b_19953': 'Body weight relative to height', //, 
+    'ukb_b_5238': 'Fluid intelligence score', //, 
+    'ukb_b_4956': 'Whether you are more of a \'morning\' or \'evening\' person', //, 
+    'ukb_b_5076': 'Frequency of self-reported social activities', // , 
+    'ieu_a_961': 'Cigarettes smoked per day', //, 
+    'ukb_b_4710': 'Hours of moderate exercise per week', //, 
+    'ukb_b_5237': 'Quantity of coffee drank per week', //, 
+    'ieu_a_7': 'Diagnosis of Chronic Heart Disease', //CHD, 
+    'ukb_b_4424': 'Average hours of sleep per night', //, 
+    'ieu_a_24': 'Diagnosis of diabetes', //
+}    

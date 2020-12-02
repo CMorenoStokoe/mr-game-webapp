@@ -24,7 +24,7 @@ function createBGAudio(id){
 
     // Update volumes
     if(document.getElementById("volume-slider")){
-        getVolumeSliderLevels()
+        getVolumeSliderLevels();
     }
     
     // Create audio object and append to DOM
