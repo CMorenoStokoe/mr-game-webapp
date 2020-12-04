@@ -294,6 +294,9 @@ const gamestates = { // Different gamestates within the game (player levelling s
                 data=jsonData,
                 objective = 'none');
             hideGameUI(); // Hide game UI
+            
+            tutorial('iv');
+            $('#tutorial-data').hide();
 
         },
         leagueName: 'visualisation',
