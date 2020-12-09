@@ -20,6 +20,7 @@ function setMiranaSettings(profile){
             settingsProfile_Default();
             //settingsProfile_BetaWeights();
             settingsProfile_PermanentLabels();
+			settings.links.dashArray = ("3, 3");
             break;
 
         case 'interactiveVisualisation':
