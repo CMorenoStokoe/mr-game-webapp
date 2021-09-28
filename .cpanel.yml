@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/morenost/public_html/mendel/
+    - export DEPLOYPATH=/home/morenost/public_html/plausibilitea/
     - /bin/cp -R * $DEPLOYPATH
